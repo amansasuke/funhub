@@ -1,0 +1,59 @@
+{# {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-common">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }} #}
+{{ form_start(form,{'attr': {'class': 'login-form'}}) }}
+<div class="form-group mb-3">
+    
+    {{ form_row(form.ClientId,{'attr': {'class': 'form-control input-md'}}) }}
+</div>
+<div class="form-row">
+    <div class="form-group col-md-6">
+        {{ form_row(form.StartDate) }}
+    </div>
+    <div class="form-group col-md-6">       
+        {{ form_row(form.EndDate) }}
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+        {{ form_row(form.StartTime,{'attr': {'class': 'form-control input-md'}}) }}
+    </div>
+    <div class="form-group col-md-6">       
+        {{ form_row(form.EndTime,{'attr': {'class': 'form-control input-md'}}) }}
+    </div>
+</div>
+
+{# <div class="form-group mb-3">
+    <label class="control-label">Select Client</label>
+    {{ form_row(form.MangerStart,{'attr': {'class': 'form-control input-md'}}) }}
+</div>
+
+<div class="form-group mb-3">
+    <label class="control-label">Select Client</label>
+    {{ form_row(form.ClientStartDate,{'attr': {'class': 'form-control input-md'}}) }}
+</div>
+
+<div class="form-group mb-3">
+    <label class="control-label">Select Client</label>
+    {{ form_row(form.ClientStartTime,{'attr': {'class': 'form-control input-md'}}) }}
+</div>
+
+<div class="form-group mb-3">
+    <label class="control-label">Select Client</label>
+    {{ form_row(form.ClientEndTime,{'attr': {'class': 'form-control input-md'}}) }}
+</div>
+
+<div class="form-group mb-3">
+    <label class="control-label">Select Client</label>
+    {{ form_row(form.ClientStatus,{'attr': {'class': 'form-control input-md'}}) }}
+</div>
+
+<div class="form-group mb-3">
+    <label class="control-label">Select Client</label>
+    {{ form_row(form.BookingStatus,{'attr': {'class': 'form-control input-md'}}) }}
+</div> #}
+
+<button class="btn btn-primary" style="width:100%;">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

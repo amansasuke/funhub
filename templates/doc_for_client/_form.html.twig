@@ -1,0 +1,33 @@
+{# {{ form_start(form) }}
+    {{ form_widget(form) }}
+    
+{{ form_end(form) }} #}
+
+{{ form_start(form,{'attr': {'class': 'login-form'}}) }}
+<div class="form-group mb-3">
+    {{ form_row(form.Ordername,{'attr': {'class': 'form-control input-md'}}) }}
+</div>
+    {# <label class="tg-fileuploadlabel" for="tg-photogallery">
+    <div class="textwidget" style="padding:5px; width: 100px;">
+     {{ form_row(form.Ordername,{'attr': {'class': 'form-control input-md'}}) }}
+    </div> #}
+    <div class="form-group mb-3">
+     {{ form_row(form.Name,{'attr': {'class': 'form-control input-md'}}) }}
+    </div>
+    <div class="form-group mb-3">
+     {{ form_row(form.Doclink,{'attr': {'class': 'form-control input-md '}}) }}
+    </div>
+    <div class="textwidget" >
+     {{ form_row(form.Status,{'attr': {'id': 'tg-photogallery'}}) }}
+    </div>
+    {# {{ form_row(form.doclink,{'attr': {'class': 'tg-fileinput'}}) }} #}
+    
+    {# <span>Drop files <b></b></span>
+    <span>Or</span>
+    <span class="btn btn-common">Select Files</span>
+    <span>Maximum upload file size: 500 KB</span> #}
+
+    {# <input id="tg-photogallery" class="tg-fileinput" type="file" name="file"> #}
+    
+    <button class="btn btn-primary" style="width:100%;">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

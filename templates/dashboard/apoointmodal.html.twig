@@ -1,0 +1,39 @@
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ path('app_dashboard_submit',  {'id': appointment.id}) }}" method="post">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Start Date</label>
+                        <input type="date" class="form-control" name="startdate" value="" min="{{ appointment.StartDate ? appointment.StartDate|date('Y-m-d') : '' }}" max="{{ appointment.EndDate ? appointment.EndDate|date('Y-m-d') : '' }}" aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">Please select the date for book appointment</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Start Time</label>
+                        {# <input type="time" id="appt" name="appt" value="09:00" min="09:00" max="10:00" required> #}
+                        <input type="time" class="form-control" name="starttime" id="startTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">End Time</label>
+                        <input type="time" class="form-control" name="endtime" id="endTime" required>
+                    </div>
+                    <input type="hidden" class="form-control" name="Status" value="submit" required>
+                    <script type="text/javascript">
+                    document.getElementById("startTime").value = "{{ appointment.StartTime ? appointment.StartTime|date('H:i') : '' }}";
+                    document.getElementById("endTime").value = "{{ appointment.EndTime ? appointment.EndTime|date('H:i') : '' }}";
+                    </script>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

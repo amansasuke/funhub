@@ -1,0 +1,191 @@
+<div class="panel-group" id="accordion">
+    {% for ord in order %}
+    {% for pro in ord.products %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion{{ord.id}}" href="#collapse{{ord.id}}" style="font-size:20px;">
+                    {{pro.name}} $ {{pro.price}}
+                </a>
+            </h4>
+        </div>
+        <div id="collapse{{ord.id}}" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div id="tracking-pre">
+                </div>
+                <div id="tracking">
+                    <div class="tracking-list">       
+                        <div class="tracking-item">
+                            <div class="tracking-icon status-current blinker">
+                                <svg class="svg-inline--fa fa-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                    <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path>
+                                </svg>
+                            </div>
+                            <div class="tracking-date "><img src="assets\img\logo\pay.png" class="img-responsive" alt="order-placed" height="40px" /></div>
+                            <div class="tracking-content">PaymentStatus</div>
+                                <span class="badge badge-success" id="shownots" style="width: 80px;color: #fff; cursor: pointer; margin-bottom: 10px;margin-top: 10px;">Done</span>                       
+                        </div>
+                        </div>                                
+                        
+                        <div class="tracking-item{% for appointment in appointments %}{%if appointment.ClientStatus!="submit" %}-pending{% endif %}{% endfor %} ">
+                            <div class=" tracking-icon status-intransit">
+                                <svg class="svg-inline--fa fa-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                    <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path>
+                                </svg>
+                            </div>
+                            <div class="tracking-date"><img src="assets\img\logo\call.png" class="img-responsive" alt="order-placed" height="40px" /></div>
+                            <div class="tracking-content">Onboad Call </div>
+                            <!-- Button trigger modal -->
+                            
+                            <!-- Modal -->
+                            <h5>call Availability </h5>
+                            {% for appointment in appointments %}
+                                {% include '/dashboard/apoointmodal.html.twig' %}
+                            {%if appointment.ClientStatus!="submit" %}
+                            <table>
+                                <tr>
+                                    <th>Start Date :</th>
+                                    <td>{{ appointment.StartDate ? appointment.StartDate|date('Y-m-d') : '' }} to
+                                        {{ appointment.EndDate ? appointment.EndDate|date('Y-m-d') : '' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Start Time :</th>
+                                    <td>{{ appointment.StartTime ? appointment.StartTime|date('H:i') : '' }} - {{ appointment.EndTime ? appointment.EndTime|date('H:i:s') : '' }}</td>
+                                </tr>
+                            </table>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                Book an Appointment
+                            </button>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        {# appointmrnt #}
+                        {% for ord in order %}
+                            {% for user in ord.user %}
+                                <div class="tracking-item{%if user.name|length == 0 %}-pending{% endif %}">
+                                    <div class="tracking-icon status-intransit">
+                                        <svg class="svg-inline--fa fa-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="tracking-date"><img src="assets\img\logo\agent.png" class="img-responsive" alt="order-placed" height="40px" /></div>
+                                    <div class="tracking-content">Agent for Order </div>
+                                    
+                                    {{ user.name}}                                
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    <div class="tracking-item{% if ord.docstatus != 1%}-pending{% endif%}">
+                        <div class="tracking-icon status-intransit">
+                            <svg class="svg-inline--fa fa-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path>
+                            </svg>
+                        </div>
+                        <div class="tracking-date"><img src="assets\img\logo\doc.png" class="img-responsive" height="40px" alt="order-placed" /></div>
+                        {% if ord.docstatus == 1 %}
+                        <div class="tracking-content">Documents required<span class="badge badge-success" style="width: 80px;color: #fff; cursor: pointer; margin-bottom: 5px;margin-top: 10px;">Done</span></div>
+                        {% else %}
+                        <div class="tracking-content">Documents required<span class="badge badge-info" style="width: 80px;color: #fff; cursor: pointer; margin-bottom: 5px;margin-top: 10px;">Panding</span></div>
+                        {% for final in finalredoc %}
+                        {% if ord.id == final.orderid %}
+                        <div class="post-btn" style="padding-top: 10px;">
+                            <a href="adddoc/{{ord.id}}?docname={{ final.requrdoc }}" class="btn btn-danger" style="color:#fff">{{ final.requrdoc }}
+                                <i class="fa fa-plus" style="padding-left: 10px;"> </i>
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% for final in finalredocsub %}
+                        {% if ord.id == final.orderid %}
+                        <div class="post-btn" style="padding-top: 10px;">
+                            {% if final.status == 0 %}
+                            <a href="#" class="btn btn-info" style="color:#fff">{{ final.submitdoc }}
+                                <i class="fa fa-check" style="padding-left: 10px;"> </i>
+                            </a>
+                            {% endif %}
+                            {% if final.status == 2 %}
+                            <a href="#" class="btn btn-warning" style="color:#fff">{{ final.submitdoc }}
+                                <i class="fa fa-check" style="padding-left: 10px;"> </i>
+                            </a>
+                            {% endif %}
+                            {% if final.status == 1 %}
+                            <a href="#" class="btn btn-success" style="color:#fff">{{ final.submitdoc }}
+                                <i class="fa fa-check" style="padding-left: 10px;"> </i>
+                            </a>
+                            {% endif %}
+                            {% if final.remark| length != 0 %}
+                            <a href="#" class="btn btn-warning" style="color:#fff">{{ final.remark }}{{ final.status }}
+                            </a>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% for d in doc %}
+                        {% if pro.id == d.productinfo.id %}
+                        {# <div class="post-btn" style="padding-top: 10px;">
+                            <a href="adddoc/{{d.id}}" class="btn btn-danger" style="color:#fff">{{ d.docinfo }}
+                                <i class="fa fa-plus" style="padding-left: 10px;"> </i>
+                            </a>
+                        </div> #}
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="tracking-item{% if ord.startdate == null%}-pending{% endif%}">
+                        <div class="tracking-icon status-intransit">
+                            <svg class="svg-inline--fa fa-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path>
+                            </svg>
+                        </div>
+                        <div class="tracking-date"><img src="assets\img\logo\flag.png" height="40px" class="img-responsive" alt="order-placed" /></div>
+                        <div class="tracking-content">Start Date Of Service<span>
+                        {% if ord.startdate != null%}{{ord.startdate|date('d M Y')}}{% endif%}</span></div>
+                    </div>
+                    <div class="tracking-item{% if ord.enddate == null%}-pending{% endif%}
+                        ">
+                        <div class="tracking-icon status-current blinker">
+                            <svg class="svg-inline--fa fa-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path>
+                            </svg>
+                        </div>
+                        <div class="tracking-date"><img src="assets\img\logo\complete.png" height="40px" class="img-responsive" alt="order-placed" /></div>
+                        <div class="tracking-content">Complete Date Of Service<span>
+                        {% if ord.enddate != null%}{{ord.enddate|date('d M Y')}}{% endif%}
+                        </span></div>
+                    </div>
+                    <div class="tracking-item-pending">
+                        <div class="tracking-icon status-intransit">
+                            <svg class="svg-inline--fa fa-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path>
+                            </svg>
+                        </div>
+                        <div class="tracking-date"><img src="assets\img\logo\down.png" height="40px" class="img-responsive" alt="order-placed" /></div>
+                        <div class="tracking-content">Download Documents</div>
+                        {% for docclients in doc_for_clients %}
+                        {% if docclients.Ordername.id == ord.id %}
+                        <label class="tg-fileuploadlabel" for="tg-photogallery" style="padding:20px 10px 10px 0px">
+                            <a href="{{ asset("uploads/brochures/")}}{{docclients.doclink}}" target="_blank" class="btn btn-success" style="color:#fff">{{ docclients.name }}
+                                <i class="fa fa-download" style="padding-left: 10px;"> </i>
+                            </a>
+                        </label>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="tracking-item-pending">
+                        <div class="tracking-icon status-intransit">
+                            <svg class="svg-inline--fa fa-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path>
+                            </svg>
+                        </div>
+                        <div class="tracking-date"><img src="assets\img\logo\feedback.png" height="40px" class="img-responsive" alt="order-placed" /></div>
+                        <div class="tracking-content">Feedback</div>
+                        <button class="btn btn-success">Submit your Feedback </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endfor %}
+</div>

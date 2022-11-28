@@ -1,0 +1,254 @@
+{% extends 'getrout.html.twig' %}
+{% block title %}club{% endblock %}
+{% block body %}
+<style type="text/css">
+@import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap");
+
+.card-pink {
+    border-radius: 6px;
+    border-bottom: 4px solid #ff2c95 !important;
+}
+
+.card-blue {
+    border-radius: 6px;
+    border-bottom: 4px solid #1c68b3 !important;
+}
+
+.col .card img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 1rem 1.5rem;
+}
+
+.card-body p {
+    color: #4b5563;
+}
+
+.card-blue svg {
+    fill: #1c68b3;
+}
+
+.card-pink svg {
+    fill: #ff2c95;
+}
+
+.card-blue .card-footer p {
+    color: #1c68b3;
+}
+
+.card-pink .card-footer p {
+    color: #ff2c95;
+}
+
+.card-shape {
+    position: relative;
+}
+
+.custom-shape-divider-bottom-1634717805 {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1634717805 svg {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 50px;
+}
+
+.custom-shape-divider-bottom-1634717805 .shape-fill {
+    fill: #ffffff;
+}
+
+.vision-head {
+    font-size: 80px;
+}
+</style>
+
+<body>
+	<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-wrapper">
+                        <h2 class="product-title">Club</h2>
+                        <ol class="breadcrumb">
+                            <li><a href="#">Home /</a></li>
+                            <li class="current">Club</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-6 col-xs-12">
+                    <img class="img-fluid" src="assets/img/about/about.png" alt="">
+                    {# <h1 class="vision-head">Our vision <br>& Our Mission </h1>
+                    <h5><i> Fintastic Hub: Empowering businesses with financial literacy</i></h5> #}
+                </div>
+                <div class="col-md-6 col-lg-6 col-xs-12">
+                    <div class="about-wrapper">
+                        <h2 class="intro-title">A community that every business owner needs.</h2>
+                        <p class="intro-desc">
+                           	Have you ever wished you had the right tools, resources and support to fasten the 	growth of your business and reach greater heights without the hassle? 
+							We made your wish come true at Fintastic Hub!
+
+                        </p>
+                        <h5>FH Business Club is an exclusive membership for business owners to</h5>
+                        <ul style="list-style: circle;padding: 20px;">
+                            <li>● FH Business Club is an exclusive membership for business owners to
+</li>
+                            <li>● Stay updated on the latest finance and business trends</li>
+                            <li>● Network with booming businesses</li>
+                            <li>● Get featured in our community and unlock new business opportunities through our network</li>
+                            <li>● Enter the world of driven entrepreneurs</li>
+                        </ul>
+                        <p>And fast-track their way to growth and success</p>
+                        <div style="padding-top:20px;">
+                        	<button class="btn btn-common">JOIN THE CLUB</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     <section class="services bg-light section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="section-title">A sneak peek of what you get inside the members’ arena</h3>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xs-12">
+                    <div class="services-item wow fadeInRight" data-wow-delay="0.2s">
+                        
+                        <div class="services-content" style="height: 400px;">
+                        	<div class="noimg">
+                                <img src="assets/img/details/respect.png" height="200px;">
+                            </div>
+                            <h3><a href="#">Value-packed webinars and workshops</a></h3>
+                            <p>If you have questions on how to start your business, connect with investors, find the best resources for your business, etc., we have got you covered! Webinars on trending business topics will be conducted by industry experts, established entrepreneurs, CAs and financial advisors to empower you with the knowledge and skills you’ll need to level up your business.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xs-12" style="padding-top:50px;">
+                    <div class="services-item wow fadeInRight" data-wow-delay="0.4s">                        
+                        <div class="services-content" style="height: 400px;">
+                        	<div class="noimg">
+                                <img src="assets/img/details/simplicity.png" height="200px;">
+                            </div>
+                            <h3><a href="#">Access to a library of business resources</a></h3>
+                            <p>You can network with a pool of service providers like website developers, marketing agencies, lawyers and others listed in our library and choose the best business pals to grow your business. The business library makes business expansion a lot easier for you by connecting you with the right resources.</p>
+                        </div>
+                    </div>
+                </div>                
+                <div class="col-md-6 col-lg-6 col-xs-12" style="margin-top:-50px;">
+                    <div class="services-item wow fadeInRight" data-wow-delay="0.8s">
+                        <div class="services-content" style="height: 400px;">
+                        	<div class="noimg">
+                                <img src="assets/img/details/regulation.png" height="200px;">
+                            </div>
+                            <h3><a href="#">Grand offline events</a></h3>
+                            <p>No Zoom call comes near to a real, one-to-one conversation, right? That’s why we, at Fintastic Hub, meet once a year in a grand offline event to strengthen our connections, build relationships and network better. You are invited!r</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xs-12" >
+                    <div class="services-item wow fadeInRight" data-wow-delay="1s">
+                        <div class="services-content" style="height: 400px;">
+                        	<div class="noimg">
+                                <img src="assets/img/details/trasparency.png" height="200px;">
+                            </div>
+                            <h3><a href="#">Binge-worthy finance podcasts</a></h3>
+                            <p>Stay updated on the latest finance trends, news and advancements with exclusive access to our finance podcasts. We deep-dive into popular financial concerns of entrepreneurs and provide expert financial suggestions you can find nowhere on the internet</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <footer>
+        <section class="footer-Content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
+                        <div class="widget">
+                            <div class="footer-logo"><img src="assets/img/logo.png" alt=""></div>
+                            <div class="textwidget">
+                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt consectetur, adipisci velit.</p>
+                            </div>
+                            <ul class="mt-3 footer-social">
+                                <li><a class="facebook" href="#"><i class="lni-facebook-filled"></i></a></li>
+                                <li><a class="twitter" href="#"><i class="lni-twitter-filled"></i></a></li>
+                                <li><a class="linkedin" href="#"><i class="lni-linkedin-fill"></i></a></li>
+                                <li><a class="google-plus" href="#"><i class="lni-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
+                        <div class="widget">
+                            <h3 class="block-title">Quick Link</h3>
+                            <ul class="menu">
+                                <li><a href="#">- About Us</a></li>
+                                <li><a href="#">- Blog</a></li>
+                                <li><a href="#">- Events</a></li>
+                                <li><a href="#">- Shop</a></li>
+                                <li><a href="#">- FAQ's</a></li>
+                                <li><a href="#">- About Us</a></li>
+                                <li><a href="#">- Blog</a></li>
+                                <li><a href="#">- Events</a></li>
+                                <li><a href="#">- Shop</a></li>
+                                <li><a href="#">- FAQ's</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
+                        <div class="widget">
+                            <h3 class="block-title">Contact Info</h3>
+                            <ul class="contact-footer">
+                                <li>
+                                    <strong><i class="lni-phone"></i></strong><span>+1 555 444 66647 <br> +1 555 444 66647</span>
+                                </li>
+                                <li>
+                                    <strong><i class="lni-envelope"></i></strong><span><a href="http://preview.uideck.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5c3f3332283d3f281c313d3530723f3331">[email&#160;protected]</a> <br> <a href="http://preview.uideck.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="64171114140b16102409050d084a070b09">[email&#160;protected]</a></span>
+                                </li>
+                                <li>
+                                    <strong><i class="lni-map-marker"></i></strong><span><a href="#">9870 St Vincent Place, Glasgow, DC 45 <br>Fr 45</a></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="site-info text-center">
+                            <p><a target="_blank" href="https://templateshub.net">Templates Hub</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <a href="#" class="back-to-top">
+        <i class="lni-chevron-up"></i>
+    </a>
+    <div id="preloader">
+        <div class="loader" id="loader-1"></div>
+    </div>
+</body>
+{% endblock %}

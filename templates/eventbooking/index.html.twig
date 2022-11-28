@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eventbooking index{% endblock %}
+
+{% block body %}
+    <h1>Eventbooking index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Dis</th>
+                <th>Startdate</th>
+                <th>Bookingstart</th>
+                <th>Bookingtime</th>
+                <th>Duration</th>
+                <th>Userid</th>
+                <th>Usermail</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for eventbooking in eventbookings %}
+            <tr>
+                <td>{{ eventbooking.id }}</td>
+                <td>{{ eventbooking.dis }}</td>
+                <td>{{ eventbooking.startdate }}</td>
+                <td>{{ eventbooking.bookingstart ? eventbooking.bookingstart|date('Y-m-d') : '' }}</td>
+                <td>{{ eventbooking.bookingtime ? eventbooking.bookingtime|date('H:i:s') : '' }}</td>
+                <td>{{ eventbooking.duration }}</td>
+                <td>{{ eventbooking.userid }}</td>
+                <td>{{ eventbooking.usermail }}</td>
+                <td>{{ eventbooking.status }}</td>
+                <td>
+                    <a href="{{ path('app_eventbooking_show', {'id': eventbooking.id}) }}">show</a>
+                    <a href="{{ path('app_eventbooking_edit', {'id': eventbooking.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_eventbooking_new') }}">Create new</a>
+{% endblock %}

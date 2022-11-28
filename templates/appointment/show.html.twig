@@ -1,0 +1,70 @@
+{% extends 'getrout.html.twig' %}
+
+{% block title %}Appointment{% endblock %}
+
+{% block body %}
+    <h1>Appointment</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ appointment.id }}</td>
+            </tr>
+            <tr>
+                <th>Manger</th>
+                <td>{{ appointment.MangerID }}</td>
+            </tr>
+            <tr>
+                <th>Client</th>
+                <td>{{ appointment.ClientId }}</td>
+            </tr>
+            <tr>
+                <th>StartDate</th>
+                <td>{{ appointment.StartDate ? appointment.StartDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>EndDate</th>
+                <td>{{ appointment.EndDate ? appointment.EndDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>StartTime</th>
+                <td>{{ appointment.StartTime ? appointment.StartTime|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>EndTime</th>
+                <td>{{ appointment.EndTime ? appointment.EndTime|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>MangerStart</th>
+                <td>{{ appointment.MangerStart }}</td>
+            </tr>
+            <tr>
+                <th>ClientStartDate</th>
+                <td>{{ appointment.ClientStartDate ? appointment.ClientStartDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ClientStartTime</th>
+                <td>{{ appointment.ClientStartTime ? appointment.ClientStartTime|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ClientEndTime</th>
+                <td>{{ appointment.ClientEndTime ? appointment.ClientEndTime|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ClientStatus</th>
+                <td>{{ appointment.ClientStatus }}</td>
+            </tr>
+            <tr>
+                <th>BookingStatus</th>
+                <td>{{ appointment.BookingStatus }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_appointment_index') }}">back to list</a>
+
+    <a href="{{ path('app_appointment_edit', {'id': appointment.id}) }}">edit</a>
+
+    {{ include('appointment/_delete_form.html.twig') }}
+{% endblock %}

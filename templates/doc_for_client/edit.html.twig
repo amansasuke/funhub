@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit DocForClient{% endblock %}
+
+{% block body %}
+    <h1>Edit DocForClient</h1>
+
+    {{ include('doc_for_client/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_doc_for_client_index') }}">back to list</a>
+
+    {{ include('doc_for_client/_delete_form.html.twig') }}
+{% endblock %}

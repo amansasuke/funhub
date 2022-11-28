@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eventbooking{% endblock %}
+
+{% block body %}
+    <h1>Eventbooking</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ eventbooking.id }}</td>
+            </tr>
+            <tr>
+                <th>Dis</th>
+                <td>{{ eventbooking.dis }}</td>
+            </tr>
+            <tr>
+                <th>Startdate</th>
+                <td>{{ eventbooking.startdate }}</td>
+            </tr>
+            <tr>
+                <th>Bookingstart</th>
+                <td>{{ eventbooking.bookingstart ? eventbooking.bookingstart|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Bookingtime</th>
+                <td>{{ eventbooking.bookingtime ? eventbooking.bookingtime|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Duration</th>
+                <td>{{ eventbooking.duration }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ eventbooking.userid }}</td>
+            </tr>
+            <tr>
+                <th>Usermail</th>
+                <td>{{ eventbooking.usermail }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ eventbooking.status }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_eventbooking_index') }}">back to list</a>
+
+    <a href="{{ path('app_eventbooking_edit', {'id': eventbooking.id}) }}">edit</a>
+
+    {{ include('eventbooking/_delete_form.html.twig') }}
+{% endblock %}

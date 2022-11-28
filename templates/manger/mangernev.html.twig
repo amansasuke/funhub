@@ -1,0 +1,57 @@
+<nav id="sidebar" class="sidebar">
+	<a class="sidebar-brand" href="/">
+		<img src="{{ asset('assets/img/') }}logo.png">
+		{# <svg>
+			<use xlink:href="#ion-ios-pulse-strong"></use>
+		</svg> #}
+		logo will here
+	</a>
+	<a class="sidebar-brand12" href="/">
+		Welcome! {{app.user.name}}
+	</a>
+	
+	<div class="sidebar-content">
+		<div class="sidebar-user">
+			<img src="{{ asset('assets/img/user/') }}{{app.user.imgicon}}" class="img-fluid rounded-circle mb-2" alt="Linda Miller" />
+			<div class="font-weight-bold">{{app.user.name}}</div>
+			{# <small>Front-end Developer</small> #}
+		</div>
+
+		<ul class="sidebar-nav">
+			<li class="sidebar-header">
+				Dashboards
+			</li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="{{ path('app_manger') }}">
+					<i class="align-middle mr-2 far fa-fw fa lni-users"></i> <span class="align-middle">Assign User</span>
+				</a>
+			</li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="{{ path('app_appointment_index') }}">
+					<i class="align-middle mr-2 far fa-fw fa fa-clock-o"></i> <span class="align-middle">Appointment</span>
+				</a>
+			</li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="{{ path('app_mangerevent') }}">
+					<i class="align-middle mr-2 far fa-fw fa fa-calendar"></i> <span class="align-middle">Manger Event</span>
+				</a>
+			</li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="{{ path('app_doc_for_client_index') }}">
+					<i class="align-middle mr-2 far fa-fw fa fa-file-o"></i> <span class="align-middle">Client Documents</span>
+				</a>
+			</li>
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="{{ path('app_mangerbooking') }}">
+					<i class="align-middle mr-2 far fa-fw lni-calendar"></i> <span class="align-middle">Booking</span>
+				</a>
+			</li>			
+			<li class="sidebar-item">
+				<a class="sidebar-link" href="{{ path('app_logout') }}">
+					<i class="align-middle mr-2 far fa-fw fa lni-enter"></i> <span class="align-middle">Log Out</span>
+				</a>
+			</li>
+			
+		</ul>
+	</div>
+</nav>

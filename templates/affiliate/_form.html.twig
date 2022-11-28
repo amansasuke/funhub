@@ -1,0 +1,41 @@
+{{ form_start(form) }}
+<div class="form-group mb-3">
+    <label class="control-label">Name</label>
+    {{ form_row(form.name,{'attr': {'class': 'form-control input-md'}}) }}
+</div>
+<div class="form-group mb-3">
+    <label class="control-label">Phone no</label>
+    {{ form_row(form.phoneno,{'attr': {'class': 'form-control input-md'}}) }}
+</div>
+<div class="form-group mb-3">
+    <label class="control-label">Email</label>
+    {{ form_row(form.email,{'attr': {'class': 'form-control input-md'}}) }}
+</div>
+<div class="form-group mb-3">
+    <label class="control-label">Address</label>
+    {{ form_row(form.address,{'attr': {'class': 'form-control input-md'}}) }}
+</div>
+<div class="form-group mb-3">
+    <label class="control-label">Pan Number</label>
+    {{ form_row(form.panno,{'attr': {'class': 'form-control input-md'}}) }}
+</div>
+<div class="form-group mb-3">
+    <label class="control-label">account Name</label>
+    {{ form_row(form.accountname,{'attr': {'class': 'form-control input-md'}}) }}
+</div>
+<div class="form-group mb-3">
+    <label class="control-label">holder</label>
+    {{ form_row(form.holder,{'attr': {'class': 'form-control input-md'}}) }}
+</div>
+<div class="form-group mb-3">
+    <label class="control-label">Account Number</label>
+    {{ form_row(form.accountno,{'attr': {'class': 'form-control input-md'}}) }}
+</div>
+<div class="form-group mb-3">
+    <label class="control-label">IFSC Code</label>
+    {{ form_row(form.IFSC,{'attr': {'class': 'form-control input-md'}}) }}
+</div>
+
+    {# {{ form_widget(form) }} #}
+    <button class="btn btn-primary" style="width: 100%;">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

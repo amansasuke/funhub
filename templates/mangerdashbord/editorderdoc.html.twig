@@ -1,0 +1,686 @@
+
+{# {% extends 'getrout.html.twig' %} #}
+{% extends 'dashstyle.html.twig' %}
+{% block title %}{% endblock %}
+{% block body %}
+{# {% include 'datepic.html.twig' %} #}
+{# {% include 'dashboard/test.html.twig' %} #}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.panel-group .panel {
+    margin-bottom: 24px
+}
+
+.panel-default {
+    border-radius: 0;
+    border: none
+}
+
+.panel-default .panel-heading {
+    padding: 0 20px;
+    outline: none;
+    border-radius: 4px;
+    background: #fff;
+    /*border: 3px solid #5bb7c5;*/
+    width: 100%;
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    box-shadow: rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset, rgb(204, 219, 232) 3px 3px 6px 0px inset ;
+}
+
+.panel-default .panel-heading .panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: 14px;
+    color: inherit
+}
+
+.panel-default .panel-heading a {
+    font-size: 14px;
+    font-weight: 400;
+    padding: 15px 35px 15px 30px;
+    display: inline-block;
+    width: 100%;
+    color: #5bb7c5;
+    position: relative;
+    text-decoration: none;
+}
+
+.panel-default .panel-heading a:after {
+    font-family: lineicons;
+    content: "\e9d6";
+    position: absolute;
+    left: 0;
+    color: #5bb7c5;
+    top: 50%;
+    line-height: 1;
+    padding: 0 5px;
+    margin-top: -7px
+}
+
+.panel-default .panel-heading .collapsed:after {
+    content: "\e9bc"
+}
+
+.panel-default .panel-collapse .panel-body {
+    padding: 15px 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(175, 175, 175, .23)
+}
+
+    .tracking-detail {
+  padding: 3rem 0;
+}
+#tracking {
+  margin-bottom: 1rem;
+}
+/*[class*="tracking-status-"] p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+}
+[class*="tracking-status-"] {
+  padding: 1.6rem 0;
+}*/
+.tracking-list {
+  border: 1px dashed  #e5e5e5;
+}
+.tracking-item {
+  border-left: 4px solid #40e0d0;
+  position: relative;
+  padding: 2rem 1.5rem 0.5rem 2.5rem;
+  font-size: 0.9rem;
+  margin-left: 3rem;
+  min-height: 5rem;
+}
+.tracking-item:last-child {
+  padding-bottom: 4rem;
+}
+.tracking-item .tracking-date {
+  margin-bottom: 0.5rem;
+}
+.tracking-item .tracking-date span {
+  color: #888;
+  font-size: 85%;
+  padding-left: 0.4rem;
+}
+.tracking-item .tracking-content {
+  padding: 0.5rem 0.8rem;
+  background-color: #f4f4f4;
+  border-radius: 0.5rem;
+}
+.tracking-item .tracking-content span {
+  display: block;
+  color: #767676;
+  font-size: 13px;
+}
+.tracking-item .tracking-icon {
+  position: absolute;
+  left: -0.7rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  background-color: #fff;
+  color: #fff;
+}
+
+.tracking-item-pending {
+  border-left: 4px solid #d6d6d6;
+  position: relative;
+  padding: 2rem 1.5rem 0.5rem 2.5rem;
+  font-size: 0.9rem;
+  margin-left: 3rem;
+  min-height: 5rem;
+}
+.tracking-item-pending:last-child {
+  padding-bottom: 4rem;
+}
+.tracking-item-pending .tracking-date {
+  margin-bottom: 0.5rem;
+}
+.tracking-item-pending .tracking-date span {
+  color: #888;
+  font-size: 85%;
+  padding-left: 0.4rem;
+}
+.tracking-item-pending .tracking-content {
+  padding: 0.5rem 0.8rem;
+  background-color: #f4f4f4;
+  border-radius: 0.5rem;
+}
+.tracking-item-pending .tracking-content span {
+  display: block;
+  color: #767676;
+  font-size: 13px;
+}
+.tracking-item-pending .tracking-icon {
+  line-height: 2.6rem;
+  position: absolute;
+  left: -0.7rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  color: #d6d6d6;
+}
+.tracking-item-pending .tracking-content {
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.tracking-item .tracking-icon.status-current {
+  width: 1.9rem;
+  height: 1.9rem;
+  left: -1.1rem;
+}
+.tracking-item .tracking-icon.status-intransit {
+  color: #40e0d0;
+  font-size: 0.6rem;
+}
+.tracking-item .tracking-icon.status-current {
+  color: #40e0d0;
+  font-size: 0.6rem;
+}
+@media (min-width: 992px) {
+  .tracking-item {
+    margin-left: 7rem;
+  }
+  .tracking-item .tracking-date {
+    position: absolute;
+    left: -10rem;
+    width: 7.5rem;
+    text-align: right;
+  }
+  .tracking-item .tracking-date span {
+    display: block;
+  }
+  .tracking-item .tracking-content {
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .tracking-item-pending {
+    margin-left: 7rem;
+  }
+  .tracking-item-pending .tracking-date {
+    position: absolute;
+    left: -10rem;
+    width: 7.5rem;
+    text-align: right;
+  }
+  .tracking-item-pending .tracking-date span {
+    display: block;
+  }
+  .tracking-item-pending .tracking-content {
+    padding: 0;
+    background-color: transparent;
+  }
+}
+
+.tracking-item .tracking-content {
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.blinker {
+  border: 7px solid #e9f8ea;
+  animation: blink 1s;
+  animation-iteration-count: infinite;
+}
+@keyframes blink {
+  50% {
+    border-color: #fff;
+  }
+}
+hr.new2 {
+  border-top: 1px dashed grey;
+  margin: 10px 25px;
+}
+
+.btn12 {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 1px 2px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Darker background on mouse-over */
+.btn12:hover {
+  background-color: RoyalBlue;
+}
+.noimg{
+    text-align: center;
+}
+
+
+
+
+.tg-fileuploadlabel {
+    width: 100%;
+    padding: 30px;
+    color: #363b4d;
+    font-size: 14px;
+    line-height: 17px;
+    margin: 0 0 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 3px dashed #eaedef;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center
+}
+
+.tg-fileuploadlabel span {
+    display: block;
+    margin-bottom: 15px
+}
+
+.tg-fileuploadlabel span:first-child {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px
+}
+
+.tg-fileuploadlabel span:first-child(2) {
+    padding: 15px 0
+}
+
+.tg-fileuploadlabel span:first-child(4) {
+    color: #363b4d;
+    font-size: 13px;
+    line-height: 16px;
+    margin: 30px 0 0
+}
+
+.tg-fileuploadlabel input[type=file].fileinput {
+    display: none
+}
+
+.tg-fileuploadlabel .btn {
+    color: #fff;
+    padding: 10px 50px;
+    position: relative;
+    text-align: center;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 23px;
+    display: inline-block;
+    vertical-align: middle;
+    text-transform: capitalize
+}
+
+.textwidget {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 27px
+}
+
+.textwidget p {
+    color: #bfbfbf;
+    font-size: 14px
+}
+
+
+.login-area .login-form {
+    padding: 30px 15px
+}
+
+.login-area .login-form .input-icon {
+    position: relative
+}
+
+.login-area .login-form .input-icon i {
+    font-size: 15px;
+    left: 16px;
+    color: #999;
+    line-height: 22px;
+    margin-top: -11px;
+    position: absolute;
+    top: 50%
+}
+
+.login-area .login-form .input-icon input {
+    padding-left: 40px
+}
+
+.login-area .checkbox {
+    display: inline-block
+}
+
+.login-area .checkbox label {
+    font-size: 13px;
+    margin-left: 5px
+}
+
+.login-area .forgetpassword {
+    float: right;
+    font-size: 14px;
+    line-height: 20px;
+    color: #999
+}
+
+.login-area .forgetpassword:hover {
+    color: #5bb7c5
+}
+
+.login-area .form-links a {
+    color: #999
+}
+
+.login-area .form-links a:hover {
+    color: #5bb7c5
+}
+
+
+</style>
+
+<body>
+    <div class="splash active">
+        <div class="splash-icon"></div>
+    </div>
+    <div class="wrapper">
+        {% include '/mangerdashbord/agentnev.html.twig' %}
+        <div class="main">
+            <nav class="navbar navbar-expand navbar-theme" >
+                <a class="sidebar-toggle d-flex mr-2">
+                    <i class="hamburger align-self-center"></i>
+                </a>
+                {# <div style="padding-top: 10px;">
+                    <h4></h4>
+                </div> #}
+                {# <form class="form-inline d-none d-sm-inline-block">
+                    <input class="form-control form-control-lite" type="text" placeholder="Search ...">
+                </form> #}
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link dropdown-toggle position-relative" href="#" id="messagesDropdown" data-toggle="dropdown">
+                                <i class="align-middle fas  fa fa-envelope-open"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right py-0" aria-labelledby="messagesDropdown">
+                                <div class="dropdown-menu-header">
+                                    <div class="position-relative">
+                                        4 New Messages
+                                    </div>
+                                </div>
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2">
+                                                <img src="img/avatars/avatar-5.jpg" class="avatar img-fluid rounded-circle" alt="Michelle Bilodeau">
+                                            </div>
+                                            <div class="col-10 pl-2">
+                                                <div class="text-dark">Michelle Bilodeau</div>
+                                                <div class="text-muted small mt-1">Nam pretium turpis et arcu. Duis arcu tortor.</div>
+                                                <div class="text-muted small mt-1">5m ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2">
+                                                <img src="img/avatars/avatar-3.jpg" class="avatar img-fluid rounded-circle" alt="Kathie Burton">
+                                            </div>
+                                            <div class="col-10 pl-2">
+                                                <div class="text-dark">Kathie Burton</div>
+                                                <div class="text-muted small mt-1">Pellentesque auctor neque nec urna.</div>
+                                                <div class="text-muted small mt-1">30m ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2">
+                                                <img src="img/avatars/avatar-2.jpg" class="avatar img-fluid rounded-circle" alt="Alexander Groves">
+                                            </div>
+                                            <div class="col-10 pl-2">
+                                                <div class="text-dark">Alexander Groves</div>
+                                                <div class="text-muted small mt-1">Curabitur ligula sapien euismod vitae.</div>
+                                                <div class="text-muted small mt-1">2h ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2">
+                                                <img src="img/avatars/avatar-4.jpg" class="avatar img-fluid rounded-circle" alt="Daisy Seger">
+                                            </div>
+                                            <div class="col-10 pl-2">
+                                                <div class="text-dark">Daisy Seger</div>
+                                                <div class="text-muted small mt-1">Aenean tellus metus, bibendum sed, posuere ac, mattis non.</div>
+                                                <div class="text-muted small mt-1">5h ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dropdown-menu-footer">
+                                    <a href="#" class="text-muted">Show all messages</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown ml-lg-2">
+                            <a class="nav-link dropdown-toggle position-relative" href="#" id="alertsDropdown" data-toggle="dropdown">
+                                <i class="align-middle fas fa fa-bell"></i>
+                                <span class="indicator"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right py-0" aria-labelledby="alertsDropdown">
+                                <div class="dropdown-menu-header">
+                                    4 New Notifications
+                                </div>
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2">
+                                                <i class="ml-1 text-danger fas fa-fw fa fa-bell"></i>
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="text-dark">Update completed</div>
+                                                <div class="text-muted small mt-1">Restart server 12 to complete the update.</div>
+                                                <div class="text-muted small mt-1">2h ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2">
+                                                <i class="ml-1 text-warning fas fa-fw fa-envelope-open"></i>
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="text-dark">Lorem ipsum</div>
+                                                <div class="text-muted small mt-1">Aliquam ex eros, imperdiet vulputate hendrerit et.</div>
+                                                <div class="text-muted small mt-1">6h ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2">
+                                                <i class="ml-1 text-primary fas fa-fw fa-building"></i>
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="text-dark">Login from 192.186.1.1</div>
+                                                <div class="text-muted small mt-1">8h ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2">
+                                                <i class="ml-1 text-success fas fa-fw fa-bell-slash"></i>
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="text-dark">New connection</div>
+                                                <div class="text-muted small mt-1">Anna accepted your request.</div>
+                                                <div class="text-muted small mt-1">12h ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dropdown-menu-footer">
+                                    <a href="#" class="text-muted">Show all notifications</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown ml-lg-2">
+                            <a class="nav-link dropdown-toggle position-relative" href="#" id="userDropdown" data-toggle="dropdown">
+                                <i class="align-middle fas fa fa-cog"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#"><i class="align-middle mr-1 fas fa-fw fa-user"></i> View Profile</a>
+                                <a class="dropdown-item" href="#"><i class="align-middle mr-1 fas fa-fw fa-comments"></i> Contacts</a>
+                                <a class="dropdown-item" href="#"><i class="align-middle mr-1 fas fa-fw fa-chart-pie"></i> Analytics</a>
+                                <a class="dropdown-item" href="#"><i class="align-middle mr-1 fas fa-fw fa-cogs"></i> Settings</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"><i class="align-middle mr-1 fas fa-fw fa-arrow-alt-circle-right"></i> Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main class="content">
+                <div class="container-fluid">
+                    <div class="header">
+                        <h1 class="header-title">
+                           Edit Order
+                        </h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="dashboard-default.html">Dashboard</a></li>
+                                <li class="breadcrumb-item active"><a href="#"> Edit Order</a></li>
+                                {# <li class="breadcrumb-item active" aria-current="page">Blank Page</li> #}
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Order's</h5>
+                                </div>
+                                <div class="card-body">
+                                    {# {{ form_start(form,{'attr': {'class': 'login-form'}}) }}
+                                    <label class="tg-fileuploadlabel" for="tg-photogallery">
+                                    <div class="textwidget" style="padding:5px;">
+                                     {{ form_row(form.docname,{'attr': {'class': 'btn btn-warning','value': app.request.get('docname')}}) }}
+                                    </div>
+                                    <div class="textwidget" style="padding:5px;">
+                                     {{ form_row(form.doclink,{'attr': {'id': 'tg-photogallery'}}) }}
+                                    </div>
+                                    
+                                    <div class="textwidget" style="padding:5px;">
+                                     {{ form_row(form.save,{'attr': {'class': 'btn btn-primary'}}) }}
+                                    </div>                                    
+                                    </label>
+                                {{ form_end(form) }} #}
+
+                                
+                               {#  {% for d in doc %} #}                              
+                                {{ form_start(form,{'attr': {'class': 'login-form'}}) }}
+                                    <label class="tg-fileuploadlabel" for="tg-photogallery">
+                                    <div class="textwidget" style="padding:5px;">
+                                     {{ form_row(form.docstatus,{'attr': {'class': 'form-control input-md'}}) }}
+                                    </div>
+                                    {# {{ form_row(form.doclink,{'attr': {'class': 'tg-fileinput'}}) }} #}
+                                    <div class="textwidget" style="padding:5px;">
+                                     {{ form_row(form.save,{'attr': {'class': 'btn btn-primary'}}) }}
+                                    </div>
+                                    {# <span>Drop files <b></b></span>
+                                    <span>Or</span>
+                                    <span class="btn btn-common">Select Files</span>
+                                    <span>Maximum upload file size: 500 KB</span> #}
+
+                                    {# <input id="tg-photogallery" class="tg-fileinput" type="file" name="file"> #}
+                                    </label>
+                                {{ form_end(form) }}
+                                {# {% endfor %} #}
+                                {# {{ form(form) }} #}
+                                    {# {% for d in doc %}
+                                       <label class="tg-fileuploadlabel" for="tg-photogallery">
+                                            <span>Drop files <b>{{d.docinfo}}</b></span>
+                                            <span>Or</span>
+                                            <span class="btn btn-common">Select Files</span>
+                                            <span>Maximum upload file size: 500 KB</span>
+                                            <input id="tg-photogallery" class="tg-fileinput" type="file" name="file">
+                                        </label>
+                                    {% endfor %} #}
+                            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row text-muted">
+                        <div class="col-8 text-left">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <a class="text-muted" href="#">Support</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="text-muted" href="#">Privacy</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="text-muted" href="#">Terms of Service</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="text-muted" href="#">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-4 text-right">
+                            <p class="mb-0">
+                                &copy; 2020 - <a href="dashboard-default.html" class="text-muted">Spark</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <svg width="0" height="0" style="position:absolute">
+        <defs>
+            <symbol viewBox="0 0 512 512" id="ion-ios-pulse-strong">
+                <path d="M448 273.001c-21.27 0-39.296 13.999-45.596 32.999h-38.857l-28.361-85.417a15.999 15.999 0 0 0-15.183-10.956c-.112 0-.224 0-.335.004a15.997 15.997 0 0 0-15.049 11.588l-44.484 155.262-52.353-314.108C206.535 54.893 200.333 48 192 48s-13.693 5.776-15.525 13.135L115.496 306H16v31.999h112c7.348 0 13.75-5.003 15.525-12.134l45.368-182.177 51.324 307.94c1.229 7.377 7.397 11.92 14.864 12.344.308.018.614.028.919.028 7.097 0 13.406-3.701 15.381-10.594l49.744-173.617 15.689 47.252A16.001 16.001 0 0 0 352 337.999h51.108C409.973 355.999 427.477 369 448 369c26.511 0 48-22.492 48-49 0-26.509-21.489-46.999-48-46.999z">
+                </path>
+            </symbol>
+        </defs>
+    </svg>
+    <script src="js/app.js"></script>
+</body>
+{% endblock %}
+{% block javascripts %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#notes").hide();
+    $("#shownots").click(function() {
+        $("#notes").toggle();
+    });
+});
+</script>
+{% endblock %}

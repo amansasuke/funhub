@@ -1,0 +1,947 @@
+{# {% extends 'getrout.html.twig' %} #}
+{% extends 'dashstyle.html.twig' %}
+{% block title %}Affiliate index{% endblock %}
+{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style type="text/css">
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap");
+
+
+.content-1 {
+    position: relative;
+    width: 100%;
+    height: 48%;
+    background-image: linear-gradient(to bottom right, #fd8f22, #feb11f, #ffc519);
+}
+
+.content-1::after {
+    content: "Nike";
+    position: absolute;
+    left: -24%;
+    font-size: 12em;
+    font-weight: 800;
+    font-style: italic;
+    color: rgba(250, 208, 93, 0.493);
+}
+
+.content-1 .logo-img img {
+    width: 30px;
+    height: 15px;
+    position: absolute;
+    top: 10%;
+    right: 5%;
+}
+
+.content-1 img {
+    width: 300px;
+    height: 220px;
+    position: absolute;
+    top: 55%;
+    transform: translateY(-50%);
+    z-index: 100;
+}
+
+.content-2 {
+    position: relative;
+    height: 52%;
+    padding-top: 18px;
+}
+
+.branding,
+.ratings,
+.size,
+.color {
+    padding-left: 20px;
+}
+
+.branding span:nth-child(1) {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.branding span:nth-child(2) {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0px 5px;
+}
+
+.branding span:nth-child(3) {
+    position: absolute;
+    right: 4%;
+    top: 4%;
+    font-size: 10px;
+    background: #fb5c36;
+    color: #fff;
+    border-radius: 4px;
+    padding: 4px 10px 2px;
+}
+
+.branding h4 {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.ratings span {
+    display: inline-block;
+    text-align: center;
+    line-height: 26px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: all 0.5s;
+    color: #949493;
+}
+
+.ratings span:hover {
+    color: #0a0d0f;
+}
+
+.size,
+.color {
+    font-size: 12px;
+}
+
+.size span {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    line-height: 28px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 50%;
+    margin: 2px 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.size span:hover {
+    background: #ffc400;
+}
+
+.color span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 26px;
+    font-size: 10px;
+    margin: 10px 15px 5px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.color span:nth-child(2) {
+    background: #0945a1;
+}
+
+.color span:nth-child(3) {
+    background: #eb4835;
+}
+
+.color span:nth-child(4) {
+    background: #a6ff00;
+}
+
+.color span:hover:nth-child(2):after {
+    content: "";
+    display: inline-block;
+    border: 1px solid #0945a1;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    margin-left: -4.1px;
+    margin-top: -3.9px;
+}
+
+.color span:hover:nth-child(3):after {
+    content: "";
+    display: inline-block;
+    border: 1px solid #eb4835;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    margin-left: -4.1px;
+    margin-top: -3.9px;
+}
+
+.color span:hover:nth-child(4):after {
+    content: "";
+    display: inline-block;
+    border: 1px solid #a6ff00;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    margin-left: -4px;
+    margin-top: -3.9px;
+}
+
+.price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.price span {
+    background-image: linear-gradient(to right, #0ab5cf, #17d1ee);
+    padding: 8px 20px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 400;
+}
+
+.price span:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.price span:active {
+    transform: translateY(1px);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/*.card img{
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+}*/
+.card1 {
+
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, .1), 0 10px 10px -5px rgba(0, 0, 0, .04);
+    border-radius: 10px;
+}
+
+.card-title {
+    width: calc(100% - 40px);
+    background: #fff;
+    padding: 10px;
+    position: absolute;
+    left: 50%;
+    top: 170px;
+    transform: translateX(-50%);
+    font-family: 'Roboto', sans-serif;
+    border-radius: 5px;
+    box-shadow: 0 10px 15px -5px rgba(0, 0, 0, .1), 0 5px 5px -5px rgba(0, 0, 0, .01);
+}
+
+.card-title h4 {
+    font-family: 'Roboto', sans-serif;
+}
+
+.card-title h3 {
+    font-weight: normal;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.card-content {
+    width: 100%;
+    background: #fff;
+    border-radius: 0 0 10px 10px;
+}
+
+. {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.card-content-col {
+    width: 50%;
+    padding: 10px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.card-content-col .fa {
+    font-size: 25px;
+    vertical-align: middle;
+    margin-right: 10px;
+    color: #718096;
+}
+
+.card-content-user-info {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
+    background: linear-gradient(to right, #5addee, #599fff);
+    border-radius: 0 0 10px 10px;
+}
+
+.card-content-user-info img {
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.card-content-user-info h4 {
+    font-family: 'Roboto', sans-serif;
+}
+
+.card-content-user-info p {
+    font-family: 'Roboto', sans-serif;
+}
+
+.card-content-user-info .card-content-user-contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+    color: #fff;
+}
+
+.user-card-full {
+    overflow: hidden;
+}
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+    box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+    border: none;
+    margin-bottom: 30px;
+}
+
+.m-r-0 {
+    margin-right: 0px;
+}
+
+.m-l-0 {
+    margin-left: 0px;
+}
+
+.user-card-full .user-profile {
+    border-radius: 5px 0 0 5px;
+}
+
+.bg-c-lite-green {
+    background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
+    background: linear-gradient(to right, #5addee, #599fff);
+}
+
+.user-profile {
+    padding: 20px 0;
+}
+
+.card-block {
+    padding: 1.25rem;
+}
+
+.m-b-25 {
+    margin-bottom: 25px;
+}
+
+.img-radius {
+    border-radius: 5px;
+}
+
+
+
+h6 {
+    font-size: 14px;
+}
+
+.card .card-block p {
+    line-height: 25px;
+}
+
+@media only screen and (min-width: 1400px) {
+    p {
+        font-size: 14px;
+    }
+}
+
+.card-block {
+    padding: 1.25rem;
+}
+
+.b-b-default {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.p-b-5 {
+    padding-bottom: 5px !important;
+}
+
+.card .card-block p {
+    line-height: 25px;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
+}
+
+.text-muted {
+    color: #919aa3 !important;
+}
+
+.b-b-default {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.f-w-600 {
+    font-weight: 600;
+}
+
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.m-t-40 {
+    margin-top: 20px;
+}
+
+.p-b-5 {
+    padding-bottom: 5px !important;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
+}
+
+.m-t-40 {
+    margin-top: 20px;
+}
+
+.user-card-full .social-link li {
+    display: inline-block;
+}
+
+.user-card-full .social-link li a {
+    font-size: 20px;
+    margin: 0 10px 0 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+.copy-button {
+    margin: 12px 0 -5px 0;
+    height: 45px;
+    border-radius: 4px;
+    padding: 0 5px;
+    border: 1px solid #e1e1e1;
+}
+
+.copy-button input {
+    width: 85%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 15px;
+}
+
+.copy-button button {
+    padding: 5px;
+    background-color: #dc143c;
+    color: #fff;
+    border: 1px solid transparent;
+}
+.noimg{
+    text-align: center;
+}
+.post-btn{
+    text-align: center;
+}
+</style>
+
+<body>
+    <div class="splash active">
+        <div class="splash-icon"></div>
+    </div>
+    <div class="wrapper">
+        {% include '/dashboard/nev.html.twig' %}
+        <div class="main">
+            <nav class="navbar navbar-expand navbar-theme">
+                <a class="sidebar-toggle d-flex mr-2">
+                    <i class="hamburger align-self-center"></i>
+                </a>
+                <form class="form-inline d-none d-sm-inline-block">
+                    <input class="form-control form-control-lite" type="text" placeholder="Search projects...">
+                </form>
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link dropdown-toggle position-relative" href="#" id="messagesDropdown" data-toggle="dropdown">
+                                <i class="align-middle fas fa-envelope-open"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right py-0" aria-labelledby="messagesDropdown">
+                                <div class="dropdown-menu-header">
+                                    <div class="position-relative">
+                                        4 New Messages
+                                    </div>
+                                </div>
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2">
+                                                <img src="img/avatars/avatar-5.jpg" class="avatar img-fluid rounded-circle" alt="Michelle Bilodeau">
+                                            </div>
+                                            <div class="col-10 pl-2">
+                                                <div class="text-dark">Michelle Bilodeau</div>
+                                                <div class="text-muted small mt-1">Nam pretium turpis et arcu. Duis arcu tortor.</div>
+                                                <div class="text-muted small mt-1">5m ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2">
+                                                <img src="img/avatars/avatar-3.jpg" class="avatar img-fluid rounded-circle" alt="Kathie Burton">
+                                            </div>
+                                            <div class="col-10 pl-2">
+                                                <div class="text-dark">Kathie Burton</div>
+                                                <div class="text-muted small mt-1">Pellentesque auctor neque nec urna.</div>
+                                                <div class="text-muted small mt-1">30m ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2">
+                                                <img src="img/avatars/avatar-2.jpg" class="avatar img-fluid rounded-circle" alt="Alexander Groves">
+                                            </div>
+                                            <div class="col-10 pl-2">
+                                                <div class="text-dark">Alexander Groves</div>
+                                                <div class="text-muted small mt-1">Curabitur ligula sapien euismod vitae.</div>
+                                                <div class="text-muted small mt-1">2h ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2">
+                                                <img src="img/avatars/avatar-4.jpg" class="avatar img-fluid rounded-circle" alt="Daisy Seger">
+                                            </div>
+                                            <div class="col-10 pl-2">
+                                                <div class="text-dark">Daisy Seger</div>
+                                                <div class="text-muted small mt-1">Aenean tellus metus, bibendum sed, posuere ac, mattis non.</div>
+                                                <div class="text-muted small mt-1">5h ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dropdown-menu-footer">
+                                    <a href="#" class="text-muted">Show all messages</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown ml-lg-2">
+                            <a class="nav-link dropdown-toggle position-relative" href="#" id="alertsDropdown" data-toggle="dropdown">
+                                <i class="align-middle fas fa-bell"></i>
+                                <span class="indicator"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right py-0" aria-labelledby="alertsDropdown">
+                                <div class="dropdown-menu-header">
+                                    4 New Notifications
+                                </div>
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2">
+                                                <i class="ml-1 text-danger fas fa-fw fa-bell"></i>
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="text-dark">Update completed</div>
+                                                <div class="text-muted small mt-1">Restart server 12 to complete the update.</div>
+                                                <div class="text-muted small mt-1">2h ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2">
+                                                <i class="ml-1 text-warning fas fa-fw fa-envelope-open"></i>
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="text-dark">Lorem ipsum</div>
+                                                <div class="text-muted small mt-1">Aliquam ex eros, imperdiet vulputate hendrerit et.</div>
+                                                <div class="text-muted small mt-1">6h ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2">
+                                                <i class="ml-1 text-primary fas fa-fw fa-building"></i>
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="text-dark">Login from 192.186.1.1</div>
+                                                <div class="text-muted small mt-1">8h ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="list-group-item">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2">
+                                                <i class="ml-1 text-success fas fa-fw fa-bell-slash"></i>
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="text-dark">New connection</div>
+                                                <div class="text-muted small mt-1">Anna accepted your request.</div>
+                                                <div class="text-muted small mt-1">12h ago</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dropdown-menu-footer">
+                                    <a href="#" class="text-muted">Show all notifications</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown ml-lg-2">
+                            <a class="nav-link dropdown-toggle position-relative" href="#" id="userDropdown" data-toggle="dropdown">
+                                <i class="align-middle fas fa-cog"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#"><i class="align-middle mr-1 fas fa-fw fa-user"></i> View Profile</a>
+                                <a class="dropdown-item" href="#"><i class="align-middle mr-1 fas fa-fw fa-comments"></i> Contacts</a>
+                                <a class="dropdown-item" href="#"><i class="align-middle mr-1 fas fa-fw fa-chart-pie"></i> Analytics</a>
+                                <a class="dropdown-item" href="#"><i class="align-middle mr-1 fas fa-fw fa-cogs"></i> Settings</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"><i class="align-middle mr-1 fas fa-fw fa-arrow-alt-circle-right"></i> Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main class="content">
+                <div class="container-fluid">
+                    <div class="header">
+                        <h1 class="header-title">
+                            Affiliate
+                        </h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="dashboard-default.html">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="#">Affiliate</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Affiliate</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">                                
+                                <div class="card-body">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="inner-box1">
+                                <div class="dashboard-box">
+                                    <h2 class="dashbord-title">Affiliate</h2>
+                                </div>
+                                
+                                {% if affiliates|length ==0 %}
+                                <div class="row ">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="dashboardbox" >
+                                        <div class="noimg">
+                                                    <img src="../assets/img/details/noaff.png" height="300px;">
+                                                </div>
+                                            <div class="post-btn">
+                                                <a class="btn btn-primary" href="{{ path('app_affiliate_new') }}" style="border-radius:30px;font-size: 18px;background-color: #5bb7c5;"><i class="lni-plus"></i> Become An Affiliate</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%else%}
+                                {% for affiliate in affiliates %}
+                                <div class="page-content page-container" id="page-content">
+                                    <div class="padding">
+                                        <div class="row container d-flex justify-content-center">
+                                            <div class="col-xl-12 col-md-12">
+                                                <div class="card1 user-card-full">
+                                                    <div class="row m-l-0 m-r-0">
+                                                        <div class="col-sm-4 bg-c-lite-green user-profile">
+                                                            <div class="card-block text-center text-white">
+                                                                <div class="m-b-25">
+                                                                    <img src="{{ asset('assets/img/user/') }}{{app.user.imgicon}}" class="img-radius" alt="User-Profile-Image" style="border-radius: 90px;height: 150px;">
+                                                                </div>
+                                                                <h6 class="f-w-600">{{ affiliate.name }}</h6>
+                                                                <p>Affiliate Agent</p>
+                                                                <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="card-block">
+                                                                {# <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6> #}
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <p class="m-b-10 f-w-600">Email</p>
+                                                                        <h6 class="text-muted f-w-400">{{ affiliate.email }}</h6>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <p class="m-b-10 f-w-600">Phone</p>
+                                                                        <h6 class="text-muted f-w-400">{{ affiliate.phoneno }}</h6>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <p class="m-b-10 f-w-600">Address</p>
+                                                                        <h6 class="text-muted f-w-400">{{ affiliate.address }}</h6>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <p class="m-b-10 f-w-600">Pan number</p>
+                                                                        <h6 class="text-muted f-w-400">{{ affiliate.panno }}</h6>
+                                                                    </div>
+                                                                </div>
+                                                                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Shere you lick to create Affiliate user by you</h6>
+                                                                <div class="copy-button">
+                                                                    {% for affiliate in affiliates %}
+                                                                    <input id="copyvalue" type="text" readonly value="http://127.0.0.1:8000/register?affiliateid={{ affiliate.userid }}" />
+                                                                    <button onclick="copyIt()" class="copybtn">COPY</button>
+                                                                    {% endfor %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top:100px;">
+                                <div class="col-lg-12 col-md-12 col-xs-12" >
+                                    <div class="card flex-fill w-100"style="padding:20px;">
+                                        <div class="card-header1">
+                                            <h5 style="font-size:18px; color: black; font-weight: 600;">Orders</h5>
+                                        </div>
+                                        <div class="card-body12 py-3">
+                                            <div class="chart chart-sm">
+                                                <canvas id="chartjs-dashboard-line" style="height: 300px;"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-xs-12">
+                                    <div class="card flex-fill w-100" style="padding:20px;">
+                                        <div class="card-header1" style="margin-bottom: 15px;">
+                                            <h5 style="font-size:18px; color: black; font-weight: 600;">Your Commission</h5>
+                                        </div>
+                                        <div class="card-body12">
+                                            <div class="align-self-center chart chart-lg">
+                                                <canvas id="chartjs-dashboard-bar" style="height: 315px;"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                {% endfor %}
+                                {# <div class="col-md-12">
+                            <div class="card flex-fill w-100">
+                                <div class="card-header">
+                                    <div class="card-actions float-right">
+                                        <a href="#" class="mr-1">
+                                            <i class="align-middle" data-feather="refresh-cw"></i>
+                                        </a>
+                                        <div class="d-inline-block dropdown show">
+                                            <a href="#" data-toggle="dropdown" data-display="static">
+                                                <i class="align-middle" data-feather="more-vertical"></i>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h5 class="card-title mb-0">Recent Movementokokokokokokkok</h5>
+                                </div>
+                                <div class="card-body py-3">
+                                    <div class="chart chart-sm">
+                                        <canvas id="chartjs-dashboard-line"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> #}
+                        
+                                {%endif%}
+                            </div>
+                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row text-muted">
+                        <div class="col-8 text-left">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <a class="text-muted" href="#">Support</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="text-muted" href="#">Privacy</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="text-muted" href="#">Terms of Service</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="text-muted" href="#">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-4 text-right">
+                            <p class="mb-0">
+                                &copy; 2020 - <a href="dashboard-default.html" class="text-muted">Spark</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <svg width="0" height="0" style="position:absolute">
+        <defs>
+            <symbol viewBox="0 0 512 512" id="ion-ios-pulse-strong">
+                <path d="M448 273.001c-21.27 0-39.296 13.999-45.596 32.999h-38.857l-28.361-85.417a15.999 15.999 0 0 0-15.183-10.956c-.112 0-.224 0-.335.004a15.997 15.997 0 0 0-15.049 11.588l-44.484 155.262-52.353-314.108C206.535 54.893 200.333 48 192 48s-13.693 5.776-15.525 13.135L115.496 306H16v31.999h112c7.348 0 13.75-5.003 15.525-12.134l45.368-182.177 51.324 307.94c1.229 7.377 7.397 11.92 14.864 12.344.308.018.614.028.919.028 7.097 0 13.406-3.701 15.381-10.594l49.744-173.617 15.689 47.252A16.001 16.001 0 0 0 352 337.999h51.108C409.973 355.999 427.477 369 448 369c26.511 0 48-22.492 48-49 0-26.509-21.489-46.999-48-46.999z">
+                </path>
+            </symbol>
+        </defs>
+    </svg>
+    <script src="js/app.js"></script>
+</body>
+
+{% endblock %}
+{% block javascripts %}
+     <script>
+    $('#summernote').summernote({
+        height: 250, // set editor height
+        minHeight: null, // set minimum height of editor
+        maxHeight: null, // set maximum height of editor
+        focus: false // set focus to editable area after initializing summernote
+    });
+    </script>
+    <script>
+        $(function() {
+            // Line chart
+            new Chart(document.getElementById("chartjs-dashboard-line"), {
+                type: 'line',
+                data: {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                    datasets: [{
+                            label: "Orders",
+                            fill: true,
+                            backgroundColor: window.theme.primary,
+                            borderColor: window.theme.primary,
+                            borderWidth: 2,
+                            data: [{% for month in monthorder %}{% if month !=0 %} {{month}}{%else%}{{month}}{% endif %}, {% endfor %}]
+                        },
+                        
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+                    tooltips: {
+                        intersect: false
+                    },
+                    hover: {
+                        intersect: true
+                    },
+                    plugins: {
+                        filler: {
+                            propagate: false
+                        }
+                    },
+                    elements: {
+                        point: {
+                            radius: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            reverse: true,
+                            gridLines: {
+                                color: "rgba(0,0,0,0.0)"
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                stepSize: 5
+                            },
+                            display: true,
+                            gridLines: {
+                                color: "rgba(0,0,0,0)",
+                                fontColor: "#fff"
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        $(function() {
+            // Bar chart
+            new Chart(document.getElementById("chartjs-dashboard-bar"), {
+                type: 'bar',
+                data: {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                    datasets: [{
+                        label: "Sale ₹",
+                        backgroundColor: window.theme.primary,
+                        borderColor: window.theme.primary,
+                        hoverBackgroundColor: window.theme.primary,
+                        hoverBorderColor: window.theme.primary,
+                        data: [{% for sale in totalsale %} {{sale}}, {% endfor %}],
+                        barPercentage: .75,
+                        categoryPercentage: .5
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            gridLines: {
+                                display: false
+                            },
+                            stacked: false,
+                            ticks: {
+                                stepSize: false
+                            }
+                        }],
+                        xAxes: [{
+                            stacked: false,
+                            gridLines: {
+                                color: "transparent"
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    </script>
+<script type="text/javascript">
+let copybtn = document.querySelector(".copybtn");
+
+
+function copyIt() {
+    let copyInput = document.querySelector('#copyvalue');
+
+    copyInput.select();
+
+    document.execCommand("copy");
+
+    copybtn.textContent = "COPIED";
+}
+</script>
+
+
+{% endblock %}

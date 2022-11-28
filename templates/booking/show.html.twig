@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Booking{% endblock %}
+
+{% block body %}
+    <h1>Booking</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ booking.id }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ booking.Userid }}</td>
+            </tr>
+            <tr>
+                <th>Starttime</th>
+                <td>{{ booking.Starttime ? booking.Starttime|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Endtime</th>
+                <td>{{ booking.Endtime ? booking.Endtime|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Startslot</th>
+                <td>{{ booking.Startslot }}</td>
+            </tr>
+            <tr>
+                <th>StartSlot</th>
+                <td>{{ booking.StartSlot ? booking.StartSlot|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>StartSlotM</th>
+                <td>{{ booking.StartSlotM ? booking.StartSlotM|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>EndSlotM</th>
+                <td>{{ booking.EndSlotM ? booking.EndSlotM|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>MangetStatu</th>
+                <td>{{ booking.MangetStatu }}</td>
+            </tr>
+            <tr>
+                <th>Clintstarttime</th>
+                <td>{{ booking.Clintstarttime ? booking.Clintstarttime|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ClintEndtime</th>
+                <td>{{ booking.ClintEndtime ? booking.ClintEndtime|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ClintStartSlot</th>
+                <td>{{ booking.ClintStartSlot ? booking.ClintStartSlot|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ClintEndSlot</th>
+                <td>{{ booking.ClintEndSlot ? booking.ClintEndSlot|date('H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_booking_index') }}">back to list</a>
+
+    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">edit</a>
+
+    {{ include('booking/_delete_form.html.twig') }}
+{% endblock %}

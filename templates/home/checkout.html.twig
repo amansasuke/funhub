@@ -1,0 +1,482 @@
+{% extends 'getrout.html.twig' %}
+{% block body %}
+
+{# {{ form(form) }} #}
+
+<body>
+    <div class="page-header" style="background: url(assets/img/banner1.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-wrapper">
+                        <h2 class="product-title">Checkout</h2>
+                        <ol class="breadcrumb">
+                            <li><a href="#">Home /</a></li>
+                            <li class="current">Checkout</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="error section-padding">
+        <div class="container">
+            <div class="col-12">
+                <h3 class="section-title">Checkout</h3>
+            </div>
+            <div class="row">
+                <aside id="sidebar" class="col-lg-4 col-md-12 col-xs-12 order-md-2 right-sidebar">
+                    <div class="widget categories">
+                        <h4 class="widget-title">All Categories</h4>
+                        <ul class="list-group mb-3">
+                        {% for product in pro %}
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                <small class="text-muted">Service name</small>
+                                    <h6 class="my-0">{{product.name}}</h6>
+                                    
+                                </div>
+                                <div>
+                                <small class="text-muted">Price</small>
+                                <h6 class="my-0">₹{{ product.price | number_format(2) }}</h6>
+                                </div>
+                            </li>
+                        {% endfor %}
+                            {# <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0">Second product</h6>
+                                    <small class="text-muted">Brief description</small>
+                                </div>
+                                <span class="text-muted">$8</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0">Third item</h6>
+                                    <small class="text-muted">Brief description</small>
+                                </div>
+                                <span class="text-muted">$5</span>
+                            </li> #}
+                            <li class="list-group-item d-flex justify-content-between bg-light">
+                                <div class="text-success">
+                                    <h6 class="my-0">Wallet Balance</h6>
+                                    <small>This Balance will add you Balance</small>
+                                </div>
+                                <h6 class="text-success">₹{{waltebalance| number_format(2)}}</h6>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between bg-light">
+                                <div class="text-success">
+                                    <h6 class="my-0">Your Wallet Balance</h6>
+                                    <small>This is your cruunt walte Balance </small>
+                                </div>
+                                <h6 class="text-success">₹{{waltebalanceold| number_format(2)}}</h6>
+                            </li>
+                            
+                            <li class="list-group-item d-flex justify-content-between">
+                                <div >
+                                    <h6 class="my-0">Total</h6>
+                                    {% if app.request.get('usewalet') %}
+                                        <small>Wallet Balance </small>
+                                    {% endif %}
+                                </div> 
+                                <strong>
+                                    {% if app.request.get('usewalet') %}
+                                        {% if app.request.get('usewalet')> waltebalanceold%}
+                                            <span style="color: red">Not enogh walte balnce</span><br>
+                                            ₹{{ total | number_format(2) }}
+                                        {% else %}
+                                            {%  set usewel = total - app.request.get('usewalet') %}
+                                            ₹{{ total | number_format(2) }}<br><span style="color: 
+                                            red">-{{app.request.get('usewalet')| number_format(2)}}</span><br>
+                                             ₹{{ usewel| number_format(2)}}
+                                        {% endif %}
+                                     {% else %}
+                                        ₹{{ total | number_format(2) }}
+                                    {% endif %}                              
+                                </strong>
+                            </li>
+                        </ul>
+                        {% if waltebalanceold |length >0 %}
+                            <form class="card p-2">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="usewalet" placeholder="Use You'er Wallet Balance">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-common">Wallet</button>
+                                    </div>
+                                </div>
+                            </form>
+                        {%endif %}
+
+                        <form class="card p-2">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Promo code">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-common">Redeem</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--  <div class="widget widget-popular-posts">
+                        <h4 class="widget-title">Recent Posts</h4>
+                        <ul class="posts-list">
+                            <li>
+                                <div class="widget-thumb">
+                                    <a href="#"><img src="assets/img/blog/thumb1.jpg" alt="" /></a>
+                                </div>
+                                <div class="widget-content">
+                                    <a href="#">Eum Iriure Dolor Duis Autem</a>
+                                    <span><i class="icon-calendar"></i>June 21, 2018</span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li>
+                                <div class="widget-thumb">
+                                    <a href="#"><img src="assets/img/blog/thumb2.jpg" alt="" /></a>
+                                </div>
+                                <div class="widget-content">
+                                    <a href="#">Consectetuer Adipiscing Elit</a>
+                                    <span><i class="icon-calendar"></i>June 18, 2018</span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li>
+                                <div class="widget-thumb">
+                                    <a href="#"><img src="assets/img/blog/thumb3.jpg" alt="" /></a>
+                                </div>
+                                <div class="widget-content">
+                                    <a href="#">Et Leggings Fanny Pack</a>
+                                    <span><i class="icon-calendar"></i>June 17, 2018</span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li>
+                                <div class="widget-thumb">
+                                    <a href="#"><img src="assets/img/blog/thumb4.jpg" alt="" /></a>
+                                </div>
+                                <div class="widget-content">
+                                    <a href="#">Exercitation Photo Booth</a>
+                                    <span><i class="icon-calendar"></i>June 12, 2018</span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li>
+                                <div class="widget-thumb">
+                                    <a href="#"><img src="assets/img/blog/thumb5.jpg" alt="" /></a>
+                                </div>
+                                <div class="widget-content">
+                                    <a href="#">Eum Iriure Dolor Duis Autem</a>
+                                    <span><i class="icon-calendar"></i>June 9, 2018</span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="widget">
+                        <h4 class="widget-title">Advertisement</h4>
+                        <div class="add-box">
+                            <img src="assets/img/img1.jpg" alt="">
+                        </div>
+                    </div> -->
+                </aside>
+                <!--  <div class="col-md-4 order-md-2 mb-4">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted">Your cart</span>
+                        <span class="badge badge-secondary badge-pill">3</span>
+                    </h4>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">Product name</h6>
+                                <small class="text-muted">Brief description</small>
+                            </div>
+                            <span class="text-muted">$12</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">Second product</h6>
+                                <small class="text-muted">Brief description</small>
+                            </div>
+                            <span class="text-muted">$8</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">Third item</h6>
+                                <small class="text-muted">Brief description</small>
+                            </div>
+                            <span class="text-muted">$5</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between bg-light">
+                            <div class="text-success">
+                                <h6 class="my-0">Promo code</h6>
+                                <small>EXAMPLECODE</small>
+                            </div>
+                            <span class="text-success">-$5</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total (USD)</span>
+                            <strong>$20</strong>
+                        </li>
+                    </ul>
+                    <form class="card p-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Promo code">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-secondary">Redeem</button>
+                            </div>
+                        </div>
+                    </form>
+                </div> -->
+                <div class="col-md-8 order-md-1">
+                    <h4 class="mb-3">Billing address</h4>
+                  
+                        {{ form_start(form,{'attr': {'class': 'login-form'}}) }}
+                        <div class="form-group">
+                            <div class="input-icon">
+                                <i class="lni-user" style="padding-top:10px;"></i>
+                                {{ form_row(form.name,{'attr': {'class': 'form-control'}}) }}
+                                {# <input type="text" id="Name" class="form-control" name="email" placeholder="Username"> #}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.email,{'attr': {'class': 'form-control input-md'}}) }}
+                            <div class="invalid-feedback">
+                                Please enter your Email
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.address,{'attr': {'class': 'form-control input-md'}}) }}
+                            <div class="invalid-feedback">
+                                Please enter your shipping address.
+                            </div>
+                        </div>
+
+                        {# {{ form(form) }} #}
+                        <!-- <div class="row">
+                            <div class="mb-3">
+                                <label for="firstName">Name</label>
+                                <input type="text" class="form-control input-md" id="firstName" placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                    Valid first name is required.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="lastName">Last name</label>
+                                <input type="text" class="form-control input-md" id="lastName" placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                    Valid last name is required.
+                                </div>
+                            </div>
+                        </div> -->
+                       {#  <div class="mb-3">
+                            <label for="firstName">Name</label>
+                            <input type="text" class="form-control input-md" id="firstName" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Valid first name is required.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email">Email </label>
+                            <input type="email" class="form-control input-md" id="email" placeholder="you@example.com">
+                            <div class="invalid-feedback">
+                                Please enter a valid email address for shipping updates.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control input-md" id="address" placeholder="1234 Main St" required>
+                            <div class="invalid-feedback">
+                                Please enter your shipping address.
+                            </div>
+                        </div> #}
+                        <!-- <div class="mb-3">
+                            <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+                            <input type="text" class="form-control input-md" id="address2" placeholder="Apartment or suite">
+                        </div> -->
+                        {# <div class="row">
+                            <div class="col-md-5 mb-3">
+                                <label for="country">User category</label>
+                                <select class="custom-select d-block w-100" id="country" required>
+                                    <option value="">Choose...</option>
+                                    <option>United States</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a valid country.
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="state">Gender</label>
+                                <select class="custom-select d-block w-100" id="state" required>
+                                    <option value="">Choose...</option>
+                                    <option>California</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please provide a valid state.
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="zip">Pan no</label>
+                                <input type="text" class="form-control input-md" id="zip" placeholder="" required>
+                                <div class="invalid-feedback">
+                                    Pan no
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="mb-4">
+                        <h4 class="mb-3">Payment</h4>
+                        <div class="d-block my-3">
+                            <div class="custom-control custom-radio">
+                                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                                <label class="custom-control-label" for="credit">Credit card</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+                                <label class="custom-control-label" for="debit">Debit card</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+                                <label class="custom-control-label" for="paypal">PayPal</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="cc-name">Name on card</label>
+                                <input type="text" class="form-control input-md" id="cc-name" placeholder="" required>
+                                <small class="text-muted">Full name as displayed on card</small>
+                                <div class="invalid-feedback">
+                                    Name on card is required
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cc-number">Credit card number</label>
+                                <input type="text" class="form-control input-md" id="cc-number" placeholder="" required>
+                                <div class="invalid-feedback">
+                                    Credit card number is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label for="cc-expiration">Expiration</label>
+                                <input type="text" class="form-control input-md" id="cc-expiration" placeholder="" required>
+                                <div class="invalid-feedback">
+                                    Expiration date required
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="cc-cvv">CVV</label>
+                                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                                <div class="invalid-feedback">
+                                    Security code required
+                                </div>
+                            </div>
+                        </div> #}
+                        {{ form_row(form.save,{'attr': {'class': 'form-control input-md'}}) }}
+                       {#  <button class="btn btn-common btn-lg btn-block" type="submit">Continue to checkout</button> #}
+                        {{ form_end(form) }}
+                    
+                </div>
+            </div>
+            <footer class="my-5 pt-5 text-muted text-center text-small">
+                <p class="mb-1">&copy; 2017-2019 Company Name</p>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Privacy</a></li>
+                    <li class="list-inline-item"><a href="#">Terms</a></li>
+                    <li class="list-inline-item"><a href="#">Support</a></li>
+                </ul>
+            </footer>
+        </div>
+        <!-- <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                    <div class="error-content">
+                        <div class="error-message">
+                            <h2>404</h2>
+                            <h3>We're sorry, but we can't find the page you were looking for.</h3>
+                            <p>It's probably some thing we've done wrong but now we know about it and we'll try to fix it. In the meantime, try one of these options</p>
+                        </div>
+                        <form class="form-error-search">
+                            <input type="search" name="search" class="form-control" placeholder="Search Here">
+                            <button class="btn btn-common btn-search" type="button">Search Now</button>
+                        </form>
+                        <div class="description">
+                            <span>Or Goto <a href="#">Homepage</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <footer>
+        <section class="footer-Content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
+                        <div class="widget">
+                            <div class="footer-logo"><img src="assets/img/logo.png" alt=""></div>
+                            <div class="textwidget">
+                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt consectetur, adipisci velit.</p>
+                            </div>
+                            <ul class="mt-3 footer-social">
+                                <li><a class="facebook" href="#"><i class="lni-facebook-filled"></i></a></li>
+                                <li><a class="twitter" href="#"><i class="lni-twitter-filled"></i></a></li>
+                                <li><a class="linkedin" href="#"><i class="lni-linkedin-fill"></i></a></li>
+                                <li><a class="google-plus" href="#"><i class="lni-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
+                        <div class="widget">
+                            <h3 class="block-title">Quick Link</h3>
+                            <ul class="menu">
+                                <li><a href="#">- About Us</a></li>
+                                <li><a href="#">- Blog</a></li>
+                                <li><a href="#">- Events</a></li>
+                                <li><a href="#">- Shop</a></li>
+                                <li><a href="#">- FAQ's</a></li>
+                                <li><a href="#">- About Us</a></li>
+                                <li><a href="#">- Blog</a></li>
+                                <li><a href="#">- Events</a></li>
+                                <li><a href="#">- Shop</a></li>
+                                <li><a href="#">- FAQ's</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
+                        <div class="widget">
+                            <h3 class="block-title">Contact Info</h3>
+                            <ul class="contact-footer">
+                                <li>
+                                    <strong><i class="lni-phone"></i></strong><span>+1 555 444 66647 <br> +1 555 444 66647</span>
+                                </li>
+                                <li>
+                                    <strong><i class="lni-envelope"></i></strong><span><a href="http://preview.uideck.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fe9d91908a9f9d8abe939f9792d09d9193">[email&#160;protected]</a> <br> <a href="http://preview.uideck.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bdcec8cdcdd2cfc9fdd0dcd4d193ded2d0">[email&#160;protected]</a></span>
+                                </li>
+                                <li>
+                                    <strong><i class="lni-map-marker"></i></strong><span><a href="#">9870 St Vincent Place, Glasgow, DC 45 <br>Fr 45</a></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="site-info text-center">
+                            <p><a target="_blank" href="https://templateshub.net">Templates Hub</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <a href="#" class="back-to-top">
+        <i class="lni-chevron-up"></i>
+    </a>
+    <div id="preloader">
+        <div class="loader" id="loader-1"></div>
+    </div>
+    <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+</body>
+{% endblock %}
