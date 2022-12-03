@@ -46,28 +46,48 @@ class adminController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Fintastic');
+            ->setTitle('The Finanzi');
     }
 
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
+        
+        yield MenuItem::section('Product');
         yield MenuItem::linkToCrud('Category', 'fas fa-file-word', Category::class);
         yield MenuItem::linkToCrud('Sub Category', 'fas fa-cogs', Services::class);
         yield MenuItem::linkToCrud('Service', 'fa fa-shopping-basket', Product::class);
-        yield MenuItem::linkToCrud('Post', 'fa fa-sticky-note', Post::class);
-        yield MenuItem::linkToCrud('Doctype', 'fa fa-file-word', Doctype::class);
+
+        yield MenuItem::section('Documents for product');
         yield MenuItem::linkToCrud('Documentsforproduct', 'fa fa-file-word', Documentsforproduct::class);
+        
+        yield MenuItem::section('product Doc Type');
+        yield MenuItem::linkToCrud('Doctype', 'fa fa-file-word', Doctype::class);
+
+        yield MenuItem::section('order');
         yield MenuItem::linkToCrud('Order', 'fa fa-file-word', Order::class);
-        yield MenuItem::linkToCrud('AssignGroup', 'fa fa-file-word', AssignGroup::class);
-        yield MenuItem::linkToCrud('Voucher', 'fa fa-certificate', Voucher::class);
-        yield MenuItem::linkToCrud('Vouchercode', 'fa fa-code', Vouchercode::class);
-        yield MenuItem::linkToCrud('Reference Patner', 'fa fa-file-word', Reference::class);
+
+        yield MenuItem::section('Blog');
+        yield MenuItem::linkToCrud('Post', 'fa fa-sticky-note', Post::class);
+
+        yield MenuItem::section('Prodcast (club)');
         yield MenuItem::linkToCrud('Audiopodcast', 'fa fa-file-word', Audiopodcast::class);
         yield MenuItem::linkToCrud('Videoposcast', 'fa fa-file-word', Videoposcast::class);
+        yield MenuItem::linkToCrud('Reference Patner', 'fa fa-file-word', Reference::class);
+
+        yield MenuItem::section('Voucher');
+        yield MenuItem::linkToCrud('Voucher', 'fa fa-certificate', Voucher::class);
+        yield MenuItem::linkToCrud('Vouchercode', 'fa fa-code', Vouchercode::class);
+
+        yield MenuItem::section('Manger Group');
+        yield MenuItem::linkToCrud('AssignGroup', 'fa fa-file-word', AssignGroup::class);
+
+        yield MenuItem::section('Appointment');
         yield MenuItem::linkToCrud('Booking', 'fa fa-calendar', Eventbooking::class);
 
+
+     
         
     }
 }
