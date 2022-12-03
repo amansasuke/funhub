@@ -359,6 +359,42 @@
   box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
 }
 
+.container .slider {
+            animation: slidein 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        .container .slider .logos {
+            width: 100%;
+            display: inline-block;
+            margin: 0px 0;
+        }
+
+        .container .slider .logos .fab {
+            width: calc(100% / 5);
+            animation: fade-in 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
+        }
+
+        @keyframes slidein {
+            from {
+                transform: translate3d(0, 0, 0);
+            }
+
+            to {
+                transform: translate3d(-100%, 0, 0);
+            }
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
     </style>
 {% endblock %}
 {% block body %}
@@ -983,43 +1019,8 @@
             </div>
         </div>
         </div>
-        <style type="text/css">
-        .container .slider {
-            animation: slidein 30s linear infinite;
-            white-space: nowrap;
-        }
+        </section>
 
-        .container .slider .logos {
-            width: 100%;
-            display: inline-block;
-            margin: 0px 0;
-        }
-
-        .container .slider .logos .fab {
-            width: calc(100% / 5);
-            animation: fade-in 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
-        }
-
-        @keyframes slidein {
-            from {
-                transform: translate3d(0, 0, 0);
-            }
-
-            to {
-                transform: translate3d(-100%, 0, 0);
-            }
-        }
-
-        @keyframes fade-in {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-        </style>
         <section id="about" class="section-padding">
             <div class="container">
                 <div class="row">
@@ -1058,7 +1059,7 @@
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                        <a data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo">
                                                             How long will it take to complete the process and get the final deliverable?
                                                         </a>
                                                     </h4>
@@ -1075,7 +1076,7 @@
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                                        <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
                                                             What types of businesses do you work with?
                                                         </a>
                                                     </h4>
@@ -1095,7 +1096,7 @@
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                                        <a data-toggle="collapse" data-parent="#accordion3" href="#collapseFour">
                                                             What is the business club? Should I become a member to avail your services?
                                                         </a>
                                                     </h4>
@@ -1112,7 +1113,7 @@
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                                                        <a data-toggle="collapse" data-parent="#accordion4" href="#collapseFive">
                                                             How can I become an affiliate? What are the benefits?
                                                         </a>
                                                     </h4>
@@ -1129,7 +1130,7 @@
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                                                        <a data-toggle="collapse" data-parent="#accordion5" href="#collapseSix">
                                                             What are the benefits of your investment options at FH?
                                                         </a>
                                                     </h4>
@@ -1146,7 +1147,7 @@
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+                                                        <a data-toggle="collapse" data-parent="#accordion6" href="#collapseSeven">
                                                             I am new to affiliate marketing. Is guidance provided?
                                                         </a>
                                                     </h4>
@@ -1436,41 +1437,6 @@
             </div>
         </section>
         
-        {# <section class="services  section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h3 class="section-title">Book Know
-                        </h3>
-                    </div>
-                    <div class="col-12 offset-lg-1">
-                        <div class="row">
-                            <div class="col-md-12 col-lg-12">
-                                {{ form_start(form) }}
-                                <div class="form-group mb-3">
-                                    <label class="control-label">Name</label>
-                                    {{ form_row(form.dis,{'attr': {'class': 'form-control input-md'}}) }}
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label class="control-label">Phone no</label>
-                                    {{ form_row(form.bookingstart,{'attr': {'class': 'form-control input-md'}}) }}
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label class="control-label">Email</label>
-                                    {{ form_row(form.bookingtime,{'attr': {'class': 'form-control input-md'}}) }}
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label class="control-label">Email</label>
-                                    {{ form_row(form.duration,{'attr': {'class': 'form-control input-md'}}) }}
-                                </div>
-                                <button class="btn btn-common">{{ button_label|default('Save') }}</button>
-                                {{ form_end(form) }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> #}
         <section class="subscribes section-padding">
             <div class="container">
                 <div class="row">
@@ -1496,6 +1462,7 @@
                 </div>
             </div>
         </section>
+        
         <footer>
             <section class="footer-Content">
                 <div class="container">
@@ -1550,6 +1517,17 @@
                     </div>
                 </div>
             </section>
+            <div id="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="site-info text-center">
+                            <p><a target="_blank" href="#">The Finanzi</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </footer>
         <a href="#" class="back-to-top">
             <i class="lni-chevron-up"></i>
