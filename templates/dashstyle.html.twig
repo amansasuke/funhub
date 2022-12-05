@@ -4,13 +4,13 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
     
-        <link href="{{ asset('assets/css/modern.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets/css/modern.css') }}" rel="stylesheet"/>
     <!-- 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
-    {# // <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    // <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    // <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/latest/js/all.js" integrity="sha384-L469/ELG4Bg9sDQbl0hvjMq8pOcqFgkSpwhwnslzvVVGpDjYJ6wJJyYjvG3u8XW7" crossorigin="anonymous"></script>
-    //     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>"> #}
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/latest/js/all.js" integrity="sha384-L469/ELG4Bg9sDQbl0hvjMq8pOcqFgkSpwhwnslzvVVGpDjYJ6wJJyYjvG3u8XW7" crossorigin="anonymous"></script>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         <style type="text/css">
             @import "https://fonts.googleapis.com/css?family=Open+Sans|Roboto:500,700";
 
@@ -34,7 +34,21 @@
   
         {% block body %}{% endblock %}
 
+            {# // <script src="{{ asset('assets/js/settings.js')}}"></script>  #}
         <script src="{{ asset('assets/js/app.js')}}"></script>
         {# <script src="{{ asset('assets/js/adminapp.js')}}"></script> #}   
+        {# // <script src="{{ asset('assets/js/jquery-min.js')}}"></script>
+        // <script src="{{ asset('assets/js/popper.min.js')}}"></script>
+        // <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
+        // <script src="{{ asset('assets/js/color-switcher.js')}}"></script>
+        // <script src="{{ asset('assets/js/jquery.counterup.min.js')}}"></script>
+        // <script src="{{ asset('assets/js/waypoints.min.js')}}"></script>
+        // <script src="{{ asset('assets/js/wow.js')}}"></script>
+        // <script src="{{ asset('assets/js/owl.carousel.min.js')}}"></script>
+        // <script src="{{ asset('assets/js/jquery.slicknav.js')}}"></script>
+        // <script src="{{ asset('assets/js/main.js')}}"></script>
+        // <script src="{{ asset('assets/js/form-validator.min.js')}}"></script>
+        // <script src="{{ asset('assets/js/contact-form-script.min.js')}}"></script>
+        // <script src="{{ asset('assets/js/summernote.js')}}"></script> #}
     </body>
 </html>
