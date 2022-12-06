@@ -71,6 +71,9 @@ class Post
     {
         $this->thumbnailFile = $thumbnailFile;
 
+        if ($thumbnailFile) {
+            $this->updatedAt = new \DateTime();
+        }
     }
 
 
