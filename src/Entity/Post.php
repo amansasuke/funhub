@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * Post
- *
- * @ORM\Table(name="post", indexes={@ORM\Index(name="IDX_5A8A6C8DA76ED395", columns={"user_id"}), @ORM\Index(name="IDX_5A8A6C8D12469DE2", columns={"category_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
+ * @Vich\Uploadable()
  */
 class Post
 {
@@ -43,11 +44,45 @@ class Post
     private $updatedAt;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="thumbnail", type="string", length=100, nullable=false)
+     * @ORM\Column(type="string", length=200)
      */
     private $thumbnail;
+
+    /**
+     * @Vich\UploadableField(mapping="thumbnails", fileNameProperty="thumbnail")
+     */
+    private $thumbnailFile;
+
+    
+
+     /**
+     * @return mixed
+     */
+    public function getThumbnailFile()
+    {
+        return $this->thumbnailFile;
+    }
+
+    /**
+     * @param mixed $thumbnailFile
+     * @throws \Exception
+     */
+    public function setThumbnailFile($thumbnailFile): void
+    {
+        $this->thumbnailFile = $thumbnailFile;
+
+        if ($thumbnailFile) {
+            $this->updatedAt = new \DateTime();
+        }
+    }
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+        $this->attachments = new ArrayCollection();
+    }
 
     /**
      * @var \User

@@ -2,13 +2,16 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Services
  *
  * @ORM\Table(name="services", indexes={@ORM\Index(name="IDX_7332E16912469DE2", columns={"category_id"}), @ORM\Index(name="IDX_7332E16987CCB12E", columns={"categoryname_id"})})
  * @ORM\Entity
+ * @Vich\Uploadable()
  */
 class Services
 {
@@ -34,6 +37,34 @@ class Services
      * @ORM\Column(name="thumbnail", type="string", length=100, nullable=false)
      */
     private $thumbnail;
+
+     /**
+     * @Vich\UploadableField(mapping="thumbnails", fileNameProperty="thumbnail")
+     */
+    private $thumbnailFile;
+
+    
+
+     /**
+     * @return mixed
+     */
+    public function getThumbnailFile()
+    {
+        return $this->thumbnailFile;
+    }
+
+    /**
+     * @param mixed $thumbnailFile
+     * @throws \Exception
+     */
+    public function setThumbnailFile($thumbnailFile): void
+    {
+        $this->thumbnailFile = $thumbnailFile;
+
+        if ($thumbnailFile) {
+            $this->updatedAt = new \DateTime();
+        }
+    }
 
     /**
      * @var \DateTime

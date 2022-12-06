@@ -29,8 +29,8 @@ class PostCrudController extends AbstractCrudController
             TextField::new('title'),
             TextEditorField::new('content'),
             AssociationField::new('category'),
-            TextField::new('Thumbnail'),
-            //TextareaField::new('thumbnailFile')->setFormType(VichImageType::class),
+            //TextField::new('Thumbnail'),
+            TextareaField::new('thumbnailFile')->setFormType(VichImageType::class),
         ];
     }
     
