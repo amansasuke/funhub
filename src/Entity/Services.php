@@ -61,9 +61,6 @@ class Services
     {
         $this->thumbnailFile = $thumbnailFile;
 
-        if ($thumbnailFile) {
-            $this->updatedAt = new \DateTime();
-        }
     }
 
     /**

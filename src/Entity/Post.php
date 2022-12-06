@@ -71,18 +71,8 @@ class Post
     {
         $this->thumbnailFile = $thumbnailFile;
 
-        if ($thumbnailFile) {
-            $this->updatedAt = new \DateTime();
-        }
     }
 
-    public function __construct()
-    {
-        $this->tags = new ArrayCollection();
-        $this->createdAt = new \DateTime();
-        $this->updatedAt = new \DateTime();
-        $this->attachments = new ArrayCollection();
-    }
 
     /**
      * @var \User
