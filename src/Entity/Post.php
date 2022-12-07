@@ -3,12 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use App\Repository\PostRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
+ * @ORM\Entity(repositoryClass=PostRepository::class)
  * @Vich\Uploadable()
  */
 class Post
@@ -53,28 +54,6 @@ class Post
      */
     private $thumbnailFile;
 
-    
-
-     /**
-     * @return mixed
-     */
-    public function getThumbnailFile()
-    {
-        return $this->thumbnailFile;
-    }
-
-    /**
-     * @param mixed $thumbnailFile
-     * @throws \Exception
-     */
-    public function setThumbnailFile($thumbnailFile): void
-    {
-        $this->thumbnailFile = $thumbnailFile;
-
-        if ($thumbnailFile) {
-            $this->updatedAt = new \DateTime();
-        }
-    }
 
 
     /**
@@ -96,6 +75,28 @@ class Post
      * })
      */
     private $category;
+
+    
+     /**
+     * @return mixed
+     */
+    public function getThumbnailFile()
+    {
+        return $this->thumbnailFile;
+    }
+
+    /**
+     * @param mixed $thumbnailFile
+     * @throws \Exception
+     */
+    public function setThumbnailFile($thumbnailFile): void
+    {
+        $this->thumbnailFile = $thumbnailFile;
+
+        if ($thumbnailFile) {
+            $this->updatedAt = new \DateTime();
+        }
+    }
 
     public function getId(): ?int
     {
@@ -138,16 +139,22 @@ class Post
         return $this;
     }
 
-    public function getThumbnail(): ?string
+    /**
+     * @return mixed
+     */
+    public function getThumbnail()
     {
         return $this->thumbnail;
     }
 
-    public function setThumbnail(string $thumbnail): self
+    /**
+     * @param mixed $thumbnail
+     */
+    public function setThumbnail($thumbnail): void
     {
         $this->thumbnail = $thumbnail;
 
-        return $this;
+        //return $this;
     }
 
     public function getUser(): ?User

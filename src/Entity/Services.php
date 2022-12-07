@@ -3,14 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use App\Repository\ServicesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * Services
- *
- * @ORM\Table(name="services", indexes={@ORM\Index(name="IDX_7332E16912469DE2", columns={"category_id"}), @ORM\Index(name="IDX_7332E16987CCB12E", columns={"categoryname_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=ServicesRepository::class)
  * @Vich\Uploadable()
  */
 class Services
@@ -32,36 +31,16 @@ class Services
     private $servicesname;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="thumbnail", type="string", length=100, nullable=false)
+     * @ORM\Column(type="string", length=200)
      */
     private $thumbnail;
 
-     /**
+    /**
      * @Vich\UploadableField(mapping="thumbnails", fileNameProperty="thumbnail")
      */
     private $thumbnailFile;
 
-    
 
-     /**
-     * @return mixed
-     */
-    public function getThumbnailFile()
-    {
-        return $this->thumbnailFile;
-    }
-
-    /**
-     * @param mixed $thumbnailFile
-     * @throws \Exception
-     */
-    public function setThumbnailFile($thumbnailFile): void
-    {
-        $this->thumbnailFile = $thumbnailFile;
-
-    }
 
     /**
      * @var \DateTime
@@ -90,6 +69,28 @@ class Services
      */
     private $category;
 
+
+     /**
+     * @return mixed
+     */
+    public function getThumbnailFile()
+    {
+        return $this->thumbnailFile;
+    }
+
+    /**
+     * @param mixed $thumbnailFile
+     * @throws \Exception
+     */
+    public function setThumbnailFile($thumbnailFile): void
+    {
+        $this->thumbnailFile = $thumbnailFile;
+
+        if ($thumbnailFile) {
+            $this->updatedAt = new \DateTime();
+        }
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,16 +108,22 @@ class Services
         return $this;
     }
 
-    public function getThumbnail(): ?string
+    /**
+     * @return mixed
+     */
+    public function getThumbnail()
     {
         return $this->thumbnail;
     }
 
-    public function setThumbnail(string $thumbnail): self
+    /**
+     * @param mixed $thumbnail
+     */
+    public function setThumbnail($thumbnail): void
     {
         $this->thumbnail = $thumbnail;
 
-        return $this;
+        //return $this;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface

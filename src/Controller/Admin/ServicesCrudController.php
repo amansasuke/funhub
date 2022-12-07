@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 
 class ServicesCrudController extends AbstractCrudController
 {
@@ -27,20 +28,20 @@ class ServicesCrudController extends AbstractCrudController
         //     TextField::new('servicesname'),
         //     AssociationField::new('category'),
         //       ];
-        // $imageFile = TextareaField::new('thumbnailFile')->setFormType(VichImageType::class);
-        // $image = TextareaField::new('thumbnail')->setBasePath('/images/thumbnails');
+        $imageFile = Field::new('thumbnailFile')->setFormType(VichImageType::class);
+        $image = ImageField::new('thumbnail')->setBasePath('/images/thumbnails');
 
         $fields = [
             TextField::new('servicesname'),
             AssociationField::new('category'),
-            TextareaField::new('thumbnailFile')->setFormType(VichImageType::class),
+            //TextareaField::new('thumbnailFile')->setFormType(VichImageType::class),
         ];
 
-        // if ($pageName == Crud::PAGE_INDEX || $pageName == Crud::PAGE_DETAIL) {
-        //     $fields[] = $image;
-        // } else {
-        //     $fields[] = $imageFile;
-        // }
+        if ($pageName == Crud::PAGE_INDEX || $pageName == Crud::PAGE_DETAIL) {
+            $fields[] = $image;
+        } else {
+            $fields[] = $imageFile;
+        }
         return $fields;
     }
     
