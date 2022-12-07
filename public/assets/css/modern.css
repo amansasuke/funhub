@@ -14501,7 +14501,8 @@ screen and (-ms-high-contrast:active) {
     color: #fff;
     width: 100%;
     display: block;
-    text-decoration: none
+    text-decoration: none;
+    text-align: center;
 }
 
 .sidebar-brand:hover svg,
@@ -14517,6 +14518,10 @@ screen and (-ms-high-contrast:active) {
     background: #fff;
     color: #5bb7c5;
     text-align: center
+}
+
+.sidebar-brand img{
+    width: 54px;
 }
 
 .sidebar-user img {
