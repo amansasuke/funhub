@@ -148,7 +148,7 @@ class CheckoutController extends AbstractController
     private function sendEmailConfirmation(Order $order, MailerInterface $mailer)
     {
         $email = (new TemplatedEmail())
-            ->from('amansharmasasuke@outlook.com')
+            ->from('amansharmasasuke@gmail.com')
             ->to(new Address($order->getEmail(), $order->getName()))
             ->subject('Order confirmation')
             ->htmlTemplate('emails/order.html.twig')
