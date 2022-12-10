@@ -25,7 +25,8 @@ class AggentdashbordController extends AbstractController
      * @Route("/aggentdashbord", name="app_aggentdashbord")
      */
     public function index(ManagerRegistry $doctrine): Response
-    {
+    {   
+        $this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_MANGER');
         $assignorder = [];
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $userId = $user->getId();

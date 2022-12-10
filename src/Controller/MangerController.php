@@ -17,6 +17,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Constraints\Time;
 
@@ -47,13 +49,16 @@ class MangerController extends AbstractController
 {
     /**
      * @Route("/manger", name="app_manger")
+     * 
      */
     public function index(ManagerRegistry $doctrine,AssignGroupRepository $assignGroup, AssignGroupUserRepository $assignUser, UserRepository $userR): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
+
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $user->getUsername();
         $assignGroup = $assignGroup->findBy([]);
-
+        $groupId='';
         foreach($assignGroup as $assign){
             foreach($assign->getUser() as $users){
                 if($users->getId() == $user->getId()){
@@ -91,6 +96,7 @@ class MangerController extends AbstractController
      */
     public function userorder($id ,ManagerRegistry $doctrine,AssignGroupRepository $assignGroup, AssignGroupUserRepository $assignUser, UserRepository $userR): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_ADMIN');
         $user = $userR->find($id);
        $email = $user->getEmail();
         $order = $doctrine->getRepository(Order::class)->findBy(
