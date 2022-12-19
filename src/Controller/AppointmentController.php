@@ -39,6 +39,7 @@ class AppointmentController extends AbstractController
      */
     public function index(AppointmentRepository $appointmentRepository, UserRepository $userR): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $manger = $this->get('security.token_storage')->getToken()->getUser();
         $manger->getUsername();
         $users = $userR->findBy([]);
@@ -54,6 +55,7 @@ class AppointmentController extends AbstractController
      */
     public function new(Request $request, AppointmentRepository $appointmentRepository,ManagerRegistry $doctrine,AssignGroupRepository $assignGroup, UserRepository $userR): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
          $user = $this->get('security.token_storage')->getToken()->getUser();
         $user->getUsername();
         $assignGroup = $assignGroup->findBy([]);
@@ -170,6 +172,7 @@ class AppointmentController extends AbstractController
      */
     public function show(Appointment $appointment): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         return $this->render('appointment/show.html.twig', [
             'appointment' => $appointment,
         ]);
@@ -180,6 +183,7 @@ class AppointmentController extends AbstractController
      */
     public function edit(Request $request, Appointment $appointment, AppointmentRepository $appointmentRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $form = $this->createForm(AppointmentType::class, $appointment);
         $form->handleRequest($request);
 
@@ -200,6 +204,7 @@ class AppointmentController extends AbstractController
      */
     public function delete(Request $request, Appointment $appointment, AppointmentRepository $appointmentRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         if ($this->isCsrfTokenValid('delete'.$appointment->getId(), $request->request->get('_token'))) {
             $appointmentRepository->remove($appointment, true);
         }

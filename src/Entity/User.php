@@ -9,10 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @Vich\Uploadable()
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -120,6 +122,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $imgicon;
 
     /**
+     * @Vich\UploadableField(mapping="imgicons", fileNameProperty="imgicon")
+     */
+    private $thumbnailFile;
+
+    /**
      * @ORM\OneToMany(targetEntity=Eventbooking::class, mappedBy="manger")
      */
     private $eventbookings;
@@ -145,6 +152,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->uservouchers = new ArrayCollection();
         $this->clubs = new ArrayCollection();
         $this->eventbookings = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getThumbnailFile()
+    {
+        return $this->thumbnailFile;
+    }
+
+    /**
+     * @param mixed $thumbnailFile
+     * @throws \Exception
+     */
+    public function setThumbnailFile($thumbnailFile): void
+    {
+        $this->thumbnailFile = $thumbnailFile;
+
     }
 
     public function getId(): ?int
@@ -533,16 +558,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getImgicon(): ?string
+
+    /**
+     * @return mixed
+     */
+    public function getImgicon()
     {
         return $this->imgicon;
     }
 
-    public function setImgicon(string $imgicon): self
+    /**
+     * @param mixed $imgicon
+     */
+    public function setImgicon($imgicon): void
     {
         $this->imgicon = $imgicon;
 
-        return $this;
+        //return $this;
     }
 
     /**

@@ -13,6 +13,14 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\PasswordType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 
+use Vich\UploaderBundle\Form\Type\VichImageType;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+
 
 
 
@@ -26,38 +34,31 @@ class UserCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
-        return [
-        
+        $imageFile = Field::new('thumbnailFile')->setFormType(VichImageType::class);
+        $image = ImageField::new('imgicon')->setBasePath('/assets/img/user');
+
+        $fields = [
+            IdField::new('id'),
             TextField::new('name'),
             EmailField::new('email'),
-            TextField::new('password'),
+            TextField::new('password')->hideOnIndex(),
             AssociationField::new('role'),
             TextField::new('pan_no'),
             TextareaField::new('address'),
             TextField::new('GSTno')->hideOnIndex(),
             TextField::new('phone_no'),
-            TextField::new('gender'),
+            TextField::new('gender')->hideOnIndex(),
             TextField::new('user_category'),
-            // ChoiceField::new('gender')->setChoices([
-            //     'choose gender' => NULL,
-            //     'Male' => 'male',
-            //     'Female' => 'female',
-            // ]),
-            // ChoiceField::new('user_category')->setChoices([
-            //     // $value => $badgeStyleName
-            //     'choose category' => NULL,
-            //         'Individual' => 'individual',
-            //         'business owner' => 'business owner',
-            //         'NPO' => 'NPO',
-            //         'trader' => 'trader',
-            // ]),
             IntegerField::new('red_id')->hideOnIndex(),
             IntegerField::new('wellet')->hideOnIndex(),
-            TextField::new('imgicon')->hideOnIndex(),
-
-            
-            //TextEditorField::new('description'),
         ];
+
+        if ($pageName == Crud::PAGE_INDEX || $pageName == Crud::PAGE_DETAIL) {
+            $fields[] = $image;
+        } else {
+            $fields[] = $imageFile;
+        }
+        return $fields;
     }
     
 }

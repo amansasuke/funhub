@@ -26,7 +26,7 @@ class AggentdashbordController extends AbstractController
      */
     public function index(ManagerRegistry $doctrine): Response
     {   
-        $this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_MANGER');
+        $this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_AGENT');
         $assignorder = [];
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $userId = $user->getId();
@@ -52,6 +52,7 @@ class AggentdashbordController extends AbstractController
      */
     public function submitdoc($id,ManagerRegistry $doctrine, OrderdocRepository $Orderdoc): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_AGENT');
         $Orderdoc = $Orderdoc->findBy([]);
 
         $sunmitdoc =[];
@@ -81,6 +82,7 @@ class AggentdashbordController extends AbstractController
      */
     public function editdoc($id,ManagerRegistry $doctrine, Request $request, OrderdocRepository $Orderdoc): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_AGENT');
         $Orderdoc = $doctrine->getRepository(Orderdoc::class)->find($id);
         $order = new Order;
 
@@ -132,6 +134,7 @@ class AggentdashbordController extends AbstractController
      */
     public function editorderstatus($id,ManagerRegistry $doctrine, Request $request, OrderdocRepository $Orderdoc): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_AGENT');
         $Orderdoc = $doctrine->getRepository(Order::class)->find($id);
         //$order = new Order;
 

@@ -34,6 +34,7 @@ class DocForClientController extends AbstractController
      */
     public function index(DocForClientRepository $docForClientRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         return $this->render('doc_for_client/index.html.twig', [
             'doc_for_clients' => $docForClientRepository->findAll(),
         ]);
@@ -44,6 +45,7 @@ class DocForClientController extends AbstractController
      */
     public function new(Request $request, DocForClientRepository $docForClientRepository,SluggerInterface $slugger, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $docForClient = new DocForClient();
         $form = $this->createFormBuilder($docForClient)
             ->add('Ordername', EntityType::class,array(
@@ -120,6 +122,7 @@ class DocForClientController extends AbstractController
      */
     public function show(DocForClient $docForClient): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         return $this->render('doc_for_client/show.html.twig', [
             'doc_for_client' => $docForClient,
         ]);
@@ -130,6 +133,7 @@ class DocForClientController extends AbstractController
      */
     public function edit(Request $request, DocForClient $docForClient, DocForClientRepository $docForClientRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $form = $this->createForm(DocForClientType::class, $docForClient);
         $form->handleRequest($request);
 
@@ -150,6 +154,7 @@ class DocForClientController extends AbstractController
      */
     public function delete(Request $request, DocForClient $docForClient, DocForClientRepository $docForClientRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         if ($this->isCsrfTokenValid('delete'.$docForClient->getId(), $request->request->get('_token'))) {
             $docForClientRepository->remove($docForClient, true);
         }

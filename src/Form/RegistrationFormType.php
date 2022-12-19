@@ -58,6 +58,7 @@ class RegistrationFormType extends AbstractType
             ->add('pan_no')
             ->add('GSTno', TextType::class,array(
                       'label' => ' GST no (optional)',
+                      'required' => false,
                   ))
             ->add('phone_no')
             ->add('gender', ChoiceType::class, [
@@ -77,10 +78,9 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('red_id')
             ->add('wellet')
-            ->add('imgicon', HiddenType::class,array(
-                      'data' => 'user2-6366434c6b182.jpg',
-                  ))           
-
+            ->add('imgicon', FileType::class,array(
+                'label' => ' ',
+            ))
         ;
     }
 

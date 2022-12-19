@@ -221,7 +221,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/services", name="app_services")
      */
-    public function servicesviwe(ServicesRepository $repo, CategoryRepository $rep, PostRepository $re, SessionInterface $session,ProductRepository $Product,Request $request): Response
+    public function servicesviwe(ServicesRepository $repo, CategoryRepository $rep, PostRepository $re, SessionInterface $session,ProductRepository $Product,Request $request , $limit = null, $offset = null): Response
     {
         $proid = $request->request->get('proid');
         if($proid){
@@ -229,11 +229,41 @@ class HomeController extends AbstractController
         }else{
             $pro=1;
         }
-        
-            $Pro = $Product->find($pro);
-        
+
+        $totalpro = $Product->findBy(array());
+        $total_count =count($totalpro);
+        $count_per_page=10;
+
+        $total_pages=ceil($total_count/$count_per_page);
+        if(isset($_GET['page'])){
+            $page=$_GET['page'];
+            
+            $total_pages=ceil($total_count/$count_per_page);
+
+            if($total_count<=$count_per_page){
+                $page=1;
+            }
+            if(($page*$count_per_page>$total_count)){
+                $page=$total_pages;
+            }
+    
+            $myLimit=10;
+            $myOffset=0;
+            if($page>1){
+                $myOffset= $count_per_page * ($page-1); 
+            }
+            
+            $pginateStartIndex = ($myOffset > 0) ? $myOffset : $myOffset;
+        }else{
+            $myLimit=10;
+		    $pginateStartIndex=0;
+        }
+
+        $Pro = $Product->find($pro);
          $Services = $repo->findBy([]);
-         $Product = $Product->findBy([]);
+         $Product = $Product->findBy(array(),array('id' => 'ASC'),
+         $myLimit,
+         $pginateStartIndex);
          // print_r(gettype($Services));
          // foreach ($Services as $key => $value) {
          //    $ser['id']=$value->getId();
@@ -260,6 +290,7 @@ class HomeController extends AbstractController
             'basket'=>$basket,
             'Product'=>$Product,
             'Pro'=>$Pro,
+            'total_pages' => $total_pages,
             
             
         ]);

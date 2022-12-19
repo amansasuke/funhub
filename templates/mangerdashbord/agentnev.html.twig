@@ -11,7 +11,7 @@
 	
 	<div class="sidebar-content">
 		<div class="sidebar-user">
-			<img src="{{ asset('assets/img/user/') }}{{app.user.imgicon}}" class="img-fluid rounded-circle mb-2" alt="Linda Miller" />
+			<img src="{{ asset('assets/img/user/') }}{% if app.user.imgicon == null %}{{app.user.imgicon}}{% else %}usericon.png{% endif %}" class="img-fluid rounded-circle mb-2" alt="{{app.user.name}}" />
 			<div class="font-weight-bold">{{app.user.name}}</div>
 			{# <small>Front-end Developer</small> #}
 		</div>

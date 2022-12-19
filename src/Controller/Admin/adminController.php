@@ -40,7 +40,7 @@ class adminController extends AbstractDashboardController
 
         $routeBuilder = $this->get(AdminUrlGenerator::class);
 
-        return $this->redirect($routeBuilder->setController(UserCrudController::class)->generateUrl());
+        return $this->redirect($routeBuilder->setController(OrderCrudController::class)->generateUrl());
     }
 
     public function configureDashboard(): Dashboard
@@ -52,7 +52,7 @@ class adminController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
+        yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class)->setDefaultSort(['id' => 'DESC']);
         
         yield MenuItem::section('Product');
         yield MenuItem::linkToCrud('Category', 'fas fa-file-word', Category::class);
@@ -63,10 +63,10 @@ class adminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Documentsforproduct', 'fa fa-file-word', Documentsforproduct::class);
         
         yield MenuItem::section('product Doc Type');
-        yield MenuItem::linkToCrud('Doctype', 'fa fa-file-word', Doctype::class);
+        yield MenuItem::linkToCrud('Doctype', 'fa fa-file-word', Doctype::class)->setDefaultSort(['id' => 'DESC']);
 
         yield MenuItem::section('order');
-        yield MenuItem::linkToCrud('Order', 'fa fa-file-word', Order::class);
+        yield MenuItem::linkToCrud('Order', 'fa fa-file-word', Order::class)->setDefaultSort(['id' => 'DESC']);
 
         yield MenuItem::section('Blog');
         yield MenuItem::linkToCrud('Post', 'fa fa-sticky-note', Post::class);
@@ -84,7 +84,7 @@ class adminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('AssignGroup', 'fa fa-file-word', AssignGroup::class);
 
         yield MenuItem::section('Appointment');
-        yield MenuItem::linkToCrud('Booking', 'fa fa-calendar', Eventbooking::class);
+        yield MenuItem::linkToCrud('Booking', 'fa fa-calendar', Eventbooking::class)->setDefaultSort(['id' => 'DESC']);
 
 
      

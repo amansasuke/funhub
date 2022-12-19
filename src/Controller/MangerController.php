@@ -96,6 +96,7 @@ class MangerController extends AbstractController
      */
     public function userorder($id ,ManagerRegistry $doctrine,AssignGroupRepository $assignGroup, AssignGroupUserRepository $assignUser, UserRepository $userR): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_ADMIN');
         $user = $userR->find($id);
        $email = $user->getEmail();
@@ -114,6 +115,7 @@ class MangerController extends AbstractController
      */
     public function editorderstatus($id,ManagerRegistry $doctrine, Request $request, OrderdocRepository $Orderdoc, UserRepository $userR): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $Orderd = $doctrine->getRepository(Order::class)->find($id);
         //$order = new Order;
 
@@ -163,6 +165,7 @@ class MangerController extends AbstractController
      */
     public function setorderdate($id ,Request $request,ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $startdate = $request->request->get('startdate');
         
         $startdate= \DateTime::createFromFormat('d/m/Y',date("d/m/Y", strtotime($startdate)));
@@ -201,6 +204,7 @@ class MangerController extends AbstractController
      */
     public function booking(ManagerRegistry $doctrine,EventbookingRepository $eventbookingRepository, AppointmentRepository $appointmentRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $userid= $user->getId();
         $eventbooking = $eventbookingRepository->findBy(array('manger'=>$user->getId()));
@@ -240,6 +244,7 @@ class MangerController extends AbstractController
      */
     public function assignbooking(ManagerRegistry $doctrine,EventbookingRepository $eventbookingRepository, AppointmentRepository $appointmentRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $userid= $user->getId();
         $eventbooking = $eventbookingRepository->findBy(array('manger'=>$user->getId()));
@@ -256,6 +261,7 @@ class MangerController extends AbstractController
      */
     public function mangerevent(Request $request, MangereventbookingRepository $MangereventbookingRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $manger = $this->get('security.token_storage')->getToken()->getUser();
         
          return $this->render('manger/mangerevent.html.twig', [
@@ -268,6 +274,7 @@ class MangerController extends AbstractController
      */
     public function mangerupdatemeeting($id, Request $request, MangereventbookingRepository $MangereventbookingRepository,EventbookingRepository $eventbookingRepository, ManagerRegistry $doctrine): Response
     {   
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $manger = $this->get('security.token_storage')->getToken()->getUser();
         $event = $eventbookingRepository->find($id);
         $meetinglink = $request->request->get('meeting');
@@ -290,6 +297,7 @@ class MangerController extends AbstractController
      */
     public function mangereventnew(Request $request, MangereventbookingRepository $MangereventbookingRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $manger = $this->get('security.token_storage')->getToken()->getUser();
         $mangerid  = $manger->getId();
 
