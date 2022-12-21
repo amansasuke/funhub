@@ -38,7 +38,7 @@ class UserCrudController extends AbstractCrudController
         $image = ImageField::new('imgicon')->setBasePath('/assets/img/user');
 
         $fields = [
-            IdField::new('id'),
+            //IdField::new('id'),
             TextField::new('name'),
             EmailField::new('email'),
             TextField::new('password')->hideOnIndex(),

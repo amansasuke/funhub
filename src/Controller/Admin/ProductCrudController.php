@@ -14,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 
 class ProductCrudController extends AbstractCrudController
 {
@@ -25,7 +26,10 @@ class ProductCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
-        return [
+        $imageFile = Field::new('thumbnailFile')->setFormType(VichImageType::class);
+        $image = ImageField::new('proimage')->setBasePath('/assets/img/product');
+
+        $fields= [
             AssociationField::new('service'),
             TextField::new('name'),
             TextEditorField::new('description'),
@@ -38,6 +42,13 @@ class ProductCrudController extends AbstractCrudController
             NumberField::new('price'),
             NumberField::new('regularprice'),
         ];
+
+        if ($pageName == Crud::PAGE_INDEX || $pageName == Crud::PAGE_DETAIL) {
+            $fields[] = $image;
+        } else {
+            $fields[] = $imageFile;
+        }
+        return $fields;
     }
     
 }

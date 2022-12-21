@@ -5,12 +5,14 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Product
  *
  * @ORM\Table(name="product", indexes={@ORM\Index(name="IDX_D34A04ADED5CA9E6", columns={"service_id"})})
  * @ORM\Entity
+ * @Vich\Uploadable()
  */
 class Product
 {
@@ -112,6 +114,33 @@ class Product
      * @ORM\OneToMany(targetEntity=Assigndoc::class, mappedBy="product")
      */
     private $assigndocs;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $proimage;
+
+    /**
+     * @Vich\UploadableField(mapping="products", fileNameProperty="proimage")
+     */
+    private $thumbnailFile;
+
+    /**
+     * @return mixed
+     */
+    public function getThumbnailFile()
+    {
+        return $this->thumbnailFile;
+    }
+
+    /**
+     * @param mixed $thumbnailFile
+     * @throws \Exception
+     */
+    public function setThumbnailFile($thumbnailFile): void
+    {
+        $this->thumbnailFile = $thumbnailFile;
+    }
 
     public function __construct()
     {
@@ -318,6 +347,25 @@ class Product
 
     public function __toString() {
         return $this->name;
+    }
+
+
+     /**
+     * @return mixed
+     */
+    public function getProimage()
+    {
+        return $this->proimage;
+    }
+
+    /**
+     * @param mixed $proimage
+     */
+    public function setProimage($proimage): void
+    {
+        $this->proimage = $proimage;
+
+        //return $this;
     }
 
 

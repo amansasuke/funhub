@@ -46,6 +46,11 @@ class Voucher
      */
     private $User;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $realprice;
+
     public function __construct()
     {
         $this->vouchercodes = new ArrayCollection();
@@ -149,6 +154,18 @@ class Voucher
         if ($this->User->removeElement($user)) {
             $user->removeVoucher($this);
         }
+
+        return $this;
+    }
+
+    public function getRealprice(): ?string
+    {
+        return $this->realprice;
+    }
+
+    public function setRealprice(string $realprice): self
+    {
+        $this->realprice = $realprice;
 
         return $this;
     }

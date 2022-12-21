@@ -9,7 +9,7 @@
 
 .card12 {
     width: 360px;
-    height: 205px;
+    height: 225px;
     margin-left: 50px;
     margin-top: 20px;
     border-radius: 5px;
@@ -345,7 +345,9 @@
                                                                 <div class="vertical12"></div>
                                                                 <div class="content12">
                                                                     <h2>{{Vouchers.name}}</h2>
-                                                                    <h1>₹{{Vouchers.prices}}<span>Coupon</span></h1>
+                                                                    
+                                                                    <h2 style="color:#007fdd">₹{{Vouchers.realprice}}<span> real price</span></h2>
+                                                                    <h1>{{Vouchers.prices}}<span> Coupon</span></h1>
                                                                     <p>You need to use ₹{{Vouchers.prices}}<br> for redeem this voucher </p>
                                                                 </div>
                                                             </div>
