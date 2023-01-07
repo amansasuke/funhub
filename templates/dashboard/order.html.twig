@@ -40,8 +40,7 @@
                             <!-- Modal -->
                             <h5>call Availability </h5>
                             {% for appointment in appointments %}
-                                {% include '/dashboard/apoointmodal.html.twig' %}
-                            {%if appointment.ClientStatus!="submit" %}
+                            {% if appointment.ClientStatus!="submit" %}
                             <table>
                                 <tr>
                                     <th>Start Date :</th>
@@ -51,12 +50,13 @@
                                 </tr>
                                 <tr>
                                     <th>Start Time :</th>
-                                    <td>{{ appointment.StartTime ? appointment.StartTime|date('H:i') : '' }} - {{ appointment.EndTime ? appointment.EndTime|date('H:i:s') : '' }}</td>
+                                    <td>{{ appointment.StartTime ? appointment.StartTime|date('h:i A') : '' }} - {{ appointment.EndTime ? appointment.EndTime|date('h:i A') : '' }}</td>
                                 </tr>
                             </table>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter{{ord.id}}">
                                 Book an Appointment
                             </button>
+                                {% include '/dashboard/apoointmodal.html.twig' %}
                             {% endif %}
                             {% endfor %}
                         </div>

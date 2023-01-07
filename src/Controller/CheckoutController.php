@@ -132,8 +132,8 @@ class CheckoutController extends AbstractController
             $this->sendEmailConfirmation($order, $mailer);
 
             $session->set('basket', []);
-
-            return $this->render('confirmation.html.twig');
+            $this->addFlash('success', 'Thank you! Received your order successfully');
+            return $this->redirectToRoute("app_dashboard");
         }
 
         return $this->render('home/checkout.html.twig', [

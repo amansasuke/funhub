@@ -1,6 +1,6 @@
 {# {% extends 'getrout.html.twig' %} #}
 {% extends 'dashstyle.html.twig' %}
-{% block title %}Your profile!{% endblock %}
+{% block title %}My Wallet!{% endblock %}
 {% block body %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style type="text/css">
@@ -36,7 +36,7 @@
 .card1 .card1-body {
     width: 100%;
     height: auto;
-    padding: 25px;
+    padding: 70px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -326,7 +326,6 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard-default.html">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="#">Wallet</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Wallet</li>
                             </ol>
                         </nav>
@@ -344,7 +343,7 @@
                                                 <div class="container">
                                                     <div class="row">
                                                                     <div class="col mt-0">
-                                                                        <h5 class="card-title">Your Wellat</h5>
+                                                                        <h5 class="card-title">My Wallet Balance</h5>
                                                                     </div>
                                                                     <div class="col-auto">
                                                                         <div class="avatar">
@@ -360,10 +359,10 @@
                                                                     </div>
                                                                 </div>
                                                                 <h1 class="display-5 mt-1 mb-3">{{Wellet}}</h1>
-                                                                <div class="mb-0">
+                                                                {# <div class="mb-0">
                                                                     <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.50% </span>
                                                                     More visitors than usual
-                                                                </div>
+                                                                </div> #}
                                                     <div class="row">
                                                         <div class="col-12" style="text-align: center;">
                                                             <h2 class="section-title">Redeem Now</h2>
@@ -377,7 +376,7 @@
                                                                     <div class="card1-title">Service</div>
                                                                     <div class="card1-text">You can now listen to millions of songs, audiobooks, and podcasts on any device anywhere you like!</div>
                                                                     <div class="card1-payment-button" style="text-align: center;">
-                                                                        <a href="services">Proceed to Service</a>
+                                                                        <a href="services">Proceed to Services</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -391,7 +390,7 @@
                                                                     <div class="card1-title">Voucher</div>
                                                                     <div class="card1-text">You can now listen to millions of songs, audiobooks, and podcasts on any device anywhere you like!</div>
                                                                     <div class="card1-payment-button" style="text-align: center;">
-                                                                        <a href="voucher">Proceed to Voucher</a>
+                                                                        <a href="voucher">Proceed to Vouchers</a>
                                                                     </div>
                                                                 </div>
                                                             </div>

@@ -330,6 +330,7 @@ class HomeController extends AbstractController
         if ($request->isMethod('POST')) {
             $basket[$prodetail->getId()] = $prodetail;
             $session->set('basket', $basket);
+            $this->addFlash('success', 'Thank you! Successfully added to cart !');
         }
 
         $isInBasket = array_key_exists($prodetail->getId(), $basket);
@@ -425,5 +426,6 @@ class HomeController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('success', 'Thank you! appointment book successfully');
+        return $this->redirectToRoute("app_mybooking");
     }
 }

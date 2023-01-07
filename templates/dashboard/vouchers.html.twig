@@ -1,6 +1,6 @@
 {# {% extends 'getrout.html.twig' %} #}
 {% extends 'dashstyle.html.twig' %}
-{% block title %} vochers!{% endblock %}
+{% block title %} Voucher!{% endblock %}
 {% block body %}
 {# {% include 'datepic.html.twig' %} #}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -8,7 +8,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
 .card12 {
-    width: 360px;
+    /* width: 360px; */
     height: 225px;
     margin-left: 50px;
     margin-top: 20px;
@@ -60,7 +60,7 @@
     border-left: 5px dotted black;
     height: 100px;
     position: absolute;
-    left: 40%;
+    left: 33%;
 }
 
 .content12 h1 {
@@ -309,7 +309,7 @@
                                                             <div class="card-body">
                                                                 <div class="row">
                                                                     <div class="col mt-0">
-                                                                        <h5 class="card-title">Your Wellat</h5>
+                                                                        <h5 class="card-title">My Wallet Balance</h5>
                                                                     </div>
                                                                     <div class="col-auto">
                                                                         <div class="avatar">
@@ -325,10 +325,10 @@
                                                                     </div>
                                                                 </div>
                                                                 <h1 class="display-5 mt-1 mb-3">{{Wellet}}</h1>
-                                                                <div class="mb-0">
+                                                                {# <div class="mb-0">
                                                                     <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.50% </span>
                                                                     More visitors than usual
-                                                                </div>
+                                                                </div> #}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -346,9 +346,9 @@
                                                                 <div class="content12">
                                                                     <h2>{{Vouchers.name}}</h2>
                                                                     
-                                                                    <h2 style="color:#007fdd">₹{{Vouchers.realprice}}<span> real price</span></h2>
+                                                                    <h2 style="color:#007fdd"><span>Voucher worth</span>  ₹{{Vouchers.realprice}}</h2>
                                                                     <h1>{{Vouchers.prices}}<span> Coupon</span></h1>
-                                                                    <p>You need to use ₹{{Vouchers.prices}}<br> for redeem this voucher </p>
+                                                                    <p>You need to use {{Vouchers.prices}} points from<br> your wallet to redeem this voucher</p>
                                                                 </div>
                                                             </div>
                                                             {%if Wellet >= Vouchers.prices %}
@@ -359,7 +359,7 @@
                                                                 </button>
                                                             </form>
                                                             {% else %}
-                                                            <button class="copybtn" style="background-color:red; "><i class="fa fa-lock" aria-hidden="true"></i> Redeem Now
+                                                            <button class="btn btn-danger" style="background-color:red; width:100%" id="redvouch"><i class="fa fa-lock" aria-hidden="true"></i> Redeem Now
                                                             </button>
                                                             {% endif %}
                                                         </div>
@@ -465,5 +465,12 @@ function copyIt() {
 
     copybtn.textContent = "COPIED";
 }
+</script>
+<script>
+$(document).ready(function() {
+$( "#redvouch" ).click(function() {
+  alert( "You don’t have sufficient points in your wallet to redeem this voucher" );
+});
+});
 </script>
 {% endblock %}

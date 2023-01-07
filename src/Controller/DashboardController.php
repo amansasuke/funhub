@@ -319,16 +319,14 @@ class DashboardController extends AbstractController
     {
         $startdate = $request->request->get('startdate');
         $starttime = $request->request->get('starttime');
-        $endtime = $request->request->get('endtime');
+        //$endtime = $request->request->get('endtime');
         $Status = $request->request->get('Status');
-        $orderid = $request->request->get('orderid');;
+        $orderid = $request->request->get('orderid');
+        $endtime = \DateTime::createFromFormat('h:i:sa',date('h:i:sa', strtotime($starttime. ' + 1 hours + 30 minutes ')));
         
         $startdate= \DateTime::createFromFormat('d/m/Y',date("d/m/Y", strtotime($startdate)));
-        $starttime= \DateTime::createFromFormat('h:i:sa',date("h:i:sa", strtotime($starttime)));
-        $endtime= \DateTime::createFromFormat('h:i:sa',date("h:i:sa", strtotime($endtime)));
-        // print_r($starttime);
-        // print_r($endtime);
-        // die;
+        $starttime= \DateTime::createFromFormat('h:i',date("h:i", strtotime($starttime)));
+        //$endtime= \DateTime::createFromFormat('h:i:sa',date("h:i:sa", strtotime("+1 hour", strtotime($starttime))));
         
         $entityManager =$this->getDoctrine()->getManager();
         $appointment  = $doctrine->getRepository(Appointment::class)->find($id);
@@ -345,7 +343,7 @@ class DashboardController extends AbstractController
         $email = (new TemplatedEmail())
             ->from('amansharmasasuke@gmail.com')
             ->to(new Address($userdat->getEmail()))
-            ->subject('Order confirmation')
+            ->subject('Appointment book')
             ->htmlTemplate('emails/clientbooking.html.twig')
             ->context(['client' => $clientuserdat->getEmail(), 'name' => $clientuserdat->getName(), 'starttime'=>$starttime ,  'orderId' => $orderid ]);
         $mailer->send($email);
@@ -720,6 +718,7 @@ class DashboardController extends AbstractController
             $Event->add($eventbooking, true);
 
             $this->addFlash('success', 'Thank you! Your booking is Submit!');
+            return $this->redirectToRoute("app_mybooking");
         }
         
         return $this->render('dashboard/mybooking.html.twig', [

@@ -53,34 +53,34 @@ class BookingController extends AbstractController
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $user->getUsername();
-        $assignGroup = $assignGroup->findBy([]);
+        $us = $userR->findBy(array('Manager'=>$user));
 
-        foreach($assignGroup as $assign){
-            foreach($assign->getUser() as $users){
-                if($users->getId() == $user->getId()){
-                    $mangerId = $users->getId();
-                    $groupId = $assign->getId();
-                }
-            }
-        }
-        $AssignGroupM = $doctrine->getRepository(AssignGroup::class)->findBy(
-            ['id' => $groupId]
-        );
-        $mangerId =[];
-        foreach($AssignGroupM as $AssignM){
-            foreach($AssignM->getUser() as $users){
-                if($users->getId() != $user->getId()){
-                    $mangerId[] = $users->getId();
-                }
-            }           
-        }
+        // foreach($assignGroup as $assign){
+        //     foreach($assign->getUser() as $users){
+        //         if($users->getId() == $user->getId()){
+        //             $mangerId = $users->getId();
+        //             $groupId = $assign->getId();
+        //         }
+        //     }
+        // }
+        // $AssignGroupM = $doctrine->getRepository(AssignGroup::class)->findBy(
+        //     ['id' => $groupId]
+        // );
+        // $mangerId =[];
+        // foreach($AssignGroupM as $AssignM){
+        //     foreach($AssignM->getUser() as $users){
+        //         if($users->getId() != $user->getId()){
+        //             $mangerId[] = $users->getId();
+        //         }
+        //     }           
+        // }
 
-        $us =[];
-        foreach ($mangerId as $key => $manger) {
+        // $us =[];
+        // foreach ($mangerId as $key => $manger) {
 
-            $us[] = $userR->find($manger);
+        //     $us[] = $userR->find($manger);
             
-        }
+        // }
 
         $choices = [];
         foreach ($us as $choice) {

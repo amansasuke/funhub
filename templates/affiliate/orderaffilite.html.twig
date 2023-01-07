@@ -765,7 +765,11 @@ h6 {
                                                 <th>price </th>
                                                 <th>your erning</th>
                                             </tr>
-                                        
+                                            {% if affiliateuser|length ==0 %}
+                                                <tr>
+                                                    <td colspan="5" style="text-align:center"> <h4>no order has been placed by any of your affiliate yet <br> and when any of the thing happens then the table should appear</h4> </td>
+                                                </tr>
+                                            {% else %}
                                         
                                             {% for ap in Affiliateproduct %}
                                             <tr data-category="active">
@@ -786,6 +790,7 @@ h6 {
                                                 </td>
                                             </tr>
                                             {% endfor %}
+                                            {% endif %}
                                         </tbody>
                                     </table>
                                 </div>

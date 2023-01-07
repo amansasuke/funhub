@@ -20,6 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 
 class RegistrationFormType extends AbstractType
@@ -39,6 +40,7 @@ class RegistrationFormType extends AbstractType
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
+                'label' => 'confirm  Password',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
@@ -55,12 +57,24 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('name')
             ->add('address')
-            ->add('pan_no')
+            ->add('pan_no', TextType ::class,array(
+                'label' => ' PAN Number',
+            ))
             ->add('GSTno', TextType::class,array(
                       'label' => ' GST no (optional)',
                       'required' => false,
                   ))
-            ->add('phone_no')
+            ->add('phone_no',NumberType::class, [
+
+            'constraints' => [
+                new Length([
+                    'min' => 10,
+                    'minMessage' => 'Your Phone Number should be at least {{ limit }} Number',
+                    // max length allowed by Symfony for security reasons
+                    'max' => 15,
+                ]),
+            ]]
+            )
             ->add('gender', ChoiceType::class, [
                 'choices'  => [
                     'Male' => 'male',
