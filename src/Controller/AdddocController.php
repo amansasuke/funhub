@@ -53,7 +53,7 @@ class AdddocController extends AbstractController
                       'data' => 0,
                   ))
             ->add('remark', HiddenType::class,array(
-                      'data' => 'submitdoc',
+                      'data' => 'Wait for approval',
                   ))
             ->add('save', SubmitType::class, ['label' => 'Upload'])
             ->getForm();
@@ -126,11 +126,10 @@ class AdddocController extends AbstractController
 
             // $session->set('basket', []);
 
-            return $this->render('dashboard/index.html.twig',[
-                'order' => $order
-            ]);
+            $this->addFlash('success', 'Thank you! Document Submit successfully');
+            return $this->redirectToRoute("app_dashboard");
         }
-        $doc = $doc->find($id);
+        //$doc = $doc->find($id);
         return $this->render('dashboard/adddoc.html.twig', [
             'form' => $form->createView(),
             'doc' => $doc

@@ -5832,7 +5832,7 @@ a.badge-tertiary:focus {
 .alert {
     position: relative;
     padding: .95rem;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     border: 0 solid transparent;
     border-radius: .2rem
 }
@@ -12812,7 +12812,7 @@ a.text-tertiary:hover {
 }
 
 .alert {
-    padding: 0;
+    padding: 14px;
     display: flex;
     color: #fff
 }

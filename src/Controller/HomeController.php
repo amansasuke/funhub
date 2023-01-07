@@ -15,6 +15,7 @@ use App\Repository\CategoryRepository;
 use App\Repository\PostRepository;
 use App\Repository\ProductRepository;
 use App\Repository\DocumentsforproductRepository;
+use App\Repository\DocforproRepository;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -275,9 +276,16 @@ class HomeController extends AbstractController
          //            }
          //    }
          // }
-        
-         $Category = $rep->findBy([]);
+            
+        //$Category = $rep->search('V');
+         //$Category = $rep->findBy([]);
 
+        $search = $request->query->get('cat');
+        if ($search) {
+            $Category = $rep->search($search);
+        } else {
+            $Category = $rep->findBy([]);
+        }
         
          
          
@@ -299,11 +307,18 @@ class HomeController extends AbstractController
     /**
      * @Route("/prodetail/{id}")
      */
-    public function productdetail($id,Request $request, ServicesRepository $repo,DocumentsforproductRepository $Doc, ProductRepository $Product, SessionInterface $session): Response
+    public function productdetail($id,Request $request, ServicesRepository $repo,DocumentsforproductRepository $Doc, DocforproRepository $docforpro, ProductRepository $Product, SessionInterface $session): Response
     {
         $prodetail = $Product->find($id);
-        $prodoc = $Doc->findBy( array('productinfo' => $id), array('id' => 'DESC') );
+        $prodoc = $docforpro->findBy( array('proinfo' => $id), array('id' => 'DESC') );
 
+        // foreach($prodoc as $pro){
+        //     print_r(gettype($pro->getNewdocinfo()));
+        //     foreach ($pro->getNewdocinfo() as $key => $value) {
+        //         print_r($value->getName());
+        //     }
+        // }
+        // die();
 
         $Servicesid = $prodetail->getService()->getid();
         

@@ -231,10 +231,12 @@ ol > li + li {
                                                 <div id="collapseFour" class="panel-collapse collapse">
                                                     <div class="panel-body">
                                                     {% for prodocs in prodoc %}
+                                                        {% for prodo in prodocs.Newdocinfo %}
                                                         <p>
-                                                            {{ prodocs.docinfo }}
+                                                            {{ prodo.name }}
                                                         </p>
                                                         <br>
+                                                        {% endfor %}
                                                     {% endfor %}
                                                         <br>
                                                        

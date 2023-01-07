@@ -296,32 +296,32 @@
                         </nav>
                     </div>
                     <div class="row">
+                        
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="col-sm-12 col-md-12 col-lg-12">
-                                        <div class="page-content">
+                                    <div class="col-sm-12 col-md-12 col-lg-12">                                  
+                                        <div class="page-content" style="margin-top:10px">
                                             <div class="inner-box">
                                                 <div class="dashboard-box">
-                                                    <h5 class="dashbord-title">Appointment</h5>
+                                                    <h5 class="dashbord-title">Client Table</h5>
                                                 </div>
                                                 <div class="dashboard-wrapper">
                                                     <table class="rwd-table">
                                                         <tbody>
                                                             <tr>
                                                                 <th>Id</th>
-                                                                <th>Client</th>
-                                                                <th>StartDate</th>
-                                                                <th>EndDate</th>
-                                                                <th>StartTime</th>
-                                                                <th>EndTime</th>
-                                                                <th>Manger Status</th>
-                                                                <th>BookingStatus</th>
-                                                                <th>actions</th>
+                                                                <th>Client Name</th>
+                                                                <th>ClientStartDate</th>
+                                                                <th>ClientStartTime</th>
+                                                                <th>ClientEndTime</th>
+                                                                <th>ClientStatus</th>
+                                                                <th>appointment Status</th>
+                                                                {# <th>Action</th> #}
                                                             </tr>
                                                             {% for appointment in appointments %}
                                                             <tr>
-                                                                <td>{{ appointment.id }}</td>                                                               
+                                                                <td>{{ appointment.id }}</td>
                                                                 <td>
                                                                     {% for users in user %}
                                                                     {% if users.id == appointment.ClientId %}
@@ -329,40 +329,30 @@
                                                                     {% endif %}
                                                                     {% endfor %}
                                                                 </td>
-                                                                <td>{{ appointment.StartDate ? appointment.StartDate|date('Y-m-d') : '' }}</td>
-                                                                <td>{{ appointment.EndDate ? appointment.EndDate|date('Y-m-d') : '' }}</td>
-                                                                <td>{{ appointment.StartTime ? appointment.StartTime|date('H:i') : '' }}</td>
-                                                                <td>{{ appointment.EndTime ? appointment.EndTime|date('H:i') : '' }}</td>
-                                                                <td>{{ appointment.MangerStart }}</td>
-                                                                {# <td>{{ appointment.ClientStartDate ? appointment.ClientStartDate|date('Y-m-d') : '' }}</td>
-                                                                <td>{{ appointment.ClientStartTime ? appointment.ClientStartTime|date('H:i:s') : '' }}</td>
-                                                                <td>{{ appointment.ClientEndTime ? appointment.ClientEndTime|date('H:i:s') : '' }}</td>
-                                                                <td>{{ appointment.ClientStatus }}</td> #}
+                                                                <td>{{ appointment.ClientStartDate ? appointment.ClientStartDate|date('Y-m-d') : '' }}</td>
+                                                                <td>{{ appointment.ClientStartTime ? appointment.ClientStartTime|date('H:i') : '' }}</td>
+                                                                <td>{{ appointment.ClientEndTime ? appointment.ClientEndTime|date('H:i') : '' }}</td>
+                                                                <td>{{ appointment.ClientStatus }}</td>
                                                                 <td>{{ appointment.BookingStatus }}</td>
-                                                                <td>
-                                                                    <a href="{{ path('app_appointment_show', {'id': appointment.id}) }}">show</a>
-                                                                    <a href="{{ path('app_appointment_edit', {'id': appointment.id}) }}">edit</a>
-                                                                </td>
+                                                                {# <td>
+                                                                    <a href="{{ path('app_appointment_show', {'id': appointment.id}) }}" class="btn btn-common" style="width:80px">show</a>
+                                                                    <a href="{{ path('app_appointment_edit', {'id': appointment.id}) }}" class="btn btn-warning" style="width:80px; margin-top:10px; ;">edit</a>
+                                                                </td> #}
                                                             </tr>
                                                             {% else %}
                                                             <tr>
-                                                                <td colspan="14" style="text-align:center;"><h3> no records found</h3> </td>
+                                                                <td colspan="14">no records found</td>
                                                             </tr>
                                                             {% endfor %}
                                                         </tbody>
                                                     </table>
-                                                    
-                                                </div>
-                                                <div>
-                                                    <a href="{{ path('app_appointment_new') }}" class="btn btn-primary" style="width:100%; background-color:#5bb7c5; border: 1px solid #5bb7c5;">Create new</a>
                                                 </div>
                                             </div>
-                                        </div>                                        
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </main>

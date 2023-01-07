@@ -30,8 +30,8 @@ class ProductCrudController extends AbstractCrudController
         $image = ImageField::new('proimage')->setBasePath('/assets/img/product');
 
         $fields= [
-            AssociationField::new('service'),
             TextField::new('name'),
+            AssociationField::new('service'),
             TextEditorField::new('description'),
             TextEditorField::new('howdone'),
             TextEditorField::new('inclusions'),

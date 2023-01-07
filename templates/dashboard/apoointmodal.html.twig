@@ -23,6 +23,7 @@
                         <label for="exampleInputPassword1">End Time</label>
                         <input type="time" class="form-control" name="endtime" id="endTime" required>
                     </div>
+                    <input type ="hidden" name="orderid" value="{{ord.id}}" >
                     <input type="hidden" class="form-control" name="Status" value="submit" required>
                     <script type="text/javascript">
                     document.getElementById("startTime").value = "{{ appointment.StartTime ? appointment.StartTime|date('H:i') : '' }}";

@@ -20,6 +20,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+
+use App\Repository\UserRepository;
 
 
 
@@ -36,19 +39,41 @@ class UserCrudController extends AbstractCrudController
     {
         $imageFile = Field::new('thumbnailFile')->setFormType(VichImageType::class);
         $image = ImageField::new('imgicon')->setBasePath('/assets/img/user');
+        //$someRepository = $this->entityManager->getRepository(User::class);
 
         $fields = [
             //IdField::new('id'),
             TextField::new('name'),
             EmailField::new('email'),
             TextField::new('password')->hideOnIndex(),
-            AssociationField::new('role'),
-            TextField::new('pan_no'),
-            TextareaField::new('address'),
+            AssociationField::new('role')->setFormTypeOption('choice_label', 'name'),
+            AssociationField::new('Manager')->setFormTypeOption('choice_label', 'name')->setFormTypeOptions([
+                    'query_builder' => function (UserRepository $er) {
+                        return $er->createQueryBuilder('u')
+                        ->andWhere('u.user_category = :searchTerm')
+                        ->setParameter('searchTerm', 'Manager')
+                            ->orderBy('u.name', 'ASC');
+                    },
+                ]),
+            TextField::new('pan_no')->hideOnIndex(),
+            TextareaField::new('address')->hideOnIndex(),
             TextField::new('GSTno')->hideOnIndex(),
-            TextField::new('phone_no'),
-            TextField::new('gender')->hideOnIndex(),
-            TextField::new('user_category'),
+            TextField::new('phone_no')->hideOnIndex(),
+            //TextField::new('gender')->hideOnIndex(),
+            ChoiceField::new('gender')->setChoices([
+                    'Male'=>'male',
+                    'Female'=>'female',
+                     
+            ]),
+            //TextField::new('user_category'),
+            ChoiceField::new('user_category')->setChoices([
+                    'Manager'=>'manager',
+                    'Agent'=>'agent',
+                    'Individual' => 'individual',
+                    'business owner' => 'business owner',
+                    'NPO' => 'NPO',
+                    'trader' => 'trader', 
+            ]),            
             IntegerField::new('red_id')->hideOnIndex(),
             IntegerField::new('wellet')->hideOnIndex(),
         ];

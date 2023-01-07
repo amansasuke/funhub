@@ -141,6 +141,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $isVerified = false;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="users")
+     */
+    private $Manager;
+
+    /**
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="Manager")
+     */
+    private $users;
+
 
     public function __construct()
     {
@@ -152,6 +162,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->uservouchers = new ArrayCollection();
         $this->clubs = new ArrayCollection();
         $this->eventbookings = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     /**
@@ -627,6 +638,48 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getManager(): ?self
+    {
+        return $this->Manager;
+    }
+
+    public function setManager(?self $Manager): self
+    {
+        $this->Manager = $Manager;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(self $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setManager($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(self $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getManager() === $this) {
+                $user->setManager(null);
+            }
+        }
 
         return $this;
     }

@@ -39,6 +39,15 @@ class CategoryRepository extends ServiceEntityRepository
         }
     }
 
+    public function search($term)
+    {
+        return $this->createQueryBuilder('cat')
+            ->andWhere('cat.id LIKE :searchTerm')
+            ->setParameter('searchTerm', '%'.$term.'%')
+            ->getQuery()
+            ->execute();
+    }
+
 //    /**
 //     * @return Category[] Returns an array of Category objects
 //     */

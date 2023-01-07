@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 
+use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -56,35 +57,37 @@ class MangerController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
-        $user->getUsername();
-        $assignGroup = $assignGroup->findBy([]);
-        $groupId='';
-        foreach($assignGroup as $assign){
-            foreach($assign->getUser() as $users){
-                if($users->getId() == $user->getId()){
-                    $mangerId = $users->getId();
-                    $groupId = $assign->getId();
-                }
-            }
-        }
-        $AssignGroupM = $doctrine->getRepository(AssignGroup::class)->findBy(
-            ['id' => $groupId]
-        );
-        $mangerId =[];
-        foreach($AssignGroupM as $AssignM){
-            foreach($AssignM->getUser() as $users){
-                if($users->getId() != $user->getId()){
-                    $mangerId[] = $users->getId();
-                }
-            }           
-        }
 
-        $us =[];
-        foreach ($mangerId as $key => $manger) {
+        $us = $userR->findBy(array('Manager'=>$user));
+        // $user->getUsername();
+        // $assignGroup = $assignGroup->findBy([]);
+        // $groupId='';
+        // foreach($assignGroup as $assign){
+        //     foreach($assign->getUser() as $users){
+        //         if($users->getId() == $user->getId()){
+        //             $mangerId = $users->getId();
+        //             $groupId = $assign->getId();
+        //         }
+        //     }
+        // }
+        // $AssignGroupM = $doctrine->getRepository(AssignGroup::class)->findBy(
+        //     ['id' => $groupId]
+        // );
+        // $mangerId =[];
+        // foreach($AssignGroupM as $AssignM){
+        //     foreach($AssignM->getUser() as $users){
+        //         if($users->getId() != $user->getId()){
+        //             $mangerId[] = $users->getId();
+        //         }
+        //     }           
+        // }
 
-            $us[] = $userR->find($manger);
+        // $us =[];
+        // foreach ($mangerId as $key => $manger) {
+
+        //     $us[] = $userR->find($manger);
             
-        }
+        // }
 
         return $this->render('manger/index.html.twig', [
             'users' => $us,
@@ -118,15 +121,25 @@ class MangerController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $Orderd = $doctrine->getRepository(Order::class)->find($id);
         //$order = new Order;
+        $users = $doctrine->getRepository(User::class)->findBy(
+            ['id' => 3]
+        );
+        $team = 3;
 
         $form = $this->createFormBuilder($Orderd)
             
             ->add('user', EntityType::class,array(
                       'class' => User::class,
+                      'query_builder' => function (EntityRepository $er) {
+                            return $er->createQueryBuilder('u')
+                            ->andWhere('u.user_category = :searchTerm')
+                            ->setParameter('searchTerm', 'agent')
+                                ->orderBy('u.id', 'ASC');
+                        },
                       'multiple' => true,
                       'label'=>'',                      
                   ),
-        )
+                )
         
             ->add('save', SubmitType::class, ['label' => 'assign order to agent'])
             ->getForm();
@@ -151,11 +164,13 @@ class MangerController extends AbstractController
 
                 return $this->render('manger/assignuser.html.twig', [
                   'form' =>$form->createView(),
+                  'users'=>$users,
                 ]);
             }
 
         return $this->render('manger/assignuser.html.twig', [
           'form' =>$form->createView(),
+          'users'=>$users,
         ]);
     }
 

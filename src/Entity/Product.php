@@ -126,6 +126,11 @@ class Product
     private $thumbnailFile;
 
     /**
+     * @ORM\OneToMany(targetEntity=Docforpro::class, mappedBy="proinfo")
+     */
+    private $doctinfo;
+
+    /**
      * @return mixed
      */
     public function getThumbnailFile()
@@ -146,6 +151,7 @@ class Product
     {
         $this->documentinfo = new ArrayCollection();
         $this->assigndocs = new ArrayCollection();
+        $this->doctinfo = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -366,6 +372,36 @@ class Product
         $this->proimage = $proimage;
 
         //return $this;
+    }
+
+    /**
+     * @return Collection<int, Docforpro>
+     */
+    public function getDoctinfo(): Collection
+    {
+        return $this->doctinfo;
+    }
+
+    public function addDoctinfo(Docforpro $doctinfo): self
+    {
+        if (!$this->doctinfo->contains($doctinfo)) {
+            $this->doctinfo[] = $doctinfo;
+            $doctinfo->setProinfo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDoctinfo(Docforpro $doctinfo): self
+    {
+        if ($this->doctinfo->removeElement($doctinfo)) {
+            // set the owning side to null (unless already changed)
+            if ($doctinfo->getProinfo() === $this) {
+                $doctinfo->setProinfo(null);
+            }
+        }
+
+        return $this;
     }
 
 

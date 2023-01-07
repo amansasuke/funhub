@@ -42,9 +42,15 @@ class Doctype
      */
     private $documentsforproducts;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Docforpro::class, mappedBy="newdocinfo")
+     */
+    private $docforpros;
+
     public function __construct()
     {
         $this->documentsforproducts = new ArrayCollection();
+        $this->docforpros = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -108,6 +114,33 @@ class Doctype
 
     public function __toString() {
         return $this->name;
+    }
+
+    /**
+     * @return Collection<int, Docforpro>
+     */
+    public function getDocforpros(): Collection
+    {
+        return $this->docforpros;
+    }
+
+    public function addDocforpro(Docforpro $docforpro): self
+    {
+        if (!$this->docforpros->contains($docforpro)) {
+            $this->docforpros[] = $docforpro;
+            $docforpro->addNewdocinfo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocforpro(Docforpro $docforpro): self
+    {
+        if ($this->docforpros->removeElement($docforpro)) {
+            $docforpro->removeNewdocinfo($this);
+        }
+
+        return $this;
     }
 
 

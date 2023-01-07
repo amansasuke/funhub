@@ -27,6 +27,7 @@ use App\Entity\Reference;
 use App\Entity\Audiopodcast;
 use App\Entity\Videoposcast;
 use App\Entity\Eventbooking;
+use App\Entity\Docforpro;
 
 
 class adminController extends AbstractDashboardController
@@ -60,10 +61,10 @@ class adminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Service', 'fa fa-shopping-basket', Product::class);
 
         yield MenuItem::section('Documents for product');
-        yield MenuItem::linkToCrud('Documentsforproduct', 'fa fa-file-word', Documentsforproduct::class);
+        yield MenuItem::linkToCrud('Documents For Product', 'fa fa-file-word', Docforpro::class);
         
         yield MenuItem::section('product Doc Type');
-        yield MenuItem::linkToCrud('Doctype', 'fa fa-file-word', Doctype::class)->setDefaultSort(['id' => 'DESC']);
+        yield MenuItem::linkToCrud('Documents Type', 'fa fa-file-word', Doctype::class)->setDefaultSort(['id' => 'DESC']);
 
         yield MenuItem::section('order');
         yield MenuItem::linkToCrud('Order', 'fa fa-file-word', Order::class)->setDefaultSort(['id' => 'DESC']);

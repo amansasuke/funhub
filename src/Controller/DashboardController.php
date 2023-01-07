@@ -11,6 +11,7 @@ use App\Entity\Order;
 use App\Repository\ProductRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\DocumentsforproductRepository;
+use App\Repository\DocforproRepository;
 use App\Repository\OrderdocRepository;
 use App\Entity\Orderdoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -29,6 +30,10 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
+
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
 
 use App\Entity\Appointment;
@@ -59,7 +64,7 @@ class DashboardController extends AbstractController
      * 
      * @IsGranted("ROLE_USER")
      */
-    public function index(ManagerRegistry $doctrine,AppointmentRepository $appointmentRepository, DocumentsforproductRepository $doc,OrderdocRepository $od, DocForClientRepository $docForClientRepository): Response
+    public function index(ManagerRegistry $doctrine,AppointmentRepository $appointmentRepository, DocumentsforproductRepository $doc, DocforproRepository $docforpro, OrderdocRepository $od, DocForClientRepository $docForClientRepository): Response
     {   
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $user->getUsername();
@@ -78,7 +83,7 @@ class DashboardController extends AbstractController
             }
         }
 
-        $doc = $doc->findBy([]);
+        $docforpro = $docforpro->findBy([]);
 
         $order = $doctrine->getRepository(Order::class)->findBy(
             ['email' => $user->getEmail()]
@@ -92,11 +97,16 @@ class DashboardController extends AbstractController
         // doc requerd for order
         $rqedoc =[];
         $j=0;
-        foreach($doc as $dof){
-            $rqedoc[$j]['prodid']= $dof->getProductinfo()->getId();
-            $rqedoc[$j]['docinfo']= $dof->getDocinfo()->getName();
-            $j++;
+        $a=0;
+        foreach($docforpro as $dof){
+            foreach ($dof->getNewdocinfo() as $key => $value) {
+                $rqedoc[$j]['prodid']=$dof->getProinfo()->getId();
+                $rqedoc[$j]['docinfo']=$value->getName();
+                $j++;
+            }
+            
         }
+        
 
         $orderin = [];
         $k=0;
@@ -219,36 +229,7 @@ class DashboardController extends AbstractController
             $l++;
         }
 
-        // echo "sub doc erray ============";
-        // foreach($arry as $rdoc){ 
-        //     foreach($subdoc as $subdo){
-        //         $ad[] =  array_diff($rdoc['docname'],$subdo['docname']) ;      
-        //     }
-        // }
-        // print_r($ad);
-        // foreach ($rdoc as $key => $rd) {
-        //     foreach ($ad as $key => $a) 
-        //         print_r($a);
 
-        //  }
-        // }
-//$fullDiff = array_merge(array_diff($subdoc, $arry), array_diff($arry, $subdoc));
-
-    // foreach ($subdoc as $key => $value1) {
-    //     foreach($value1['docname'] as $rdoc1){
-    //         foreach ($arry as $key => $value) {
-    //     foreach($value['docname'] as $rdoc){
-    //         print_r($rdoc1);echo"<br>";
-    //     }}
-    //     }
-    // }
-        
-        // print_r( $arry);
-        // echo "sub doc erray ============";
-        // print_r( $subdoc);
-        
-        
-         //die();
         $appointment = $appointmentRepository->findBy(array('ClientId'=>$user->getId()));
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -256,7 +237,7 @@ class DashboardController extends AbstractController
             'order'=>$order,
             'doc'=> $doc,
             'Orderdoc'=>$Orderdoc,
-            'finalredoc'=>$requrdoc,
+            'finalredoc'=>$rqedoc,
             'finalredocsub'=>$finalredocsub,
             'appointments'=>$appointment,
             'doc_for_clients' => $docForClientRepository->findAll(),
@@ -334,12 +315,13 @@ class DashboardController extends AbstractController
     /**
      * @Route("/{id}/submit", name="app_dashboard_submit", methods={"GET", "POST"})
      */
-    public function edit($id ,Request $request,ManagerRegistry $doctrine, Appointment $appointment, AppointmentRepository $appointmentRepository): Response
+    public function edit($id ,Request $request,ManagerRegistry $doctrine, Appointment $appointment, AppointmentRepository $appointmentRepository, MailerInterface $mailer): Response
     {
         $startdate = $request->request->get('startdate');
         $starttime = $request->request->get('starttime');
         $endtime = $request->request->get('endtime');
         $Status = $request->request->get('Status');
+        $orderid = $request->request->get('orderid');;
         
         $startdate= \DateTime::createFromFormat('d/m/Y',date("d/m/Y", strtotime($startdate)));
         $starttime= \DateTime::createFromFormat('h:i:sa',date("h:i:sa", strtotime($starttime)));
@@ -350,6 +332,8 @@ class DashboardController extends AbstractController
         
         $entityManager =$this->getDoctrine()->getManager();
         $appointment  = $doctrine->getRepository(Appointment::class)->find($id);
+        $userdat = $doctrine->getRepository(User::class)->find($appointment->getMangerId());
+        $clientuserdat = $doctrine->getRepository(User::class)->find($appointment->getClientId());
         $appointment->setClientStartDate($startdate);
         $appointment->setClientStartTime($starttime);
         $appointment->setClientEndTime($endtime);
@@ -357,8 +341,18 @@ class DashboardController extends AbstractController
         
         $entityManager->persist($appointment);
         $entityManager->flush();
+        
+        $email = (new TemplatedEmail())
+            ->from('amansharmasasuke@gmail.com')
+            ->to(new Address($userdat->getEmail()))
+            ->subject('Order confirmation')
+            ->htmlTemplate('emails/clientbooking.html.twig')
+            ->context(['client' => $clientuserdat->getEmail(), 'name' => $clientuserdat->getName(), 'starttime'=>$starttime ,  'orderId' => $orderid ]);
+        $mailer->send($email);
+
 
         $this->addFlash('success', 'Thank you! appointment book successfully');
+        return $this->redirectToRoute("app_dashboard");
     }
 
 

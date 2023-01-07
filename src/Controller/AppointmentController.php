@@ -49,6 +49,21 @@ class AppointmentController extends AbstractController
             'user'=>$users,
         ]);
     }
+    /**
+     * @Route("/clientappointment", name="app_client_appointment", methods={"GET"})
+     */
+    public function clientindex(AppointmentRepository $appointmentRepository, UserRepository $userR): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
+        $manger = $this->get('security.token_storage')->getToken()->getUser();
+        $manger->getUsername();
+        $users = $userR->findBy([]);
+
+        return $this->render('appointment/client.html.twig', [
+            'appointments' => $appointmentRepository->findBy(array('MangerID'=>$manger->getId())),
+            'user'=>$users,
+        ]);
+    }
 
     /**
      * @Route("/new", name="app_appointment_new", methods={"GET", "POST"})

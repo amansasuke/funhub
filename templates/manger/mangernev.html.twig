@@ -25,10 +25,19 @@
 					<i class="align-middle mr-2 far fa-fw fa lni-users"></i> <span class="align-middle">Assign User</span>
 				</a>
 			</li>
-			<li class="sidebar-item">
+			{# <li class="sidebar-item">
 				<a class="sidebar-link" href="{{ path('app_appointment_index') }}">
 					<i class="align-middle mr-2 far fa-fw fa fa-clock-o"></i> <span class="align-middle">Appointment</span>
 				</a>
+			</li> #}
+			<li class="sidebar-item">
+				<a href="#Appointment" data-toggle="collapse" class="sidebar-link collapsed">
+					<i class="align-middle mr-2 fas fa-fw fa fa fa-clock-o"></i> <span class="align-middle">Appointment</span>
+				</a>
+				<ul id="Appointment" class="sidebar-dropdown list-unstyled collapse " data-parent="#sidebar">
+					<li class="sidebar-item"><a class="sidebar-link" href="{{ path('app_appointment_index') }}">You'r Appointment</a></li>
+					<li class="sidebar-item"><a class="sidebar-link" href="{{ path('app_client_appointment') }}">Client Appointment</a></li>
+				</ul>
 			</li>
 			<li class="sidebar-item">
 				<a class="sidebar-link" href="{{ path('app_mangerevent') }}">

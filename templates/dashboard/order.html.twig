@@ -88,9 +88,9 @@
                         {% else %}
                         <div class="tracking-content">Documents required<span class="badge badge-info" style="width: 80px;color: #fff; cursor: pointer; margin-bottom: 5px;margin-top: 10px;">Panding</span></div>
                         {% for final in finalredoc %}
-                        {% if ord.id == final.orderid %}
+                        {% if pro.id == final.prodid %}
                         <div class="post-btn" style="padding-top: 10px;">
-                            <a href="adddoc/{{ord.id}}?docname={{ final.requrdoc }}" class="btn btn-danger" style="color:#fff">{{ final.requrdoc }}
+                            <a href="adddoc/{{ord.id}}?docname={{ final.docinfo }}" class="btn btn-danger" style="color:#fff">{{ final.docinfo }}
                                 <i class="fa fa-plus" style="padding-left: 10px;"> </i>
                             </a>
                         </div>
@@ -115,7 +115,7 @@
                             </a>
                             {% endif %}
                             {% if final.remark| length != 0 %}
-                            <a href="#" class="btn btn-warning" style="color:#fff">{{ final.remark }}{{ final.status }}
+                            <a href="#" class="btn btn-warning" style="color:#fff">{{ final.remark }}
                             </a>
                             {% endif %}
                         </div>
