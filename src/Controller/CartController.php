@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CartController extends AbstractController
 {
     /**
-     * @Route("/cart" )
+     * @Route("/cart", name="app_cart" )
      */
     public function showcart(Request $request, SessionInterface $session): Response
     {

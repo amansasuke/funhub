@@ -7,40 +7,45 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\PostRepository;
 use App\Repository\CategoryRepository;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class BlogsController extends AbstractController
 {
     /**
      * @Route("/blogs", name="app_blogs")
      */
-    public function index(PostRepository $re, CategoryRepository $rep): Response
+    public function index(PostRepository $re, CategoryRepository $rep, SessionInterface $session): Response
     {
         $post = $re->findBy([]);
         $Category = $rep->findBy([]);
-        
+        $basket = $session->get('basket', []);
+        $Recent = $re->findBy(array(), array('id' => 'desc'));
         return $this->render('blogs/index.html.twig', [
             'controller_name' => 'HomeController',
             'post' => $post,
             'Category' => $Category,
+            'basket'=>$basket,
+            'Recent' => $Recent,
         ]);
     }
 
     /**
      * @Route("blogs/{id}" )
      */
-    public function details($id,  PostRepository $repo, CategoryRepository $reps): Response
+    public function details($id,  PostRepository $repo, CategoryRepository $reps, SessionInterface $session): Response
     {
         // print_r($id);
         // die;
         $post = $repo->find($id);
         $Category = $reps->findBy([]);
          $Recent = $repo->findBy(array(), array('id' => 'desc'));
-        
+         $basket = $session->get('basket', []);
         return $this->render('blogs/detail.html.twig', [
             'controller_name' => 'HomeController',
             'post' => $post,
             'Category' => $Category,
             'Recent' => $Recent,
+            'basket'=> $basket,
         ]);
     }
 }

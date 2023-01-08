@@ -226,7 +226,7 @@
                     </form>
                 </div> -->
                 <div class="col-md-8 order-md-1">
-                    <h4 class="mb-3">Billing address</h4>
+                    <h4 class="mb-3">Billing Details </h4>
                   
                         {{ form_start(form,{'attr': {'class': 'login-form'}}) }}
                         <div class="form-group">
@@ -240,6 +240,14 @@
                             {{ form_row(form.email,{'attr': {'class': 'form-control input-md'}}) }}
                             <div class="invalid-feedback">
                                 Please enter your Email
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                        <label> Phone No </label>
+                            <input type="text" name="phone" value="{{phone}}" class="form-control input-md" >
+                            {# {{ form_row(form.email,{'attr': {'class': 'form-control input-md'}}) }} #}
+                            <div class="invalid-feedback">
+                                Please enter your Phone number
                             </div>
                         </div>
                         <div class="mb-3">

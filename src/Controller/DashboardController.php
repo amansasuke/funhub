@@ -30,6 +30,10 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
@@ -252,51 +256,89 @@ class DashboardController extends AbstractController
     public function userprofile(Request $request,SluggerInterface $slugger): Response
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
-
-        if(empty($user->getImgicon())){
-        $form = $this->createFormBuilder($user)
-            ->add('imgicon', FileType::class,array(
-                      'label' => ' ',
-                  ))
-            
-            ->add('save', SubmitType::class, ['label' => 'Upload'])
-            ->getForm();
-            $form->handleRequest($request);
-            if ($form->isSubmitted() && $form->isValid()) {
-                $brochureFile = $form->get('imgicon')->getData();            
-                if ($brochureFile) {
-                    $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
-                    // this is needed to safely include the file name as part of the URL
-                    $safeFilename = $slugger->slug($originalFilename);
-                    $newFilename = $safeFilename.'-'.uniqid().'.'.$brochureFile->guessExtension();
-
-                    // Move the file to the directory where brochures are stored
-                    try {
-                        $brochureFile->move(
-                            $this->getParameter('profile_directory'),
-                            $newFilename
-                        );
-                    } catch (FileException $e) {
         
-                    }
-
-                     $entityManager = $this->getDoctrine()->getManager();
-                    $user->setImgicon($newFilename);
-                    $entityManager->persist($user);
-                    $entityManager->flush();
-                }
-                $this->addFlash('success', 'Thank you! profile pic update successfully');
-            }
-        }else{
+        //if(empty($user->getImgicon())){
             $form = $this->createFormBuilder($user)
-            ->add('imgicon', TextType::class,array(
-                      'label' => ' ',
+            ->add('email')
+            ->add('name', TextType ::class,array(
+                'label' => ' Full Name',
+            ))
+            ->add('address')
+            ->add('pan_no', TextType ::class,array(
+                'label' => ' PAN Number',
+            ))
+            ->add('GSTno', TextType::class,array(
+                      'label' => ' GST no (optional)',
+                      'required' => false,
                   ))
+            ->add('phone_no',TextType::class, [
+
+            'constraints' => [
+                new Length([
+                    'min' => 10,
+                    'minMessage' => 'Your Phone Number should be at least {{ limit }} Number',
+                    // max length allowed by Symfony for security reasons
+                    'max' => 15,
+                ]),
+            ]]
+            )
+            ->add('gender', ChoiceType::class, [
+                'choices'  => [
+                    'Male' => 'male',
+                    'Female' => 'female',                  
+                ],
+            ])
+            ->add('user_category', ChoiceType::class, [
+                'choices'  => [
+                    'choose your category' => NULL,
+                    'Individual' => 'individual',
+                    'business owner' => 'business owner',
+                    'NPO' => 'NPO',
+                    'trader' => 'trader',                  
+                ],
+            ])
+            ->add('imgicon', FileType::class, array(
+                'data_class' => null,
+                ))
             
-            ->add('save', SubmitType::class, ['label' => 'Upload'])
+            ->add('save', SubmitType::class, ['label' => 'Update Profile'])
             ->getForm();
-            $form->handleRequest($request);
-        }
+                $form->handleRequest($request);
+                if ($form->isSubmitted() && $form->isValid()) {
+                    $brochureFile = $form->get('imgicon')->getData();            
+                    if ($brochureFile) {
+                        $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                        // this is needed to safely include the file name as part of the URL
+                        $safeFilename = $slugger->slug($originalFilename);
+                        $newFilename = $safeFilename.'-'.uniqid().'.'.$brochureFile->guessExtension();
+
+                        // Move the file to the directory where brochures are stored
+                        try {
+                            $brochureFile->move(
+                                $this->getParameter('profile_directory'),
+                                $newFilename
+                            );
+                        } catch (FileException $e) {
+            
+                        }
+
+                        $entityManager = $this->getDoctrine()->getManager();
+                        $user->setImgicon($newFilename);
+                        $entityManager->persist($user);
+                        $entityManager->flush();
+                    }
+                    $this->addFlash('success', 'Thank you! profile update successfully');
+                }
+        // }else{
+        //     $form = $this->createFormBuilder($user)
+        //     ->add('imgicon', TextType::class,array(
+        //               'label' => ' ',
+        //           ))
+            
+        //     ->add('save', SubmitType::class, ['label' => 'Upload'])
+        //     ->getForm();
+        //     $form->handleRequest($request);
+        // }
 
         $UserCategory =  $user->getUserCategory();
         $phoneno =  $user->getPhoneNo();

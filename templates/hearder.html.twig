@@ -11,7 +11,7 @@
     border-radius: 9px;
     line-height: 0.75em;
     color: white;
-    color: #40e0d0;
+    color: #5bb7c5;
     text-align: center;
     min-width: 2em;
     font-weight: bold;
@@ -20,11 +20,11 @@
 }
 
 .fa-circle {
-    color: #40e0d0;
+    color: #5bb7c5;
 }
 
 .red-cart {
-    color: #40e0d0;
+    color: #5bb7c5;
     background: white;
 }
 </style>
@@ -237,10 +237,12 @@
                     <a class="btn btn-common" href="../schoolpanel/addpost.php"><i class="lni-pencil-alt"></i> List your School</a>
                 </div> #}
                 <div class="post-btn" style="margin-left: 20px;">
+                <a href="{{ path('app_cart')}}">
                     <span class="fa-stack fa-2x has-badge" data-count="{{basket| length}}" style="font-size:20px;">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
                     </span>
+                    </a>
                     {# <a href="cart" class="btn btn-common"><i class="lni-cart"></i>{{basket| length}}</a> #}
                 </div>
                 {% if app.user %}

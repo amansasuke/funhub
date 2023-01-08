@@ -334,24 +334,25 @@ class HomeController extends AbstractController
         }
 
         $isInBasket = array_key_exists($prodetail->getId(), $basket);
-        
+        $basket = $session->get('basket', []);
         return $this->render('home/prodetail.html.twig', [
             'controller_name' => 'HomeController',
             'prodetail' => $prodetail,
             'prodoc'=> $prodoc,
             'inBasket' => $isInBasket,
-            // 'Services' => $Services,
+            'basket' => $basket,
         ]);
     }
 
     /**
      * @Route("/aboutus", name="app_about")
      */
-    public function aboutus(Request $request): Response
+    public function aboutus(Request $request, SessionInterface $session): Response
     {
-        
+        $basket = $session->get('basket', []);
         return $this->render('home/aboutus.html.twig', [
             'controller_name' => 'HomeController',
+            'basket' => $basket,
             
         ]);
     }
@@ -359,23 +360,24 @@ class HomeController extends AbstractController
     /**
      * @Route("/club", name="app_club")
      */
-    public function club(Request $request): Response
+    public function club(Request $request, SessionInterface $session): Response
     {
-        
+        $basket = $session->get('basket', []);
         return $this->render('home/club.html.twig', [
             'controller_name' => 'HomeController',
-            
+            'basket' => $basket,
         ]);
     }
 
     /**
      * @Route("/affiliated", name="app_affiliated")
      */
-    public function affiliated(Request $request): Response
+    public function affiliated(Request $request, SessionInterface $session): Response
     {
-        
+        $basket = $session->get('basket', []);
         return $this->render('home/affiliate.html.twig', [
             'controller_name' => 'HomeController',
+            'basket'=>$basket,
             
         ]);
     }
@@ -383,12 +385,12 @@ class HomeController extends AbstractController
     /**
      * @Route("/contact", name="app_contact")
      */
-    public function contact(Request $request): Response
+    public function contact(Request $request, SessionInterface $session): Response
     {
-        
+        $basket = $session->get('basket', []);
         return $this->render('home/contact.html.twig', [
             'controller_name' => 'HomeController',
-            
+            'basket'=>$basket,
         ]);
     }
 

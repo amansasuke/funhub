@@ -141,7 +141,9 @@ class CheckoutController extends AbstractController
             'pro'=>$pro,
             'waltebalance'=>$waltebalance,
             'waltebalanceold'=>$waltebalanceold,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'basket'=>$basket,
+            'phone' =>$user->getPhoneno(),
         ]);
     }
 

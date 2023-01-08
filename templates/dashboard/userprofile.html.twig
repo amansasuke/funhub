@@ -136,7 +136,19 @@
 
 .login-area .form-links a:hover {
     color: #5bb7c5
-}   
+} 
+#form_save {
+    width:100%;
+    background-color:#5bb7c5;
+    border:none;
+}  
+.resetp{
+padding-top:10px;
+}
+#resetp{
+    width:100%;
+    
+}
 </style>
 
 <body>
@@ -322,41 +334,59 @@
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="inner-box1">
                                                 <div class="dashboard-wrapper">
+                                                {{ form_start(form) }}
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
-                                                        <label class="control-label">Full Name</label>
-                                                        <input class="form-control input-md" name="Title" value="{{ user.name }}" placeholder="Title" type="text">
+                                                        {# <label class="control-label">Full Name</label> #}
+                                                        {{ form_row(form.name,{'attr': {'class': 'form-control input-md'}}) }}
+                                                        {# <input class="form-control input-md" name="Title" value="{{ user.name }}" placeholder="Title" type="text"> #}
                                                         </div>
                                                     
-                                                    <div class="form-group col-md-6">
-                                                        <label class="control-label">Email</label>
-                                                        <input class="form-control input-md" name="Title" value="{{ user.email }}" placeholder="Title" type="text">
-                                                    </div>
-                                                    </div>
-                                                    <div class="form-group mb-3">
-                                                        <label class="control-label">Address</label>
-                                                        <input class="form-control input-md" name="Title" value="{{ user.address }}" placeholder="Title" type="text">
-                                                    </div>
-                                                    <div class="form-group mb-3">
-                                                        <label class="control-label">Category</label>
-                                                        <input class="form-control input-md" name="Title" value="{{ Category }}" placeholder="Title" type="text">
+                                                        <div class="form-group col-md-6">
+                                                            {# <label class="control-label">Email</label> #}
+                                                            {{ form_row(form.email,{'attr': {'class': 'form-control input-md'}}) }}
+                                                            {# <input class="form-control input-md" name="Title" value="{{ user.email }}" placeholder="Title" type="text"> #}
+                                                        </div>
                                                     </div>
                                                     <div class="form-row">
-                                                    <div class="form-group col-md-4">
-                                                        <label class="control-label">Gander</label>
-                                                        <input class="form-control input-md" name="Title" value="{{ user.gender }}" placeholder="Title" type="text">
+                                                        <div class="form-group col-md-12">
+                                                            {# <label class="control-label">Address</label> #}
+                                                            {{ form_row(form.address,{'attr': {'class': 'form-control input-md'}}) }}
+                                                            {# <input class="form-control input-md" name="Title" value="{{ user.address }}" placeholder="Title" type="text"> #}
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label class="control-label">Pan no</label>
-                                                        <input class="form-control input-md" name="Title" value="{{ user.panno }}" placeholder="Title" type="text">
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                        {# <label class="control-label">Full Name</label> #}
+                                                        {{ form_row(form.user_category,{'attr': {'class': 'form-control input-md'}}) }}
+                                                        {# <input class="form-control input-md" name="Title" value="{{ user.name }}" placeholder="Title" type="text"> #}
+                                                        </div>
+                                                    
+                                                        <div class="form-group col-md-6">
+                                                            {# <label class="control-label">Email</label> #}
+                                                            {{ form_row(form.GSTno,{'attr': {'class': 'form-control input-md'}}) }}
+                                                            {# <input class="form-control input-md" name="Title" value="{{ user.email }}" placeholder="Title" type="text"> #}
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label class="control-label">phone no</label>
-                                                        <input class="form-control input-md" name="Title" value="{{ user.phoneno }}" placeholder="Title" type="text">
-                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-4">
+                                                            {# <label class="control-label">Gander</label> #}
+                                                            {{ form_row(form.gender,{'attr': {'class': 'form-control input-md'}}) }}
+                                                            {# <input class="form-control input-md" name="Title" value="{{ user.gender }}" placeholder="Title" type="text"> #}
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            {# <label class="control-label">PAN no</label> #}
+                                                            {{ form_row(form.pan_no,{'attr': {'class': 'form-control input-md'}}) }}
+                                                            {# <input class="form-control input-md" name="Title" value="{{ user.panno }}" placeholder="Title" type="text"> #}
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            {# <label class="control-label">phone no</label> #}
+                                                            {{ form_row(form.phone_no,{'attr': {'class': 'form-control input-md'}}) }}
+                                                            {# <input class="form-control input-md" name="Title" value="{{ user.phoneno }}" placeholder="Title" type="text"> #}
+                                                        </div>
                                                     </div>
                                                     
-                                                    {{ form_start(form) }}
+                                                    
                                                     <label class="tg-fileuploadlabel" for="tg-photogallery">
                                                         <span>Upload Profile Pic</span>
                                                         {# <span>Or</span>
@@ -367,6 +397,9 @@
                                                     </label>
                                                     {{ form_row(form.save,{'attr': {'class': 'btn btn-primary log-btn'}}) }}
                                                     {{ form_end(form) }}
+                                                </div>
+                                                <div class="resetp ">
+                                                    <a href="{{ path('app_forgot_password_request') }}" class="btn btn-primary " id="resetp"> Reset PassWord</a>
                                                 </div>
                                             </div>
                                         </div>
