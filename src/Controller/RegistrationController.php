@@ -23,6 +23,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -36,7 +37,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppCustomAuthenticator $authenticator, EntityManagerInterface $entityManager,  MailerInterface $mailer, SluggerInterface $slugger): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppCustomAuthenticator $authenticator, EntityManagerInterface $entityManager,  MailerInterface $mailer, SluggerInterface $slugger, SessionInterface $session): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -92,9 +93,10 @@ class RegistrationController extends AbstractController
 
             //return $this->redirectToRoute('app_sentverifiy');
         }
-
+        $basket = $session->get('basket', []);
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            'basket'=>$basket,
         ]);
     }
 
