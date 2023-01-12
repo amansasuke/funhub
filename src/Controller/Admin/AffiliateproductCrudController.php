@@ -42,7 +42,6 @@ class AffiliateproductCrudController extends AbstractCrudController
             TextField::new('affiliateprice'),
             IntegerField::new('affiliateuserid')->setLabel('Affiliate purched ID'),
             IntegerField::new('orderuserid')->setLabel('user purched ID'),
-            DateTimeField::new('adddate'),
         ];
     }
     
