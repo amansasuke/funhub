@@ -33,7 +33,7 @@ class AffiliateproductCrudController extends AbstractCrudController
 
     
     public function configureFields(string $pageName): iterable
-    {
+    {   /*
         return [
             AssociationField::new('affiliateid'),
             TextField::new('productname'),
@@ -43,6 +43,7 @@ class AffiliateproductCrudController extends AbstractCrudController
             IntegerField::new('affiliateuserid')->setLabel('Affiliate purched ID'),
             IntegerField::new('orderuserid')->setLabel('user purched ID'),
         ];
+        */
     }
     
 }
