@@ -28,7 +28,8 @@ use App\Entity\Audiopodcast;
 use App\Entity\Videoposcast;
 use App\Entity\Eventbooking;
 use App\Entity\Docforpro;
-
+use App\Entity\Affiliate;
+use App\Entity\Affiliateproduct;
 
 class adminController extends AbstractDashboardController
 {
@@ -81,8 +82,11 @@ class adminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Voucher', 'fa fa-certificate', Voucher::class);
         yield MenuItem::linkToCrud('Vouchercode', 'fa fa-code', Vouchercode::class);
 
-        yield MenuItem::section('Manger Group');
-        yield MenuItem::linkToCrud('AssignGroup', 'fa fa-file-word', AssignGroup::class);
+        yield MenuItem::section('Affiliate;');
+        yield MenuItem::linkToCrud('Affiliate', 'fa fa-file-word', Affiliate::class);
+        yield MenuItem::linkToCrud('Affiliateproduct', 'fa fa-file-word', Affiliateproduct::class);
+        
+        
 
         yield MenuItem::section('Appointment');
         yield MenuItem::linkToCrud('Booking', 'fa fa-calendar', Eventbooking::class)->setDefaultSort(['id' => 'DESC']);

@@ -456,8 +456,28 @@ class DashboardController extends AbstractController
             }
             $i++;
         }
-
-
+        $k=0;
+        $vcode=[];
+        foreach ($Voucher as $key => $va) {
+            foreach ($Vouchercode as $key => $valcode) {
+                if ($va->getId() == $valcode->getV()->getId()  )
+                {   
+                    if($valcode->getUser()==''){
+                        $vcode[$k]['voucherid']= $valcode->getId();
+                        $vcode[$k]['name']= $valcode->getV()->getId();                   
+                    }else{
+                        $vcode[$k]['voucherid']= $valcode->getV()->getId();
+                        $vcode[$k]['name']= 0; 
+                    }
+                }
+                $k++;   
+            }
+        }
+        // echo "<pre>";
+        // print_r(array_count_values(array_column($vcode, 'voucherid')));
+        // die();
+        
+        
         if ($request->isMethod('POST')) {
             $voucherprice = $request->request->get('voucherprice');
             $voucherid = $request->request->get('voucherid');
@@ -553,8 +573,7 @@ class DashboardController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $brochureFile */
             $brochureFile = $form->get('brochure')->getData();
-            print_r($brochureFile);
-            die();
+            
             // this condition is needed because the 'brochure' field is not required
             // so the PDF file must be processed only when a file is uploaded
             if ($brochureFile) {
@@ -752,7 +771,7 @@ class DashboardController extends AbstractController
             ->add('status', HiddenType::class, [
                     'data' => 'available',
                 ])
-            ->add('save', SubmitType::class, ['label' => 'booking'])
+            ->add('save', SubmitType::class, ['label' => 'Confirm'])
             ->getForm();
         $form->handleRequest($request);
 
@@ -771,6 +790,60 @@ class DashboardController extends AbstractController
             'final' => $final,
             'dates' => $dates,
             'mangerId'=>$mangerId,
+            
+        ]);
+    }
+
+    /**
+     * @Route("/accountmanager ", name="app_account_manager")
+     */
+    public function accountmanager(Request $request, UserRepository $user, MailerInterface $mailer): Response
+    {   
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        if(  $user->getManager()!= null ){
+            
+            $usermanager = $user->getManager();
+            $manageremail=  $usermanager->getEmail();
+            $managername=  $usermanager->getName();
+            $managerimg=  $usermanager->getImgicon();
+        }else{
+            $usermanager = '';
+            $manageremail=  '';
+            $managername=  '';
+            $managerimg=  '';
+        }
+        if ($request->isMethod('POST')) {
+            $msg = $request->request->get('msg');
+            
+                $email = (new TemplatedEmail())
+                ->from('amansharmasasuke@gmail.com')
+                ->to(new Address($manageremail))
+                ->subject('query message')
+                ->htmlTemplate('emails/querymessage.html.twig')
+                ->context(['client' => $user->getEmail(), 'name' => $user->getName(),'id' => $user->getId(),'message'=>$msg ]);
+            $mailer->send($email);
+
+
+            $this->addFlash('success', 'Thank you! Query Message sent successfully');
+            return $this->redirectToRoute("app_account_manager");
+        }
+
+        
+        return $this->render('dashboard/accountmanager.html.twig', [
+            'manageremail' => $manageremail,
+            'managername' => $managername,
+            'managerimg' => $managerimg,   
+        ]);
+    }
+
+    /**
+     * @Route("/chat", name="app_chat")
+     */
+    public function chat(Request $request): Response
+    {
+        
+        return $this->render('dashboard/chat.html.twig', [
+            'controller_name' => 'HomeController',
             
         ]);
     }

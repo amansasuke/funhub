@@ -139,11 +139,13 @@ class RegistrationController extends AbstractController
      *
      * @Route("/sentverifiy", name="app_sentverifiy")
      */
-    public function sentverifiy(): Response
+    public function sentverifiy(SessionInterface $session): Response
     {
         
-
-        return $this->render('registration/sentverifiy.html.twig');
+        $basket = $session->get('basket', []);
+        return $this->render('registration/sentverifiy.html.twig', [
+            'basket'=>$basket,
+        ]);
     }
 
 }

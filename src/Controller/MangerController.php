@@ -133,7 +133,7 @@ class MangerController extends AbstractController
                       'query_builder' => function (EntityRepository $er) {
                             return $er->createQueryBuilder('u')
                             ->andWhere('u.user_category = :searchTerm')
-                            ->setParameter('searchTerm', 'agent')
+                            ->setParameter('searchTerm', 'staff')
                                 ->orderBy('u.id', 'ASC');
                         },
                       'multiple' => true,
@@ -141,7 +141,7 @@ class MangerController extends AbstractController
                   ),
                 )
         
-            ->add('save', SubmitType::class, ['label' => 'assign order to agent'])
+            ->add('save', SubmitType::class, ['label' => 'assign order to staff '])
             ->getForm();
             
 

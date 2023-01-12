@@ -1,6 +1,6 @@
 {# {% extends 'getrout.html.twig' %} #}
 {% extends 'dashstyle.html.twig' %}
-{% block title %}Booking {% endblock %}
+{% block title %}Affiliate index{% endblock %}
 {% block body %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style type="text/css">
@@ -448,6 +448,7 @@ h6 {
     border: 1px solid transparent;
 }
 
+
 @import "https://fonts.googleapis.com/css?family=Open+Sans:600,700";
 
 * {
@@ -472,12 +473,13 @@ h6 {
 
 .rwd-table tr {
   border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  /*border-bottom: 1px solid #ddd;*/
   background-color: #ffff;
 }
 
 .rwd-table th {
   display: none;
+  text-transform: capitalize;
 }
 
 .rwd-table td {
@@ -515,7 +517,7 @@ h6 {
 }
 
 .rwd-table tr {
-
+  
 }
 
 .rwd-table th,
@@ -553,147 +555,10 @@ h6 {
   }
 }
 
-.event{
-border-radius: 10px;
-height: 50px;
-margin-top: 6px;
-}
-.required{
-padding-left: 2px;
-font-weight: 600;
-color: black;
-font-size: 16px;
-}
-
 
 </style>
+
 <body>
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Book your appointment</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="col-12">
-                {% if final|length > 0  %}
-                    <form  action="{{ path('app_eventmangerboking') }}" method="post" class="contact-form">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12 col-lg-12">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                <label for="form_dis" class="required">Title</label>
-                                                    <input type="text" class="form-control event" id="name" name="title" placeholder="Name" required data-error="Please enter a title">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 " style="margin-top: 20px;">
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                   <div class="help-block with-errors"></div>
-                                                   <label for="form_dis" class="required">Date</label>
-                                                    <select class="form-select form-control event" name="startdate" id="loadtime" aria-label="Default select example">
-                                                    {% for date in dates %}  
-                                                      <option value="{{date.date}}">{{date.date }}</option>
-                                                    {% endfor %}
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                <label for="form_dis" class="required">Time</label>
-                                                    <select class="form-select form-control event" name="time" id="showtime" aria-label="Default select example">
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                <label for="form_dis" class="required">Durtion</label>
-                                                    <select class="form-select form-control event" name="duration" aria-label="Default select example">
-                                                    <option>1h 30min</option>
-                                                    <option>2h 30min</option>
-                                                    <option>3h 30min</option>
-
-                                                    </select>
-                                                </div>
-                                                <input type="hidden" name="userid" value="{{app.user.id}}">
-                                                <input type="hidden" name="useremail" value="{{app.user.email}}
-                                                ">
-                                                <input type="hidden" name="status" value="available">
-                                                <input type="hidden" name="mangerid" value="{{mangerId}}">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        
-                                        <button type="submit" id="submit" class="btn btn-primary">Submit Now</button>
-                                        <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </form>
-                        {% else %}
-                        {{ form_start(form,{'attr': {'class': 'contact-form'}}) }}
-                        {# <form id="contactForm" class="contact-form" data-toggle="validator"> #}        
-                            <div class="row">
-                                <div class="col-sm-12 col-md-12 col-lg-12">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                            {{ form_row(form.dis,{'attr': {'class': 'form-control event'}}) }}
-                                                {# <textarea class="form-control" placeholder="Massage" rows="7" data-error="Write your message" required></textarea>
-                                                <div class="help-block with-errors"></div> #}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 " style="margin-top: 20px;">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="form-group">
-                                                {{ form_row(form.bookingstart,{'attr': {'class': 'form-control event'}}) }}
-                                                {# <input type="text" class="form-control" id="name" name="name" placeholder="Name" required data-error="Please enter your name">
-                                                <div class="help-block with-errors"></div> #}
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="form-group">
-                                                {{ form_row(form.bookingtime,{'attr': {'class': 'form-control event'}}) }}
-                                                {# <input type="email" class="form-control" id="email" placeholder="Email" required data-error="Please enter your email">
-                                                <div class="help-block with-errors"></div> #}
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="form-group">
-                                                {{ form_row(form.duration,{'attr': {'class': 'form-control event'}}) }}
-                                                {# <input type="text" class="form-control" id="msg_subject" name="subject" placeholder="Subject" required data-error="Please enter your subject">
-                                                <div class="help-block with-errors"></div> #}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-12">
-                                    {{ form_row(form.save,{'attr': {'class': 'btn btn-primary'}}) }}
-                                    {# <button type="submit" id="submit" class="btn btn-common">Submit Now</button>
-                                    <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                    <div class="clearfix"></div> #}
-                                </div>
-                            </div>
-                        {{ form_end(form) }}
-                    {% endif %}
-                    </div>
-            </div>
-        </div>
-    </div>
-</div>
       
     <div class="wrapper">
         {% include '/dashboard/nev.html.twig' %}
@@ -721,7 +586,7 @@ font-size: 16px;
                                     <a href="#" class="list-group-item">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-2">
-                                                <img src="img/avatars/avatar-5.jpg" class="avatar img-fluid rounded-circle" alt="Michelle Bilodeau">
+                                                <img src="assets/img/avatars/avatar-5.jpg" class="avatar img-fluid rounded-circle" alt="Michelle Bilodeau">
                                             </div>
                                             <div class="col-10 pl-2">
                                                 <div class="text-dark">Michelle Bilodeau</div>
@@ -733,7 +598,7 @@ font-size: 16px;
                                     <a href="#" class="list-group-item">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-2">
-                                                <img src="img/avatars/avatar-3.jpg" class="avatar img-fluid rounded-circle" alt="Kathie Burton">
+                                                <img src="assets/img/avatars/avatar-3.jpg" class="avatar img-fluid rounded-circle" alt="Kathie Burton">
                                             </div>
                                             <div class="col-10 pl-2">
                                                 <div class="text-dark">Kathie Burton</div>
@@ -745,7 +610,7 @@ font-size: 16px;
                                     <a href="#" class="list-group-item">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-2">
-                                                <img src="img/avatars/avatar-2.jpg" class="avatar img-fluid rounded-circle" alt="Alexander Groves">
+                                                <img src="assets/img/avatars/avatar-2.jpg" class="avatar img-fluid rounded-circle" alt="Alexander Groves">
                                             </div>
                                             <div class="col-10 pl-2">
                                                 <div class="text-dark">Alexander Groves</div>
@@ -757,7 +622,7 @@ font-size: 16px;
                                     <a href="#" class="list-group-item">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-2">
-                                                <img src="img/avatars/avatar-4.jpg" class="avatar img-fluid rounded-circle" alt="Daisy Seger">
+                                                <img src="assets/img/avatars/avatar-4.jpg" class="avatar img-fluid rounded-circle" alt="Daisy Seger">
                                             </div>
                                             <div class="col-10 pl-2">
                                                 <div class="text-dark">Daisy Seger</div>
@@ -853,30 +718,236 @@ font-size: 16px;
             </nav>
             <main class="content">
                 <div class="container-fluid">
-
                     <div class="header">
                         <h1 class="header-title">
-                            Calendar
+                            Affiliate
                         </h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard-default.html">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Calendar</li>
+                                {# <li class="breadcrumb-item"><a href="#">Affiliate</a></li> #}
+                                <li class="breadcrumb-item active" aria-current="page">Chat</li>
                             </ol>
                         </nav>
                     </div>
                     <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title12">My Appointment</h5>
-                        </div>
-                        <div class="card-header">
-                            <button class="btn mb-1 btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Add new booking <i class="fa fa-plus"></i></button>
-                        </div>
-                        <div class="card-body">
-                            <div id="fullcalendar"></div>
-                        </div>
-                    </div>
+						<div class="row no-gutters">
+							<div class="col-12 col-lg-5 col-xl-3 border-right">
 
+								<div class="px-4 d-none d-md-block">
+									<div class="media align-items-center">
+										<div class="media-body">
+											<input type="text" class="form-control my-3" placeholder="Search...">
+										</div>
+									</div>
+								</div>
+
+								<a href="#" class="list-group-item list-group-item-action border-0">
+									<div class="badge badge-success float-right">5</div>
+									<div class="media">
+										<img src="assets/img/user/img1.jpg" class="rounded-circle mr-1" alt="Michelle Bilodeau" width="40" height="40">
+										<div class="media-body ml-3">
+											Michelle Bilodeau
+											<div class="small"><span class="fas fa-circle chat-online"></span> Online</div>
+										</div>
+									</div>
+								</a>
+
+								<hr class="d-block d-lg-none mt-1 mb-0" />
+							</div>
+							<div class="col-12 col-lg-7 col-xl-9">
+								<div class="py-2 px-4 border-bottom d-none d-lg-block">
+									<div class="media align-items-center py-1">
+										<div class="position-relative">
+											<img src="assets/img/avatars/avatar-3.jpg" class="rounded-circle mr-1" alt="Kathie Burton" width="40" height="40">
+										</div>
+										<div class="media-body pl-3">
+											<strong>Kathie Burton</strong>
+											<div class="text-muted small"><em>Typing...</em></div>
+										</div>
+										<div>
+											<button class="btn btn-primary btn-lg mr-1 px-3"><i class="feather-lg" data-feather="phone"></i></button>
+											<button class="btn btn-info btn-lg mr-1 px-3 d-none d-md-inline-block"><i class="feather-lg"
+													data-feather="video"></i></button>
+											<button class="btn btn-light border btn-lg px-3"><i class="feather-lg" data-feather="more-horizontal"></i></button>
+										</div>
+									</div>
+								</div>
+
+								<div class="position-relative">
+									<div class="chat-messages p-4">
+
+										<div class="chat-message-right pb-4">
+											<div>
+												<img src="assets/img/avatars/avatar.jpg" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+												<div class="text-muted small text-nowrap mt-2">2:33 am</div>
+											</div>
+											<div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+												<div class="font-weight-bold mb-1">You</div>
+												Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
+											</div>
+										</div>
+
+										<div class="chat-message-left pb-4">
+											<div>
+												<img src="assets/img/avatars/avatar-3.jpg" class="rounded-circle mr-1" alt="Kathie Burton" width="40" height="40">
+												<div class="text-muted small text-nowrap mt-2">2:34 am</div>
+											</div>
+											<div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
+												<div class="font-weight-bold mb-1">Kathie Burton</div>
+												Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
+											</div>
+										</div>
+
+										<div class="chat-message-right mb-4">
+											<div>
+												<img src="assets/img/avatars/avatar.jpg" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+												<div class="text-muted small text-nowrap mt-2">2:35 am</div>
+											</div>
+											<div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+												<div class="font-weight-bold mb-1">You</div>
+												Cum ea graeci tractatos.
+											</div>
+										</div>
+
+										<div class="chat-message-left pb-4">
+											<div>
+												<img src="assets/img/avatars/avatar-3.jpg" class="rounded-circle mr-1" alt="Kathie Burton" width="40" height="40">
+												<div class="text-muted small text-nowrap mt-2">2:36 am</div>
+											</div>
+											<div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
+												<div class="font-weight-bold mb-1">Kathie Burton</div>
+												Sed pulvinar, massa vitae interdum pulvinar, risus lectus porttitor magna, vitae commodo lectus mauris et velit.
+												Proin ultricies placerat imperdiet. Morbi varius quam ac venenatis tempus.
+											</div>
+										</div>
+
+										<div class="chat-message-left pb-4">
+											<div>
+												<img src="assets/img/avatars/avatar-3.jpg" class="rounded-circle mr-1" alt="Kathie Burton" width="40" height="40">
+												<div class="text-muted small text-nowrap mt-2">2:37 am</div>
+											</div>
+											<div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
+												<div class="font-weight-bold mb-1">Kathie Burton</div>
+												Cras pulvinar, sapien id vehicula aliquet, diam velit elementum orci.
+											</div>
+										</div>
+
+										<div class="chat-message-right mb-4">
+											<div>
+												<img src="assets/img/avatars/avatar.jpg" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+												<div class="text-muted small text-nowrap mt-2">2:38 am</div>
+											</div>
+											<div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+												<div class="font-weight-bold mb-1">You</div>
+												Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
+											</div>
+										</div>
+
+										<div class="chat-message-left pb-4">
+											<div>
+												<img src="assets/img/avatars/avatar-3.jpg" class="rounded-circle mr-1" alt="Kathie Burton" width="40" height="40">
+												<div class="text-muted small text-nowrap mt-2">2:39 am</div>
+											</div>
+											<div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
+												<div class="font-weight-bold mb-1">Kathie Burton</div>
+												Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
+											</div>
+										</div>
+
+										<div class="chat-message-right mb-4">
+											<div>
+												<img src="assets/img/avatars/avatar.jpg" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+												<div class="text-muted small text-nowrap mt-2">2:40 am</div>
+											</div>
+											<div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+												<div class="font-weight-bold mb-1">You</div>
+												Cum ea graeci tractatos.
+											</div>
+										</div>
+
+										<div class="chat-message-right mb-4">
+											<div>
+												<img src="assets/img/avatars/avatar.jpg" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+												<div class="text-muted small text-nowrap mt-2">2:41 am</div>
+											</div>
+											<div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+												<div class="font-weight-bold mb-1">You</div>
+												Morbi finibus, lorem id placerat ullamcorper, nunc enim ultrices massa, id dignissim metus urna eget purus.
+											</div>
+										</div>
+
+										<div class="chat-message-left pb-4">
+											<div>
+												<img src="assets/img/avatars/avatar-3.jpg" class="rounded-circle mr-1" alt="Kathie Burton" width="40" height="40">
+												<div class="text-muted small text-nowrap mt-2">2:42 am</div>
+											</div>
+											<div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
+												<div class="font-weight-bold mb-1">Kathie Burton</div>
+												Sed pulvinar, massa vitae interdum pulvinar, risus lectus porttitor magna, vitae commodo lectus mauris et velit.
+												Proin ultricies placerat imperdiet. Morbi varius quam ac venenatis tempus.
+											</div>
+										</div>
+
+										<div class="chat-message-right mb-4">
+											<div>
+												<img src="assets/img/avatars/avatar.jpg" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+												<div class="text-muted small text-nowrap mt-2">2:43 am</div>
+											</div>
+											<div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+												<div class="font-weight-bold mb-1">You</div>
+												Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
+											</div>
+										</div>
+
+										<div class="chat-message-left pb-4">
+											<div>
+												<img src="assets/img/avatars/avatar-3.jpg" class="rounded-circle mr-1" alt="Kathie Burton" width="40" height="40">
+												<div class="text-muted small text-nowrap mt-2">2:44 am</div>
+											</div>
+											<div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
+												<div class="font-weight-bold mb-1">Kathie Burton</div>
+												Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
+											</div>
+										</div>
+                                        <div class="chat-message-right mb-4">
+											<div>
+												<img src="assets/img/avatars/avatar.jpg" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+												<div class="text-muted small text-nowrap mt-2">2:43 am</div>
+											</div>
+											<div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+												<div class="font-weight-bold mb-1">Yookkokokokoou</div>
+												Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
+											</div>
+										</div>
+
+										<div class="chat-message-left pb-4">
+											<div>
+												<img src="assets/img/avatars/avatar-3.jpg" class="rounded-circle mr-1" alt="Kathie Burton" width="40" height="40">
+												<div class="text-muted small text-nowrap mt-2">2:44 am</div>
+											</div>
+											<div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
+												<div class="font-weight-bold mb-1">aman</div>
+												Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
+											</div>
+										</div>
+
+									</div>
+								</div>
+
+								<div class="flex-grow-0 py-3 px-4 border-top">
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="Type your message">
+										<div class="input-group-append">
+											<button class="btn btn-primary">Send</button>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+                    
                 </div>
             </main>
             <footer class="footer">
@@ -916,51 +987,10 @@ font-size: 16px;
             </symbol>
         </defs>
     </svg>
-
+     
 </body>
 {% endblock %}
 {% block javascripts %}
-
-<script>
-        $(function() {
-            var calendarEl = document.getElementById('fullcalendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                themeSystem: 'bootstrap',
-                initialView: 'dayGridMonth',
-                initialDate: '{{ today ? today|date('Y-m-d') : '' }}',
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                },
-                events: [
-                    
-                    {% for booking in bookings %}
-                    
-                    { 
-                    title: '{{booking.title}}',
-                    url: '{{booking.meeting}}',
-                    start: '{{ booking.date ? booking.date|date('Y-m-d') : '' }}T{{ booking.time ? booking.time|date('H:i') : '' }}',
-                    },
-                    
-                    {% endfor %}
-
-                    {% for orderbook in orderbooking %}
-                    
-                    { 
-                    title: '{{orderbook.title}}',
-                    start: '{{ orderbook.date ? orderbook.date|date('Y-m-d') : '' }}T{{ orderbook.time ? orderbook.time|date('H:i') : '' }}',
-                    end: '{{ orderbook.enddate ? orderbook.enddate|date('Y-m-d') : '' }}T{{ orderbook.time ? orderbook.time|date('H:i') : '' }}',
-                    },
-                    
-                    {% endfor %}                    
-                ]
-            });
-            setTimeout(function() {
-                calendar.render();
-            }, 250)
-        });
-    </script>
 <script type="text/javascript">
 let copybtn = document.querySelector(".copybtn");
 
@@ -975,34 +1005,4 @@ function copyIt() {
     copybtn.textContent = "COPIED";
 }
 </script>
-  <script language = "javascript">  
-      $(document).ready(function(){   
-         $("#loadtime").change("click", function(event){ 
-         var status = $("#loadtime").val(); 
-        
-            $.ajax({  
-               url:        '{{ path('app_home') }}',  
-               type:       'POST',
-               data:        {'status':status},   
-               dataType:   'json',  
-               async:      true,  
-               
-               success: function(response) {
-                $("#showtime").html(' ');
-                    $.each(response, function (key, value) {
-                        //$('#speakerResponse').empty('').append(html);
-
-                        $('#showtime').append("\
-                                    <option value="+value+" >"+value+"</option>\
-                                    \
-                                    ");
-                    })
-                  },  
-               error : function(xhr, textStatus, errorThrown) {  
-                  alert('Ajax request failed.');  
-               }  
-            });  
-         });  
-      });  
-   </script>
 {% endblock %}

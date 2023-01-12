@@ -149,7 +149,10 @@ class ResetPasswordController extends AbstractController
 
         // Do not reveal whether a user account was found or not.
         if (!$user) {
-            return $this->redirectToRoute('app_check_email');
+            $noemail="NotFound";
+            return $this->redirectToRoute('app_check_email', [
+                'noemail' => $noemail,
+            ]);
         }
 
         try {

@@ -61,7 +61,7 @@
                             {% endfor %}
                         </div>
                         {# appointmrnt #}
-                        {% for ord in order %}
+                        {% if ord.user|length !=0 %}
                             {% for user in ord.user %}
                                 <div class="tracking-item{%if user.name|length == 0 %}-pending{% endif %}">
                                     <div class="tracking-icon status-intransit">
@@ -70,12 +70,24 @@
                                         </svg>
                                     </div>
                                     <div class="tracking-date"><img src="assets\img\logo\agent.png" class="img-responsive" alt="order-placed" height="40px" /></div>
-                                    <div class="tracking-content">Agent for Order </div>
+                                    <div class="tracking-content">staff  for Order </div>
                                     
                                     {{ user.name}}                                
                                 </div>
                             {% endfor %}
-                        {% endfor %}
+                            {% else %}
+                            <div class="tracking-item-pending">
+                                    <div class="tracking-icon status-intransit">
+                                        <svg class="svg-inline--fa fa-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="tracking-date"><img src="assets\img\logo\agent.png" class="img-responsive" alt="order-placed" height="40px" /></div>
+                                    <div class="tracking-content">staff  for Order </div>
+                                    staff  Not Assign                               
+                                </div>
+                            {% endif %}
+                        
                     <div class="tracking-item{% if ord.docstatus != 1%}-pending{% endif%}">
                         <div class="tracking-icon status-intransit">
                             <svg class="svg-inline--fa fa-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
