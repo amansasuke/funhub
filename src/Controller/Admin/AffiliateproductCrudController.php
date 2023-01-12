@@ -15,7 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\PasswordType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 
 use Vich\UploaderBundle\Form\Type\VichImageType;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -42,7 +42,7 @@ class AffiliateproductCrudController extends AbstractCrudController
             TextField::new('affiliateprice'),
             IntegerField::new('affiliateuserid')->setLabel('Affiliate purched ID'),
             IntegerField::new('orderuserid')->setLabel('user purched ID'),
-            DateField::new('adddate'),
+            DateTimeField::new('adddate'),
         ];
     }
     
