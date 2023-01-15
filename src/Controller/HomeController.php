@@ -177,7 +177,8 @@ class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $eventbookingRepository->add($eventbooking, true);
 
-            $this->addFlash('success', 'Thank you! Your booking is Submit!');
+            //$this->addFlash('success', 'Thank you! Your booking is Submit!');
+            flash()->addSuccess('Thank you! Your booking is Submit!');
         }
 
         if ($request->isXmlHttpRequest() || $request->query->get('showJson') == 1) {  
@@ -330,7 +331,8 @@ class HomeController extends AbstractController
         if ($request->isMethod('POST')) {
             $basket[$prodetail->getId()] = $prodetail;
             $session->set('basket', $basket);
-            $this->addFlash('success', 'Thank you! Successfully added to cart !');
+            //$this->addFlash('success', 'Thank you! Successfully added to cart !');
+            flash()->addSuccess('Thank you! Successfully added to cart !');
         }
 
         $isInBasket = array_key_exists($prodetail->getId(), $basket);
@@ -427,7 +429,8 @@ class HomeController extends AbstractController
         $entityManager->persist($Eventbooking);
         $entityManager->flush();
 
-        $this->addFlash('success', 'Thank you! appointment book successfully');
+        //$this->addFlash('success', 'Thank you! appointment book successfully');
+        flash()->addSuccess('Thank you! appointment book successfully');
         return $this->redirectToRoute("app_mybooking");
     }
 }

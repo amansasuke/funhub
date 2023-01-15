@@ -53,7 +53,15 @@
                                 <div class="input-icon">
                                     <i class="lni-lock" style="padding-top:10px;"></i>
                                     {# {{  form_row(registrationForm.())}} #}
-                                    {{ form_row(registrationForm.plainPassword,{'attr': {'class': 'form-control'}}) }}
+                                    {{ form_row(registrationForm.plainPassword.first,{'attr': {'class': 'form-control'}}) }}
+                                    {# <input type="password" class="form-control" placeholder="Password"> #}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-icon">
+                                    <i class="lni-lock" style="padding-top:10px;"></i>
+                                    {# {{  form_row(registrationForm.())}} #}
+                                    {{ form_row(registrationForm.plainPassword.second,{'attr': {'class': 'form-control'}}) }}
                                     {# <input type="password" class="form-control" placeholder="Password"> #}
                                 </div>
                             </div>
@@ -122,7 +130,7 @@
                                 </div>
                             </div>
                             <label class="tg-fileuploadlabel" for="tg-photogallery">
-                                <span>Upload Profile Pic</span>
+                                <span>update Pic to Picture</span>
                                 {# <span>Or</span>
                                 <span class="btn btn-common">Select Files</span>
                                 <span>Maximum upload file size: 500 KB</span> #}

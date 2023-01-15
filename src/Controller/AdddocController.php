@@ -126,7 +126,8 @@ class AdddocController extends AbstractController
 
             // $session->set('basket', []);
 
-            $this->addFlash('success', 'Thank you! Document Submit successfully');
+            //$this->addFlash('success', 'Thank you! Document Submit successfully');
+            flash()->addSuccess('Thank you! Document Submit successfully');
             return $this->redirectToRoute("app_dashboard");
         }
         //$doc = $doc->find($id);

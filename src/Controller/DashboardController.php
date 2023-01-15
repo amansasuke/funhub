@@ -60,6 +60,7 @@ use App\Repository\EventbookingRepository;
 
 use App\Entity\Mangereventbooking;
 use App\Repository\MangereventbookingRepository;
+use App\Repository\UseractivityRepository;
 
 class DashboardController extends AbstractController
 {
@@ -68,13 +69,15 @@ class DashboardController extends AbstractController
      * 
      * @IsGranted("ROLE_USER")
      */
-    public function index(ManagerRegistry $doctrine,AppointmentRepository $appointmentRepository, DocumentsforproductRepository $doc, DocforproRepository $docforpro, OrderdocRepository $od, DocForClientRepository $docForClientRepository): Response
+    public function index(ManagerRegistry $doctrine,AppointmentRepository $appointmentRepository, DocumentsforproductRepository $doc, DocforproRepository $docforpro, OrderdocRepository $od, DocForClientRepository $docForClientRepository, UseractivityRepository $avtivity): Response
     {   
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $user->getUsername();
 
         $sunmitdoc =[];
         $Orderdoc = $od->findBy([]);
+
+        $avtivity = $avtivity->findBy([]);
         // sumbit documents for order
         $i=0;
         foreach($Orderdoc as $Ordoc){
@@ -245,6 +248,7 @@ class DashboardController extends AbstractController
             'finalredocsub'=>$finalredocsub,
             'appointments'=>$appointment,
             'doc_for_clients' => $docForClientRepository->findAll(),
+            'avtivity'=>  $avtivity,
 
         ]);
     }
@@ -268,11 +272,11 @@ class DashboardController extends AbstractController
                 'label' => ' PAN Number',
             ))
             ->add('GSTno', TextType::class,array(
-                      'label' => ' GST no (optional)',
+                      'label' => ' GST No (Optional)',
                       'required' => false,
                   ))
             ->add('phone_no',TextType::class, [
-
+                'label' => 'Phone No',
             'constraints' => [
                 new Length([
                     'min' => 10,
@@ -296,6 +300,7 @@ class DashboardController extends AbstractController
                     'NPO' => 'NPO',
                     'trader' => 'trader',                  
                 ],
+                'label' => 'User Category',
             ])
             ->add('imgicon', FileType::class, array(
                 'data_class' => null,
@@ -327,7 +332,8 @@ class DashboardController extends AbstractController
                         $entityManager->persist($user);
                         $entityManager->flush();
                     }
-                    $this->addFlash('success', 'Thank you! profile update successfully');
+                    flash()->addSuccess('Thank you! profile update successfully');
+                   // $this->addFlash('success', 'Thank you! profile update successfully');
                 }
         // }else{
         //     $form = $this->createFormBuilder($user)
@@ -391,7 +397,8 @@ class DashboardController extends AbstractController
         $mailer->send($email);
 
 
-        $this->addFlash('success', 'Thank you! appointment book successfully');
+        //$this->addFlash('success', 'Thank you! appointment book successfully');
+        flash()->addSuccess('Thank you! appointment book successfully');
         return $this->redirectToRoute("app_dashboard");
     }
 
@@ -452,6 +459,7 @@ class DashboardController extends AbstractController
                 $codedata[$i]['voucherPrices'] = $vo->getV()->getPrices();
                 $codedata[$i]['vouchericon'] = $vo->getV()->getVouchericon();
                 $codedata[$i]['redeem']= 1;
+                $codedata[$i]['id']= $vo->getId();;
                 
             }
             $i++;
@@ -463,20 +471,23 @@ class DashboardController extends AbstractController
                 if ($va->getId() == $valcode->getV()->getId()  )
                 {   
                     if($valcode->getUser()==''){
-                        $vcode[$k]['voucherid']= $valcode->getId();
-                        $vcode[$k]['name']= $valcode->getV()->getId();                   
-                    }else{
-                        $vcode[$k]['voucherid']= $valcode->getV()->getId();
-                        $vcode[$k]['name']= 0; 
+                        // $vcode[$k]['valcodeid']= $valcode->getId();
+                        $vcode[$k]['name']= $valcode->getV()->getName();  
+                        $vcode[$k]['voucherid']= $valcode->getV()->getId();                 
                     }
                 }
                 $k++;   
             }
         }
-        // echo "<pre>";
-        // print_r(array_count_values(array_column($vcode, 'voucherid')));
-        // die();
-        
+       
+        $vcode = array_reverse( // Reverse array to the initial order.
+            array_values( // Get rid of string keys (make array indexed again).
+                array_combine( // Create array taking keys from column and values from the base array.
+                    array_column($vcode, 'voucherid'), 
+                    $vcode
+                )
+            )
+        );
         
         if ($request->isMethod('POST')) {
             $voucherprice = $request->request->get('voucherprice');
@@ -489,7 +500,12 @@ class DashboardController extends AbstractController
                 {
                     $VouchercodeId = $value->getId();
                     break;
-                }   
+                } 
+                // if(empty($VouchercodeId)){
+                //     flash()->addError('sorry this voucher is not available now');
+                //     return $this->redirectToRoute("app_voucher");
+                //     break;  
+                // }
             }
             $Vouchercodes = $doctrine->getRepository(Vouchercode::class)->find($VouchercodeId);
             $Voucher = $doctrine->getRepository(Voucher::class)->find($voucherid);
@@ -507,6 +523,8 @@ class DashboardController extends AbstractController
             //$entityManager->persist($Uservoucher);
             $entityManager->flush();
 
+            flash()->addSuccess('Thank you! Voucher Redeem  successfully');
+            return $this->redirectToRoute("app_voucher");
             //$Voucher = $Voucher->findBy([]);
         }
         
@@ -525,7 +543,8 @@ class DashboardController extends AbstractController
             'Vouchercode'=>$Vouchercode,
             'Voucher'=>$Voucher,
             'codedata'=>$codedata,
-            'voucherrelation'=>$voucherrelation
+            'voucherrelation'=>$voucherrelation,
+            'avcode'=>$vcode,
 
         ]);
     }
@@ -599,7 +618,8 @@ class DashboardController extends AbstractController
 
             // ... persist the $product variable or any other work
 
-            $this->addFlash('success', 'Thank you! Your booking is Submit!');
+            //$this->addFlash('success', 'Thank you! Your booking is Submit!');
+            flash()->addSuccess('Thank you! Your booking is Submit!');
         }
 
         return $this->renderForm('product/new.html.twig', [
@@ -778,7 +798,8 @@ class DashboardController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $Event->add($eventbooking, true);
 
-            $this->addFlash('success', 'Thank you! Your booking is Submit!');
+            //$this->addFlash('success', 'Thank you! Your booking is Submit!');
+            flash()->addSuccess('Thank you! Your booking is Submit!');
             return $this->redirectToRoute("app_mybooking");
         }
         
@@ -824,7 +845,8 @@ class DashboardController extends AbstractController
             $mailer->send($email);
 
 
-            $this->addFlash('success', 'Thank you! Query Message sent successfully');
+            //$this->addFlash('success', 'Thank you! Query Message sent successfully');
+            flash()->addSuccess('Thank you! Query Message sent successfully');
             return $this->redirectToRoute("app_account_manager");
         }
 
@@ -846,5 +868,17 @@ class DashboardController extends AbstractController
             'controller_name' => 'HomeController',
             
         ]);
+    }
+
+    public function recentArticles(UseractivityRepository $avtivity)
+    {
+        // make a database call or other logic
+        // to get the "$max" most recent articles
+        $avtivity = $avtivity->findBy([]);
+
+        return $this->render(
+            'dashboard/activity.html.twig',
+            ['avtivity' => $avtivity]
+        );
     }
 }

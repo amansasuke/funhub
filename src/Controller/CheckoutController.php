@@ -132,7 +132,8 @@ class CheckoutController extends AbstractController
             $this->sendEmailConfirmation($order, $mailer);
 
             $session->set('basket', []);
-            $this->addFlash('success', 'Thank you! Received your order successfully');
+            //$this->addFlash('success', 'Thank you! Received your order successfully');
+            flash()->addSuccess('Thank you! Received your order successfully');
             return $this->redirectToRoute("app_dashboard");
         }
 
