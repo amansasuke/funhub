@@ -128,4 +128,9 @@ class Orderdoc
 
         return $this;
     }
+
+    public function isStatus(): ?bool
+    {
+        return $this->status;
+    }
 }

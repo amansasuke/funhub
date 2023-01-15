@@ -7,7 +7,7 @@
             for (key in custom) { value = custom[key]; if (value != null) { defaults[key] = value; } }
             return defaults;
         };
-        Util.prototype.isMobile = function(staff ) { return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(staff ); };
+        Util.prototype.isMobile = function(staff) { return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(staff); };
         return Util;
     })();
     this.WOW = (function() {
@@ -89,7 +89,7 @@
             top = this.offsetTop(box);
             bottom = top + box.clientHeight; return top <= viewBottom && bottom >= viewTop; };
         WOW.prototype.util = function() { return this._util || (this._util = new Util()); };
-        WOW.prototype.disabled = function() { return this.config.mobile === false && this.util().isMobile(navigator.userstaff ); };
+        WOW.prototype.disabled = function() { return this.config.mobile === false && this.util().isMobile(navigator.userstaff); };
         return WOW;
     })();
 }).call(this);

@@ -14,19 +14,24 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 use Symfony\Component\HttpFoundation\Request;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 use App\Entity\Order;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\OrderdocRepository;
 use App\Entity\Orderdoc;
+use App\Entity\User;
+use App\Repository\UserRepository;
 
 class AggentdashbordController extends AbstractController
 {
     /**
-     * @Route("/staffdashbord", name="app_staff dashbord")
+     * @Route("/staffdashboard", name="app_staffdashbord")
+     * 
      */
-    public function index(ManagerRegistry $doctrine): Response
+    public function index(ManagerRegistry $doctrine, UserRepository $userR): Response
     {   
-        $this->denyAccessUnlessGranted('ROLE_AGENT ', null, 'User tried to access a page without having ROLE_staff ');
+        $this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_AGENT ');
         $assignorder = [];
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $userId = $user->getId();
@@ -52,7 +57,7 @@ class AggentdashbordController extends AbstractController
      */
     public function submitdoc($id,ManagerRegistry $doctrine, OrderdocRepository $Orderdoc): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_AGENT ', null, 'User tried to access a page without having ROLE_staff ');
+        $this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_staff');
         $Orderdoc = $Orderdoc->findBy([]);
 
         $sunmitdoc =[];
@@ -82,7 +87,7 @@ class AggentdashbordController extends AbstractController
      */
     public function editdoc($id,ManagerRegistry $doctrine, Request $request, OrderdocRepository $Orderdoc): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_AGENT ', null, 'User tried to access a page without having ROLE_staff ');
+        $this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_staff');
         $Orderdoc = $doctrine->getRepository(Orderdoc::class)->find($id);
         $order = new Order;
 
@@ -134,7 +139,7 @@ class AggentdashbordController extends AbstractController
      */
     public function editorderstatus($id,ManagerRegistry $doctrine, Request $request, OrderdocRepository $Orderdoc): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_AGENT ', null, 'User tried to access a page without having ROLE_staff ');
+        $this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_staff');
         $Orderdoc = $doctrine->getRepository(Order::class)->find($id);
         //$order = new Order;
 

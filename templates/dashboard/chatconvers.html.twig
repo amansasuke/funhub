@@ -1,0 +1,24 @@
+{% for other in otheruser %}
+    {% for conversation in conversations %}
+    <div class="px-4 d-none d-md-block">
+        <div class="media align-items-center">
+            {# <div class="media-body">
+                <input type="text" class="form-control my-3" placeholder="Search...">
+            </div> #}
+        </div>
+    </div>
+
+    <a href="../messages/{{conversation.conversationId}}" class="list-group-item list-group-item-action border-0">
+        <div class="badge badge-success float-right">5</div>
+        <div class="media">
+            <img src="../assets/img/user/{{other.imgicon}}" class="rounded-circle mr-1" alt="Michelle Bilodeau" width="40" height="40">
+            <div class="media-body ml-3">
+                {{other.name}}
+                <div class="small"><span class="fas fa-circle chat-online"></span>{{conversation.content}}</div>
+            </div>
+        </div>
+    </a>
+
+    <hr class="d-block d-lg-none mt-1 mb-0" />
+    {% endfor %}
+    {% endfor %}

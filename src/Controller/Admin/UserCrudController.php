@@ -68,7 +68,7 @@ class UserCrudController extends AbstractCrudController
             //TextField::new('user_category'),
             ChoiceField::new('user_category')->setChoices([
                     'Manager'=>'manager',
-                    'staff '=>'staff',
+                    'staff'=>'staff',
                     'Individual' => 'individual',
                     'business owner' => 'business owner',
                     'NPO' => 'NPO',

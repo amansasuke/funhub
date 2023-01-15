@@ -141,7 +141,7 @@ class MangerController extends AbstractController
                   ),
                 )
         
-            ->add('save', SubmitType::class, ['label' => 'assign order to staff '])
+            ->add('save', SubmitType::class, ['label' => 'assign order to staff'])
             ->getForm();
             
 

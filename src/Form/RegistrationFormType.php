@@ -48,7 +48,7 @@ class RegistrationFormType extends AbstractType
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
                 'first_options'  => ['label' => 'Password'],
-                'second_options' => ['label' => 'Repeat Password'],
+                'second_options' => ['label' => 'Confirm Password'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -67,7 +67,7 @@ class RegistrationFormType extends AbstractType
                 'label' => ' PAN Number',
             ))
             ->add('GSTno', TextType::class,array(
-                      'label' => ' GST no (optional)',
+                      'label' => ' GST No (optional)',
                       'required' => false,
                   ))
             ->add('phone_no',NumberType::class, [
@@ -79,6 +79,7 @@ class RegistrationFormType extends AbstractType
                     // max length allowed by Symfony for security reasons
                     'max' => 15,
                 ]),
+                'label' => 'Phone No',
             ]]
             )
             ->add('gender', ChoiceType::class, [
@@ -89,12 +90,13 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('user_category', ChoiceType::class, [
                 'choices'  => [
-                    'choose your category' => NULL,
+                    'Choose your category' => NULL,
                     'Individual' => 'individual',
                     'business owner' => 'business owner',
                     'NPO' => 'NPO',
                     'trader' => 'trader',                  
                 ],
+                'label' => 'User Category',
             ])
             ->add('red_id')
             ->add('wellet')
