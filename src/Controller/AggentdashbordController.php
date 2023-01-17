@@ -57,7 +57,7 @@ class AggentdashbordController extends AbstractController
      */
     public function submitdoc($id,ManagerRegistry $doctrine, OrderdocRepository $Orderdoc): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_staff');
+        //$this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_staff');
         $Orderdoc = $Orderdoc->findBy([]);
 
         $sunmitdoc =[];
@@ -87,7 +87,7 @@ class AggentdashbordController extends AbstractController
      */
     public function editdoc($id,ManagerRegistry $doctrine, Request $request, OrderdocRepository $Orderdoc): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_staff');
+        //$this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_staff');
         $Orderdoc = $doctrine->getRepository(Orderdoc::class)->find($id);
         $order = new Order;
 
@@ -123,7 +123,8 @@ class AggentdashbordController extends AbstractController
             $entityManager->persist($order);
             $entityManager->flush();
 
-            return $this->render('confirmation.html.twig');
+            flash()->addSuccess('Thank you! Document Submit successfully');
+            //return $this->redirectToRoute("app_dashboard");
         }
 
         return $this->render('mangerdashbord/editdoc.html.twig', [
@@ -139,7 +140,7 @@ class AggentdashbordController extends AbstractController
      */
     public function editorderstatus($id,ManagerRegistry $doctrine, Request $request, OrderdocRepository $Orderdoc): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_staff');
+        //$this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_staff');
         $Orderdoc = $doctrine->getRepository(Order::class)->find($id);
         //$order = new Order;
 
@@ -162,12 +163,32 @@ class AggentdashbordController extends AbstractController
             $entityManager->persist($order);
             $entityManager->flush();
 
-            return $this->render('confirmation.html.twig');
+            flash()->addSuccess('Thank you! Order Doc status change successfully');
+            //return $this->render('confirmation.html.twig');
         }
 
         return $this->render('mangerdashbord/editorderdoc.html.twig', [
           'form' =>$form->createView(),
         ]);
+    }
+
+    
+    /**
+     * @Route("/{id}/agentstatus", name="app_agentstatus", methods={"GET", "POST"})
+     */
+    public function agentstatus($id ,Request $request,ManagerRegistry $doctrine): Response
+    {
+        $agentstatus = $request->request->get('agentstatus');
+
+        $entityManager =$this->getDoctrine()->getManager();
+        $Orderd = $doctrine->getRepository(Order::class)->find($id);
+        $Orderd->setAgentstatus($agentstatus);
+        
+        $entityManager->persist($Orderd);
+        $entityManager->flush();
+        flash()->addSuccess('Thank you! Status Update successfully');
+        return $this->redirectToRoute("app_staffdashbord");
+        //return new JsonResponse(array('statsu' => true, 'messages' => array('done')));
     }
 
 }

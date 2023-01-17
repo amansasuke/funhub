@@ -318,6 +318,7 @@
                                     
                                         {% for order in assignorder %}
                                         {% for products in order.products %}
+                                        {% if order.docstatus %}
                                         <tr data-category="active">
                                             <td>
                                             {{order.id}}
@@ -363,17 +364,39 @@
                                                     <a class="btn-action btn-delete" href="#"><i class="lni-trash"></i></a> #}
                                                 {# </div> #}
                                             </td>
-                                            <td data-title="Action">
-                                                {# <div class="btns-actions">
-                                                <div class="btns-actions"> #}
-                                                    <a href="editorderstatus/{{order.id}}" target="_blank" class="btn btn-success" style="z-index: 999;">Edit</a>
-                                                {# </div> #}
-                                                    {# <a class="btn-action btn-view" href="editorderstatus/{{order.id}}"><i class="lni-eye"></i></a> #}
-                                                    {# <a class="btn-action btn-edit" href="#"><i class="lni-pencil"></i></a>
-                                                    <a class="btn-action btn-delete" href="#"><i class="lni-trash"></i></a> #}
-                                            {# /div> #}
+                                            <td data-title="Action"> 
+                                                <p> {{order.agentstatus}}</p>
+                                                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#endexampleModalCenter">
+                                                    Submit Status
+                                                </button>
+                                                <div class="modal fade" id="endexampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">Set Start Date for a Order</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="{{ path('app_agentstatus',  {'id': order.id}) }}" method="post">
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Start Date</label>
+                                                                        <input type="text" class="form-control" name="agentstatus" value="">
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
+                                        {% endif %}
                                         {% endfor %}
                                         {% endfor %}
                                     </tbody>

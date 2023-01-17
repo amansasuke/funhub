@@ -319,6 +319,8 @@
                                                     <th>view doc</th>
                                                     <th>Asign to staff</th>
                                                     <th>Set date</th>
+                                                    <th>Edit order doc </th>
+                                                    <th>Staff Status </th>
                                                 </tr>
                                                 {% for order in orders %}
                                                 {% for products in order.products %}
@@ -352,7 +354,7 @@
                                                     <td>
                                                         <a class="btn  btn-info" href="#">panding</a>
                                                     </td>
-                                                    {% endif %}
+                                                    {% endif %}                                                     
                                                     {# <td data-title="Price">
                                                         <h3>${{products.price}}</h3>
                                                     </td> #}
@@ -363,17 +365,35 @@
                                                         <a class="btn btn-warning" href="../submitdoc/{{order.id}}" style="color:#fff;"><i class="lni-eye"></i></a>
                                                         {# <a class="btn-action btn-edit" href="#"><i class="lni-pencil"></i></a>
                                                         <a class="btn-action btn-delete" href="#"><i class="lni-trash"></i></a> #}
+                                                        
                                                     </td>
                                                     <td data-title="Action">
+                                                        {% if order.user   %}
+                                                            {% for assuser in order.user %}
+                                                            <span class="badge badge-pill badge-primary">{{assuser.name }}</span>
+                                                            {% endfor %}
+                                                        {% endif %}
                                                         <a class="btn btn-view" href="../assignuser/{{order.id}}"><i class="lni-pencil"></i></a>
                                                     </td>
                                                     <td>
+                                                    {% if order.startdate == null %}
                                                         <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#startexampleModalCenter">
                                                             Startdate
                                                         </button>
+                                                        {% else %}
+                                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#startexampleModalCenter">
+                                                            {{order.startdate|date('d/m/Y')}}
+                                                        </button>
+                                                    {% endif %}
+                                                    {% if order.enddate == null %}
                                                         <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#endexampleModalCenter">
                                                             complite date
                                                         </button>
+                                                        {% else %}
+                                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#startexampleModalCenter">
+                                                            {{order.enddate|date('d/m/Y')}}
+                                                        </button>
+                                                    {% endif %}
                                                         <div class="modal fade" id="startexampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                                 <div class="modal-content">
@@ -424,6 +444,12 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-success" href="../editorderstatus/{{order.id}}" style="color:#fff;">Edit</a>
+                                                    </td>
+                                                    <td>
+                                                        {{order.agentstatus}}
                                                     </td>
                                                 </tr>
                                                 {% endfor %}

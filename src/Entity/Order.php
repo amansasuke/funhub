@@ -69,6 +69,11 @@ class Order
      */
     private $enddate;
 
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $agentstatus;
+
     
 
     public function __construct()
@@ -245,6 +250,18 @@ class Order
     public function setEnddate(?\DateTimeInterface $enddate): self
     {
         $this->enddate = $enddate;
+
+        return $this;
+    }
+
+    public function getAgentstatus(): ?string
+    {
+        return $this->agentstatus;
+    }
+
+    public function setAgentstatus(string $agentstatus): self
+    {
+        $this->agentstatus = $agentstatus;
 
         return $this;
     }

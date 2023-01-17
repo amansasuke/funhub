@@ -161,11 +161,12 @@ class MangerController extends AbstractController
 
                 $entityManager->flush();
 
-
-                return $this->render('manger/assignuser.html.twig', [
-                  'form' =>$form->createView(),
-                  'users'=>$users,
-                ]);
+                flash()->addSuccess('Thank you! Staff Assign successfully');
+                
+                // return $this->render('manger/assignuser.html.twig', [
+                //   'form' =>$form->createView(),
+                //   'users'=>$users,
+                // ]);
             }
 
         return $this->render('manger/assignuser.html.twig', [
@@ -192,7 +193,9 @@ class MangerController extends AbstractController
         $entityManager->persist($Orderd);
         $entityManager->flush();
 
-        return new JsonResponse(array('statsu' => true, 'messages' => array('done')));
+        flash()->addSuccess('Thank you! Start Date Update successfully');
+        return $this->redirectToRoute("app_manger");
+        //return new JsonResponse(array('statsu' => true, 'messages' => array('done')));
     }
 
     /**
@@ -210,8 +213,9 @@ class MangerController extends AbstractController
         
         $entityManager->persist($Orderd);
         $entityManager->flush();
-
-        return new JsonResponse(array('statsu' => true, 'messages' => array('done')));
+        flash()->addSuccess('Thank you! End Date Update successfully');
+        return $this->redirectToRoute("app_manger");
+        //return new JsonResponse(array('statsu' => true, 'messages' => array('done')));
     }
 
     /**
@@ -372,5 +376,6 @@ class MangerController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
 }
 
