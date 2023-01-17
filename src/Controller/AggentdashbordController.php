@@ -77,7 +77,7 @@ class AggentdashbordController extends AbstractController
             }
         }
 
-        return $this->render('mangerdashbord/Orderdoc.html.twig', [
+        return $this->render('manger/Orderdoc.html.twig', [
             'sunmitdoc' => $sunmitdoc,
         ]);
     }
