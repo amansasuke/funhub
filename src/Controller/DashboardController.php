@@ -768,13 +768,20 @@ class DashboardController extends AbstractController
                 "data" => new \DateTime(),
              ])
 
-            ->add('bookingtime', TimeType::class, [
-                    'label' => 'Time',                    
-                    'widget' => 'single_text',
-                    'html5' => true,
+            // ->add('bookingtime', TimeType::class, [
+            //         'label' => 'Time',                    
+            //         'widget' => 'single_text',
+            //         'html5' => true,
                     
-                    'with_seconds' => false,
-                ])
+            //         'with_seconds' => false,
+            //     ])
+            ->add('bookingtime', ChoiceType::class,[
+                    'choices'  => [
+                    '18:00' => '18:00',
+                    '19:00' => '19:00',
+                    '20:00' => '20:00',                  
+                ],
+            ])
             ->add('duration', ChoiceType::class,[
                       'choices'  => [
                     '1h' => '1',
@@ -796,6 +803,11 @@ class DashboardController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $starttime = $request->request->get('bookingtime');
+            
+            $startdate= \DateTime::createFromFormat('d/m/Y',date("d/m/Y", strtotime($startdate)));
+            print_r($startdate);
+            die();
             $Event->add($eventbooking, true);
 
             //$this->addFlash('success', 'Thank you! Your booking is Submit!');

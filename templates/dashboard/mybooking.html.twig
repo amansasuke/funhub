@@ -579,77 +579,15 @@ font-size: 16px;
             </div>
             <div class="modal-body">
                 <div class="col-12">
-                {% if final|length > 0  %}
-                    <form  action="{{ path('app_eventmangerboking') }}" method="post" class="contact-form">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12 col-lg-12">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                <label for="form_dis" class="required">Title</label>
-                                                    <input type="text" class="form-control event" id="name" name="title" placeholder="Name" required data-error="Please enter a title">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 " style="margin-top: 20px;">
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                   <div class="help-block with-errors"></div>
-                                                   <label for="form_dis" class="required">Date</label>
-                                                    <select class="form-select form-control event" name="startdate" id="loadtime" aria-label="Default select example">
-                                                    {% for date in dates %}  
-                                                      <option value="{{date.date}}">{{date.date }}</option>
-                                                    {% endfor %}
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                <label for="form_dis" class="required">Time</label>
-                                                    <select class="form-select form-control event" name="time" id="showtime" aria-label="Default select example">
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                <label for="form_dis" class="required">Durtion</label>
-                                                    <select class="form-select form-control event" name="duration" aria-label="Default select example">
-                                                    <option>1h 30min</option>
-                                                    <option>2h 30min</option>
-                                                    <option>3h 30min</option>
-
-                                                    </select>
-                                                </div>
-                                                <input type="hidden" name="userid" value="{{app.user.id}}">
-                                                <input type="hidden" name="useremail" value="{{app.user.email}}
-                                                ">
-                                                <input type="hidden" name="status" value="available">
-                                                <input type="hidden" name="mangerid" value="{{mangerId}}">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        
-                                        <button type="submit" id="submit" class="btn btn-primary">Submit Now</button>
-                                        <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </form>
-                        {% else %}
-                        {{ form_start(form,{'attr': {'class': 'contact-form'}}) }}
-                        {# <form id="contactForm" class="contact-form" data-toggle="validator"> #}        
+                    {% if final|length > 0  %}
+                        <form  action="{{ path('app_eventmangerboking') }}" method="post" class="contact-form">
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 col-lg-12">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                            {{ form_row(form.dis,{'attr': {'class': 'form-control event'}}) }}
-                                                {# <textarea class="form-control" placeholder="Massage" rows="7" data-error="Write your message" required></textarea>
-                                                <div class="help-block with-errors"></div> #}
+                                            <label for="form_dis" class="required">Title</label>
+                                                <input type="text" class="form-control event" id="name" name="title" placeholder="Name" required data-error="Please enter a title">
                                             </div>
                                         </div>
                                     </div>
@@ -658,38 +596,152 @@ font-size: 16px;
                                     <div class="row">
                                         <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                             <div class="form-group">
-                                                {{ form_row(form.bookingstart,{'attr': {'class': 'form-control event'}}) }}
-                                                {# <input type="text" class="form-control" id="name" name="name" placeholder="Name" required data-error="Please enter your name">
-                                                <div class="help-block with-errors"></div> #}
+                                                <div class="help-block with-errors"></div>
+                                                <label for="form_dis" class="required">Date</label>
+                                                <select class="form-select form-control event" name="startdate" id="loadtime" aria-label="Default select example">
+                                                {% for date in dates %}  
+                                                    <option value="{{date.date}}">{{date.date }}</option>
+                                                {% endfor %}
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                             <div class="form-group">
-                                                {{ form_row(form.bookingtime,{'attr': {'class': 'form-control event'}}) }}
-                                                {# <input type="email" class="form-control" id="email" placeholder="Email" required data-error="Please enter your email">
-                                                <div class="help-block with-errors"></div> #}
+                                            <label for="form_dis" class="required">Time</label>
+                                                <select class="form-select form-control event" name="time" id="showtime" aria-label="Default select example">
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                             <div class="form-group">
-                                                {{ form_row(form.duration,{'attr': {'class': 'form-control event'}}) }}
-                                                {# <input type="text" class="form-control" id="msg_subject" name="subject" placeholder="Subject" required data-error="Please enter your subject">
-                                                <div class="help-block with-errors"></div> #}
+                                            <label for="form_dis" class="required">Durtion</label>
+                                                <select class="form-select form-control event" name="duration" aria-label="Default select example">
+                                                <option>1h 30min</option>
+                                                <option>2h 30min</option>
+                                                <option>3h 30min</option>
+
+                                                </select>
+                                            </div>
+                                            <input type="hidden" name="userid" value="{{app.user.id}}">
+                                            <input type="hidden" name="useremail" value="{{app.user.email}}
+                                            ">
+                                            <input type="hidden" name="status" value="available">
+                                            <input type="hidden" name="mangerid" value="{{mangerId}}">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    
+                                    <button type="submit" id="submit" class="btn btn-primary">Submit Now</button>
+                                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </form>
+                    {% else %}
+                        <form  action="{{ path('app_eventmangerboking') }}" method="post" class="contact-form">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                            <label for="form_dis" class="required">Title</label>
+                                                <input type="text" class="form-control event" id="name" name="title" placeholder="Name" required data-error="Please enter a title">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 " style="margin-top: 20px;">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <div class="help-block with-errors"></div>
+                                                <label for="form_dis" class="required">Date</label>
+                                                <input type="date" name="startdate" class="form-control event">
+                                                {# <select class="form-select form-control event" name="startdate" id="loadtime" aria-label="Default select example">
+                                                {% for date in dates %}  
+                                                    <option value="{{date.date}}">{{date.date }}</option>
+                                                {% endfor %}
+                                                </select> #}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                            <label for="form_dis" class="required">Time</label>
+                                                <select class="form-select form-control event" name="time" >
+                                                <option value="18:00">18:00</option>
+                                                <option value="19:00">19:00</option>
+                                                <option value="20:00">20:00</option>
+                                                <option value="21:00">21:00</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                            <label for="form_dis" class="required">Durtion</label>
+                                                <select class="form-select form-control event" name="duration" aria-label="Default select example">
+                                                <option>1h 30min</option>
+                                                <option>2h 30min</option>
+                                                <option>3h 30min</option>
+
+                                                </select>
+                                            </div>
+                                            <input type="hidden" name="userid" value="{{app.user.id}}">
+                                            <input type="hidden" name="useremail" value="{{app.user.email}}
+                                            ">
+                                            <input type="hidden" name="status" value="available">
+                                            <input type="hidden" name="mangerid" value="{{mangerId}}">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    
+                                    <button type="submit" id="submit" class="btn btn-primary">Submit Now</button>
+                                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </form>
+                        {# {{ form_start(form,{'attr': {'class': 'contact-form'}}) }}                               
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                            {{ form_row(form.dis,{'attr': {'class': 'form-control event'}}) }}                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 " style="margin-top: 20px;">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                {{ form_row(form.bookingstart,{'attr': {'class': 'form-control event'}}) }}                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                {{ form_row(form.bookingtime,{'attr': {'class': 'form-control event'}}) }}                                              
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                {{ form_row(form.duration,{'attr': {'class': 'form-control event'}}) }}                                                
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="col-md-12">
-                                    {{ form_row(form.save,{'attr': {'class': 'btn btn-primary'}}) }}
-                                    {# <button type="submit" id="submit" class="btn btn-common">Submit Now</button>
-                                    <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                    <div class="clearfix"></div> #}
+                                    {{ form_row(form.save,{'attr': {'class': 'btn btn-primary'}}) }}                                   
                                 </div>
                             </div>
-                        {{ form_end(form) }}
+                        {{ form_end(form) }} #}
                     {% endif %}
-                    </div>
+                </div>
             </div>
         </div>
     </div>
