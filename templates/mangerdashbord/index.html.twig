@@ -318,7 +318,7 @@
                                     
                                         {% for order in assignorder %}
                                         {% for products in order.products %}
-                                        {% if order.docstatus %}
+                                        {# {% if order.docstatus %} #}
                                         <tr data-category="active">
                                             <td>
                                             {{order.id}}
@@ -396,7 +396,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        {% endif %}
+                                        {# {% endif %} #}
                                         {% endfor %}
                                         {% endfor %}
                                     </tbody>

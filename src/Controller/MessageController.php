@@ -114,6 +114,7 @@ class MessageController extends AbstractController
             $this->entityManager->persist($conversation);
             $this->entityManager->flush();
             $this->entityManager->commit();
+            return new JsonResponse($message); 
         } catch (\Exception $e) {
             $this->entityManager->rollback();
             throw $e;
