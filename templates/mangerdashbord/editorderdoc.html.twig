@@ -563,12 +563,12 @@ hr.new2 {
                 <div class="container-fluid">
                     <div class="header">
                         <h1 class="header-title">
-                           Edit Order
+                           Edit Order document Status
                         </h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard-default.html">Dashboard</a></li>
-                                <li class="breadcrumb-item active"><a href="#"> Edit Order</a></li>
+                                <li class="breadcrumb-item active"><a href="#"> Edit Order document Status</a></li>
                                 {# <li class="breadcrumb-item active" aria-current="page">Blank Page</li> #}
                             </ol>
                         </nav>
@@ -577,7 +577,7 @@ hr.new2 {
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0">Order's</h5>
+                                    <h5 class="card-title mb-0">Edit Order document Status</h5>
                                 </div>
                                 <div class="card-body">
                                     {# {{ form_start(form,{'attr': {'class': 'login-form'}}) }}
@@ -599,12 +599,12 @@ hr.new2 {
                                {#  {% for d in doc %} #}                              
                                 {{ form_start(form,{'attr': {'class': 'login-form'}}) }}
                                     <label class="tg-fileuploadlabel" for="tg-photogallery">
-                                    <div class="textwidget" style="padding:5px;">
+                                    <div class="textwidget" style="padding:5px; width: 33%;">
                                      {{ form_row(form.docstatus,{'attr': {'class': 'form-control input-md'}}) }}
                                     </div>
                                     {# {{ form_row(form.doclink,{'attr': {'class': 'tg-fileinput'}}) }} #}
-                                    <div class="textwidget" style="padding:5px;">
-                                     {{ form_row(form.save,{'attr': {'class': 'btn btn-primary'}}) }}
+                                    <div class="textwidget" style="padding:5px; width: 33%;">
+                                     {{ form_row(form.save,{'attr': {'class': 'btn btn-success'}}) }}
                                     </div>
                                     {# <span>Drop files <b></b></span>
                                     <span>Or</span>

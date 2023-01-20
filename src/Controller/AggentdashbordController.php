@@ -82,6 +82,36 @@ class AggentdashbordController extends AbstractController
         ]);
     }
 
+/**
+     * @Route("/staffdoc/{id}")
+     */
+    public function staffdoc($id,ManagerRegistry $doctrine, OrderdocRepository $Orderdoc): Response
+    {
+        //$this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_staff');
+        $Orderdoc = $Orderdoc->findBy([]);
+
+        $sunmitdoc =[];
+        $i = 0;
+        foreach($Orderdoc as $Ordoc){
+            foreach($Ordoc->getOrderid() as $Oroc){
+                if($Oroc->getId() == $id){
+                    $sunmitdoc[$i]['id'] = $Oroc->getId();
+                    $sunmitdoc[$i]['docid'] = $Ordoc->getId();
+                    $sunmitdoc[$i]['docname'] = $Ordoc->getDocname();
+                    $sunmitdoc[$i]['doclink'] = $Ordoc->getDoclink();
+                    $sunmitdoc[$i]['docstatus'] = $Ordoc->getStatus();
+                    $sunmitdoc[$i]['remark'] = $Ordoc->getRemark();
+
+                    $i++;
+                }
+            }
+        }
+
+        return $this->render('mangerdashbord/staffdoc.html.twig', [
+            'sunmitdoc' => $sunmitdoc,
+        ]);
+    }
+
     /**
      * @Route("/editorder/{id}")
      */
@@ -146,9 +176,12 @@ class AggentdashbordController extends AbstractController
 
         $form = $this->createFormBuilder($Orderdoc)
             
-            ->add('docstatus', TextType::class,array(
-                      'data' => ' ',
-                  ))
+            ->add('docstatus', ChoiceType::class,[
+                    'choices'  => [
+                    'Pending' => '0',
+                    'Done' => '1',                  
+                ]
+            ])
         
             ->add('save', SubmitType::class, ['label' => 'Edit order documents Status'])
             ->getForm();

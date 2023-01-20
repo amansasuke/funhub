@@ -348,7 +348,7 @@
                                             <td data-title="Category"><span class="adcategories">${{products.price}}</span></td>
                                             {% if order.docstatus %}
                                             <td >
-                                            <a class="btn  btn-success" href="#{}"><i class="fa fa-check"></i></a>
+                                            <a class="btn  btn-success" href="#"><i class="fa fa-check"></i></a>
                                         {% else %}
                                             <td >
                                             <a class="btn  btn-info" href="#">panding</a>
@@ -359,7 +359,7 @@
                                             </td> #}
                                             <td data-title="Action">
                                                {#  <div class="btns-actions"> #}
-                                                    <a class="btn btn-warning" href="submitdoc/{{order.id}}" style="color: #fff;"><i class="lni-eye"></i></a>
+                                                    <a class="btn btn-warning" href="staffdoc/{{order.id}}" style="color: #fff;"><i class="lni-eye"></i></a>
                                                     {# <a class="btn-action btn-edit" href="#"><i class="lni-pencil"></i></a>
                                                     <a class="btn-action btn-delete" href="#"><i class="lni-trash"></i></a> #}
                                                 {# </div> #}
@@ -373,7 +373,7 @@
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle">Set Start Date for a Order</h5>
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">Order Work Status</h5>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
@@ -381,7 +381,7 @@
                                                             <form action="{{ path('app_agentstatus',  {'id': order.id}) }}" method="post">
                                                                 <div class="modal-body">
                                                                     <div class="form-group">
-                                                                        <label for="exampleInputEmail1">Start Date</label>
+                                                                        <label for="exampleInputEmail1">Status</label>
                                                                         <input type="text" class="form-control" name="agentstatus" value="">
                                                                         
                                                                     </div>
