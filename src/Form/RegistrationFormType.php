@@ -79,7 +79,7 @@ class RegistrationFormType extends AbstractType
                     // max length allowed by Symfony for security reasons
                     'max' => 15,
                 ]),
-                'label' => 'Phone No',
+                
             ]]
             )
             ->add('gender', ChoiceType::class, [

@@ -50,7 +50,7 @@ class AdddocController extends AbstractController
                       'label' => ' ',
                   ))
             ->add('status', HiddenType::class,array(
-                      'data' => 0,
+                      'data' => '',
                   ))
             ->add('remark', HiddenType::class,array(
                       'data' => 'Wait for approval',
@@ -101,9 +101,12 @@ class AdddocController extends AbstractController
                 // instead of its contents
                 // docname
                 //$Orderdoc->setDocname($docname);
+                $status='0';
                 $entityManager = $this->getDoctrine()->getManager();
                 $Orderdoc->setDocname($docname);
                 $Orderdoc->setDoclink($newFilename);
+                $Orderdoc->setStatus($status);
+
                 // foreach ($order as $key => $value) {
                 //     print_r($value->getid());
                 //     $Orderdoc->getOrderid()->add($value->getId());
