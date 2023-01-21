@@ -365,10 +365,10 @@
                                             </td>
                                             <td data-title="Action"> 
                                                 <p> {{order.agentstatus}}</p>
-                                                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#endexampleModalCenter">
+                                                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#endexampleModalCenter{{order.id}}">
                                                     Submit Status
                                                 </button>
-                                                <div class="modal fade" id="endexampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal fade" id="endexampleModalCenter{{order.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle{{order.id}}" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
