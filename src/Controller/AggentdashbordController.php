@@ -40,8 +40,10 @@ class AggentdashbordController extends AbstractController
         foreach ($order as $key => $value) {
             $userod= $value->getUser();
             foreach ($userod as $key => $useid) {
-
+                if($useid->getId() == $userId ){
+                //print_r($useid->getId());echo "==";  print_r($userId); echo"<br>";
                 $assignorder[] = $doctrine->getRepository(Order::class)->find($value->getId());
+                }
             } 
         }
 
