@@ -91,10 +91,15 @@ class RegistrationFormType extends AbstractType
             ->add('user_category', ChoiceType::class, [
                 'choices'  => [
                     'Choose your category' => NULL,
-                    'Individual' => 'individual',
-                    'business owner' => 'business owner',
-                    'NPO' => 'NPO',
-                    'trader' => 'trader',                  
+                    'Individual' => 'Individual',
+                    'Proprietor (Business)' => 'Proprietor (Business)',
+                    'Partnership Firm' => 'Partnership Firm',
+                    'Private Limited Company' => 'Private Limited Company ',                  
+                    'Limited Liability Partnership (LLP)' => 'Limited Liability Partnership (LLP)',
+                    'Non-Profit Organisation' => 'Non-profit Organisation',
+                    'One Person Company' => 'One Person Company',
+                    'Start-Up' => 'Start-Up',
+
                 ],
                 'label' => 'User Category',
             ])

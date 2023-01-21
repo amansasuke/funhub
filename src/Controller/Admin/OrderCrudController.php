@@ -12,6 +12,10 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+
 
 class OrderCrudController extends AbstractCrudController
 {
@@ -26,8 +30,14 @@ class OrderCrudController extends AbstractCrudController
         return [
             TextField::new('name'),
             TextField::new('email'),
-            AssociationField::new('products'),
-            AssociationField::new('user'),
+            ///AssociationField::new('products'),
+            CollectionField::new('products')->setTemplatePath('admin/fields/orderpro.html.twig'),
+            //AssociationField::new('user'),
+            CollectionField::new('user')->setTemplatePath('admin/fields/orderstaff.html.twig'),
+            DateField::new('startdate'),
+            DateField::new('enddate'),
+            TextField::new('agentstatus'),
+            BooleanField::new('docstatus'),
         ];
     }
     

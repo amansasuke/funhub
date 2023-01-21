@@ -1,0 +1,14 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{# @var field \EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto #}
+{# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
+{% if ea.crud.currentAction == 'detail' %}
+    <table class="table table-striped">
+        {% for value in field.value %}
+        <tr>
+            <td>{{ value.name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <span class="badge badge-primary">{{ field.formattedValue }}</span>
+{% endif %}

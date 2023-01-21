@@ -99,40 +99,175 @@
                         <div class="tracking-content">Documents required<span class="badge badge-success" style="width: 80px;color: #fff; cursor: pointer; margin-bottom: 5px;margin-top: 10px;">Done</span></div>
                         {% else %}
                         <div class="tracking-content">Documents required<span class="badge badge-info" style="width: 80px;color: #fff; cursor: pointer; margin-bottom: 5px;margin-top: 10px;">Panding</span></div>
+                        <div class="row  pt-4 mb-2" style="border: 1px dashed #e5e5e5;">
                         {% for final in finalredoc %}
                         {% if pro.id == final.prodid %}
-                        <div class="post-btn" style="padding-top: 10px;">
+                        <div class="col-md-4 col-lg-4 " >
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col mt-0">
+                                            <h5 class="card-title">{{ final.docinfo }}</h5>
+                                        </div>
+                                        
+                                        <a href="adddoc/{{ord.id}}?docname={{ final.docinfo }}" > 
+                                        <div class="col-auto">
+                                            <div class="avatar">
+                                                <div class="avatar-title rounded-circle bg-danger-dark">
+                                                    <i class=" fa fa-plus"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </a>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>                          
+                        {# <div class="post-btn" style="padding-top: 10px;">
                             <a href="adddoc/{{ord.id}}?docname={{ final.docinfo }}" class="btn btn-danger" style="color:#fff">{{ final.docinfo }}
                                 <i class="fa fa-plus" style="padding-left: 10px;"> </i>
                             </a>
-                        </div>
+                        </div> #}
                         {% endif %}
                         {% endfor %}
+                        </div>
+                        <div class="row pt-4"  style="border: 1px dashed #e5e5e5;">
                         {% for final in finalredocsub %}
                         {% if ord.id == final.orderid %}
-                        <div class="post-btn" style="padding-top: 10px;">
-                            {% if final.status == 0 %}
-                            <a href="#" class="btn btn-info" style="color:#fff">{{ final.submitdoc }}
-                                <i class="fa fa-check" style="padding-left: 10px;"> </i>
-                            </a>
-                            {% endif %}
-                            {% if final.status == 2 %}
-                            <a href="#" class="btn btn-warning" style="color:#fff">{{ final.submitdoc }}
-                                <i class="fa fa-check" style="padding-left: 10px;"> </i>
-                            </a>
-                            {% endif %}
-                            {% if final.status == 1 %}
-                            <a href="#" class="btn btn-success" style="color:#fff">{{ final.submitdoc }}
-                                <i class="fa fa-check" style="padding-left: 10px;"> </i>
-                            </a>
-                            {% endif %}
-                            {% if final.remark| length != 0 %}
-                            <a href="#" class="btn btn-warning" style="color:#fff">{{ final.remark }}
-                            </a>
-                            {% endif %}
-                        </div>
+                            {# <div class="post-btn" style="padding-top: 10px;">
+                                {% if final.status == 0 %}
+                                <a href="#" class="btn btn-info" style="color:#fff">{{ final.submitdoc }}
+                                    <i class="fa fa-check" style="padding-left: 10px;"> </i>
+                                </a>
+                                {% endif %}
+                                {% if final.status == 2 %}
+                                <a href="#" class="btn btn-warning" style="color:#fff">{{ final.submitdoc }}
+                                    <i class="fa fa-check" style="padding-left: 10px;"> </i>
+                                </a>
+                                {% endif %}
+                                {% if final.status == 1 %}
+                                <a href="#" class="btn btn-success" style="color:#fff">{{ final.submitdoc }}
+                                    <i class="fa fa-check" style="padding-left: 10px;"> </i>
+                                </a>
+                                {% endif %}
+                                {% if final.remark| length != 0 %}
+                                <a href="#" class="btn btn-warning" style="color:#fff">{{ final.remark }}
+                                </a>
+                                {% endif %}
+                            </div> #}
+                            <div class="col-md-4 col-lg-4">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+										<div class="col mt-0">
+											<h5 class="card-title">{{ final.submitdoc }}</h5>
+										</div>
+										
+                                        {% if final.status == 0 %}                                     
+                                        <div class="col-auto">
+                                            <div class="avatar">
+                                                <div class="avatar-title rounded-circle bg-info-dark">
+                                                    <i class=" fa fa-check"></i>
+                                                </div>
+                                            </div>
+                                        </div>                                        
+                                        {% endif %}
+                                        {% if final.status == 2 %}
+                                        <a href="adddoc/{{ord.id}}?docname={{ final.submitdoc }}" > 
+                                        <div class="col-auto">
+                                            <div class="avatar">
+                                                <div class="avatar-title rounded-circle bg-warning-dark">
+                                                    <i class=" fa fa-repeat"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </a>
+                                        {% endif %}
+                                        {% if final.status == 1 %}
+                                        <a href="" > 
+                                        <div class="col-auto">
+                                            <div class="avatar">
+                                                <div class="avatar-title rounded-circle bg-success-dark">
+                                                    <i class="fa fa-thumbs-up"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </a>
+                                        {% endif %}
+									</div>
+									
+									<div class="mb-0">
+                                        {% if final.status == 0 %}
+                                            <span class="text-info"> <i class="mdi mdi-arrow-bottom-right"></i>
+                                                <i class="fa fa-check"></i> 
+                                            </span>
+                                        {% endif %}
+                                        {% if final.status == 1 %}
+                                            <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i>
+                                                <i class="fa fa-thumbs-up"></i> 
+                                            </span>
+                                        {% endif %}
+                                        {% if final.status == 2 %}
+                                            <span class="text-warning"> <i class="mdi mdi-arrow-bottom-right"></i>
+                                                <i class="fa fa-repeat"></i> 
+                                            </span>
+                                        {% endif %}
+										{{ final.remark }}
+									</div>
+								</div>
+							</div>
+						</div>
+                        {# <div class="col-md-4 col-lg-4 " >
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col mt-0">
+                                            <h5 class="card-title">{{ final.submitdoc }}</h5>
+                                        </div>
+                                        {% if final.status == 0 %}
+                                        <a href="" > 
+                                        <div class="col-auto">
+                                            <div class="avatar">
+                                                <div class="avatar-title rounded-circle bg-info-dark">
+                                                    <i class=" fa fa-plus"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </a>
+                                        {% endif %}
+                                        {% if final.status == 2 %}
+                                        <a href="" > 
+                                        <div class="col-auto">
+                                            <div class="avatar">
+                                                <div class="avatar-title rounded-circle bg-warning-dark">
+                                                    <i class=" fa fa-plus"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </a>
+                                        {% endif %}
+                                        {% if final.status == 1 %}
+                                        <a href="" > 
+                                        <div class="col-auto">
+                                            <div class="avatar">
+                                                <div class="avatar-title rounded-circle bg-success-dark">
+                                                    <i class=" fa fa-check"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </a>
+                                        {% endif %}
+                                        <div class="mb-0">
+										<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i><i class=" fa fa-check"></i> </span>
+										{{ final.remark }}
+									</div>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div> #}
                         {% endif %}
                         {% endfor %}
+                        </div>
                         {% for d in doc %}
                         {% if pro.id == d.productinfo.id %}
                         {# <div class="post-btn" style="padding-top: 10px;">
