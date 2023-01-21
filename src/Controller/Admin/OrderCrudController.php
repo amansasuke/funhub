@@ -34,8 +34,8 @@ class OrderCrudController extends AbstractCrudController
             CollectionField::new('products')->setTemplatePath('admin/fields/orderpro.html.twig'),
             //AssociationField::new('user'),
             CollectionField::new('user')->setTemplatePath('admin/fields/orderstaff.html.twig'),
-            DateField::new('startdate'),
-            DateField::new('enddate'),
+            // DateField::new('startdate'),
+            // DateField::new('enddate'),
             TextField::new('agentstatus'),
             BooleanField::new('docstatus'),
         ];
