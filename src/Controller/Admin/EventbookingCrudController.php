@@ -29,7 +29,7 @@ class EventbookingCrudController extends AbstractCrudController
         return [
             AssociationField::new('manger'),
             //DateField::new('Bookingstart'),
-            TimeField::new('Bookingtime'),
+            //TimeField::new('Bookingtime'),
             TextField::new('Duration'),
             NumberField::new('Userid'),
             TextField::new('Usermail'),
