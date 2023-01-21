@@ -50,7 +50,7 @@ class DocForClientController extends AbstractController
         $form = $this->createFormBuilder($docForClient)
             ->add('Ordername', EntityType::class,array(
                       'class' => Order::class,
-                      'choice_label' => 'Name',
+                      'choice_label' => 'id',
                   ))
             ->add('Name', TextType::class,array(
                       'label' => ' ',
