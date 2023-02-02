@@ -31,7 +31,7 @@ class ProductCrudController extends AbstractCrudController
 
         $fields= [
             TextField::new('name'),
-            AssociationField::new('service'),
+            AssociationField::new('service', 'Category'),
             TextEditorField::new('description'),
             TextEditorField::new('howdone'),
             TextEditorField::new('inclusions'),

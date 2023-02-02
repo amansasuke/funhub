@@ -114,7 +114,7 @@ class MessageController extends AbstractController
             $this->entityManager->persist($conversation);
             $this->entityManager->flush();
             $this->entityManager->commit();
-            return new JsonResponse($message); 
+            //return new JsonResponse($message); 
         } catch (\Exception $e) {
             $this->entityManager->rollback();
             throw $e;
@@ -133,7 +133,7 @@ class MessageController extends AbstractController
                     ? true : false
             );
         }, $messages);
-
+        
         $conversations = $this->conversationRepository->findConversationsByUser($this->getUser()->getId());
         return $this->render('dashboard/chat.html.twig', [
             'messages' => $messages , 

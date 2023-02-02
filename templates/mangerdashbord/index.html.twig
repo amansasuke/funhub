@@ -308,7 +308,7 @@
                                         <tr>                                           
                                             <th>order Id</th>
                                             <th>Product</th>
-                                            <th>user name</th>                                                                                        
+                                            <th>Start Date</th>                                                                                        
                                             <th>status</th>
                                             <th>view doc</th>
                                             <th>Edit</th>
@@ -328,7 +328,7 @@
                                                
                                             </td>
                                             <td data-title="Title">
-                                                {{order.name}}                                              
+                                                {{order.startdate|date('d/m/Y')}}                                              
                                             </td>
                                             {# <td data-title="Title">
                                                 <h3>{{order.email}}</h3>

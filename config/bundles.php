@@ -18,4 +18,5 @@ return [
     Knp\Bundle\GaufretteBundle\KnpGaufretteBundle::class => ['all' => true],
     Flasher\Symfony\FlasherSymfonyBundle::class => ['all' => true],
     Flasher\Toastr\Symfony\FlasherToastrSymfonyBundle::class => ['all' => true],
+    Symfony\Bundle\MercureBundle\MercureBundle::class => ['all' => true],
 ];
