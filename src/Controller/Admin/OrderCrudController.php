@@ -30,8 +30,8 @@ class OrderCrudController extends AbstractCrudController
         return [
             TextField::new('name'),
             TextField::new('email'),
-            ///AssociationField::new('products'),
-            CollectionField::new('products')->setTemplatePath('admin/fields/orderpro.html.twig'),
+            AssociationField::new('products')->setFormTypeOption('choice_label', 'name'),
+            //CollectionField::new('products')->setTemplatePath('admin/fields/orderpro.html.twig'),
             //AssociationField::new('user'),
             CollectionField::new('user')->setTemplatePath('admin/fields/orderstaff.html.twig'),
             // DateField::new('startdate'),

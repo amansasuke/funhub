@@ -32,9 +32,8 @@
                         {% for product in pro %}
                             <li class="list-group-item d-flex justify-content-between lh-condensed">
                                 <div>
-                                <small class="text-muted">Service name</small>
-                                    <h6 class="my-0">{{product.name}}</h6>
-                                    
+                                    <small class="text-muted">Service name</small>
+                                    <h6 class="my-0">{{product.name}}</h6>                                    
                                 </div>
                                 <div>
                                 <small class="text-muted">Price</small>
@@ -64,11 +63,11 @@
                                 <h6 class="text-success">₹{{waltebalance| number_format(2)}}</h6>
                             </li>
                             <li class="list-group-item d-flex justify-content-between bg-light">
-                                <div class="text-success">
-                                    <h6 class="my-0">Points Earned</h6>
-                                    <small>These points will be added to your wallet balance  </small>
+                                <div class="text-info">
+                                    <h6 class="my-0">Current Points</h6>
+                                    <small>This is you Current wallet balance  </small>
                                 </div>
-                                <h6 class="text-success">₹{{waltebalanceold| number_format(2)}}</h6>
+                                <h6 class="text-info">₹{{waltebalanceold| number_format(2)}}</h6>
                             </li>
                             
                             <li class="list-group-item d-flex justify-content-between">
@@ -80,19 +79,36 @@
                                 </div> 
                                 <strong>
                                     {% if app.request.get('usewalet') %}
-                                        {% if app.request.get('usewalet')> waltebalanceold%}
-                                            <span style="color: red">Not enogh walte balnce</span><br>
+                                        {% if app.request.get('usewalet')> waltebalanceold %}
+                                            <span style="color: red">You don’t have enough Wallet Balance</span><br>
                                             ₹{{ total | number_format(2) }}
                                         {% else %}
-                                            {%  set usewel = total - app.request.get('usewalet') %}
-                                            ₹{{ total | number_format(2) }}<br><span style="color: 
-                                            red">-{{app.request.get('usewalet')| number_format(2)}}</span><br>
-                                             ₹{{ usewel| number_format(2)}}
+                                            ₹{{ total | number_format(2) }}<br>
+                                            {%  set total = total - app.request.get('usewalet') %}
+                                            <span style="color: 
+                                            red">-{{app.request.get('usewalet')| number_format(2)}}</span><a href="/checkout" style="color: 
+                                            red"> <i class="fa fa-times"></i> </a>
+                                            <br>
+                                             ₹{{ total| number_format(2)}} 
                                         {% endif %}
                                      {% else %}
                                         ₹{{ total | number_format(2) }}
-                                    {% endif %}                              
+                                    {% endif %}
+                                    <br> 
+                                    <span>+ 18% GST</span>                             
                                 </strong>
+                                
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <div >
+                                    <h6 class="my-0">Grand Total</h6>                                    
+                                </div> 
+                                <strong>                                                                           
+                                        {%  set gsttotal = ( total / 100) * 18 %}
+                                        {%  set grandtotal = gsttotal + total %}
+                                       ₹{{ grandtotal| number_format }}.00                                                                
+                                </strong>
+                                
                             </li>
                         </ul>
                         {% if waltebalanceold |length >0 %}
@@ -100,11 +116,11 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="usewalet" placeholder="Use your Wallet Balance">
                                     <div class="input-group-append">
-                                        <button type="submit" class="btn btn-common">Wallet</button>
+                                        <button type="submit" class="btn btn-common">Redeem</button>
                                     </div>
                                 </div>
                             </form>
-                        {%endif %}
+                        {% endif %}
 
                         <form class="card p-2">
                             <div class="input-group">
@@ -231,7 +247,7 @@
                         {{ form_start(form,{'attr': {'class': 'login-form'}}) }}
                         <div class="form-group">
                             <div class="input-icon">
-                                <i class="lni-user" style="padding-top:10px;"></i>
+                                
                                 {{ form_row(form.name,{'attr': {'class': 'form-control'}}) }}
                                 {# <input type="text" id="Name" class="form-control" name="email" placeholder="Username"> #}
                             </div>
@@ -242,13 +258,11 @@
                                 Please enter your Email
                             </div>
                         </div>
-                        <div class="mb-3">
-                        <label> Phone No </label>
-                            <input type="text" name="phone" value="{{phone}}" class="form-control input-md" >
-                            {# {{ form_row(form.email,{'attr': {'class': 'form-control input-md'}}) }} #}
-                            <div class="invalid-feedback">
-                                Please enter your Phone number
-                            </div>
+                        <div class="mb-3">                        
+                            {{ form_row(form.phoneno,{'attr': {'class': 'form-control '}}) }}                             
+                        </div>
+                        <div class="mb-3">                        
+                            {{ form_row(form.gstno,{'attr': {'class': 'form-control'}}) }}                            
                         </div>
                         <div class="mb-3">
                             {{ form_row(form.address,{'attr': {'class': 'form-control input-md'}}) }}
@@ -470,11 +484,11 @@
         <div id="copyright">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
+                    {# <div class="col-md-12">
                         <div class="site-info text-center">
                             <p><a target="_blank" href="https://templateshub.net">Templates Hub</a></p>
                         </div>
-                    </div>
+                    </div> #}
                 </div>
             </div>
         </div>

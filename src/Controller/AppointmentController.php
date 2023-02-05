@@ -186,22 +186,81 @@ class AppointmentController extends AbstractController
     /**
      * @Route("/{id}", name="app_appointment_show", methods={"GET"})
      */
-    public function show(Appointment $appointment): Response
+    public function show(Appointment $appointment, UserRepository $userR): Response
     {
+        $users = $userR->findBy([]);
+
         $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         return $this->render('appointment/show.html.twig', [
             'appointment' => $appointment,
+            'user'=>$users,
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="app_appointment_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Appointment $appointment, AppointmentRepository $appointmentRepository): Response
+    public function edit($id, Request $request, ManagerRegistry $doctrine, Appointment $appointment, AppointmentRepository $appointmentRepository,  UserRepository $userR): Response
     {
         $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $form = $this->createForm(AppointmentType::class, $appointment);
         $form->handleRequest($request);
+
+        $appointment  = $doctrine->getRepository(Appointment::class)->find($id); 
+        
+        $apname= $doctrine->getRepository(User::class)->find($appointment->getClientId());
+        
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user->getUsername();
+        $us = $userR->findBy(array('Manager'=>$user));
+        $choices = [];
+        $i=0;
+        foreach ($us as $choice) {
+            if ($apname != $choice->getName() ){
+                # code...
+                $choices[$i]['id'] = $choice->getId();
+                $choices[$i]['name'] = $choice->getName();
+                $i++;
+            }
+
+        }
+        if ($request->isMethod('POST')) {
+            $ClientId = $request->request->get('ClientId');
+            $startdate = $request->request->get('startdate');
+            $enddate = $request->request->get('enddate');
+
+            $starttime = $request->request->get('starttime');
+            $endtime = $request->request->get('endtime');
+            
+
+            $endtime = \DateTime::createFromFormat('h:i A',date('h:i A', strtotime($endtime)));            
+            $enddate= \DateTime::createFromFormat('d/m/Y',date("d/m/Y", strtotime($enddate)));
+
+            $startdate= \DateTime::createFromFormat('d/m/Y',date("d/m/Y", strtotime($startdate)));
+            $starttime= \DateTime::createFromFormat('h:i A',date("h:i A", strtotime($starttime)));
+            //$endtime= \DateTime::createFromFormat('h:i:sa',date("h:i:sa", strtotime("+1 hour", strtotime($starttime))));
+            
+            $entityManager =$this->getDoctrine()->getManager();
+            $appointment  = $doctrine->getRepository(Appointment::class)->find($id);
+            //$userdat = $doctrine->getRepository(User::class)->find($appointment->getMangerId());
+            //$clientuserdat = $doctrine->getRepository(User::class)->find($appointment->getClientId());
+            
+            $appointment->setClientId($ClientId);
+
+            $appointment->setStartDate($startdate);
+            $appointment->setEndDate($enddate);
+            $appointment->setStartTime($starttime);
+            $appointment->setEndTime($endtime);
+            
+            
+            $entityManager->persist($appointment);
+            $entityManager->flush();
+
+            flash()->addSuccess('Thank you! appointment Edit successfully');
+        //return $this->redirectToRoute("app_dashboard");
+
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $appointmentRepository->add($appointment, true);
@@ -211,7 +270,8 @@ class AppointmentController extends AbstractController
 
         return $this->renderForm('appointment/edit.html.twig', [
             'appointment' => $appointment,
-            'form' => $form,
+            'choices' => $choices,
+            'apname' => $apname,
         ]);
     }
 

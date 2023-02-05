@@ -316,7 +316,7 @@
                                     
                                     
                                         {% for order in assignorder %}
-                                        {% for products in order.products %}
+                                        
                                         {# {% if order.docstatus %} #}
                                         <tr data-category="active">
                                             <td>
@@ -324,11 +324,12 @@
                                             </td>
                                           
                                             <td data-title="Title">
-                                                {{products.name}}
+                                                {{order.products}}
                                                
                                             </td>
                                             <td data-title="Title">
-                                                {{order.startdate|date('d/m/Y')}}                                              
+                                            {{ order.startdate ? order.startdate|date('Y-m-d') : 'Not Started' }}
+                                                                                          
                                             </td>
                                             {# <td data-title="Title">
                                                 <h3>{{order.email}}</h3>
@@ -396,7 +397,7 @@
                                             </td>
                                         </tr>
                                         {# {% endif %} #}
-                                        {% endfor %}
+                                        
                                         {% endfor %}
                                     </tbody>
                                 </table>

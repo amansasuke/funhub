@@ -37,6 +37,7 @@ class RegistrationFormType extends AbstractType
                         'message' => 'You should agree to our terms.',
                     ]),
                 ],
+                'label' => 'I AGREE WITH TERMS AND CONDITIONS',
             ])
             ->add('plainPassword', RepeatedType::class, [
                 // instead of being set onto the object directly,

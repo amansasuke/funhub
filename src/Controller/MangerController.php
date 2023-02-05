@@ -23,7 +23,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Constraints\Time;
 
-use App\Repository\AssignGroupRepository;
+
 use App\Repository\AssignGroupUserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\AssignGroup;
@@ -52,42 +52,13 @@ class MangerController extends AbstractController
      * @Route("/manger", name="app_manger")
      * 
      */
-    public function index(ManagerRegistry $doctrine,AssignGroupRepository $assignGroup, AssignGroupUserRepository $assignUser, UserRepository $userR): Response
+    public function index(ManagerRegistry $doctrine, UserRepository $userR): Response
     {
         $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $us = $userR->findBy(array('Manager'=>$user));
-        // $user->getUsername();
-        // $assignGroup = $assignGroup->findBy([]);
-        // $groupId='';
-        // foreach($assignGroup as $assign){
-        //     foreach($assign->getUser() as $users){
-        //         if($users->getId() == $user->getId()){
-        //             $mangerId = $users->getId();
-        //             $groupId = $assign->getId();
-        //         }
-        //     }
-        // }
-        // $AssignGroupM = $doctrine->getRepository(AssignGroup::class)->findBy(
-        //     ['id' => $groupId]
-        // );
-        // $mangerId =[];
-        // foreach($AssignGroupM as $AssignM){
-        //     foreach($AssignM->getUser() as $users){
-        //         if($users->getId() != $user->getId()){
-        //             $mangerId[] = $users->getId();
-        //         }
-        //     }           
-        // }
-
-        // $us =[];
-        // foreach ($mangerId as $key => $manger) {
-
-        //     $us[] = $userR->find($manger);
-            
-        // }
+        $us = $userR->findBy(array('Manager'=>$user));        
 
         return $this->render('manger/index.html.twig', [
             'users' => $us,
@@ -95,9 +66,53 @@ class MangerController extends AbstractController
     }
 
     /**
+     * @Route("/mangerstaff", name="app_mangerstaff")
+     * 
+     */
+    public function indexstaff(ManagerRegistry $doctrine, UserRepository $userR): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $us = $userR->findBy(array('Manager'=>$user));        
+
+        return $this->render('manger/assignstaff.html.twig', [
+            'users' => $us,
+        ]);
+    }
+
+    /**
+     * @Route("/mangerstafforder/{id}", name="app_staffdashbordorder")
+     * 
+     */
+    public function stafforderman($id ,ManagerRegistry $doctrine, UserRepository $userR): Response
+    {   
+        
+        $user = $userR->find($id);
+        $userId = $user->getId();
+        $order = $doctrine->getRepository(Order::class)->findBy([]);
+
+        foreach ($order as $key => $value) {
+            $userod= $value->getUser();
+            foreach ($userod as $key => $useid) {
+                if($useid->getId() == $userId ){
+                //print_r($useid->getId());echo "==";  print_r($userId); echo"<br>";
+                $assignorder[] = $doctrine->getRepository(Order::class)->find($value->getId());
+                }
+            } 
+        }
+
+
+        return $this->render('manger/staffassignorder.html.twig', [
+            'assignorder' => $assignorder,
+        ]);
+    }
+
+    /**
      * @Route("/userorder/{id}", name="app_userorder")
      */
-    public function userorder($id ,ManagerRegistry $doctrine,AssignGroupRepository $assignGroup, AssignGroupUserRepository $assignUser, UserRepository $userR): Response
+    public function userorder($id ,ManagerRegistry $doctrine, AssignGroupUserRepository $assignUser, UserRepository $userR): Response
     {
         $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_ADMIN');
@@ -121,19 +136,20 @@ class MangerController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $Orderd = $doctrine->getRepository(Order::class)->find($id);
         //$order = new Order;
-        $users = $doctrine->getRepository(User::class)->findBy(
-            ['id' => 3]
-        );
-        $team = 3;
+        
+      
 
         $form = $this->createFormBuilder($Orderd)
             
             ->add('user', EntityType::class,array(
                       'class' => User::class,
                       'query_builder' => function (EntityRepository $er) {
+                        $user = $this->get('security.token_storage')->getToken()->getUser();
                             return $er->createQueryBuilder('u')
                             ->andWhere('u.user_category = :searchTerm')
+                            ->andWhere('u.Manager = :searchManager')
                             ->setParameter('searchTerm', 'staff')
+                            ->setParameter('searchManager', $user->getId())
                                 ->orderBy('u.id', 'ASC');
                         },
                       'multiple' => true,
@@ -162,7 +178,8 @@ class MangerController extends AbstractController
                 $entityManager->flush();
 
                 flash()->addSuccess('Thank you! Staff Assign successfully');
-                
+
+                return $this->redirectToRoute("app_userorder",array('id' => $id));
                 // return $this->render('manger/assignuser.html.twig', [
                 //   'form' =>$form->createView(),
                 //   'users'=>$users,
@@ -171,7 +188,6 @@ class MangerController extends AbstractController
 
         return $this->render('manger/assignuser.html.twig', [
           'form' =>$form->createView(),
-          'users'=>$users,
         ]);
     }
 

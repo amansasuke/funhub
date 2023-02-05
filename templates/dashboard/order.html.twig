@@ -1,11 +1,11 @@
 <div class="panel-group" id="accordion">
     {% for ord in order %}
-    {% for pro in ord.products %}
+    {# {% for pro in ord.products %} #}
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion{{ord.id}}" href="#collapse{{ord.id}}" style="font-size:20px;">
-                    {{pro.name}} $ {{pro.price}}
+                    {{ord.products}} ₹ {{ord.products.price}}
                 </a>
             </h4>
         </div>
@@ -37,10 +37,10 @@
                             <div class="tracking-content">Onboad Call </div>
                             <!-- Button trigger modal -->
                             
-                            <!-- Modal -->
-                            <h5>call Availability </h5>
+                            <!-- Modal -->                            
                             {% for appointment in appointments %}
-                            {% if appointment.ClientStatus!="submit" %}
+                            {% if appointment.ClientStatus !="submit" %}
+                            <h5>Call Availability </h5>
                             <table>
                                 <tr>
                                     <th>Start Date :</th>
@@ -57,6 +57,19 @@
                                 Book an Appointment
                             </button>
                                 {% include '/dashboard/apoointmodal.html.twig' %}
+                            {% else %}
+                            <h5>Call Schedule  </h5>
+                            <table>
+                                <tr>
+                                    <th>Start Date :</th>
+                                    <td>{{ appointment.clientStartDate ? appointment.ClientStartDate|date('Y-m-d') : '' }} 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Start Time :</th>
+                                    <td>{{ appointment.clientStartTime ? appointment.clientStartTime|date('h:i A') : '' }} - {{ appointment.clientEndTime ? appointment.clientEndTime|date('h:i A') : '' }}</td>
+                                </tr>
+                            </table>
                             {% endif %}
                             {% endfor %}
                         </div>
@@ -70,7 +83,7 @@
                                         </svg>
                                     </div>
                                     <div class="tracking-date"><img src="assets\img\logo\agent.png" class="img-responsive" alt="order-placed" height="40px" /></div>
-                                    <div class="tracking-content">staff for Order </div>
+                                    <div class="tracking-content">Staff for Order </div>
                                     
                                     {{ user.name}}                                
                                 </div>
@@ -84,7 +97,7 @@
                                     </div>
                                     <div class="tracking-date"><img src="assets\img\logo\agent.png" class="img-responsive" alt="order-placed" height="40px" /></div>
                                     <div class="tracking-content">staff for Order </div>
-                                    staff Not Assign                               
+                                    Staff not Assigned                               
                                 </div>
                             {% endif %}
                         
@@ -98,10 +111,10 @@
                         {% if ord.docstatus == 1 %}
                         <div class="tracking-content">Documents required<span class="badge badge-success" style="width: 80px;color: #fff; cursor: pointer; margin-bottom: 5px;margin-top: 10px;">Done</span></div>
                         {% else %}
-                        <div class="tracking-content">Documents required<span class="badge badge-info" style="width: 80px;color: #fff; cursor: pointer; margin-bottom: 5px;margin-top: 10px;">Panding</span></div>
+                        <div class="tracking-content">Documents required<span class="badge badge-info" style="width: 80px;color: #fff; cursor: pointer; margin-bottom: 5px;margin-top: 10px;">Pending</span></div>
                         <div class="row  pt-4 mb-2" style="border: 1px dashed #e5e5e5;">
                         {% for final in finalredoc %}
-                        {% if pro.id == final.prodid %}
+                        {% if ord.products.id == final.prodid %}
                         <div class="col-md-4 col-lg-4 " >
                             <div class="card">
                                 <div class="card-body">
@@ -161,8 +174,7 @@
 									<div class="row">
 										<div class="col mt-0">
 											<h5 class="card-title">{{ final.submitdoc }}</h5>
-										</div>
-										
+										</div>                                        
                                         {% if final.status == 0 %}                                     
                                         <div class="col-auto">
                                             <div class="avatar">
@@ -195,25 +207,48 @@
                                         </a>
                                         {% endif %}
 									</div>
-									
-									<div class="mb-0">
-                                        {% if final.status == 0 %}
-                                            <span class="text-info"> <i class="mdi mdi-arrow-bottom-right"></i>
-                                                <i class="fa fa-check"></i> 
-                                            </span>
-                                        {% endif %}
-                                        {% if final.status == 1 %}
-                                            <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i>
-                                                <i class="fa fa-thumbs-up"></i> 
-                                            </span>
-                                        {% endif %}
-                                        {% if final.status == 2 %}
-                                            <span class="text-warning"> <i class="mdi mdi-arrow-bottom-right"></i>
-                                                <i class="fa fa-repeat"></i> 
-                                            </span>
-                                        {% endif %}
-										{{ final.remark }}
-									</div>
+									<div class="row">
+                                        <div class="col mb-0">
+                                            {% if final.status == 0 %}
+                                                <span class="text-info"> <i class="mdi mdi-arrow-bottom-right"></i>
+                                                    <i class="fa fa-check"></i> 
+                                                </span>
+                                            {% endif %}
+                                            {% if final.status == 1 %}
+                                                <span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i>
+                                                    <i class="fa fa-thumbs-up"></i> 
+                                                </span>
+                                            {% endif %}
+                                            {% if final.status == 2 %}
+                                                <span class="text-warning"> <i class="mdi mdi-arrow-bottom-right"></i>
+                                                    <i class="fa fa-repeat"></i> 
+                                                </span>
+                                            {% endif %}
+                                            {{ final.remark }}                                            
+                                        </div>
+                                        {# <a href="{{ asset("uploads/brochures/")}}{{final.doclink}}" > 
+                                        <div class="col-auto">
+                                                <div class="avatar">
+                                                    <div class="">
+                                                        <i class="fa fa-eye"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a> #}
+                                    </div>
+                                    <div class="row" style="padding-top:2px;">
+                                        <div class="col-6">
+                                            <a href="{{ asset("uploads/brochures/")}}{{final.doclink}}" >                                                                                                     
+                                                <button class="btn btn-info" style="width:100%;"><i class="fa fa-eye"></i></button>                                                
+                                            </a>
+                                        </div>                                        
+                                        <div class="col-6">                                            
+                                            <form method="post" action="{{ path('app_subdoc_delete', {'id': final.id}) }}" onsubmit="return confirm('Are you sure you want to delete this Document?');">
+                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ final.id) }}">
+                                                <button class="btn btn-danger" style="width:100%;"><i class="fa fa-trash"></i></button>
+                                            </form>                                           
+                                        </div>
+                                    </div>
 								</div>
 							</div>
 						</div>
@@ -269,7 +304,7 @@
                         {% endfor %}
                         </div>
                         {% for d in doc %}
-                        {% if pro.id == d.productinfo.id %}
+                        {% if ord.products.id == d.productinfo.id %}
                         {# <div class="post-btn" style="padding-top: 10px;">
                             <a href="adddoc/{{d.id}}" class="btn btn-danger" style="color:#fff">{{ d.docinfo }}
                                 <i class="fa fa-plus" style="padding-left: 10px;"> </i>
@@ -333,6 +368,6 @@
             </div>
         </div>
     </div>
-    {% endfor %}
+    {# {% endfor %} #}
     {% endfor %}
 </div>

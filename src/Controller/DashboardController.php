@@ -82,8 +82,10 @@ class DashboardController extends AbstractController
         $i=0;
         foreach($Orderdoc as $Ordoc){
             foreach($Ordoc->getOrderid() as $Oroc){
+               $sunmitdoc[$i]['id'] = $Ordoc->getId();
                $sunmitdoc[$i]['docname'] = $Ordoc->getDocname();
                $sunmitdoc[$i]['orderid'] = $Oroc->getId();
+               $sunmitdoc[$i]['doclink'] = $Ordoc->getDoclink();
                $sunmitdoc[$i]['remark'] = $Ordoc->getRemark();
                $sunmitdoc[$i]['status'] = $Ordoc->getStatus();
                $i++;
@@ -119,11 +121,11 @@ class DashboardController extends AbstractController
         $k=0;
         foreach($order as $o){
                 $product = $o->getProducts();
-            foreach($product as $pro){
-                $orderin[$k]['proid'] = $pro->getId();
+            //foreach($product as $pro){
+                $orderin[$k]['proid'] = $product->getId();
                 $orderin[$k]['orderid'] = $o->getId();
                 $k++;
-            }
+            //}
         }
         $submitorderdoc = [];
         $requrdoc= [];
@@ -138,6 +140,8 @@ class DashboardController extends AbstractController
                         if($orde['orderid'] === $submited['orderid'] && $submited['docname'] == $docre['docinfo']){
                             $submitorderdoc[$l]['orderid'] = $orde['orderid'];
                             $submitorderdoc[$l]['submitdoc'] = $submited['docname'];
+                            $submitorderdoc[$l]['doclink'] = $submited['doclink'];
+                            $submitorderdoc[$l]['id'] = $submited['id'];
                             $submitorderdoc[$l]['remark'] = $submited['remark'];
                             $submitorderdoc[$l]['status'] = $submited['status'];
                             
@@ -166,7 +170,9 @@ class DashboardController extends AbstractController
                         $finalredocsub[$u]['orderid'] = $requrd['orderid'];
                         $finalredocsub[$u]['submitdoc'] = $requrd['requrdoc'];
                         $finalredocsub[$u]['remark'] = $submitorder['remark'];
-                         $finalredocsub[$u]['status'] = $submitorder['status'];
+                        $finalredocsub[$u]['doclink'] = $submitorder['doclink'];
+                        $finalredocsub[$u]['id'] = $submitorder['id'];
+                        $finalredocsub[$u]['status'] = $submitorder['status'];
                   
                     }
                 $v++;
@@ -374,7 +380,7 @@ class DashboardController extends AbstractController
         //$endtime = $request->request->get('endtime');
         $Status = $request->request->get('Status');
         $orderid = $request->request->get('orderid');
-        $endtime = \DateTime::createFromFormat('h:i:sa',date('h:i:sa', strtotime($starttime. ' + 1 hours + 30 minutes ')));
+        $endtime = \DateTime::createFromFormat('h:i:sa',date('h:i:sa', strtotime($starttime. ' + 1 hours')));
         
         $startdate= \DateTime::createFromFormat('d/m/Y',date("d/m/Y", strtotime($startdate)));
         $starttime= \DateTime::createFromFormat('h:i',date("h:i", strtotime($starttime)));
@@ -623,7 +629,7 @@ class DashboardController extends AbstractController
             // ... persist the $product variable or any other work
 
             //$this->addFlash('success', 'Thank you! Your booking is Submit!');
-            flash()->addSuccess('Thank you! Your booking is Submit!');
+            flash()->addSuccess('Thank you! Your booking is Submitted!');
         }
 
         return $this->renderForm('product/new.html.twig', [
@@ -810,8 +816,7 @@ class DashboardController extends AbstractController
             $starttime = $request->request->get('bookingtime');
             
             $startdate= \DateTime::createFromFormat('d/m/Y',date("d/m/Y", strtotime($startdate)));
-            print_r($startdate);
-            die();
+
             $Event->add($eventbooking, true);
 
             //$this->addFlash('success', 'Thank you! Your booking is Submit!');

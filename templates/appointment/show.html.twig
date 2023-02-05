@@ -1,70 +1,310 @@
-{% extends 'getrout.html.twig' %}
-
-{% block title %}Appointment{% endblock %}
-
+{# {% extends 'getrout.html.twig' %} #}
+{% extends 'dashstyle.html.twig' %}
+{% block title %}Manger{% endblock %}
 {% block body %}
-    <h1>Appointment</h1>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .example-wrapper {
+    margin: 1em auto;
+    max-width: 800px;
+    width: 95%;
+    font: 18px/1.5 sans-serif;
+}
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ appointment.id }}</td>
-            </tr>
-            <tr>
-                <th>Manger</th>
-                <td>{{ appointment.MangerID }}</td>
-            </tr>
-            <tr>
-                <th>Client</th>
-                <td>{{ appointment.ClientId }}</td>
-            </tr>
-            <tr>
-                <th>StartDate</th>
-                <td>{{ appointment.StartDate ? appointment.StartDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>EndDate</th>
-                <td>{{ appointment.EndDate ? appointment.EndDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>StartTime</th>
-                <td>{{ appointment.StartTime ? appointment.StartTime|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>EndTime</th>
-                <td>{{ appointment.EndTime ? appointment.EndTime|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>MangerStart</th>
-                <td>{{ appointment.MangerStart }}</td>
-            </tr>
-            <tr>
-                <th>ClientStartDate</th>
-                <td>{{ appointment.ClientStartDate ? appointment.ClientStartDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>ClientStartTime</th>
-                <td>{{ appointment.ClientStartTime ? appointment.ClientStartTime|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>ClientEndTime</th>
-                <td>{{ appointment.ClientEndTime ? appointment.ClientEndTime|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>ClientStatus</th>
-                <td>{{ appointment.ClientStatus }}</td>
-            </tr>
-            <tr>
-                <th>BookingStatus</th>
-                <td>{{ appointment.BookingStatus }}</td>
-            </tr>
-        </tbody>
-    </table>
+.example-wrapper code {
+    background: #F5F5F5;
+    padding: 2px 6px;
+}
 
-    <a href="{{ path('app_appointment_index') }}">back to list</a>
 
-    <a href="{{ path('app_appointment_edit', {'id': appointment.id}) }}">edit</a>
+.rwd-table {
+    margin: auto;
+    min-width: 300px;
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+    box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+}
 
-    {{ include('appointment/_delete_form.html.twig') }}
+.rwd-table tr:first-child {
+    border-top: none;
+    background: #5bb7c5;
+    color: #fff;
+}
+
+.rwd-table tr {
+    border-top: 1px solid #ddd;
+    /*border-bottom: 1px solid #ddd;*/
+    background-color: #ffff;
+}
+
+.rwd-table th {
+    display: none;
+    text-transform: capitalize;
+}
+
+.rwd-table td {
+    display: block;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.rwd-table td:first-child {
+    margin-top: 0.5em;
+}
+
+.rwd-table td:last-child {
+    margin-bottom: 0.5em;
+}
+
+.rwd-table td:before {
+    content: attr(data-th) ": ";
+    font-weight: bold;
+    width: 120px;
+    display: inline-block;
+    color: #000;
+}
+
+.rwd-table th,
+.rwd-table td {
+    text-align: left;
+}
+
+.rwd-table {
+    color: #333;
+    border-radius: 0.4em;
+    overflow: hidden;
+}
+
+.rwd-table tr {}
+
+.rwd-table th,
+.rwd-table td {
+    padding: 0.5em 1em;
+}
+.createbtn{
+    padding-top:10px;
+}
+
+@media screen and (max-width: 601px) {
+    .rwd-table tr:nth-child(2) {
+        border-top: none;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .rwd-table tr:hover:not(:first-child) {
+        background-color: #d8e7f3;
+    }
+
+    .rwd-table td:before {
+        display: none;
+    }
+
+    .rwd-table th,
+    .rwd-table td {
+        display: table-cell;
+        padding: 0.25em 0.5em;
+    }
+
+    .rwd-table th:first-child,
+    .rwd-table td:first-child {
+        padding-left: 0;
+    }
+
+    .rwd-table th:last-child,
+    .rwd-table td:last-child {
+        padding-right: 0;
+    }
+
+    .rwd-table th,
+    .rwd-table td {
+        padding: 1em !important;
+    }
+}
+</style>
+
+<body>
+      
+    <div class="wrapper">
+        {% include '/manger/mangernev.html.twig' %}
+        <div class="main">
+            <nav class="navbar navbar-expand navbar-theme">
+                <a class="sidebar-toggle d-flex mr-2">
+                    <i class="hamburger align-self-center"></i>
+                </a>
+                {# <form class="form-inline d-none d-sm-inline-block">
+                    <input class="form-control form-control-lite" type="text" placeholder="Search projects...">
+                </form> #}
+                {{ render(controller(
+                    'App\\Controller\\DashboardController::recentArticles'
+                )) }}
+            </nav>
+            <main class="content">
+                <div class="container-fluid">
+                    <div class="header">
+                        <h1 class="header-title">
+                            Manger
+                        </h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="dashboard-default.html">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="#">Manger</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Appointment</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <div class="page-content">
+                                            <div class="inner-box">
+                                                <div class="dashboard-box">
+                                                    <h5 class="dashbord-title">Appointment</h5>
+                                                </div>
+                                                <div class="dashboard-wrapper">
+                                                    <h1>Appointment</h1>
+
+                                                    <table class="table">
+                                                        <tbody>
+                                                           
+                                                            <tr>
+                                                                <th>Client</th>
+                                                                <td>
+                                                                    {% for users in user %}
+                                                                    {% if users.id == appointment.ClientId %}
+                                                                    {{ users.name }}
+                                                                    {% endif %}
+                                                                    {% endfor %}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>StartDate</th>
+                                                                <td>{{ appointment.StartDate ? appointment.StartDate|date('Y-m-d') : '' }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>EndDate</th>
+                                                                <td>{{ appointment.EndDate ? appointment.EndDate|date('Y-m-d') : '' }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>StartTime</th>
+                                                                <td>{{ appointment.StartTime ? appointment.StartTime|date('h:i A') : '' }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>EndTime</th>
+                                                                <td>{{ appointment.EndTime ? appointment.EndTime|date('h:i A') : '' }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>MangerStart</th>
+                                                                <td>{{ appointment.MangerStart }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>ClientStartDate</th>
+                                                                <td>{{ appointment.ClientStartDate ? appointment.ClientStartDate|date('Y-m-d') : '' }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>ClientStartTime</th>
+                                                                <td>{{ appointment.ClientStartTime ? appointment.ClientStartTime|date('h:i A') : '' }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>ClientEndTime</th>
+                                                                <td>{{ appointment.ClientEndTime ? appointment.ClientEndTime|date('h:i A') : '' }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>ClientStatus</th>
+                                                                <td>{{ appointment.ClientStatus }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>BookingStatus</th>
+                                                                <td>{{ appointment.BookingStatus }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    
+                                                </div>
+                                                
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                   <div class="row">
+                                        <div class="col-sm-6 col-md-6 col-lg-6">
+                                            <a href="{{ path('app_appointment_index') }}" class="btn btn-primary" style="width:100%;">back to list</a>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-6">
+                                            <a href="{{ path('app_appointment_edit', {'id': appointment.id}) }}" class="btn btn-warning" style="width:100%;">edit</a>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12 col-lg-12 createbtn">
+                                            {{ include('appointment/_delete_form.html.twig') }}
+                                        </div>
+                                    </div>
+                                    
+                                
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                </div>
+            </main>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row text-muted">
+                        <div class="col-8 text-left">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <a class="text-muted" href="#">Support</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="text-muted" href="#">Privacy</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="text-muted" href="#">Terms of Service</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="text-muted" href="#">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-4 text-right">
+                            <p class="mb-0">
+                                &copy; 2020 - <a href="dashboard-default.html" class="text-muted">Spark</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <svg width="0" height="0" style="position:absolute">
+        <defs>
+            <symbol viewBox="0 0 512 512" id="ion-ios-pulse-strong">
+                <path d="M448 273.001c-21.27 0-39.296 13.999-45.596 32.999h-38.857l-28.361-85.417a15.999 15.999 0 0 0-15.183-10.956c-.112 0-.224 0-.335.004a15.997 15.997 0 0 0-15.049 11.588l-44.484 155.262-52.353-314.108C206.535 54.893 200.333 48 192 48s-13.693 5.776-15.525 13.135L115.496 306H16v31.999h112c7.348 0 13.75-5.003 15.525-12.134l45.368-182.177 51.324 307.94c1.229 7.377 7.397 11.92 14.864 12.344.308.018.614.028.919.028 7.097 0 13.406-3.701 15.381-10.594l49.744-173.617 15.689 47.252A16.001 16.001 0 0 0 352 337.999h51.108C409.973 355.999 427.477 369 448 369c26.511 0 48-22.492 48-49 0-26.509-21.489-46.999-48-46.999z">
+                </path>
+            </symbol>
+        </defs>
+    </svg>
+     
+</body>
+{% endblock %}
+{% block javascripts %}
+<script type="text/javascript">
+let copybtn = document.querySelector(".copybtn");
+
+
+function copyIt() {
+    let copyInput = document.querySelector('#copyvalue');
+
+    copyInput.select();
+
+    document.execCommand("copy");
+
+    copybtn.textContent = "COPIED";
+}
+</script>
 {% endblock %}

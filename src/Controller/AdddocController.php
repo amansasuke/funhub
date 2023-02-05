@@ -130,7 +130,7 @@ class AdddocController extends AbstractController
             // $session->set('basket', []);
 
             //$this->addFlash('success', 'Thank you! Document Submit successfully');
-            flash()->addSuccess('Thank you! Document Submit successfully');
+            flash()->addSuccess('Thank you! Document Submitted successfully');
             return $this->redirectToRoute("app_dashboard");
         }
         //$doc = $doc->find($id);
@@ -149,6 +149,22 @@ class AdddocController extends AbstractController
 
             
         // ]);
+    }
+
+    /**
+     * @Route("/adddocdel/{id}", name="app_subdoc_delete", methods={"POST"})
+     */
+    public function delete(Request $request, Orderdoc $Orderdoc, OrderdocRepository $OrderdocRepository): Response
+    {
+        //$this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
+        if ($this->isCsrfTokenValid('delete'.$Orderdoc->getId(), $request->request->get('_token'))) {
+            $OrderdocRepository->remove($Orderdoc, true);
+            
+        }
+        
+        flash()->addSuccess('Thank you! Document delete successfully');
+        return $this->redirectToRoute("app_dashboard");
+        //return $this->redirectToRoute('app_appointment_index', [], Response::HTTP_SEE_OTHER);
     }
 
 public function configureOptions(OptionsResolver $resolver)

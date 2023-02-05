@@ -285,12 +285,12 @@
                 <div class="container-fluid">
                     <div class="header">
                         <h1 class="header-title">
-                            staff
+                            Manager
                         </h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard-default.html">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="#">staff</a></li>
+                                <li class="breadcrumb-item"><a href="#">Manager</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Assign Orders</li>
                             </ol>
                         </nav>
@@ -313,7 +313,7 @@
                                             <th>Remark</th>
                                             <th>Edit</th>                                        
                                         </tr>
-                                    
+                                    {% if sunmitdoc|length > 0 %}
                                         
                                         {% for doc in sunmitdoc %}
                                         <tr data-category="active">
@@ -359,6 +359,16 @@
                                         </tr>
                                        
                                         {% endfor %}
+                                        {% else %}
+                                        <tr>
+                                            <td colspan="6">
+                                                <div style="text-align: center; padding: 20px;">
+                                                    <h4>No Document Submitted</h4>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endif %}
+
                                     </tbody>
                                 </table>
                             </div>

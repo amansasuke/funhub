@@ -314,6 +314,7 @@
                                                     <th>View Orders</th>
                                                 </tr>
                                                 {% for user in users %}
+                                                {% if user.usercategory != 'staff' %}
                                                 <tr data-category="active">
                                                     <td>
                                                         {% if user.imgicon !="" %}
@@ -343,6 +344,7 @@
                                                         </div>
                                                     </td>
                                                 </tr>
+                                                {% endif %}
                                                 {% endfor %}
                                             </tbody>
                                         </table>

@@ -56,6 +56,12 @@ class CheckoutController extends AbstractController
 
         $order = new Order;
 
+        if($user->getGSTno() != null){
+            $gst =$user->getGSTno();
+        }else{
+            $gst="";
+        }
+
         $form = $this->createFormBuilder($order)
             ->add('name', TextType::class,[
                     'data' => $user->getName(),
@@ -66,6 +72,14 @@ class CheckoutController extends AbstractController
             ->add('address', TextareaType::class, [
                     'data' => $user->getAddress(),
                 ])
+            ->add('phoneno', TextType::class, [
+                'data' => $user->getPhoneno(),
+                'label' => 'phone no',
+            ])
+            ->add('gstno', TextType::class, [
+                'data' => $gst,
+                'label' => 'GST No',
+            ])
             ->add('docstatus', HiddenType::class, [
                     'data' => '0',
                 ])
@@ -75,13 +89,24 @@ class CheckoutController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $order = $form->getData();
-             $Affiliateproducts = new Affiliateproduct;
+            //$order = $form->getData();
+            $name= $form->get('name')->getData();
+            $email= $form->get('email')->getData();
+            $address= $form->get('address')->getData();
+            $docstatus= $form->get('docstatus')->getData();
+            $Affiliateproducts = new Affiliateproduct;
 
+             $entityManager = $this->getDoctrine()->getManager();
             foreach ($basket as $product) {
-                $order->getProducts()->add($repo->find($product->getId()));
-            }
-            $entityManager = $this->getDoctrine()->getManager();
+                $order = new Order;
+                $order->setName($name);
+                $order->setEmail($email);
+                $order->setAddress($address);
+                $order->setDocstatus($docstatus);
+                $order->setProducts($repo->find($product->getId()));                
+                $entityManager->persist($order);
+                $entityManager->flush();                
+            }         
 
              //add if user is affiliated
             if (!empty($user->getRedId())) {
@@ -125,7 +150,7 @@ class CheckoutController extends AbstractController
             
             $userdat->setWellet($waltebalanceNEW);
             $entityManager->persist($userdat);
-            $entityManager->persist($order);
+            //$entityManager->persist($order);
             $entityManager->flush();
         
 

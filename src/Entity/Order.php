@@ -35,7 +35,7 @@ class Order
     private $address;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Product")
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="orders")
      */
     private $products;
 
@@ -74,11 +74,21 @@ class Order
      */
     private $agentstatus;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $phoneno;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $gstno;
+
     
 
     public function __construct()
     {
-        $this->products = new ArrayCollection;
+        //$this->products = new ArrayCollection;
         $this->orderdocs = new ArrayCollection();
         $this->user = new ArrayCollection();
         $this->docForClients = new ArrayCollection();
@@ -266,11 +276,11 @@ class Order
         return $this;
     }
 
-    public function addProduct(Product $product): self
+    public function setProducts(Product $product): self
     {
-        if (!$this->products->contains($product)) {
-            $this->products[] = $product;
-        }
+        // if (!$this->products->contains($product)) {
+        // }
+        $this->products = $product;
 
         return $this;
     }
@@ -278,6 +288,30 @@ class Order
     public function removeProduct(Product $product): self
     {
         $this->products->removeElement($product);
+
+        return $this;
+    }
+
+    public function getPhoneno(): ?string
+    {
+        return $this->phoneno;
+    }
+
+    public function setPhoneno(?string $phoneno): self
+    {
+        $this->phoneno = $phoneno;
+
+        return $this;
+    }
+
+    public function getGstno(): ?string
+    {
+        return $this->gstno;
+    }
+
+    public function setGstno(?string $gstno): self
+    {
+        $this->gstno = $gstno;
 
         return $this;
     }

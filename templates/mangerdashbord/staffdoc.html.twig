@@ -291,7 +291,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard-default.html">Dashboard</a></li>
                                 <li class="breadcrumb-item"><a href="#">staff</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Assign Orders</li>
+                                <li class="breadcrumb-item active" aria-current="page">Order Docs</li>
                             </ol>
                         </nav>
                     </div>
@@ -312,7 +312,7 @@
                                             <th>Status</th>                                                                                   
                                         </tr>
                                     
-                                        
+                                        {% if sunmitdoc|length > 0 %}
                                         {% for doc in sunmitdoc %}
                                         {% if doc.docstatus == 1 %}
                                         <tr data-category="active">
@@ -344,6 +344,15 @@
                                         </tr>
                                         {% endif %}                                       
                                         {% endfor %}
+                                        {% else %}
+                                        <tr>
+                                            <td colspan="6">
+                                                <div style="text-align: center; padding: 20px;">
+                                                    <h4>No Document Submitted</h4>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endif %}
                                     </tbody>
                                 </table>
                             </div>
