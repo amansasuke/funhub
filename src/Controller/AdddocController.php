@@ -39,6 +39,7 @@ class AdddocController extends AbstractController
     public function index($id,Request $request, ManagerRegistry $doctrine, DocumentsforproductRepository $doc,SluggerInterface $slugger): Response
     {   
 
+        $orderid=  $_GET['ordid'];
         $Orderdoc = new Orderdoc;
         $order = new Order;
 
@@ -131,7 +132,7 @@ class AdddocController extends AbstractController
 
             //$this->addFlash('success', 'Thank you! Document Submit successfully');
             flash()->addSuccess('Thank you! Document Submitted successfully');
-            return $this->redirectToRoute("app_dashboard");
+            return $this->redirectToRoute("app_dashboard",array('ordid' => $orderid));
         }
         //$doc = $doc->find($id);
         return $this->render('dashboard/adddoc.html.twig', [
