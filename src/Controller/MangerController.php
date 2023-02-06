@@ -125,6 +125,7 @@ class MangerController extends AbstractController
         
         return $this->render('manger/userorder.html.twig', [
             'orders' => $order,
+            'userid' => $id,
         ]);
     }
 
@@ -136,8 +137,7 @@ class MangerController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $Orderd = $doctrine->getRepository(Order::class)->find($id);
         //$order = new Order;
-        
-      
+        $userid= $_GET['orderid'];
 
         $form = $this->createFormBuilder($Orderd)
             
@@ -179,7 +179,7 @@ class MangerController extends AbstractController
 
                 flash()->addSuccess('Thank you! Staff Assign successfully');
 
-                return $this->redirectToRoute("app_userorder",array('id' => $id));
+                return $this->redirectToRoute("app_userorder",array('id' => $userid));
                 // return $this->render('manger/assignuser.html.twig', [
                 //   'form' =>$form->createView(),
                 //   'users'=>$users,
