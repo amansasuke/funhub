@@ -73,6 +73,7 @@
                             <li class="list-group-item d-flex justify-content-between">
                                 <div >
                                     <h6 class="my-0">Total</h6>
+                                    <p class="my-0">GST-18%</p>
                                     {% if app.request.get('usewalet') %}
                                         <small>Wallet Balance </small>
                                     {% endif %}
@@ -95,7 +96,8 @@
                                         ₹{{ total | number_format(2) }}
                                     {% endif %}
                                     <br> 
-                                    <span>+ 18% GST</span>                             
+                                    {%  set gsttotal = ( total / 100) * 18 %}                                    
+                                    <span>₹{{ gsttotal| number_format }}.00</span>                             
                                 </strong>
                                 
                             </li>

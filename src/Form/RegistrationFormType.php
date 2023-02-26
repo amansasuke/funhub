@@ -28,6 +28,11 @@ class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        if (isset($_GET['affiliateid'])) {
+            $redid = $_GET['affiliateid'];
+        }else{
+            $redid = 0;
+        }
         $builder
             ->add('email')
             ->add('agreeTerms', CheckboxType::class, [
@@ -104,7 +109,11 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'User Category',
             ])
-            ->add('red_id')
+            //->add('red_id')
+            ->add('red_id', HiddenType::class,array(
+                'data' => $redid,
+                'label' => false
+            ))
             ->add('wellet')
             ->add('imgicon', FileType::class,array(
                 'label' => ' ',

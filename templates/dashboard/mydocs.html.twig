@@ -284,12 +284,12 @@ a:link { text-decoration: none; }
                 <div class="container-fluid">
                     <div class="header">
                         <h1 class="header-title">
-                            Orders
+                            My Documents
                         </h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard-default.html">Dashboard</a></li>
-                                <li class="breadcrumb-item active"><a href="#">Orders</a></li>
+                                <li class="breadcrumb-item active"><a href="#">My Documents</a></li>
                                 {# <li class="breadcrumb-item active" aria-current="page">Blank Page</li> #}
                             </ol>
                         </nav>
@@ -298,16 +298,16 @@ a:link { text-decoration: none; }
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0">Order's</h5>
+                                    <h5 class="card-title mb-0">My Documents</h5>
                                 </div>
                                 <div class="card-body">
-                                    {% if order|length ==0 %}
+                                    {% if mydoc|length ==0 %}
                                     <div class="row ">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="dashboardbox">
-                                                <div class="noimg">
+                                                {# <div class="noimg">
                                                     <img src="assets/img/details/kindpng_1749396.png" height="300px;">
-                                                </div>
+                                                </div> #}
                                                 <div class="post-btn" style="text-align:center";>
                                                     
                                                     <a class="btn btn-common" href="services" style="border-radius:26px;font-size: 22px;background-color:#5bb7c5;color:#ffff"><i class="lni-plus"></i> Add Services </a>
@@ -316,19 +316,15 @@ a:link { text-decoration: none; }
                                         </div>
                                     </div>
                                     {% else %}
-                                    <div class="faq ">
-                                        {# <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-12"> #}
-                                                    {% include '/dashboard/order.html.twig' %}
-                                                {# </div>
-                                            </div>
-                                        </div> #}
+                                    <div class="row" style="padding-top:2px;">
+                                     {% for mydocs in mydoc %}
+                                        <div class="col-6">
+                                            <a href="{{ asset("uploads/brochures/")}}{{ mydocs.doclink }}" target="_blank" >                                                                                                     
+                                                <button class="btn btn-info" style="width:100%;">{{ mydocs.docname }}</button>                                                
+                                            </a>
+                                        </div> 
+                                         {% endfor %}                                       
                                     </div>
-                                    <div class="post-btn" style="text-align:center";>
-                                                    
-                                                    <a class="btn btn-common" href="services" style="border-radius:26px;font-size: 22px;background-color:#5bb7c5;color:#ffff"><i class="lni-plus"></i> Add Services </a>
-                                                </div>
                                     {% endif %}
                                 </div>
                             </div>

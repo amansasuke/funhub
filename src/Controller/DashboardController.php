@@ -62,6 +62,10 @@ use App\Entity\Mangereventbooking;
 use App\Repository\MangereventbookingRepository;
 use App\Repository\UseractivityRepository;
 
+use App\Entity\DocForClient;
+
+
+
 class DashboardController extends AbstractController
 {
     /**
@@ -901,5 +905,34 @@ class DashboardController extends AbstractController
             'dashboard/activity.html.twig',
             ['avtivity' => $avtivity]
         );
+    }
+
+    /**
+     * @Route("/docforme", name="app_docforme")
+     */
+    public function docforme(Request $request, DocForClientRepository $docForClientRepository): Response
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $useremail = $user->getEmail();
+
+        $docforme = $docForClientRepository->findAll();
+        $docfor= [];
+        $j=0;
+
+        foreach ($docforme as $key => $value) {
+            if ($useremail == $value->getOrdername()->getEmail() ) {
+                
+                $docfor[$j]['docname']=  $value->getName();
+                $docfor[$j]['doclink']=  $value->getDoclink();
+                //print_r($value->getOrdername()->getEmail());
+            }
+            $j++;
+            # code...
+        }
+        
+        return $this->render('dashboard/mydocs.html.twig', [
+            'mydoc' => $docfor,
+            
+        ]);
     }
 }

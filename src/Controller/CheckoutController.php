@@ -78,7 +78,8 @@ class CheckoutController extends AbstractController
             ])
             ->add('gstno', TextType::class, [
                 'data' => $gst,
-                'label' => 'GST No',
+                'label' => 'Put your correct GST No. to claim Input Tax Credit',
+                'required' => false,
             ])
             ->add('docstatus', HiddenType::class, [
                     'data' => '0',

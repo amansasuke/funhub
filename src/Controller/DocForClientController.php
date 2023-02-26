@@ -104,9 +104,11 @@ class DocForClientController extends AbstractController
                 $entityManager->flush();
             
 
-                return $this->render('dashboard/index.html.twig',[
-                    'order' => $order
-                ]);
+                // return $this->render('dashboard/index.html.twig',[
+                //     'order' => $order
+                // ]);
+                flash()->addSuccess('Thank you! Documents Submitted  successfully');
+                return $this->redirectToRoute("app_doc_for_client_new");
             // $docForClientRepository->add($docForClient, true);
             // return $this->redirectToRoute('app_doc_for_client_index', [], Response::HTTP_SEE_OTHER);
         }

@@ -54,7 +54,7 @@ class AdddocController extends AbstractController
                       'data' => '',
                   ))
             ->add('remark', HiddenType::class,array(
-                      'data' => 'Wait for approval',
+                      'data' => 'Pending for Approval',
                   ))
             ->add('save', SubmitType::class, ['label' => 'Upload'])
             ->getForm();

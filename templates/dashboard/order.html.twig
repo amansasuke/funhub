@@ -83,7 +83,7 @@
                                         </svg>
                                     </div>
                                     <div class="tracking-date"><img src="assets\img\logo\agent.png" class="img-responsive" alt="order-placed" height="40px" /></div>
-                                    <div class="tracking-content">Staff for Order </div>
+                                    <div class="tracking-content">Staff assigned for this order </div>
                                     
                                     {{ user.name}}                                
                                 </div>
@@ -96,8 +96,8 @@
                                         </svg>
                                     </div>
                                     <div class="tracking-date"><img src="assets\img\logo\agent.png" class="img-responsive" alt="order-placed" height="40px" /></div>
-                                    <div class="tracking-content">staff for Order </div>
-                                    Staff not Assigned                               
+                                    <div class="tracking-content">Staff assigned for this order </div>
+                                    <span class="badge badge-info" style="width: 80px;color: #fff; cursor: pointer; margin-bottom: 5px;margin-top: 10px;">Pending</span>                              
                                 </div>
                             {% endif %}
                         
@@ -238,7 +238,7 @@
                                     </div>
                                     <div class="row" style="padding-top:2px;">
                                         <div class="col-6">
-                                            <a href="{{ asset("uploads/brochures/")}}{{final.doclink}}" >                                                                                                     
+                                            <a href="{{ asset("uploads/brochures/")}}{{final.doclink}}" target="_blank" >                                                                                                     
                                                 <button class="btn btn-info" style="width:100%;"><i class="fa fa-eye"></i></button>                                                
                                             </a>
                                         </div>                                        
@@ -321,7 +321,7 @@
                             </svg>
                         </div>
                         <div class="tracking-date"><img src="assets\img\logo\flag.png" height="40px" class="img-responsive" alt="order-placed" /></div>
-                        <div class="tracking-content">Start Date Of Service<span>
+                        <div class="tracking-content">Service Start Date<span>
                         {% if ord.startdate != null%}{{ord.startdate|date('d M Y')}}{% endif%}</span></div>
                     </div>
                     <div class="tracking-item{% if ord.enddate == null%}-pending{% endif%}
@@ -332,7 +332,7 @@
                             </svg>
                         </div>
                         <div class="tracking-date"><img src="assets\img\logo\complete.png" height="40px" class="img-responsive" alt="order-placed" /></div>
-                        <div class="tracking-content">Complete Date Of Service<span>
+                        <div class="tracking-content">Service Completion Date<span>
                         {% if ord.enddate != null%}{{ord.enddate|date('d M Y')}}{% endif%}
                         </span></div>
                     </div>
