@@ -39,6 +39,18 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
+    public function searchtags($term, $myLimit, $pginateStartIndex)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.tags LIKE :searchTerm')
+            ->setParameter('searchTerm', '%'.$term.'%')
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults($myLimit)
+            ->setFirstResult($pginateStartIndex)
+            ->getQuery()
+            ->execute();
+    }
+
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */

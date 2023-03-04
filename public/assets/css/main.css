@@ -206,11 +206,21 @@ ol li {
 }
 
 .btn-common {
-    background-color: #5bb7c5;
     position: relative;
-    color: #fff;
-    z-index: 1;
+    display: block;
+	z-index: 1;
     border-radius: 4px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right, #32be8f, #5bb7c5, #32be8f);
+	background-size: 200%;
+	
+	color: #fff;
+	/* font-family: 'Poppins', sans-serif;
+	text-transform: uppercase; */
+	
+	cursor: pointer;
+	transition: 777ms;
     transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     -webkit-transition: all .2s ease-in-out
@@ -289,7 +299,8 @@ a.back-to-top i {
     height: 40px;
     line-height: 40px;
     color: #fff;
-    background: #5bb7c5;
+    background-image: linear-gradient(to right, #32be8f, #5bb7c5, #32be8f);
+    background-size: 200%;
     border-radius: 4px;
     text-align: center;
     transition: all .2s ease-in-out;
@@ -650,7 +661,8 @@ a.back-to-top:focus {
 
 .navbar li.active a.nav-link {
     color: #fff;
-    background: #5bb7c5
+    background-image: linear-gradient(to right, #32be8f, #5bb7c5, #32be8f);
+    background-size: 200%;
 }
 
 .dropdown-toggle::after {

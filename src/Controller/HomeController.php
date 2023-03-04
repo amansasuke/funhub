@@ -263,9 +263,14 @@ class HomeController extends AbstractController
 
         $Pro = $Product->find($pro);
          $Services = $repo->findBy([]);
-         $Product = $Product->findBy(array(),array('id' => 'ASC'),
-         $myLimit,
-         $pginateStartIndex);
+         
+        if (isset($_GET['tags'])) {
+            $Productshow = $Product->searchtags($_GET['tags'], $myLimit, $pginateStartIndex );
+        }else{
+            $Productshow = $Product->findBy(array(),array('id' => 'ASC'),
+            $myLimit,
+            $pginateStartIndex);
+        }
          // print_r(gettype($Services));
          // foreach ($Services as $key => $value) {
          //    $ser['id']=$value->getId();
@@ -287,17 +292,40 @@ class HomeController extends AbstractController
         } else {
             $Category = $rep->findBy([]);
         }
+        $basket = $session->get('basket', []);
+        if ($request->isMethod('POST')) {
+            $id = $request->request->get('cart');
+            $prodetail = $Product->find($id);
+            $basket[$prodetail->getId()] = $prodetail;
+            $session->set('basket', $basket);
+            //$this->addFlash('success', 'Thank you! Successfully added to cart !');
+            flash()->addSuccess('Thank you! Successfully added to cart !');
+        }
+         
+        $post = $re->findBy([]);
+        $proget=[];
+        $i=0;
+        foreach ($Productshow as $key => $proshow) {
+            $proget[$i]['id'] = $proshow->getId();
+            $proget[$i]['bgcolor'] = $proshow->getBgcolor();
+            $proget[$i]['description'] = $proshow->getDescription();
+            $proget[$i]['name'] = $proshow->getName();
+            $proget[$i]['regularprice'] = $proshow->getRegularprice();
+            $proget[$i]['price'] = $proshow->getPrice();
+            $proget[$i]['cart'] = array_key_exists($proshow->getId(), $basket);
+            $i++;
+        }
         
+        // echo"<pre>";
+        // print_r($proget);
+        // die;
          
-         
-         $post = $re->findBy([]);
-         $basket = $session->get('basket', []);
         return $this->render('home/services.html.twig', [
             'Services' => $Services,
             'Category' => $Category,
             'post' => $post,
             'basket'=>$basket,
-            'Product'=>$Product,
+            'Product'=>$proget,
             'Pro'=>$Pro,
             'total_pages' => $total_pages,
             

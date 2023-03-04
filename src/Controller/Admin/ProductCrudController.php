@@ -15,6 +15,7 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ColorField;
 
 class ProductCrudController extends AbstractCrudController
 {
@@ -41,6 +42,8 @@ class ProductCrudController extends AbstractCrudController
             TextEditorField::new('deliverables'),
             NumberField::new('price'),
             NumberField::new('regularprice'),
+            TextEditorField::new('tags'),
+            ColorField::new('bgcolor'),
         ];
 
         if ($pageName == Crud::PAGE_INDEX || $pageName == Crud::PAGE_DETAIL) {

@@ -131,6 +131,16 @@ class Product
     private $doctinfo;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $tags;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $bgcolor;
+
+    /**
      * @return mixed
      */
     public function getThumbnailFile()
@@ -400,6 +410,30 @@ class Product
                 $doctinfo->setProinfo(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTags(): ?string
+    {
+        return $this->tags;
+    }
+
+    public function setTags(?string $tags): self
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    public function getBgcolor(): ?string
+    {
+        return $this->bgcolor;
+    }
+
+    public function setBgcolor(?string $bgcolor): self
+    {
+        $this->bgcolor = $bgcolor;
 
         return $this;
     }
