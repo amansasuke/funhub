@@ -307,7 +307,8 @@
                                     <tbody>
                                         <tr>                                           
                                             <th>order Id</th>
-                                            <th>Product</th>
+                                            <th>Client Name</th>
+                                            <th>Service</th>
                                             <th>Start Date</th>                                                                                        
                                             <th>status</th>
                                             <th>view doc</th>
@@ -322,13 +323,15 @@
                                             <td>
                                             {{order.id}}
                                             </td>
-                                          
+                                            <td>
+                                            {{order.name}}
+                                            </td>
                                             <td data-title="Title">
                                                 {{order.products}}
                                                
                                             </td>
                                             <td data-title="Title">
-                                            {{ order.startdate ? order.startdate|date('Y-m-d') : 'Not Started' }}
+                                            {{ order.startdate ? order.startdate|date('d-m-Y') : 'Not Started' }}
                                                                                               
                                             </td>
                                             {# <td data-title="Title">

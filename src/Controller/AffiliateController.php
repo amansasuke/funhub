@@ -171,6 +171,9 @@ class AffiliateController extends AbstractController
         ->add('IFSC', TextType::class,array(
                       'label' => false
                   ))
+        ->add('upiid', TextType::class,array(
+                    'label' => false
+                ))
         ->add('userid', HiddenType::class,array(
                       'data' => $user->getId(),
                       'label' => false

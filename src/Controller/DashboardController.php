@@ -64,6 +64,9 @@ use App\Repository\UseractivityRepository;
 
 use App\Entity\DocForClient;
 
+use App\Entity\Feedback;
+use App\Repository\FeedbackRepository;
+
 
 
 class DashboardController extends AbstractController
@@ -934,5 +937,33 @@ class DashboardController extends AbstractController
             'mydoc' => $docfor,
             
         ]);
+    }
+
+    /**
+     * @Route("/addfeed", name="app_addfeed")
+     */
+    public function addfeed(Request $request): Response
+    {
+        $orderid = $request->request->get('orderid');
+        $proname = $request->request->get('proname');
+        $status = $request->request->get('status');
+        $userid = $request->request->get('userid');
+        $disreviwe = $request->request->get('disreviwe');
+        $rating = $request->request->get('rating');
+
+        $feeds = new Feedback;
+        $entityManager = $this->getDoctrine()->getManager();
+        $feeds->setOrderid($orderid);
+        $feeds->setProname($proname);
+        $feeds->setStatus($status);
+        $feeds->setUserid($userid);
+        $feeds->setDisreviwe($disreviwe);
+        $feeds->setReating($rating);                
+
+        $entityManager->persist($feeds);
+        $entityManager->flush(); 
+
+        flash()->addSuccess('Thank you! You feedback submitted successfully');
+        return $this->redirectToRoute("app_dashboard",array('ordid' => $orderid));
     }
 }

@@ -58,14 +58,14 @@
                             <li class="list-group-item d-flex justify-content-between bg-light">
                                 <div class="text-success">
                                     <h6 class="my-0">Points Earned</h6>
-                                    <small>These points will be added to your wallet balance</small>
+                                    <p style="font-size:11px; line-height: normal;color: #28a745 !important;">These points will be added to your wallet balance</p>
                                 </div>
                                 <h6 class="text-success">₹{{waltebalance| number_format(2)}}</h6>
                             </li>
                             <li class="list-group-item d-flex justify-content-between bg-light">
                                 <div class="text-info">
                                     <h6 class="my-0">Current Points</h6>
-                                    <small>This is you Current wallet balance  </small>
+                                    <p style="font-size:11px; line-height: normal;color: #17a2b8 !important;">This is you Current wallet balance  </p>
                                 </div>
                                 <h6 class="text-info">₹{{waltebalanceold| number_format(2)}}</h6>
                             </li>
@@ -75,14 +75,13 @@
                                     <h6 class="my-0">Total</h6>
                                     {# <p class="my-0">GST-18%</p> #}
                                     <p class="my-0" id="gst"></p>
-                                    {% if app.request.get('usewalet') %}
+                                    {# {% if app.request.get('usewalet') %}
                                         <small>Wallet Balance </small>
-                                    {% endif %}
+                                    {% endif %} #}
                                 </div> 
                                 <strong>
                                     {% if app.request.get('usewalet') %}
                                         {% if app.request.get('usewalet')> waltebalanceold %}
-                                            <span style="color: red">You don’t have enough Wallet Balance</span><br>
                                             ₹{{ total | number_format(2) }}
                                         {% else %}
                                             ₹{{ total | number_format(2) }}<br>
@@ -100,8 +99,18 @@
                                     {%  set gsttotal = ( total / 100) * 18 %}                                    
                                     <span>₹{{ gsttotal| number_format }}.00</span>                                                                 
                                 </strong>
-                                
+
+                                 
                             </li>
+                            {% if app.request.get('usewalet') %}
+                                {% if app.request.get('usewalet')> waltebalanceold %}
+                            <div class="list-group-item d-flex justify-content-between">
+                                    <span style="color: red">You don’t have enough Wallet Balance</span><br>                                    
+                            </div>
+                                {% else %}                                    
+                                {% endif %}
+                                {% else %}                        
+                            {% endif %}
                             <li class="list-group-item d-flex justify-content-between">
                                 <div >
                                     <h6 class="my-0">Grand Total</h6>                                    
@@ -554,7 +563,7 @@ $("#state").change(function(){
     len = this.value ;
     if(len == 'Uttarakhand'){
         $("#gst").empty();
-        $('#gst').append('CGST 9%, SGST 9%');
+        $('#gst').append('CGST 9%,<br> SGST 9%');
     }else{
         $("#gst").empty();
         $('#gst').append('IGST 18%');

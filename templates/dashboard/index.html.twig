@@ -259,6 +259,30 @@ hr.new2 {
 }
 
 a:link { text-decoration: none; }
+
+
+ .rating label {
+     float: right;
+     position: relative;
+     width: 40px;
+     height: 40px;
+     cursor: pointer;
+}
+ .rating label:not(:first-of-type) {
+     padding-right: 2px;
+}
+ .rating label:before {
+     content: "\2605";
+     font-size: 42px;
+     color: #ccc;
+     line-height: 1;
+}
+ .rating input {
+     display: none;
+}
+ .rating input:checked ~ label:before, .rating:not(:checked) > label:hover:before, .rating:not(:checked) > label:hover ~ label:before {
+     color: #f9df4a;
+}
 </style>
 
 <body>
@@ -298,7 +322,14 @@ a:link { text-decoration: none; }
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0">Order's</h5>
+                                    <div class="card-actions float-left">
+                                      <h5 class="card-title mb-0">Order's</h5>
+                                    </div>
+                                    <div class="card-actions float-right">
+                                      <div class="post-btn" style="text-align:center";>                                                    
+                                          <a class="btn btn-common" href="services" style="border-radius:26px;font-size: 14px;background-color:#5bb7c5;color:#ffff"><i class="fa fa-plus"></i> Add Services </a>
+                                      </div>
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     {% if order|length ==0 %}
@@ -324,11 +355,7 @@ a:link { text-decoration: none; }
                                                 {# </div>
                                             </div>
                                         </div> #}
-                                    </div>
-                                    <div class="post-btn" style="text-align:center";>
-                                                    
-                                                    <a class="btn btn-common" href="services" style="border-radius:26px;font-size: 22px;background-color:#5bb7c5;color:#ffff"><i class="lni-plus"></i> Add Services </a>
-                                                </div>
+                                    </div>      
                                     {% endif %}
                                 </div>
                             </div>

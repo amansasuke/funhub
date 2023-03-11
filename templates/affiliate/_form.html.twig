@@ -35,6 +35,10 @@
     <label class="control-label">IFSC Code</label>
     {{ form_row(form.IFSC,{'attr': {'class': 'form-control input-md'}}) }}
 </div>
+<div class="form-group mb-3">
+    <label class="control-label">UPI Id</label>
+    {{ form_row(form.upiid,{'attr': {'class': 'form-control input-md'}}) }}
+</div>
 
     {# {{ form_widget(form) }} #}
     <button class="btn btn-primary" style="width: 100%;">{{ button_label|default('Save') }}</button>

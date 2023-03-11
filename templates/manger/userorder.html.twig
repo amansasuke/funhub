@@ -360,7 +360,7 @@
                                                     <td>
                                                     {% if order.startdate == null %}
                                                       <div class="gap">  <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#startexampleModalCenter{{order.id}}" {% if order.docstatus == 0 %} disabled {% endif %} >
-                                                            Startdate
+                                                            Start Date
                                                         </button> </div>
                                                         {% else %}
                                                         <div class="gap"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#startexampleModalCenter{{order.id}}"  {% if order.docstatus == 0 %} disabled {% endif %}>
@@ -369,7 +369,7 @@
                                                     {% endif %}
                                                     {% if order.enddate == null %}
                                                         <div class="gap"><button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#endexampleModalCenter{{order.id}}" {% if order.docstatus == 0 %} disabled {% endif %}>
-                                                            complite date
+                                                            Completion Date
                                                         </button></div>
                                                         {% else %}
                                                         <div class="gap"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#endexampleModalCenter{{order.id}}" {% if order.docstatus == 0 %} disabled {% endif %}>
@@ -389,8 +389,8 @@
                                                                         <div class="modal-body">
                                                                             <div class="form-group">
                                                                                 <label for="exampleInputEmail1">Start Date</label>
-                                                                                <input type="date" class="form-control" name="startdate" value="">
-                                                                                <small id="emailHelp" class="form-text text-muted">Please select the Start date for order</small>
+                                                                                <input type="date" class="form-control" name="startdate" value="null">
+                                                                                <small id="emailHelp" class="form-text text-muted">okokkkokoPlease select the Start date for order</small>
                                                                             </div>
                                                                         </div>
                                                                         <div class="modal-footer">

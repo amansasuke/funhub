@@ -157,14 +157,15 @@ class AdddocController extends AbstractController
      */
     public function delete(Request $request, Orderdoc $Orderdoc, OrderdocRepository $OrderdocRepository): Response
     {
+       
         //$this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         if ($this->isCsrfTokenValid('delete'.$Orderdoc->getId(), $request->request->get('_token'))) {
             $OrderdocRepository->remove($Orderdoc, true);
             
         }
         
-        flash()->addSuccess('Thank you! Document delete successfully');
-        return $this->redirectToRoute("app_dashboard");
+        flash()->addSuccess('Thank you! document deleted successfully');
+        return $this->redirectToRoute("app_dashboard",array('ordid' => $_GET['ordid']));
         //return $this->redirectToRoute('app_appointment_index', [], Response::HTTP_SEE_OTHER);
     }
 

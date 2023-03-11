@@ -201,7 +201,11 @@ class MangerController extends AbstractController
         $startdate = $request->request->get('startdate');
         
         $startdate= \DateTime::createFromFormat('d/m/Y',date("d/m/Y", strtotime($startdate)));
-
+        $checkemt = date_format( $startdate,"Y/m/d");
+        if($checkemt == '1970/01/01'){
+            $startdate = NULL;
+        }
+        
         $entityManager =$this->getDoctrine()->getManager();
         $Orderd = $doctrine->getRepository(Order::class)->find($id);
         $Orderd->setStartdate($startdate);
@@ -222,7 +226,10 @@ class MangerController extends AbstractController
         $enddate = $request->request->get('enddate');
         
         $enddate= \DateTime::createFromFormat('d/m/Y',date("d/m/Y", strtotime($enddate)));
-
+        $checkemt = date_format( $enddate,"Y/m/d");
+        if($checkemt == '1970/01/01'){
+            $enddate = NULL;
+        }
         $entityManager =$this->getDoctrine()->getManager();
         $Orderd = $doctrine->getRepository(Order::class)->find($id);
         $Orderd->setEnddate($enddate);

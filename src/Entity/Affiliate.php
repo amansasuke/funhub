@@ -74,6 +74,11 @@ class Affiliate
      */
     private $affiliateproducts;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $upiid;
+
     public function __construct()
     {
         $this->affiliateproducts = new ArrayCollection();
@@ -230,6 +235,18 @@ class Affiliate
                 $affiliateproduct->setAffiliateid(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUpiid(): ?string
+    {
+        return $this->upiid;
+    }
+
+    public function setUpiid(?string $upiid): self
+    {
+        $this->upiid = $upiid;
 
         return $this;
     }

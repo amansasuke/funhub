@@ -20,7 +20,7 @@
                             {# <input type="time" id="appt" name="appt"min="09:00" max="18:00" required> #}
                             {# <input type="time" id="appt" name="appt" value="09:00" min="09:00" max="10:00" required> #}
                             <input type="time" class="form-control" name="starttime" value="{{ appointment.StartTime|date('H:i') }}" min="{{ appointment.StartTime|date('H:i') }}" max="{{ appointment.EndTime|date('H:i') }}" id="appt" required>
-                            <small id="emailHelp" class="form-text text-muted" style="color:red;">Please select the time from {{ appointment.StartTime|date('h:i A') }} to {{ appointment.EndTime|date('h:i A') }} appointment</small>
+                            <small id="emailHelp" class="form-text text-muted" style="color:red;">Select from the below specified time range {{ appointment.StartTime|date('h:i A') }} to {{ appointment.EndTime|date('h:i A') }} appointment</small>
                         </div>
                         {# <div class="form-group">
                             <label for="exampleInputPassword1">End Time</label>
