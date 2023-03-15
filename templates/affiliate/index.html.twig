@@ -549,6 +549,15 @@ h6 {
                                                                         <h6 class="text-muted f-w-400">{{ affiliate.panno }}</h6>
                                                                     </div>
                                                                 </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <p class="m-b-10 f-w-600">Upi Id</p>
+                                                                        <h6 class="text-muted f-w-400">{{ affiliate.upiid }}</h6>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <a class="btn btn-primary" href="{{ affiliate.id }}/edit" style="border:none;font-size: 18px;background-color: green;"><i class="lni-pencil"></i> Edit</a>
+                                                                    </div>
+                                                                </div>
                                                                 <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Share your Affiliate Link to start earning</h6>
                                                                 <div class="copy-button">
                                                                     {% for affiliate in affiliates %}

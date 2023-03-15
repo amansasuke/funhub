@@ -44,7 +44,7 @@ class ProductRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->andWhere('p.tags LIKE :searchTerm')
             ->setParameter('searchTerm', '%'.$term.'%')
-            ->orderBy('p.id', 'ASC')
+            ->orderBy('p.id', 'DESC')
             ->setMaxResults($myLimit)
             ->setFirstResult($pginateStartIndex)
             ->getQuery()

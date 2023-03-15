@@ -963,7 +963,7 @@ class DashboardController extends AbstractController
         $entityManager->persist($feeds);
         $entityManager->flush(); 
 
-        flash()->addSuccess('Thank you! You feedback submitted successfully');
+        flash()->addSuccess('Thank you! Feedback submitted successfully');
         return $this->redirectToRoute("app_dashboard",array('ordid' => $orderid));
     }
 }

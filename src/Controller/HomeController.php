@@ -39,6 +39,8 @@ use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\Feedback;
+use App\Repository\FeedbackRepository;
 
 class HomeController extends AbstractController
 {
@@ -267,7 +269,7 @@ class HomeController extends AbstractController
         if (isset($_GET['tags'])) {
             $Productshow = $Product->searchtags($_GET['tags'], $myLimit, $pginateStartIndex );
         }else{
-            $Productshow = $Product->findBy(array(),array('id' => 'ASC'),
+            $Productshow = $Product->findBy(array(),array('id' => 'DESC'),
             $myLimit,
             $pginateStartIndex);
         }
@@ -460,5 +462,33 @@ class HomeController extends AbstractController
         //$this->addFlash('success', 'Thank you! appointment book successfully');
         flash()->addSuccess('Thank you! appointment book successfully');
         return $this->redirectToRoute("app_mybooking");
+    }
+
+     /**
+     * @Route("/feedback", name="app_feedback")
+     */
+    public function feedback(Request $request, SessionInterface $session, FeedbackRepository $FeedbackRepository, UserRepository $user,  ManagerRegistry $doctrine): Response
+    {
+        $basket = $session->get('basket', []);
+
+        $Feedback = $FeedbackRepository->findBy(array(),array('id' => 'DESC'));
+
+        $Feed =[];
+        $i= 0;
+        foreach ($Feedback as $key => $value) {
+            $Feed[$i]['disreviwe'] = $value->getDisreviwe();
+            $Feed[$i]['reating'] = $value->getReating();
+            $userdat = $doctrine->getRepository(User::class)->find($value->getId());
+            $Feed[$i]['username'] = $userdat->getName();
+            $Feed[$i]['icon'] = $userdat->getImgicon();
+
+            $i++;
+        }
+        
+        return $this->render('home/feedback.html.twig', [
+            'controller_name' => 'HomeController',
+            'basket' => $basket,
+            'Feedback' =>$Feed,
+        ]);
     }
 }
