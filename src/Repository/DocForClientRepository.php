@@ -39,6 +39,28 @@ class DocForClientRepository extends ServiceEntityRepository
         }
     }
 
+    public function searchmydocdate($term, $date)
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.Name LIKE :searchTerm')
+            ->andWhere('d.updateat = :update')
+            ->setParameter('searchTerm', '%'.$term.'%')
+            ->setParameter('update', $date)
+            ->orderBy('d.id', 'DESC')            
+            ->getQuery()
+            ->execute();
+    }
+
+    public function searchmydoc($term)
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.Name LIKE :searchTerm')            
+            ->setParameter('searchTerm', '%'.$term.'%')
+            ->orderBy('d.id', 'DESC')            
+            ->getQuery()
+            ->execute();
+    }
+
 //    /**
 //     * @return DocForClient[] Returns an array of DocForClient objects
 //     */

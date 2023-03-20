@@ -102,7 +102,7 @@ class DashboardController extends AbstractController
         $docforpro = $docforpro->findBy([]);
 
         $order = $doctrine->getRepository(Order::class)->findBy(
-            ['email' => $user->getEmail()]
+            ['email' => $user->getEmail()],  array('id' => 'desc')
         );
 
         // foreach($order as $orderid){
@@ -918,7 +918,19 @@ class DashboardController extends AbstractController
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $useremail = $user->getEmail();
 
-        $docforme = $docForClientRepository->findAll();
+        
+        if (isset($_GET['search'])) {
+            if (!empty($_GET['updateat'])) {
+                $docforme = $docForClientRepository->searchmydocdate($_GET['search'], $_GET['updateat']);
+            }else{
+                $docforme = $docForClientRepository->searchmydoc($_GET['search']);
+            }
+            
+        }else{
+            $docforme = $docForClientRepository->findAll(); 
+        }
+        
+
         $docfor= [];
         $j=0;
 

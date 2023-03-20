@@ -55,7 +55,7 @@ class AggentdashbordController extends AbstractController
 
 
     /**
-     * @Route("/submitdoc/{id}")
+     * @Route("/submitdoc/{id}", name="app_submitdoc" )
      */
     public function submitdoc($id,ManagerRegistry $doctrine, OrderdocRepository $Orderdoc): Response
     {
@@ -115,96 +115,63 @@ class AggentdashbordController extends AbstractController
     }
 
     /**
-     * @Route("/editorder/{id}")
+     * @Route("/editorder/{id}", name="app_editorder" )
      */
     public function editdoc($id,ManagerRegistry $doctrine, Request $request, OrderdocRepository $Orderdoc): Response
     {
         //$this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_staff');
-        $Orderdoc = $doctrine->getRepository(Orderdoc::class)->find($id);
-        $order = new Order;
+        // $Orderdoc = $doctrine->getRepository(Orderdoc::class)->find($id);
+        // $order = new Order;
+        $status = $request->request->get('status');
+        $remark = $request->request->get('remark');
+        $orderid = $request->request->get('orderid');
 
-        $form = $this->createFormBuilder($Orderdoc)
-            
-            ->add('status', ChoiceType::class,[
-                      'choices'  => [
-                    'Submited Doc' => '0',
-                    'Done' => '1',
-                    'Submit Again' => '2',                  
-                ],
-                  ])
-            ->add('remark', TextType::class,array(
-                      'data' => ' ',
-                  ))
-            // ->add('remark', ChoiceType::class, [
-            //     'choices'  => [
-            //         'Submited Doc' => 'Submited Doc',
-            //         'Done' => 'Done',
-            //         'Submit Again' => 'Submit Again',                  
-            //     ],
-            // ])
-            ->add('save', SubmitType::class, ['label' => 'Edit order documents Statusasas'])
-            ->getForm();
-
-            $form->handleRequest($request);
-
-            if ($form->isSubmitted() && $form->isValid()) {
-            $order = $form->getData();
-
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($order);
+            $entityManager =$this->getDoctrine()->getManager();
+            $Orderd = $doctrine->getRepository(Orderdoc::class)->find($id);
+            $Orderd->setStatus($status);
+            $Orderd->setRemark($remark);
+            $entityManager->persist($Orderd);
             $entityManager->flush();
 
             flash()->addSuccess('Thank you! Document Submit successfully');
+            return $this->redirectToRoute('app_submitdoc', ['id' => $orderid]);
             //return $this->redirectToRoute("app_dashboard");
-        }
+        // }
 
-        return $this->render('mangerdashbord/editdoc.html.twig', [
-          'form' =>$form->createView(),
-        ]);
     }
 
 
 
 
     /**
-     * @Route("/editorderstatus/{id}")
+     * @Route("/editorderstatus/{id}", name="app_editorderstatus"  )
      */
     public function editorderstatus($id,ManagerRegistry $doctrine, Request $request, OrderdocRepository $Orderdoc): Response
     {
         //$this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_staff');
-        $Orderdoc = $doctrine->getRepository(Order::class)->find($id);
-        //$order = new Order;
-
-        $form = $this->createFormBuilder($Orderdoc)
-            
-            ->add('docstatus', ChoiceType::class,[
-                    'choices'  => [
-                    'Pending' => '0',
-                    'Done' => '1',                  
-                ]
-            ])
         
-            ->add('save', SubmitType::class, ['label' => 'Edit order documents Status'])
-            ->getForm();
+        //$order = new Order;        
+        $order = $request->request->get('status');
+        $userid = $request->request->get('userid');
+        
+        $o =filter_var($order, FILTER_VALIDATE_BOOLEAN);
+       
+        // $entityManager = $this->getDoctrine()->getManager();
+        // $Orderdoc = $doctrine->getRepository(Order::class)->find($id);        
+        // $Orderdoc->setDocstatus($o);
+        // $entityManager->persist($order);
+        // $entityManager->flush();
 
-            $form->handleRequest($request);
+        $entityManager =$this->getDoctrine()->getManager();
+        $Orderd = $doctrine->getRepository(Order::class)->find($id);
+        $Orderd->setDocstatus($o);
+        
+        $entityManager->persist($Orderd);
+        $entityManager->flush();
 
-            if ($form->isSubmitted() && $form->isValid()) {
-            $order = $form->getData();
-
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($order);
-            $entityManager->flush();
-
-            flash()->addSuccess('Thank you! Order Doc status change successfully');
-            //return $this->render('confirmation.html.twig');
-        }
-
-        return $this->render('mangerdashbord/editorderdoc.html.twig', [
-          'form' =>$form->createView(),
-        ]);
+        flash()->addSuccess('Thank you! Order Doc status change successfully');
+        return $this->redirectToRoute('app_userorder', ['id' => $userid]);
+    
     }
 
     

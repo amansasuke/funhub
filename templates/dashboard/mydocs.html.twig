@@ -338,7 +338,26 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0">My Documents</h5>
+                                    <div class="card-actions float-left">
+                                      <h5 class="card-title mb-0">My Documents</h5>
+                                    </div>
+                                    <div class="card-actions float-right">
+                                      <form>
+                                        <div class="row">
+                                          <div class="col-4">
+                                            <input type="date" name="updateat" placeholder="search" class="form-control input-md">
+                                          </div>
+                                            <div class="col-4">                                        
+                                              <input type="text" name="search" placeholder="search" class="form-control input-md">                                        
+                                            </div>
+                                            <div class="col-4">
+                                              <div class="post-btn" style="text-align:center" ;="">                                                    
+                                                  <button type="submin"  class="btn btn-common"  style="font-size: 14px;background-color:#5bb7c5;color:#ffff; width: 100%;"><i class="fa fa-search"></i> Filter  </a>                                            
+                                              </div>
+                                            </div>
+                                        </div>
+                                      </form>                                                                          
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     {% if mydoc|length ==0 %}

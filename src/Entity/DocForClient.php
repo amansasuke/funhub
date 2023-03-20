@@ -37,6 +37,17 @@ class DocForClient
      */
     private $Status;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $updateat;
+
+    public function __construct()
+    {
+      
+        $this->updateat= new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +97,18 @@ class DocForClient
     public function setStatus(bool $Status): self
     {
         $this->Status = $Status;
+
+        return $this;
+    }
+
+    public function getUpdateat(): ?\DateTimeInterface
+    {
+        return $this->updateat;
+    }
+
+    public function setUpdateat(?\DateTimeInterface $updateat): self
+    {
+        $this->updateat = new \DateTime();
 
         return $this;
     }

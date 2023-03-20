@@ -478,6 +478,7 @@ class HomeController extends AbstractController
         foreach ($Feedback as $key => $value) {
             $Feed[$i]['disreviwe'] = $value->getDisreviwe();
             $Feed[$i]['reating'] = $value->getReating();
+            $Feed[$i]['proname'] = $value->getProname();
             $userdat = $doctrine->getRepository(User::class)->find($value->getId());
             $Feed[$i]['username'] = $userdat->getName();
             $Feed[$i]['icon'] = $userdat->getImgicon();

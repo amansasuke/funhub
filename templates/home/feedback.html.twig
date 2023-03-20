@@ -99,41 +99,39 @@
                             </div>
                             <div class="testimonial-item">
                                 <div class="content">
-                                    <p class="description">{{ Feed.disreviwe }}</p>
-                                    <div class="info-text">
+                                    <h5>{{Feed.username}}</h5>
+                                    <p><b> Service Purchased - </b>{{Feed.proname}} </p>
+                                    <div class="info-text" style="margin-top:0px;">
                                         <div class="review" itemscope itemtype="http://schema.org/Review">
                                             <div class="rating rating--read-only" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
-                                                <div aria-hidden="true">
-                                                
-                                                {% if Feed.reating == 5 %}
-                                                    <span class="star star--full"></span>
-                                                    <span class="star star--full"></span>
-                                                    <span class="star star--full"></span>
-                                                    <span class="star star--full"></span>
-                                                    <span class="star star--full"></span>
-                                                {% endif %}
-                                                {% if Feed.reating == 4 %}
-                                                    <span class="star star--full"></span>
-                                                    <span class="star star--full"></span>
-                                                    <span class="star star--full"></span>
-                                                    <span class="star star--full"></span>
-                                                    <span class="star "></span>
-                                                {% endif %}
-                                                {% if Feed.reating == 3 %}
-                                                    <span class="star star--full"></span>
-                                                    <span class="star star--full"></span>
-                                                    <span class="star star--full"></span>
-                                                    <span class="star "></span>
-                                                    <span class="star "></span>
-                                                {% endif %}
+                                                <div aria-hidden="true">                                                
+                                                    {% if Feed.reating == 5 %}
+                                                        <span class="star star--full"></span>
+                                                        <span class="star star--full"></span>
+                                                        <span class="star star--full"></span>
+                                                        <span class="star star--full"></span>
+                                                        <span class="star star--full"></span>
+                                                    {% endif %}
+                                                    {% if Feed.reating == 4 %}
+                                                        <span class="star star--full"></span>
+                                                        <span class="star star--full"></span>
+                                                        <span class="star star--full"></span>
+                                                        <span class="star star--full"></span>
+                                                        <span class="star "></span>
+                                                    {% endif %}
+                                                    {% if Feed.reating == 3 %}
+                                                        <span class="star star--full"></span>
+                                                        <span class="star star--full"></span>
+                                                        <span class="star star--full"></span>
+                                                        <span class="star "></span>
+                                                        <span class="star "></span>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>
-                                        <h2><a href="#">{{Feed.username}}</a></h2> 
+                                         
                                     </div>
-                                    <div class="info-text">
-                                                                               
-                                    </div>
+                                    <p class="description">{{ Feed.disreviwe }}</p>                                                                        
                                 </div>
                             </div>
                         </div>                        

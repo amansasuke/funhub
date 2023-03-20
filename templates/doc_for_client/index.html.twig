@@ -307,6 +307,8 @@
                                             <tbody>
                                                 <tr>
                                                     <th>Id</th>
+                                                     <th>Order Id</th>
+                                                     <th>Order name</th>                                              
                                                     <th>Name</th>
                                                     <th>Doclink</th>
                                                     <th>Status</th>
@@ -316,7 +318,9 @@
                                             
                                                 {% for doc_for_client in doc_for_clients %}
                                                 <tr>
-                                                    <td>{{ doc_for_client.id }}</td>
+                                                    <td>{{ doc_for_client.id }} </td>
+                                                    <td>{{ doc_for_client.Ordername.id }}</td>
+                                                    <td>{{ doc_for_client.Ordername }}</td>
                                                     <td>{{ doc_for_client.Name }}</td>
                                                     <td>{{ doc_for_client.Doclink }}</td>
                                                     <td>{{ doc_for_client.Status ? 'Yes' : 'No' }}</td>

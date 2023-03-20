@@ -70,14 +70,11 @@
                                 <h6 class="text-info">₹{{waltebalanceold| number_format(2)}}</h6>
                             </li>
                             
-                            <li class="list-group-item d-flex justify-content-between">
+                            {# <li class="list-group-item d-flex justify-content-between">
                                 <div >
-                                    <h6 class="my-0">Total</h6>
-                                    {# <p class="my-0">GST-18%</p> #}
+                                    <h6 class="my-0">Total</h6>                                  
                                     <p class="my-0" id="gst"></p>
-                                    {# {% if app.request.get('usewalet') %}
-                                        <small>Wallet Balance </small>
-                                    {% endif %} #}
+                                    
                                 </div> 
                                 <strong>
                                     {% if app.request.get('usewalet') %}
@@ -98,9 +95,54 @@
                                     <br> 
                                     {%  set gsttotal = ( total / 100) * 18 %}                                    
                                     <span>₹{{ gsttotal| number_format }}.00</span>                                                                 
+                                </strong>                                 
+                            </li> #}
+                            <li class="list-group-item d-flex justify-content-between">
+                            {% if app.request.get('usewalet') %}
+                                <div >
+                                    <h6 class="my-0">Total</h6>                                
+                                    <p class="my-0" >Wallet balance </p>
+                                    <p class="my-0" >Gross Value </p>
+                                    <p class="my-0" id="gst" ></p>                                   
+                                </div>
+                                 <strong>
+                                    {% if app.request.get('usewalet') %}
+                                        {% if app.request.get('usewalet')> waltebalanceold %}
+                                            ₹{{ total | number_format(2) }}
+                                        {% else %}
+                                            ₹{{ total | number_format(2) }}<br>
+                                            {%  set total = total - app.request.get('usewalet') %}
+                                            <span style="color: 
+                                            red">-{{app.request.get('usewalet')| number_format(2)}}</span><a href="/checkout" style="color: 
+                                            red"> <i class="fa fa-times"></i> </a>
+                                            <br>
+                                            <hr style="margin-top: 0px;margin-bottom: 0px;border: 0;border-top: 1px solid rgba(0,0,0,.1);">
+                                             ₹{{ total| number_format(2)}} 
+                                        {% endif %}
+                                     {% else %}
+                                        ₹{{ total | number_format(2) }}
+                                    {% endif %}
+                                    <br> 
+                                    {%  set gsttotal = ( total / 100) * 18 %}
+                                    {%  set cgst = ( gsttotal / 2) %} 
+                                    <p class="my-0" id="price"></p>                                   
+                                    {# <span>₹{{ gsttotal| number_format }}.00</span>                                                                  #}
                                 </strong>
 
-                                 
+                            {% else %}
+                                <div >
+                                    <h6 class="my-0">Total</h6>                                  
+                                    <p class="my-0" id="gst"></p> 
+                                </div> 
+                                <strong>
+                                    ₹{{ total | number_format(2) }}                                    
+                                    <p class="my-0" id="price"></p> 
+                                    {# <br>  #}
+                                    {%  set gsttotal = ( total / 100) * 18 %}
+                                    {%  set cgst = ( gsttotal / 2) %}                                     
+                                    {# <span>₹{{ gsttotal| number_format }}.00</span>                                                                  #}
+                                </strong> 
+                            {% endif %}
                             </li>
                             {% if app.request.get('usewalet') %}
                                 {% if app.request.get('usewalet')> waltebalanceold %}
@@ -559,14 +601,19 @@
 </body>
 <script>
 $('#gst').append('IGST 18%');
+$('#price').append('₹{{ gsttotal| number_format }}.00');
 $("#state").change(function(){
     len = this.value ;
     if(len == 'Uttarakhand'){
         $("#gst").empty();
-        $('#gst').append('CGST 9%,<br> SGST 9%');
+        $("#price").empty();
+        $('#gst').append('CGST 9%<br> SGST 9%');
+        $('#price').append('₹{{ cgst| number_format }}.00<br> ₹{{ cgst| number_format }}.00');
     }else{
         $("#gst").empty();
+        $("#price").empty();
         $('#gst').append('IGST 18%');
+        $('#price').append('₹{{ gsttotal| number_format }}.00');
     }
 
 });
