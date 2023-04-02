@@ -321,6 +321,7 @@ class DashboardController extends AbstractController
             ])
             ->add('imgicon', FileType::class, array(
                 'data_class' => null,
+                'required' => false,
                 ))
             
             ->add('save', SubmitType::class, ['label' => 'Update Profile'])

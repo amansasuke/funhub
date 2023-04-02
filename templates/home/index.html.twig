@@ -3,761 +3,336 @@
 {% block stylesheets %}
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
 <style>
-    * {
-        margin: 0;
-        padding: 0
-    }
-
-    html {
-        height: 100%
-    }
-
-    #grad1 {
-        background-color: #9C27B0;
-        background: linear-gradient(to right, #7851a9 0%, #ffd700 100%);
-    }
-
-    #msform {
-        text-align: center;
-        position: relative;
-        margin-top: 20px
-    }
-
-    #msform fieldset .form-card {
-        background: white;
-        border: 0 none;
-        border-radius: 0px;
-        box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
-        padding: 20px 40px 30px 40px;
-        box-sizing: border-box;
-        width: 94%;
-        margin: 0 3% 20px 3%;
-        position: relative
-    }
-
-    .form-cardnew {
-        background: white;
-        border: none;
-
-        border-radius: 0px;
-
-        padding: 0px 40px 0px 40px;
-        box-sizing: border-box;
-        width: 94%;
-        margin: 0 3% 20px 3%;
-        position: relative
-    }
-
-    .form-cardnew12 select {
-        background: white;
-        border: 0 none;
-        border-radius: 4px;
-        border-bottom: 1px solid #5bb7c5;
-        height: 45px;
-        box-shadow: 0 0 10px rgb(175 175 175 / 23%);
-        box-sizing: border-box;
-        width: 84%;
-        margin: 0 3% 20px 3%;
-        position: relative
-    }
-
-    #msform fieldset {
-        background: white;
-        border: 0 none;
-        border-radius: 0.5rem;
-        box-sizing: border-box;
-        width: 100%;
-        margin: 0;
-
-        position: relative
-    }
-
-    #msform fieldset:not(:first-of-type) {
-        display: none
-    }
-
-    #msform fieldset .form-card {
-        text-align: left;
-        color: #9E9E9E
-    }
-
-    #msform input,
-    #msform textarea {
-        padding: 5px 10px 10px 10px;
-        border: none;
-        border-bottom: 1px solid #5bb7c5;
-
-        box-shadow: 0 0 10px rgb(175 175 175 / 23%);
-        border-radius: 4px;
-        margin-bottom: 25px;
-        margin-top: 2px;
-        width: 100%;
-        box-sizing: border-box;
-
-        font-size: 14px;
-        letter-spacing: 1px
-    }
-
-    #msform input:focus,
-    #msform textarea:focus {
-        -moz-box-shadow: none !important;
-        -webkit-box-shadow: none !important;
-        box-shadow: none !important;
-        border: none;
-        font-weight: bold;
-        border-bottom: 2px solid #5bb7c5;
-        outline-width: 0
-    }
-
-    #msform .action-button {
-        /*width: 100px;
-    background: skyblue;
-    font-weight: bold;
-    color: white;
-    border: 0 none;
-    border-radius: 0px;
-    cursor: pointer;
-    padding: 10px 5px;
-    margin: 10px 5px*/
-    }
-
-    #msform .action-button:hover,
-    #msform .action-button:focus {
-        box-shadow: 0 0 0 2px #ffff, 0 0 0 3px #5bb7c5
-    }
-
-    #msform .action-button-previous {
-        /*width: 100px;
-    background: #616161;
-    font-weight: bold;
-    color: white;
-    border: 0 none;
-    border-radius: 0px;
-    cursor: pointer;
-    padding: 10px 5px;
-    margin: 10px 5px*/
-    }
-
-    #msform .action-button-previous:hover,
-    #msform .action-button-previous:focus {
-        box-shadow: 0 0 0 2px white, 0 0 0 3px #616161
-    }
-
-    select.list-dt {
-        border: none;
-        outline: 0;
-        border-bottom: 1px solid #ccc;
-        padding: 2px 5px 3px 5px;
-        margin: 2px
-    }
-
-    select.list-dt:focus {
-        border-bottom: 2px solid skyblue
-    }
-
-    .card1 {
-        z-index: 0;
-        border: none;
-        border-radius: 0.5rem;
-        position: relative
-    }
-
-    .fs-title {
-        font-size: 25px;
-        color: #2C3E50;
-        margin-bottom: 10px;
-        font-weight: bold;
-        text-align: left
-    }
-
-    #progressbar {
-        /*margin-bottom: 30px;*/
-        overflow: hidden;
-        color: lightgrey
-    }
-
-    #progressbar .active {
-        color: #5bb7c5
-    }
-
-    #progressbar li {
-        list-style-type: none;
-        font-size: 14px;
-        width: 33%;
-        float: left;
-        color: #999;
-        position: relative
-    }
-
-    #progressbar #account:before {
-        font-family: FontAwesome;
-        content: "\f0b1"
-    }
-
-    #progressbar #Board:before {
-        font-family: FontAwesome;
-        content: "\f02d"
-    }
-
-
-
-    #progressbar #personal:before {
-        font-family: FontAwesome;
-        content: "\f1ad"
-    }
-
-    #progressbar #payment:before {
-        font-family: FontAwesome;
-        content: "\f156"
-    }
-
-    #progressbar #confirm:before {
-        font-family: FontAwesome;
-        content: "\f041"
-    }
-
-    #progressbar li:before {
-        width: 50px;
-        height: 50px;
-        line-height: 45px;
-        display: block;
-        font-size: 18px;
-        color: #ffffff;
-        background: #bcfff8;
-        border-radius: 50%;
-        margin: 0 auto 10px auto;
-        padding: 2px
-    }
-
-    #progressbar li:after {
-        content: '';
-        width: 100%;
-        height: 2px;
-        background: #bcfff8;
-        position: absolute;
-        left: 0;
-        top: 25px;
-        z-index: -1
-    }
-
-    #progressbar li.active:before,
-    #progressbar li.active:after {
-        background: #5bb7c5
-    }
-
-    .radio-group {
-        position: relative;
-        margin-bottom: 25px
-    }
-
-    .radio {
-        display: inline-block;
-        width: 204;
-        height: 104;
-        border-radius: 0;
-        background: lightblue;
-        box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
-        box-sizing: border-box;
-        cursor: pointer;
-        margin: 8px 2px
-    }
-
-    .radio:hover {
-        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3)
-    }
-
-    .radio.selected {
-        box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1)
-    }
-
-    .fit-image {
-        width: 100%;
-        object-fit: cover
-    }
-
-    /*!
- * Bootstrap Image Checkbox v0.1.0 (https://iqbalfn.github.io/bootstrap-image-checkbox/)
- * Copyright 2019 Iqbal Fauzi
- * Licensed under MIT (https://github.com/iqbalfnn/bootstrap-image-checkbox/blob/master/LICENSE)
- */
-    .custom-control.image-checkbox {
-        position: relative;
-        padding-left: 0;
-    }
-
-    .custom-control.image-checkbox .custom-control-input:checked~.custom-control-label:after,
-    .custom-control.image-checkbox .custom-control-input:checked~.custom-control-label:before {
-        opacity: 1;
-    }
-
-    .custom-control.image-checkbox label {
-        cursor: pointer;
-    }
-
-    .custom-control.image-checkbox label:before {
-        border-color: #007bff;
-        background-color: #007bff;
-    }
-
-    .custom-control.image-checkbox label:after,
-    .custom-control.image-checkbox label:before {
-        transition: opacity .3s ease;
-        opacity: 0;
-        left: .25rem;
-        top: .5rem !important;
-    }
-
-    .custom-control.image-checkbox label:focus,
-    .custom-control.image-checkbox label:hover {
-        opacity: .8;
-    }
-
-    .custom-control.image-checkbox label img {
-        border-radius: 2.5px;
-    }
-
-    .form-group-image-checkbox.is-invalid label {
-        color: #dc3545;
-    }
-
-    .form-group-image-checkbox.is-invalid .invalid-feedback {
-        display: block;
-    }
-    .wow{
-        height: 250px;
-    }
-    .event{
-        border-radius: 10px;
-        height: 50px;
-        margin-top: 6px;
-    }
-    .required{
-    padding-left: 2px;
-    font-weight: 600;
-    color: black;
-    font-size: 16px;
-    }
-
-.toast {
-    z-index: 9999;
-  width: 500px;
-  height: 0px;
-  height: auto;
-  position: fixed;
-  left: 40%;
-  margin-left: -100px;
-  bottom: 10px;
-  background-color: #35bc7a;
-  color: #f0f0f0;
-  font-family: Calibri;
-  font-size: 20px;
-  padding: 10px;
-  text-align: center;
-  border-radius: 7px;
-  -webkit-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
-  -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
-  box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    #development-img img {
+    height:430px;
+}
+    #intro-info {
+    width:50%;
+    float: left;
+    margin-top: 5.8%;
 }
 
-.container .slider {
-            animation: slidein 30s linear infinite;
-            white-space: nowrap;
-        }
+    #intro-info h1 {
+        font-size: 50px;        
+        font-weight: 600;
+            
+    }
 
-        .container .slider .logos {
-            width: 100%;
-            display: inline-block;
-            margin: 0px 0;
-        }
+    #intro-info span {
+        display: block;
+        font-family: raleway;
+        font-weight: 600;
+        padding: 0 0 55px;
+        font-size: 23px;
+    }
+    #development-img {
+    width:50%;
+    text-align: right;
+}
 
-        .container .slider .logos .fab {
-            width: calc(100% / 5);
-            animation: fade-in 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
-        }
+#word{
+    color: #32be8f;
+    text-transform: uppercase;
+}
 
-        @keyframes slidein {
-            from {
-                transform: translate3d(0, 0, 0);
-            }
+#serviceword{
+    color: #32be8f;
+}
+.formdesign form{
+    border: 10px solid #5bb7c5;
+    border-radius: 50px;
+}
 
-            to {
-                transform: translate3d(-100%, 0, 0);
-            }
-        }
+.formdesign{
+    text-align: center;
+}
+.formdesign input{
+    border: 2px solid black;
+    border-radius: 50px;
+}
+.dis{    
+    height: 60px;
+}
+.formdesign select{
+    border: 2px solid black;
+    border-radius: 50px;
+    height: 50px !important;
+}
+.loginfirst{
+        border-radius: 50px;
+        border: none;
+    font-size: 20px;
+    padding: 10px;
+    width: 200px;
+    font-weight: 700;
+    background-image: linear-gradient(to right, #32be8f, #5bb7c5, #32be8f);
+    background-size: 200%;
 
-        @keyframes fade-in {
-            0% {
-                opacity: 0;
-            }
+}
+#submit{
+    border-radius: 50px;
+        border: none;
+    font-size: 20px;
+    padding: 10px;
+    width: 200px;
+    font-weight: 700;
+    background-image: linear-gradient(to right, #32be8f, #5bb7c5, #32be8f);
+    background-size: 200%;
 
-            100% {
-                opacity: 1;
-            }
-        }
+}
+.titlehead h1{
+    font-size: 50px;
+    font-weight: 900;
+    margin-bottom: 30px;
+}
+.titlehead span{
+    color: #32be8f;
+}
+
+/* Web Font */
+* {
+    font-family: 'Titillium Web', sans-serif; 
+}
+
+/* Relative positioning*/
+#image-map {
+    position: relative;
+}
+
+/* Hide the original tooltips contents */
+.pin {
+    display: none;
+}
+
+/* Begin styling the tooltips and pins */
+.tooltip-up, .tooltip-down {
+    position: absolute;
+    background: url(assets/img/background/19362653.jpg);
+    width: 25px;
+    height: 37px;
+}
+
+.tooltip-down {
+    background-position: 0 -137px;
+}
+
+.tooltip {
+    display: none;
+    width: 200px;
+    cursor: help;
+    text-shadow: 0 1px 0 #fff;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    z-index: 999;
+    margin-left: -115px;
+    padding:15px;
+    color: #222;
+    border-radius: 5px;
+    box-shadow: 0 3px 0 rgba(0,0,0,.7);
+    background: #fff1d3;
+    background: linear-gradient(top, #fff1d3, #ffdb90);         
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    margin-left: -10px;
+    border-bottom: 10px solid #fff1d3;
+    border-left: 10px solid transparent;
+    border-right : 10px solid transparent;
+}
+
+.tooltip-down .tooltip {
+    bottom: 12px;
+    top: auto;
+}
+
+.tooltip-down .tooltip::after {
+    bottom: -10px;
+    top: auto;
+    border-bottom: 0;
+    border-top: 10px solid #ffdb90;
+}
+
+.tooltip h2 {
+    font: bold 1.3em 'Trebuchet MS', Tahoma, Arial;
+    margin: 0 0 10px;
+}
+
+.tooltip ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.list{
+    text-align: center;
+}
+.list ul li button{
+    background: white;
+    border: 4px solid black;
+    border-radius: 25px 30px 0 15px;
+    font-size: 20px;
+    padding: 10px 40px;
+    width: 250px;
+}
+.list ul li{
+padding: 20px;
+}
+.maincon{
+    border: 4px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    height: 92%;
+    margin: 20px;
+    font-size: 20px;
+}
+.maincon p{
+    font-size: 16px;
+    display: none;
+    }
+.list ul li button:focus {
+  background:linear-gradient(to right, #32be8f, #5bb7c5, #32be8f);
+}
+h5{
+    color: black;
+    font-weight: 800;
+    font-size: 23px;
+}
+
+.wrap {
+  width:100%;
+  margin:auto;
+  position:relative;
+}
+
+.area {
+  width:100%;
+  height:100%;
+  
+}
+
+.stretch {
+  width:100%;
+  height:100%;
+}
+
+.display-position {
+  position:absolute;
+  top: 10%;
+    left: 30%;
+}
+.display-position-text{
+    position:absolute;
+    top: 20%;
+    left: 36%; 
+}
+
+.display-position-invest {
+  position:absolute;
+    top: 48%;
+    left: 20%;
+}
+.display-position-text-invest{
+    position:absolute;
+    top: 59%;
+    left: 22%; 
+}
+.display-position-earn{
+    position:absolute;
+    top: 45%;
+    left: 62%;
+}
+
+.display-position-text-earn{
+    position:absolute;
+    top: 59%;
+    left: 71%; 
+}
+.logoimg img{
+ width: 260px;
+}
 
     </style>
 {% endblock %}
 {% block body %}
 
 <body>
-
-    <!-- BEGIN  modal -->
-    <div class="modal fade" id="sizedModalLg" role="dialog" style="z-index: 9999;">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <!-- <div class="modal-header">
-                          <h5 class="modal-title">Large modal</h5>
-                          
-                        </div> -->
-                <!-- <div class="modal-body "> -->
-                <div class="container-fluid">
-                    <div class="row justify-content-center mt-0">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: relative;left: 45%;">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center p-0 ">
-                            <div class="card1 px-0 pt-4 pb-0  ">
-                                <h4 style="font-size: 22px;"><strong>Configure your virtual admission assistant</strong></h4>
-                                <p>Help us to know more about you. It will help us to find the right school for your child</p>
-                                <div class="row">
-                                    <div class="col-md-12 mx-0">
-                                        <form id="msform" action="category.html" method="GET">
-                                            <!-- progressbar -->
-                                            <ul id="progressbar">
-                                                <li class="active" id="account"><strong>Type Of Busniess</strong></li>
-                                                <li id="personal">Industry</li>
-                                                <li id="payment">Catagory</li>
-                                                <!-- <li id="Board">Board</li>
-                                                <li id="confirm">Location</li> -->
-                                            </ul> <!-- fieldsets -->
-                                            <fieldset>
-                                                <div class="row" style="padding: 20px;">
-                                                    <div class="col-md-12">
-                                                        <div style="padding: 10px;">
-                                                            <img src="assets/img/author/user.png" alt="" style="height: 45px;display: inline; padding: 5px;">
-                                                            <p class="description" style="display: inline;">Hi ! I am looking for a</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-6 ">
-                                                        <div class="custom-control custom-checkbox image-checkbox  " style=" box-shadow: 0 0 10px rgb(175 175 175 / 23%);">
-                                                            <input type="checkbox" class="custom-control-input" id="ck1a" name="typeofschool" value="Day School">
-                                                            <label class="custom-control-label icon" for="ck1a">
-                                                                <img src="assets/img/category/bordingscol.png" style="height: 150px;" alt="#" class="img-fluid">
-                                                                <h6 style="color: #1f7079; font-weight: 500;line-height: 1.6em;text-transform: uppercase;font-weight: 700;">Industry</h6>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-6">
-                                                        <div class="custom-control custom-checkbox image-checkbox  " style=" box-shadow: 0 0 10px rgb(175 175 175 / 23%);">
-                                                            <input type="checkbox" class="custom-control-input" id="ck1a12" name="typeofschool" value="Boarding School">
-                                                            <label class="custom-control-label icon" for="ck1a12">
-                                                                <img src="assets/img/category/bordingscol.png" style="height: 150px;" alt="#" class="img-fluid">
-                                                                <h6 style="color: #1f7079; font-weight: 500;line-height: 1.6em;text-transform: uppercase;font-weight: 700;">Company</h6>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-6">
-                                                        <div class="custom-control custom-checkbox image-checkbox  " style=" box-shadow: 0 0 10px rgb(175 175 175 / 23%);">
-                                                            <input type="checkbox" class="custom-control-input" id="ck1a13" name="typeofschool" value="Colleges">
-                                                            <label class="custom-control-label icon" for="ck1a13">
-                                                                <img src="assets/img/category/colg.png" alt="#" class="img-fluid" style="height: 150px;">
-                                                                <h6 style="color: #1f7079; font-weight: 500;line-height: 1.6em;text-transform: uppercase;font-weight: 700;">non profit</h6>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-6">
-                                                        <div class="custom-control custom-checkbox image-checkbox  " style="box-shadow: 0 0 10px rgb(175 175 175 / 23%); ">
-                                                            <input type="checkbox" class="custom-control-input" id="ck1a14" name="typeofschool" value="Play School">
-                                                            <label class="custom-control-label icon" for="ck1a14">
-                                                                <img src="assets/img/category/pla.jpg " style="height: 150px;" alt="#" class="img-fluid">
-                                                                <h6 style="color: #1f7079; font-weight: 500;line-height: 1.6em;text-transform: uppercase;font-weight: 700;">startup</h6>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <input type="button" name="next" class="next action-button btn btn-common" value="Next Step" style="width: 120px;color: #ffff; height: 40px; border-radius: 4px;" />
-                                            </fieldset>
-                                            <fieldset>
-                                                <div class="col-md-12">
-                                                    <div style="padding: 10px;">
-                                                        <img src="assets/img/author/user.png" alt="" style="height: 45px;display: inline; padding: 5px; ">
-                                                        <p class="description" style="display: inline;">Hi ! Please Select Class (grade)</p>
-                                                    </div>
-                                                </div>
-                                                <div class="" id="hideclass">
-                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                        <label class="btn btn-outline-info " style="padding: .50rem 3rem;     width: 180px;margin-top: 10px;">
-                                                            <input type="checkbox" name="classes" autocomplete="off">Equity Trading
-                                                        </label>
-                                                    </div>
-                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                        <label class="btn btn-outline-info " style="padding: .50rem  3rem;     width: 180px;margin-top: 10px;">
-                                                            <input type="checkbox" name="classes" autocomplete="off"> Product
-                                                        </label>
-                                                    </div>
-                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                        <label class="btn btn-outline-info" style="padding: .50rem 3rem;     width: 180px;margin-top: 10px;">
-                                                            <input type="checkbox" name="classes" value="1" autocomplete="off"> Services
-                                                        </label>
-                                                    </div>
-                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                        <label class="btn btn-outline-info " style="padding: .50 rem 3rem;width: 180px;margin-top: 10px;">
-                                                            <input type="checkbox" name="classes" value="2" autocomplete="off"> salary
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12" id="showcollage" style="display: none;">
-                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                        <label class="btn btn-outline-danger" style="padding: .50rem 3rem;">
-                                                            <input type="checkbox" name="classes" value="bca" autocomplete="off"> BCA
-                                                        </label>
-                                                    </div>
-                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                        <label class="btn btn-outline-danger" style="padding: .50rem 3rem;">
-                                                            <input type="checkbox" name="classes" value="12" autocomplete="off">MCA
-                                                        </label>
-                                                    </div>
-                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                        <label class="btn btn-outline-danger" style="padding: .50rem 3rem;">
-                                                            <input type="checkbox" name="classes" value="12" autocomplete="off"> BBA
-                                                        </label>
-                                                    </div>
-                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                        <label class="btn btn-outline-danger" style="padding: .50rem 3rem;">
-                                                            <input type="checkbox" name="classes" value="12" autocomplete="off"> MBA
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <input type="button" name="previous" class="previous action-button-previous btn btn-common" value="Previous" style="width: 120px;color: #ffff; height: 40px; border-radius: 4px; margin-top: 20px;" /> <input type="button" name="next" class="next action-button btn btn-common" value="Next Step" style="width: 120px;color: #ffff; height: 40px; border-radius: 4px; margin-top: 20px;" / />
-                                            </fieldset>
-                                            <fieldset>
-                                                <div class="col-md-12">
-                                                    <div style="padding: 10px;">
-                                                        <img src="assets/img/author/user.png" alt="" style="height: 45px;display: inline; padding: 5px;">
-                                                        <p class="description" style="display: inline;">Hi ! Please Select Fee Range</p>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                        <label class="btn btn-outline-info " style="padding: .50rem 3rem; width: 280px;margin-top: 10px;">
-                                                            <input type="checkbox" name="fee" value="30k" autocomplete="off">
-                                                            VIRTUAL CFO
-                                                        </label> </div>
-                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                        <label class="btn btn-outline-info " style="padding: .50rem 3rem;width: 280px;margin-top: 10px;">
-                                                            <input type="checkbox" name="fee" autocomplete="off" value="30kto50k">
-                                                            BOOK-KEEPING
-                                                        </label>
-                                                    </div>
-                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                        <label class="btn btn-outline-info " style="padding: .50rem 3rem; width: 280px;margin-top: 10px;">
-                                                            <input type="checkbox" name="fee" value="50kto70k" autocomplete="off">
-                                                            BUSINESS LICENSES
-                                                        </label>
-                                                    </div>
-                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                        <label class="btn btn-outline-info " style="padding: .50rem 3rem; width: 280px;margin-top: 10px;">
-                                                            <input type="checkbox" name="fee" value="70kto1L" autocomplete="off">
-                                                            DIRECT & INDIRECT TAXATION
-                                                        </label>
-                                                    </div>
-                                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                        <label class="btn btn-outline-info " style="padding: .50rem 3rem; width: 280px;margin-top: 10px;">
-                                                            <input type="checkbox" name="fee" value="1Lto2L" autocomplete="off">
-                                                            STATUTORY COMPLIANCES
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <input type="button" name="previous" class="previous activetion-button-previous btn btn-common" value="Previous" style="width: 120px;color: #ffff; height: 40px; border-radius:4px; margin-top: 20px;" />
-                                                <input type="submit" name="smartsearch" class="next action-button btn btn-common" value="Confirm" style="width: 120px;color: #ffff; height: 40px; border-radius: 4px; margin-top: 20px;" />
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- END  modal -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
 
-          $("#allshow").mouseenter(function(){
+        $("#allshow").mouseenter(function() {
             $("#fisthide").hide("");
             $("#Firstshow").show("");
 
-          });
-          $("#allshow").mouseleave(function(){
+        });
+        $("#allshow").mouseleave(function() {
             $("#fisthide").show("");
             $("#Firstshow").hide("");
-          });
         });
-
+    });
     </script>
-    <section id="categories">
+    <section class="cta section-padding" id="intro">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 col-md-12 col-xs-12">
-                    <div id="categories-icon-slider" class="categories-wrapper owl-carousel owl-theme">
-                        <div class="item" id="allshow">
-                            <div class="category-icon-item" id="fisthide">
-                                <div class="icon-box">
-                                    <div class="icon">
-                                        <img src="assets/img/category/virtual.png" alt="">
-                                    </div>
-                                    <h4>VIRTUAL CFO</h4>
-                                    <p style="color:#333;">For startups & small businesses businesses</p>
-                                </div>
-                            </div>
-                            <div class="category-icon-item" id="Firstshow" style="display: none;">
-                                <div class="icon-box">
-                                    <div class="icon">
-                                        <img src="assets/img/category/virtual.png" alt="">
-                                    </div>
-                                    <h4>VIRTUAL asasas</h4>
-                                    <p style="color:#333;">For startups & small businesses businesses</p>
-                                </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" id="intro-info">
+                    <div class="titlehead">
+                        <h1>Full Service Mobile App Development Company</h1>
+                        <h1 class="year" id="word">Aware</h1>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" id="development-img">
+                    <img src="assets/img/background/Imagehead.png" alt="Mobile App Development" title="Mobile App Development" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="cta section-padding" id="intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <img src="assets/img/background/Imagehead.png" alt="Mobile App Development" title="Mobile App Development"/ style="width: 500px;">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="titlehead">
+                        <h1>Services built for</h1>
+                        <h1 class="year" id="serviceword">Startups</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <div style="padding:0px 0px;  ">
+                                <img src="assets/img/background/Icon1.png" height="120px;">
+                                <h5>Book Keeping</h5>
                             </div>
                         </div>
-                        <div class="item">
-                            <!-- <a href="category.html"> -->
-                            <div class="flip-card">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <div class="category-icon-item">
-                                            <div class="icon-box">
-                                                <div class="icon">
-                                                    <img src="assets/img/category/booking.png" alt="">
-                                                </div>
-                                                <h4>BOOK-KEEPING</h4>
-                                                <p style="color:#333;">For startups, small businesses, professionals, traders</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <div class="category-icon-item ">
-                                            <div class="icon-box ">
-                                                <p style="color:#333;">Preparation and maintenance of books of accounts, business reports, preparation of financial statements, business statistics & more
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="col-4 text-center">
+                            <div style="padding:0px 0px;  ">
+                                <img src="assets/img/background/Icon2.png" height="120px;">
+                                <h5>Business Licenses</h5>
                             </div>
-                            <!-- </a> -->
                         </div>
-                        <div class="item">
-                            <!-- <a href="category.html"> -->
-                            <div class="flip-card">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <div class="category-icon-item">
-                                            <div class="icon-box">
-                                                <div class="icon">
-                                                    <img src="assets/img/category/booking.png" alt="">
-                                                </div>
-                                                <h4>BOOK-KEEPING</h4>
-                                                <p style="color:#333;">For startups, small businesses, professionals, traders</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <div class="category-icon-item ">
-                                            <div class="icon-box ">
-                                                <p style="color:#333;">Preparation and maintenance of books of accounts, business reports, preparation of financial statements, business statistics & more
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="col-4 text-center">
+                            <div style="padding:0px 0px;  ">
+                                <img src="assets/img/background/Icon3.png" height="120px;">
+                                <h5>Taxation</h5>
                             </div>
-                            <!-- </a> -->
                         </div>
-                        <div class="item">
-                            <!-- <a href="category.html"> -->
-                            <div class="flip-card">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <div class="category-icon-item">
-                                            <div class="icon-box">
-                                                <div class="icon">
-                                                    <img src="assets/img/category/licensing.png" alt="">
-                                                </div>
-                                                <h4>BUSINESS LICENSES </h4>
-                                                <p style="color:#333;">For starting business, existing businesses</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <div class="category-icon-item ">
-                                            <div class="icon-box ">
-                                                <p style="color:#333;">Formation & Registration of Company, LLP or other forms of business, Trademark, food license, GST, EPF, Import Export Code, 80G registration & more
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-center">
+                            <div style="padding:0px 0px;  ">
+                                <img src="assets/img/background/Icon4.png" height="120px;">
+                                <h5>Statutory <br> Compliances</h5>
                             </div>
-                            <!-- </a> -->
                         </div>
-                        <div class="item">
-                            <!--  <a href="category.html"> -->
-                            <div class="flip-card">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <div class="category-icon-item">
-                                            <div class="icon-box">
-                                                <div class="icon">
-                                                    <img src="assets/img/category/tax.png" alt="">
-                                                </div>
-                                                <h4>DIRECT & INDIRECT TAXATION</h4>
-                                                <p style="color:#333;">For individuals, professionals, traders, businesses</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <div class="category-icon-item ">
-                                            <div class="icon-box ">
-                                                <p style="color:#333;">Income Tax Return, monthly and Annual GST Return, Quarterly TDS Return, monthly EPF/ESI Return & more
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="col-6 text-center">
+                            <div style="padding:0px 0px;  ">
+                                <img src="assets/img/background/Icon5.png" height="120px;">
+                                <h5>Virtual <br> CFO</h5>
                             </div>
-                            <!-- </a> -->
-                        </div>
-                        <div class="item">
-                            <!-- <a href="category.html"> -->
-                            <div class="flip-card">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <div class="category-icon-item ">
-                                            <div class="icon-box ">
-                                                <div class="icon">
-                                                    <img src="assets/img/category/compliant.png" alt="">
-                                                </div>
-                                                <h4>STATUTORY COMPLIANCES
-                                                </h4>
-                                                <p style="color:#333;">Businesses registered under Companies Act, 2013</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <div class="category-icon-item ">
-                                            <div class="icon-box ">
-                                                <p style="color:#333;">Businesses registered under Companies Act, 2013
-                                                    ROC Filings, Statutory Report Preparation & Filing & more</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- </a> -->
                         </div>
                     </div>
                 </div>
@@ -765,188 +340,299 @@
         </div>
     </section>
     <section class="cta section-padding">
+        <div class="container-fluid ">
+            <div class="titlehead" style="text-align:right;">
+                <h1>Powered by the <span>BEST.</span> </h1>
+            </div>
+            <div class="wrap">
+                <div class="area">
+                    <img class="stretch" src="assets/img/background/image3.png" />
+                </div>
+                <div>
+                    <div class="display-position">
+                        <img src="assets/img/background/icon14.png" style="width:250px;" />
+                    </div>
+                    <div class="display-position-text">
+                        <h1>BUY</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="display-position-invest">
+                        <img src="assets/img/background/icon11.png" style="width:250px;" />
+                    </div>
+                    <div class="display-position-text-invest">
+                        <h1>INVEST</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="display-position-earn">
+                        <img src="assets/img/background/icon13.png" style="width:250px;" />
+                    </div>
+                    <div class="display-position-text-earn">
+                        <h1>EARN</h1>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    {# <div id="image-map">
+        <img src="assets/img/background/image3.png" alt="Our Locations" style="width: 100%;">
+        <div class="pin pin-down" data-xpos="115" data-ypos="125">
+            <h2>Willowbrook Place</h2>
+            <ul>
+                <li><strong>123 Street Address</strong></li>
+                <li>City, ST, 12345</li>
+                <li><strong>(555) 555-5555</strong></li>
+                <li><a href="#" target="_blank">Website</a></li>
+                <li>Coming in Spring 2015</li>
+            </ul>
+        </div>
+        <div class="pin pin-down" data-xpos="215" data-ypos="175">
+            <h2>Ambergrove Place</h2>
+            <ul>
+                <li><strong>123 Street Address</strong></li>
+                <li>City, ST, 12345</li>
+                <li><strong>(555) 555-5555</strong></li>
+                <li><a href="#" target="_blank">Website</a></li>
+                <li>Coming in Spring 2015</li>
+            </ul>
+        </div>
+        <div class="pin" data-xpos="255" data-ypos="65">
+            <h2>Chelsea Place</h2>
+            <ul>
+                <li><strong>123 Street Address</strong></li>
+                <li>City, ST, 12345</li>
+                <li><strong>(555) 555-5555</strong></li>
+                <li><a href="#" target="_blank">Website</a></li>
+                <li>Coming in Spring 2015</li>
+            </ul>
+        </div>
+    </div> #}
+    <section class="cta section-padding">
         <div class="container">
+            <div class="titlehead" style="text-align:right;">
+                <h1>Unlock your <span><img src="assets/img/background/icon15.png" width="80px"> </span> Potential.</h1>
+            </div>
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
-                    <div class="single-cta">
-                        <div class="cta-icon">
-                            <i class="lni-grid"></i>
-                        </div>
-                        <div class="content">
-                            <h4>BUY</h4>
-                            <p style="font-size: 16px;text-align: ;color: #424040;">Avail our top-notch financial services, get clarity on all financial aspects and never ever look back on your finances! From business registration to investment and tax saving planning – we offer every kind of financial support your business needs.</p>
-                        </div>
+                <div class="col-4">
+                    <div class="list">
+                        <ul>
+                            <li><button class="btn btnli" id="financebtn"> Finance made<br> Easy! </button></li>
+                            <li><button class="btn btnli" id="Poweredbtn">Powered by <br> Cloud-AI </button></li>
+                            <li><button class="btn btnli" id="Startupsbtn">Fuel for <br> Startups </button></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
-                    <div class="single-cta">
-                        <div class="cta-icon">
-                            <i class="lni-brush"></i>
-                        </div>
-                        <div class="content">
-                            <h4>EARN</h4>
-                            <p style="font-size: 16px;text-align: justify;color: #424040;">Join our affiliate program and refer Fintastic Hub to your business pals! Recommend once; generate passive income for life! You also earn cashback for every service you avail. Your wallet money adds up every year if you haven’t redeemed your cash back. Earn and Save with us!</p>
-                        </div>
+                <div class="col-4">
+                    <div class="maincon">
+                        <p id="finance" >From business registration, tax filing, and CFO to investment and business planning, we stay with you at every stage of your business and cater to all your financial needs in one place. No more juggling between different service providers or risking regulatory compliance! FH is your all-in-one powerhouse of finances where you achieve financial peace of mind.</p>
+                        <p id="Powered" >We are your tech-focused, cloud-based and AI-powered finance squad! With our excellent cloud management system and tech-savvy partners, we strive to give you a hustle-free experience so you can be confident about the financial aspects of your business.</p>
+                        <p id="Startups" >Fintastic Hub is more than your financial partner. You get exclusive access to our business community, share your experiences and achievements, network with startups and entrepreneurs and get instant updates about the evolving business world.</p>
+                        <p id="Community" >You get access to your personal dashboard once you sign up for any of our services. Every business is provided with a private cloud storage space to ensure confidentiality and integrity. You get instant updates on the service availed and stay financially sorted without the burden of paperwork.</p>
+                        <p id="Growth" >We make every penny count. With FH, you unlock the hidden opportunities to grow your business, speed up your profit maximization and leverage investments with our expert guidance.</p>
+                        <p id="Tailored" >All our professionals are experienced and committed to giving you the best. You get a financial partner aligned with your values and business goals. We customize your financial plans to better suit your requirements which helps us serve you the best possible way and continue to be a leading authority in the world of regulations and finance.</p>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
-                    <div class="single-cta">
-                        <div class="cta-icon">
-                            <i class="lni-headphone-alt"></i>
-                        </div>
-                        <div class="content">
-                            <h4>INVEST</h4>
-                            <p style="font-size: 16px;text-align: justify;color: #424040;">To make investments a minimum risk for you, we partner with major corporations worldwide. When you invest via Fintastic hub, we make it a smooth, hassle-free process for you and ensure high returns at low risk.</p>
-                        </div>
+                <div class="col-4">
+                    <div class="list">
+                        <ul>
+                            <li> <button class="btn btnli" id="Communitybtn">Community.<br> ASSEMBLE! </button></li>
+                            <li><button class="btn btnli" id="Growthbtn">Growth Boost <br> Re-Imagined</button></li>
+                            <li><button class="btn btnli" id="Tailoredbtn">Tailored for <br> YOU</button></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="services bg-light section-padding">
+    <section class="cta section-padding" id="intro">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <h3 class="section-title">Key Features</h3>
-                </div>
-                <div class="col-md-12 col-lg-6 col-xs-12">
-                    <div class="services-item wow fadeInRight" data-wow-delay="0.2s">
-                        <div class="icon">
-                            <i class="lni-leaf"></i>
-                        </div>
-                        <div class="services-content">
-                            <h3 style="font-size:20px;">All financial solutions under one roof</h3>
-                            <p style="text-align: justify;
-    padding-right: 28px; color: #424040;">From business registration, tax filing, and CFO to investment and business planning, we stay with you at every stage of your business and cater to all your financial needs in one place. No more juggling between different service providers or risking regulatory compliance! FH is your all-in-one powerhouse of finances where you achieve financial peace of mind.
-                            </p>
-                        </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="titlehead" style="text-align:right;">
+                        <h1>Powered by the <span>BEST.</span> </h1>
                     </div>
-                </div>
-                <div class="col-md-12 col-lg-6 col-xs-12">
-                    <div class="services-item wow fadeInRight" data-wow-delay="0.4s">
-                        <div class="icon">
-                            <i class="lni-display"></i>
-                        </div>
-                        <div class="services-content">
-                            <h3 style="font-size:20px;">Cloud AI-powered platform</h3>
-                            <p style="text-align: justify;
-    padding-right: 28px; color: #424040;">We are your tech-focused, cloud-based and AI-powered finance squad! With our excellent cloud management system and tech-savvy partners, we strive to give you a hustle-free experience so you can be confident about the financial aspects of your business
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-6 col-xs-12">
-                    <div class="services-item wow fadeInRight" data-wow-delay="0.6s">
-                        <div class="icon">
-                            <i class="lni-color-pallet"></i>
-                        </div>
-                        <div class="services-content">
-                            <h3 style="font-size:20px;">Promoting budding entrepreneurs and startups</h3>
-                            <p style="text-align: justify;
-    padding-right: 28px; color: #424040;">Fintastic Hub is more than your financial partner. You get exclusive access to our business community, share your experiences and achievements, network with startups and entrepreneurs and get instant updates about the evolving business world.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-6 col-xs-12">
-                    <div class="services-item wow fadeInRight" data-wow-delay="0.8s">
-                        <div class="icon">
-                            <i class="lni-emoji-smile"></i>
-                        </div>
-                        <div class="services-content">
-                            <h3 style="font-size:20px;">Dedicated community access</h3>
-                            <p style="text-align: justify;
-    padding-right: 28px; color: #424040;">You get access to your personal dashboard once you sign up for any of our services. Every business is provided with a private cloud storage space to ensure confidentiality and integrity. You get instant updates on the service availed and stay financially sorted without the burden of paperwork.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-6 col-xs-12">
-                    <div class="services-item wow fadeInRight" data-wow-delay="1s">
-                        <div class="icon">
-                            <i class="lni-pencil-alt"></i>
-                        </div>
-                        <div class="services-content">
-                            <h3 style="font-size:20px;">Creating financial gratitude</h3>
-                            <p style="text-align: justify;
-    padding-right: 28px; color: #424040;">We make every penny count. With FH, you unlock the hidden opportunities to grow your business, speed up your profit maximization and leverage investments with our expert guidance.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-6 col-xs-12">
-                    <div class="services-item wow fadeInRight" data-wow-delay="1.2s">
-                        <div class="icon">
-                            <i class="lni-headphone-alt"></i>
-                        </div>
-                        <div class="services-content">
-                            <h3 style="font-size:20px;">Easily customizable</h3>
-                            <p style="text-align: justify;
-    padding-right: 28px; color: #424040;">All our professionals are experienced and committed to giving you the best. You get a financial partner aligned with your values and business goals. We customize your financial plans to better suit your requirements which helps us serve you the best possible way and continue to be a leading authority in the world of regulations and finance.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="services  section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h3 class="section-title">BEST QUALITY DELIVERED USING THE BEST TOOLS
-                    </h3>
-                </div>
-                <div class="col-12 offset-lg-1">
                     <div class="row">
-                        <div class="col-md-3 col-lg-2 item active">
-                            <div class="box" style="background-color: #5bb7c573">
-                                <div style="padding:0px 0px;  ">
-                                    <img class="rounded-circle" src="assets/img/category/images.jfif" height="120px;">
-                                </div>
-                                <div style="padding-top: 10px;">
-                                    <h6 class="name" style="color: #1f7079; font-weight: 500;line-height: 1.6em;text-transform: uppercase;font-weight: 700;">Tally ERP
-                                    </h6>
-                                </div>
+                        <div class="col-4 text-center">
+                            <div class="logoimg" style="padding:0px 0px;  ">
+                                <img src="assets/img/background/Logo1.png" >
+                                
                             </div>
                         </div>
-                        <div class="col-md-3 col-lg-2 item active">
-                            <div class="box" style="background-color: #5bb7c573">
-                                <div style="padding:0px 0px;  ">
-                                    <img class="rounded-circle" src="assets/img/category/qb.jpeg" height="120px;">
-                                </div>
-                                <div style="padding-top: 10px;">
-                                    <h6 class="name" style="color: #1f7079; font-weight: 500;line-height: 1.6em;text-transform: uppercase;font-weight: 700;">Quickbooks
-                                    </h6>
-                                </div>
+                        <div class="col-4 text-center">
+                            <div class="logoimg" style="padding:0px 0px;  ">
+                                <img src="assets/img/background/Logo2.png" >
+                                
                             </div>
                         </div>
-                        <div class="col-md-3 col-lg-2 item active">
-                            <div class="box" style="background-color: #5bb7c573">
-                                <div style="padding:0px 0px;  ">
-                                    <img class="rounded-circle" src="assets/img/category/images1.jfif" height="120px;">
-                                </div>
-                                <div style="padding-top: 10px;">
-                                    <h6 class="name" style="color: #1f7079; font-weight: 500;line-height: 1.6em;text-transform: uppercase;font-weight: 700;">Vyaapar</h6>
-                                </div>
+                        <div class="col-4 text-center">
+                            <div class="logoimg" style="padding:0px 0px;  ">
+                                <img src="assets/img/background/Logo3.png" >
+                                
                             </div>
                         </div>
-                        <div class="col-md-3 col-lg-2 item active">
-                            <div class="box" style="background-color: #5bb7c573">
-                                <div style="padding:0px 0px;  ">
-                                    <img class="rounded-circle" src="assets/img/category/zoom3.png" height="120px;">
-                                </div>
-                                <div style="padding-top: 10px;">
-                                    <h6 class="name" style="color: #1f7079; font-weight: 500;line-height: 1.6em;text-transform: uppercase;font-weight: 700;">Zoom</h6>
-                                </div>
+                    </div>
+                    <div class="row" style="margin-top: 30px;">
+                        <div class="col-6 text-center">
+                            <div class="logoimg" style="padding:0px 0px;  ">
+                                <img src="assets/img/background/Logo4.png" >
+                               
                             </div>
                         </div>
-                        <div class="col-md-3 col-lg-2 item active">
-                            <div class="box" style="background-color: #5bb7c573">
-                                <div style="padding:0px 0px;  ">
-                                    <img class="rounded-circle" src="assets/img/category/re.jpg" height="120px;">
-                                </div>
-                                <div style="padding-top: 10px;">
-                                    <h6 class="name" style="color: #1f7079; font-weight: 500;line-height: 1.6em;text-transform: uppercase;font-weight: 700;">>Razorpay</h6>
+                        <div class="col-6 text-center">
+                            <div class="logoimg" style="padding:0px 0px;  ">
+                                <img src="assets/img/background/Logo5.png" style="width:500px;" >
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="titlehead" style="text-align:right;">
+                        <h1>Frequently Asked <span>Questions.</span> </h1>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-5 col-xs-12">
+                    <div class="about-wrapper" style="padding-top: 100px;">
+                        <img class="img-fluid" src="assets/img/category/FAQ.png" alt="">
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-7 col-xs-12">
+                    <div class="faq section-padding">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                        Is one-to-one assistance available along with financial services? Where do I solve my queries?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse ">
+                                                <div class="panel-body">
+                                                    <p>Yes! Once you avail our service, a dedicated financial expert from our team will be assigned to you. He/She will contact you and explain the process and be available to clarify your doubts.
+                                                    </p>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo">
+                                                        How long will it take to complete the process and get the final deliverable?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        It may vary for every service, however, you can track your services in real-time on your private dashboard. The estimated completion date will be available clearly on your dashboard and our dedicated expert will contact you and explain all the requirements and the process.
+                                                    </p>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                                                        What types of businesses do you work with?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseThree" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        We work with startups, freelancers and entrepreneurs all over India across multiple industries including <b>insert 2-3 big industries served></b>
+                                                    </p>
+                                                    <br>
+                                                    <p>
+                                                        You can also track the status of service on real time basis from your FH dashboard. We ensure every service is completed in least possible time
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion3" href="#collapseFour">
+                                                        What is the business club? Should I become a member to avail your services?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFour" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        Fintastic Hub <a href="">Business </a> is a dedicated platform with a network of entrepreneurs and startup owners. You need not be a member of our business club to avail our services. It stands as a separate membership with the potential to supercharge your business.
+                                                    </p>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion4" href="#collapseFive">
+                                                        How can I become an affiliate? What are the benefits?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFive" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        Our affiliate program is open to everyone! As an affiliate, you can earn a commission as high as 30% when your referral purchases a service from us and set up a passive source of income.<a href=""> Click here </a>to join.</b>
+                                                    </p>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion5" href="#collapseSix">
+                                                        What are the benefits of your investment options at FH?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseSix" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        At FH, we partner with large corporations to ease the process, take charge of the paperwork and eliminate risks as much as possible. You also earn cashback on your investments. For instance, if you get a LIC policy of 100,000 p.a. Premium, you can avail 10% of 100,000 i.,e. 10,000 rs as cashback in your bank account, which means, you easily save Rs.10,000. (Please note that the percentage of cashback may vary)
+                                                    </p>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion6" href="#collapseSeven">
+                                                        I am new to affiliate marketing. Is guidance provided?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseSeven" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        Yes. Once you become an <a href=""> affiliate</a>, you will get access to our exclusive tools and resources which help you quickly learn affiliate marketing, refer FH and earn commissions.
+                                                    </p>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -992,370 +678,192 @@
             </div>
         </div>
     </section>
-    <section id="about" class="section-padding">
+    <section id="content" class="section-padding" style="padding-top:0px;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="head-faq text-center">
-                        <h2 class="section-title">Industries we serve</h2>
+                    <div class="titlehead" style="text-align:right;">
+                        <h1>Book Your <span>Appointment.</span> </h1>
                     </div>
                 </div>
-                <div class="container rounded">
-                    <div class="slider">
-                        <div class="logos">
-                            <img class="fab" src="assets/img/logo/aticx-logo.png">
-                            <img class="fab" src="assets/img/logo/vnya.webp">
-                            <img class="fab" src="assets/img/logo/aticx-logo.png">
-                            <img class="fab" src="assets/img/logo/vnya.webp">
-                            <img class="fab" src="assets/img/logo/aticx-logo.png">
-                            <img class="fab" src="assets/img/logo/vnya.webp">
-                            <img class="fab" src="assets/img/logo/aticx-logo.png">
-                            <img class="fab" src="assets/img/logo/vnya.webp">
-                        </div>
-                        <div class="logos">                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-        </section>
-
-        <section id="about" class="section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="head-faq text-center">
-                            <h2 class="section-title">Frequently Asked Questions</h2>
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-lg-5 col-xs-12">
-                        <div class="about-wrapper" style="padding-top: 100px;">
-                            <img class="img-fluid" src="assets/img/category/FAQ.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-lg-7 col-xs-12">
-                        <div class="faq section-padding">
-                            <div class="container">
+                {% if final|length > 0 %}
+                <div class="col-lg-12 col-md-12 col-xs-12 formdesign ">
+                    <form action="{{ path('app_eventmangerboking') }}" method="post" class="contact-form">                       
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="panel-group" id="accordion">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                                            Is one-to-one assistance available along with financial services? Where do I solve my queries?
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapseOne" class="panel-collapse collapse ">
-                                                    <div class="panel-body">
-                                                        <p>Yes! Once you avail our service, a dedicated financial expert from our team will be assigned to you. He/She will contact you and explain the process and be available to clarify your doubts.
-                                                        </p>
-                                                        <br>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo">
-                                                            How long will it take to complete the process and get the final deliverable?
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapseTwo" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        <p>
-                                                            It may vary for every service, however, you can track your services in real-time on your private dashboard. The estimated completion date will be available clearly on your dashboard and our dedicated expert will contact you and explain all the requirements and the process.
-                                                        </p>
-                                                        <br>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-                                                            What types of businesses do you work with?
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapseThree" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        <p>
-                                                            We work with startups, freelancers and entrepreneurs all over India across multiple industries including <b>insert 2-3 big industries served></b>
-                                                        </p>
-                                                        <br>
-                                                        <p>
-                                                            You can also track the status of service on real time basis from your FH dashboard. We ensure every service is completed in least possible time
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion3" href="#collapseFour">
-                                                            What is the business club? Should I become a member to avail your services?
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapseFour" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        <p>
-                                                            Fintastic Hub <a href="">Business </a> is a dedicated platform with a network of entrepreneurs and startup owners. You need not be a member of our business club to avail our services. It stands as a separate membership with the potential to supercharge your business.
-                                                        </p>
-                                                        <br>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion4" href="#collapseFive">
-                                                            How can I become an affiliate? What are the benefits?
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapseFive" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        <p>
-                                                            Our affiliate program is open to everyone! As an affiliate, you can earn a commission as high as 30% when your referral purchases a service from us and set up a passive source of income.<a href=""> Click here </a>to join.</b>
-                                                        </p>
-                                                        <br>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion5" href="#collapseSix">
-                                                            What are the benefits of your investment options at FH?
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapseSix" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        <p>
-                                                            At FH, we partner with large corporations to ease the process, take charge of the paperwork and eliminate risks as much as possible. You also earn cashback on your investments. For instance, if you get a LIC policy of 100,000 p.a. Premium, you can avail 10% of 100,000 i.,e. 10,000 rs as cashback in your bank account, which means, you easily save Rs.10,000. (Please note that the percentage of cashback may vary)
-                                                        </p>
-                                                        <br>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion6" href="#collapseSeven">
-                                                            I am new to affiliate marketing. Is guidance provided?
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapseSeven" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        <p>
-                                                            Yes. Once you become an <a href=""> affiliate</a>, you will get access to our exclusive tools and resources which help you quickly learn affiliate marketing, refer FH and earn commissions.
-                                                        </p>
-                                                        <br>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="form-group col-md-8 mx-auto">
+                                            <label for="form_dis" class="required">Title</label>
+                                            <input type="text" class="form-control event" id="name" name="title" placeholder="Name" required data-error="Please enter a title">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="content" class="section-padding" style="padding-top:0px;">
-            <div class="container">
-
-                <div class="row">
-                <div class="col-12">
-                        <div class="head-faq text-center">
-                            <h2 class="section-title">Book your appointment</h2>
-                        </div>
-                    </div>
-                    {% if final|length > 0  %}
-                        <div class="col-lg-8 col-md-8 col-xs-12 offset-md-2">
-                            <form  action="{{ path('app_eventmangerboking') }}" method="post" class="contact-form">
-                            <h2 class="contact-title">
-                                Book your appointment
-                            </h2>
+                            <div class="col-md-12 " style="margin-top: 20px;">
                                 <div class="row">
-                                    <div class="col-sm-12 col-md-12 col-lg-12">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                <label for="form_dis" class="required">Title</label>
-                                                    <input type="text" class="form-control event" id="name" name="title" placeholder="Name" required data-error="Please enter a title">
-                                                </div>
-                                            </div>
+                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <div class="help-block with-errors"></div>
+                                            <label for="form_dis" class="required">Date</label>
+                                            <select class="form-select form-control event" name="startdate" id="loadtime" aria-label="Default select example">
+                                                {% for date in dates %}
+                                                <option value="{{date.date}}">{{date.date }}</option>
+                                                {% endfor %}
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-12 " style="margin-top: 20px;">
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                   <div class="help-block with-errors"></div>
-                                                   <label for="form_dis" class="required">Date</label>
-                                                    <select class="form-select form-control event" name="startdate" id="loadtime" aria-label="Default select example">
-                                                    {% for date in dates %}  
-                                                      <option value="{{date.date}}">{{date.date }}</option>
-                                                    {% endfor %}
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                <label for="form_dis" class="required">Time</label>
-                                                    <select class="form-select form-control event" name="time" id="showtime" aria-label="Default select example">
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="form-group">
-                                                <label for="form_dis" class="required">Durtion</label>
-                                                    <select class="form-select form-control event" name="duration" aria-label="Default select example">
-                                                    <option>1h</option>
-                                                    <option>2h</option>
-                                                    <option>3h</option>
-
-                                                    </select>
-                                                </div>
-                                                <input type="hidden" name="userid" value="{{app.user.id}}">
-                                                <input type="hidden" name="useremail" value="{{app.user.email}}
+                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="form_dis" class="required">Time</label>
+                                            <select class="form-select form-control event" name="time" id="showtime" aria-label="Default select example">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="form_dis" class="required">Durtion</label>
+                                            <select class="form-select form-control event" name="duration" aria-label="Default select example">
+                                                <option>1h</option>
+                                                <option>2h</option>
+                                                <option>3h</option>
+                                            </select>
+                                        </div>
+                                        <input type="hidden" name="userid" value="{{app.user.id}}">
+                                        <input type="hidden" name="useremail" value="{{app.user.email}}
                                                 ">
-                                                <input type="hidden" name="status" value="available">
-                                                <input type="hidden" name="mangerid" value="{{mangerId}}">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        
-                                        <button type="submit" id="submit" class="btn btn-common">Submit Now</button>
-                                        <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                        <div class="clearfix"></div>
+                                        <input type="hidden" name="status" value="available">
+                                        <input type="hidden" name="mangerid" value="{{mangerId}}">
                                     </div>
                                 </div>
-                            </form>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" id="submit" class="btn btn-common">Submit Now</button>
+                                <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                <div class="clearfix"></div>
+                            </div>
                         </div>
-                    {% else %}
-                    <div class="col-lg-8 col-md-8 col-xs-12 offset-md-2">
-                        {{ form_start(form,{'attr': {'class': 'contact-form'}}) }}
-                        {# <form id="contactForm" class="contact-form" data-toggle="validator"> #}
-                            <h2 class="contact-title">
-                                Book your appointment
-                            </h2>
-                            <div class="row">
-                                <div class="col-sm-12 col-md-12 col-lg-12">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                            {{ form_row(form.dis,{'attr': {'class': 'form-control event'}}) }}
-                                                {# <textarea class="form-control" placeholder="Massage" rows="7" data-error="Write your message" required></textarea>
-                                                <div class="help-block with-errors"></div> #}
-                                            </div>
+                    </form>
+                </div>
+                {% else %}
+                <div class="col-lg-12 col-md-12 col-xs-12  formdesign">
+                    {{ form_start(form,{'attr': {'class': 'contact-form'}}) }}
+                    {# <form id="contactForm" class="contact-form" data-toggle="validator"> #}
+                        <h2 class="contact-title1">
+                            Book your appointment
+                        </h2>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12 formdesign">
+                                <div class="row">
+                                    <div class="col-md-12 ">
+                                        <div class="form-group col-md-8 mx-auto">
+                                            {{ form_row(form.dis,{'attr': {'class': 'form-control event dis'}}) }}
+                                            {# <textarea class="form-control" placeholder="Massage" rows="7" data-error="Write your message" required></textarea>
+                                            <div class="help-block with-errors"></div> #}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12 " style="margin-top: 20px;">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="form-group">
-                                                {{ form_row(form.bookingstart,{'attr': {'class': 'form-control event'}}) }}
-                                                {# <input type="text" class="form-control" id="name" name="name" placeholder="Name" required data-error="Please enter your name">
-                                                <div class="help-block with-errors"></div> #}
-                                            </div>
+                            </div>
+                            <div class="col-md-12 " style="margin-top: 20px;">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            {{ form_row(form.bookingstart,{'attr': {'class': 'form-control event'}}) }}
+                                            {# <input type="text" class="form-control" id="name" name="name" placeholder="Name" required data-error="Please enter your name">
+                                            <div class="help-block with-errors"></div> #}
                                         </div>
-                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="form-group">
-                                                {{ form_row(form.bookingtime,{'attr': {'class': 'form-control event'}}) }}
-                                                {# <input type="email" class="form-control" id="email" placeholder="Email" required data-error="Please enter your email">
-                                                <div class="help-block with-errors"></div> #}
-                                            </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            {{ form_row(form.bookingtime,{'attr': {'class': 'form-control event'}}) }}
+                                            {# <input type="email" class="form-control" id="email" placeholder="Email" required data-error="Please enter your email">
+                                            <div class="help-block with-errors"></div> #}
                                         </div>
-                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="form-group">
-                                                {{ form_row(form.duration,{'attr': {'class': 'form-control event'}}) }}
-                                                {# <input type="text" class="form-control" id="msg_subject" name="subject" placeholder="Subject" required data-error="Please enter your subject">
-                                                <div class="help-block with-errors"></div> #}
-                                            </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            {{ form_row(form.duration,{'attr': {'class': 'form-control event'}}) }}
+                                            {# <input type="text" class="form-control" id="msg_subject" name="subject" placeholder="Subject" required data-error="Please enter your subject">
+                                            <div class="help-block with-errors"></div> #}
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <div class="col-md-12">
-                                 {% if app.user %}
-                                    {{ form_row(form.save,{'attr': {'class': 'btn btn-common'}}) }}
+                            </div>
+                            <div class="col-md-12 ">
+                                {% if app.user %}
+                                {{ form_row(form.save,{'attr': {'class': 'btn btn-primary loginfirst'}}) }}
                                 {% else %}
-                                    <div style="display: none;">
+                                <div style="display: none;">
                                     {{ form_row(form.save,{'attr': {'class': 'btn btn-common'}}) }}
-                                    </div>
-                                    <a href="{{path('app_login')}}" class="btn btn-common">Login First</a>
+                                </div>
+                                <a href="{{path('app_login')}}" class="btn btn-primary loginfirst">Login First</a>
                                 {% endif %}
-                                    {# <button type="submit" id="submit" class="btn btn-common">Submit Now</button>
-                                    <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                    <div class="clearfix"></div> #}
-                                </div>
-                            </div>
-                        {{ form_end(form) }}
-                    </div>
-                
-                {% endif %}
-                    
-                </div>
-            </div>
-        </section>
-        <section id="blog" class="section-padding">
-            <div class="container">
-                <h2 class="section-title">
-                    Blog Post
-                </h2>
-                <div class="row">
-                    {% for posts in post %}
-                    <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
-                        <div class="blog-item-wrapper">
-                            <div class="blog-item-img">
-                                <a href="blogs/{{posts.id}}">
-                                    <img src="images/thumbnails/{{posts.thumbnail}}" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-item-text">
-                                <div class="meta-tags">
-                                    <span class="user float-left"><a href="#"><i class="lni-user"></i> {{ posts.category }}</a></span>
-                                    <span class="date float-right"><i class="lni-calendar"></i> </span>
-                                </div>
-                                <h3>
-                                    <a href="blogs/{{posts.id}}"> {{ posts.title}}</a>
-                                </h3>
-                                <p>
-                                    {{ posts.content| raw}}
-                                </p>
-                                <a href="blogs/{{posts.id}}" class="btn btn-common">Read More</a>
                             </div>
                         </div>
-                    </div>
-                    {% endfor %}
+                        {{ form_end(form) }}
                 </div>
+                {% endif %}
             </div>
-        </section>        
-        
-        <section class="testimonial section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h3 class="section-title">Client Testimonial</h3>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div id="testimonials" class="owl-carousel">
+        </div>
+    </section>
+    <section class="testimonial section-padding">
+        <div class="container">
+            <div class="row">                    
+                <div class="titlehead" style="text-align:right !important;">
+                    <h1>Client <span>Testimonial.</span> </h1>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div id="testimonials" class="owl-carousel">
+                        <div class="item">
+                            <div class="img-thumb">
+                                <img src="assets/img/testimonial/img1.png" alt="">
+                            </div>
+                            <div class="testimonial-item">
+                                <div class="content">
+                                    <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
+                                    <div class="info-text">
+                                        <h2><a href="#">Josh Rossi</a></h2>
+                                        <h4><a href="#">CEO of Fiverr</a></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
                             <div class="item">
                                 <div class="img-thumb">
-                                    <img src="assets/img/testimonial/img1.png" alt="">
+                                    <img src="assets/img/testimonial/img2.png" alt="">
+                                </div>
+                                <div class="testimonial-item">
+                                    <div class="content">
+                                        <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
+                                        <div class="info-text">
+                                            <h2><a href="#">Jessica</a></h2>
+                                            <h4><a href="#">CEO of Dropbox</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item">
+                                <div class="img-thumb">
+                                    <img src="assets/img/testimonial/img3.png" alt="">
+                                </div>
+                                <div class="testimonial-item">
+                                    <div class="content">
+                                        <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
+                                        <div class="info-text">
+                                            <h2><a href="#">Johnny Zeigler</a></h2>
+                                            <h4><a href="#">CEO of Fiverr</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item">
+                                <div class="img-thumb">
+                                    <img src="assets/img/testimonial/img4.png" alt="">
                                 </div>
                                 <div class="testimonial-item">
                                     <div class="content">
@@ -1367,66 +875,18 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="item">
                             <div class="item">
-                                <div class="item">
-                                    <div class="img-thumb">
-                                        <img src="assets/img/testimonial/img2.png" alt="">
-                                    </div>
-                                    <div class="testimonial-item">
-                                        <div class="content">
-                                            <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
-                                            <div class="info-text">
-                                                <h2><a href="#">Jessica</a></h2>
-                                                <h4><a href="#">CEO of Dropbox</a></h4>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="img-thumb">
+                                    <img src="assets/img/testimonial/img5.png" alt="">
                                 </div>
-                            </div>
-                            <div class="item">
-                                <div class="item">
-                                    <div class="img-thumb">
-                                        <img src="assets/img/testimonial/img3.png" alt="">
-                                    </div>
-                                    <div class="testimonial-item">
-                                        <div class="content">
-                                            <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
-                                            <div class="info-text">
-                                                <h2><a href="#">Johnny Zeigler</a></h2>
-                                                <h4><a href="#">CEO of Fiverr</a></h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="item">
-                                    <div class="img-thumb">
-                                        <img src="assets/img/testimonial/img4.png" alt="">
-                                    </div>
-                                    <div class="testimonial-item">
-                                        <div class="content">
-                                            <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
-                                            <div class="info-text">
-                                                <h2><a href="#">Josh Rossi</a></h2>
-                                                <h4><a href="#">CEO of Fiverr</a></h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="item">
-                                    <div class="img-thumb">
-                                        <img src="assets/img/testimonial/img5.png" alt="">
-                                    </div>
-                                    <div class="testimonial-item">
-                                        <div class="content">
-                                            <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
-                                            <div class="info-text">
-                                                <h2><a href="#">Priyanka</a></h2>
-                                                <h4><a href="#">CEO of Dropbox</a></h4>
-                                            </div>
+                                <div class="testimonial-item">
+                                    <div class="content">
+                                        <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
+                                        <div class="info-text">
+                                            <h2><a href="#">Priyanka</a></h2>
+                                            <h4><a href="#">CEO of Dropbox</a></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -1435,89 +895,96 @@
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <section class="subscribes section-padding">
+        </div>
+    </section>
+    <section id="blog" class="section-padding">
+        <div class="container">                
+            <div class="titlehead" style="text-align:right;">
+                    <h1>Blog <span>Post.</span> </h1>
+                </div>
+            <div class="row">
+                {% for posts in post %}
+                <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
+                    <div class="blog-item-wrapper">
+                        <div class="blog-item-img">
+                            <a href="blogs/{{posts.id}}">
+                                <img src="images/thumbnails/{{posts.thumbnail}}" alt="">
+                            </a>
+                        </div>
+                        <div class="blog-item-text">
+                            <div class="meta-tags">
+                                <span class="user float-left"><a href="#"><i class="lni-user"></i> {{ posts.category }}</a></span>
+                                <span class="date float-right"><i class="lni-calendar"></i> </span>
+                            </div>
+                            <h3>
+                                <a href="blogs/{{posts.id}}"> {{ posts.title}}</a>
+                            </h3>
+                            <p>
+                                {{ posts.content| raw}}
+                            </p>
+                            <a href="blogs/{{posts.id}}" class="btn btn-common">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section> 
+    <footer>
+        <section class="footer-Content">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div class="subscribes-inner">
-                            <div class="icon">
-                                <i class="lni-pointer"></i>
+                    <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
+                        <div class="widget">
+                            <div class="footer-logo"><img src="assets/img/logo.png" alt=""></div>
+                            <div class="textwidget">
+                                <p> footer about us</p>
                             </div>
-                            <div class="sub-text">
-                                <h3>Subscribe to Newsletter</h3>
-                                <p>and receive new ads in inbox</p>
-                            </div>
+                            <ul class="mt-3 footer-social">
+                                <li><a class="facebook" href="#"><i class="lni-facebook-filled"></i></a></li>
+                                <li><a class="twitter" href="#"><i class="lni-twitter-filled"></i></a></li>
+                                <li><a class="linkedin" href="#"><i class="lni-linkedin-fill"></i></a></li>
+                                <li><a class="google-plus" href="#"><i class="lni-google-plus"></i></a></li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <form>
-                            <div class="subscribe">
-                                <input class="form-control" name="EMAIL" placeholder="Enter your Email" required="" type="email">
-                                <button class="btn btn-common" type="submit">Subscribe</button>
-                            </div>
-                        </form>
+                    <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
+                        <div class="widget">
+                            <h3 class="block-title">Quick Link</h3>
+                            <ul class="menu">
+                                <li><a href="#">- About Us</a></li>
+                                <li><a href="#">- Blog</a></li>
+                                <li><a href="#">- Events</a></li>
+                                <li><a href="#">- Shop</a></li>
+                                <li><a href="#">- FAQ's</a></li>
+                                <li><a href="#">- About Us</a></li>
+                                <li><a href="#">- Blog</a></li>
+                                <li><a href="#">- Events</a></li>
+                                <li><a href="#">- Shop</a></li>
+                                <li><a href="#">- FAQ's</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
+                        <div class="widget">
+                            <h3 class="block-title">Contact Info</h3>
+                            <ul class="contact-footer">
+                                <li>
+                                    <strong><i class="lni-phone"></i></strong><span>+1 555 444 66647 <br> +1 555 444 66647</span>
+                                </li>
+                                <li>
+                                    <strong><i class="lni-envelope"></i></strong><span><a href="http://preview.uideck.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cdaea2a3b9acaeb98da0aca4a1e3aea2a0">[email&#160;protected]</a> <br> <a href="http://preview.uideck.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d8abada8a8b7aaac98b5b9b1b4f6bbb7b5">[email&#160;protected]</a></span>
+                                </li>
+                                <li>
+                                    <strong><i class="lni-map-marker"></i></strong><span><a href="#">9870 St Vincent Place, Glasgow, DC 45 <br>Fr 45</a></span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <footer>
-            <section class="footer-Content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
-                            <div class="widget">
-                                <div class="footer-logo"><img src="assets/img/logo.png" alt=""></div>
-                                <div class="textwidget">
-                                    <p>  footer about us</p>
-                                </div>
-                                <ul class="mt-3 footer-social">
-                                    <li><a class="facebook" href="#"><i class="lni-facebook-filled"></i></a></li>
-                                    <li><a class="twitter" href="#"><i class="lni-twitter-filled"></i></a></li>
-                                    <li><a class="linkedin" href="#"><i class="lni-linkedin-fill"></i></a></li>
-                                    <li><a class="google-plus" href="#"><i class="lni-google-plus"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
-                            <div class="widget">
-                                <h3 class="block-title">Quick Link</h3>
-                                <ul class="menu">
-                                    <li><a href="#">- About Us</a></li>
-                                    <li><a href="#">- Blog</a></li>
-                                    <li><a href="#">- Events</a></li>
-                                    <li><a href="#">- Shop</a></li>
-                                    <li><a href="#">- FAQ's</a></li>
-                                    <li><a href="#">- About Us</a></li>
-                                    <li><a href="#">- Blog</a></li>
-                                    <li><a href="#">- Events</a></li>
-                                    <li><a href="#">- Shop</a></li>
-                                    <li><a href="#">- FAQ's</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
-                            <div class="widget">
-                                <h3 class="block-title">Contact Info</h3>
-                                <ul class="contact-footer">
-                                    <li>
-                                        <strong><i class="lni-phone"></i></strong><span>+1 555 444 66647 <br> +1 555 444 66647</span>
-                                    </li>
-                                    <li>
-                                        <strong><i class="lni-envelope"></i></strong><span><a href="http://preview.uideck.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cdaea2a3b9acaeb98da0aca4a1e3aea2a0">[email&#160;protected]</a> <br> <a href="http://preview.uideck.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d8abada8a8b7aaac98b5b9b1b4f6bbb7b5">[email&#160;protected]</a></span>
-                                    </li>
-                                    <li>
-                                        <strong><i class="lni-map-marker"></i></strong><span><a href="#">9870 St Vincent Place, Glasgow, DC 45 <br>Fr 45</a></span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <div id="copyright">
+        <div id="copyright">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -1528,200 +995,299 @@
                 </div>
             </div>
         </div>
-        </footer>
-        <a href="#" class="back-to-top">
-            <i class="lni-chevron-up"></i>
-        </a>
-        {# <div id="preloader">
-            <div class="loader" id="loader-1"></div>
-        </div> #}
-        {% endblock %}
-        {% block javascripts %}
-        <script type="text/javascript">
-        $(document).ready(function() {
-            setInterval(function() {
-                console.log('#sizedModalLg.show()');
-            }, 5000);
-        });
+    </footer>
+    <a href="#" class="back-to-top">
+        <i class="lni-chevron-up"></i>
+    </a>
+    {# <div id="preloader">
+        <div class="loader" id="loader-1"></div>
+    </div> #}
+    {% endblock %}
+    {% block javascripts %}
+    <script type="text/javascript">
+    $(document).ready(function() {
+        setInterval(function() {
+            console.log('#sizedModalLg.show()');
+        }, 5000);
+    });
 
-        $(window).on('load', function() {
-            setTimeout(function() {
-                $('#sizedModalLg').modal('hide')
-            }, 3000);
-        });
-        </script>
-        <script type="text/javascript">
-        function wishlist_mange(pid, type) {
-            // alert(pid);
-            $.ajax({
+    $(window).on('load', function() {
+        setTimeout(function() {
+            $('#sizedModalLg').modal('hide')
+        }, 3000);
+    });
+    </script>
+    <script type="text/javascript">
+    function wishlist_mange(pid, type) {
+        // alert(pid);
+        $.ajax({
 
-                url: "account-favourite-ads.php?id=" + pid + "&action=" + type,
-                type: "get",
-                success: function(result) {
-                    console.log(result.abc);
-                    alert('Add In Favorites');
-                    location.reload();
-                }
-            });
-        }
-
-        $(document).ready(function() {
-
-            var current_fs, next_fs, previous_fs; //fieldsets
-            var opacity;
-
-            $(".next").click(function() {
-
-                current_fs = $(this).parent();
-                next_fs = $(this).parent().next();
-
-                //Add Class Active
-                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
-                //show the next fieldset
-                next_fs.show();
-                //hide the current fieldset with style
-                current_fs.animate({ opacity: 0 }, {
-                    step: function(now) {
-                        // for making fielset appear animation
-                        opacity = 1 - now;
-
-                        current_fs.css({
-                            'display': 'none',
-                            'position': 'relative'
-                        });
-                        next_fs.css({ 'opacity': opacity });
-                    },
-                    duration: 600
-                });
-            });
-
-            $(".previous").click(function() {
-
-                current_fs = $(this).parent();
-                previous_fs = $(this).parent().prev();
-
-                //Remove class active
-                $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-
-                //show the previous fieldset
-                previous_fs.show();
-
-                //hide the current fieldset with style
-                current_fs.animate({ opacity: 0 }, {
-                    step: function(now) {
-                        // for making fielset appear animation
-                        opacity = 1 - now;
-
-                        current_fs.css({
-                            'display': 'none',
-                            'position': 'relative'
-                        });
-                        previous_fs.css({ 'opacity': opacity });
-                    },
-                    duration: 600
-                });
-            });
-
-            $('.radio-group .radio').click(function() {
-                $(this).parent().find('.radio').removeClass('selected');
-                $(this).addClass('selected');
-            });
-
-            $(".submit").click(function() {
-                return false;
-            })
-
-        });
-
-        // the selector will match all input controls of type :checkbox
-        // and attach a click event handler 
-        $("input:checkbox").on('click', function() {
-            // in the handler, 'this' refers to the box clicked on
-            var $box = $(this);
-            if ($box.is(":checked")) {
-                // the name of the box is retrieved using the .attr() method
-                // as it is assumed and expected to be immutable
-                var group = "input:checkbox[name='" + $box.attr("name") + "']";
-                // the checked state of the group/box on the other hand will change
-                // and the current value is retrieved using .prop() method
-                $(group).prop("checked", false);
-                $box.prop("checked", true);
-            } else {
-                $box.prop("checked", false);
+            url: "account-favourite-ads.php?id=" + pid + "&action=" + type,
+            type: "get",
+            success: function(result) {
+                console.log(result.abc);
+                alert('Add In Favorites');
+                location.reload();
             }
         });
-        </script>
-        <script>
-        $(document).ready(function() {
+    }
 
-            $("#ck1a13").click(function() {
-                $("#showcollage").show();
-                $("#hideclass").hide();
+    $(document).ready(function() {
+
+        var current_fs, next_fs, previous_fs; //fieldsets
+        var opacity;
+
+        $(".next").click(function() {
+
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+
+            //Add Class Active
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+            //show the next fieldset
+            next_fs.show();
+            //hide the current fieldset with style
+            current_fs.animate({ opacity: 0 }, {
+                step: function(now) {
+                    // for making fielset appear animation
+                    opacity = 1 - now;
+
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+                    next_fs.css({ 'opacity': opacity });
+                },
+                duration: 600
             });
         });
-        $(document).ready(function() {
 
-            $("#ck1a11").click(function() {
-                $("#showcollage").hide();
-                $("#hideclass").show();
+        $(".previous").click(function() {
+
+            current_fs = $(this).parent();
+            previous_fs = $(this).parent().prev();
+
+            //Remove class active
+            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+            //show the previous fieldset
+            previous_fs.show();
+
+            //hide the current fieldset with style
+            current_fs.animate({ opacity: 0 }, {
+                step: function(now) {
+                    // for making fielset appear animation
+                    opacity = 1 - now;
+
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+                    previous_fs.css({ 'opacity': opacity });
+                },
+                duration: 600
             });
         });
-        $(document).ready(function() {
 
-            $("#ck1a12").click(function() {
-                $("#showcollage").hide();
-                $("#hideclass").show();
+        $('.radio-group .radio').click(function() {
+            $(this).parent().find('.radio').removeClass('selected');
+            $(this).addClass('selected');
+        });
+
+        $(".submit").click(function() {
+            return false;
+        })
+
+    });
+
+    // the selector will match all input controls of type :checkbox
+    // and attach a click event handler 
+    $("input:checkbox").on('click', function() {
+        // in the handler, 'this' refers to the box clicked on
+        var $box = $(this);
+        if ($box.is(":checked")) {
+            // the name of the box is retrieved using the .attr() method
+            // as it is assumed and expected to be immutable
+            var group = "input:checkbox[name='" + $box.attr("name") + "']";
+            // the checked state of the group/box on the other hand will change
+            // and the current value is retrieved using .prop() method
+            $(group).prop("checked", false);
+            $box.prop("checked", true);
+        } else {
+            $box.prop("checked", false);
+        }
+    });
+    </script>
+    <script>
+
+    $(document).ready(function() {
+        $("#finance").show();
+        $("#financebtn").click(function() {
+            $("#finance").show();
+            $("#Powered").hide();
+            $("#Startups").hide();
+            $("#Community").hide();
+            $("#Growth").hide();
+            $("#Tailored").hide();
+
+        });
+        $("#Poweredbtn").click(function() {
+            $("#finance").hide();
+            $("#Powered").show();
+            $("#Startups").hide();
+            $("#Community").hide();
+            $("#Growth").hide();
+            $("#Tailored").hide();
+            
+        });
+        $("#Startupsbtn").click(function() {
+            $("#finance").hide();
+            $("#Powered").hide();
+            $("#Startups").show();
+            $("#Community").hide();
+            $("#Growth").hide();
+            $("#Tailored").hide();  
+        });
+        $("#Communitybtn").click(function() {
+            $("#finance").hide();
+            $("#Powered").hide();
+            $("#Startups").hide();
+            $("#Community").show();
+            $("#Growth").hide();
+            $("#Tailored").hide();  
+        });
+        $("#Growthbtn").click(function() {
+            $("#finance").hide();
+            $("#Powered").hide();
+            $("#Startups").hide();
+            $("#Community").hide();
+            $("#Growth").show();
+            $("#Tailored").hide();  
+        });
+        $("#Tailoredbtn").click(function() {
+            $("#finance").hide();
+            $("#Powered").hide();
+            $("#Startups").hide();
+            $("#Community").hide();
+            $("#Growth").hide();
+            $("#Tailored").show();  
+        });
+    });
+
+    
+    $(document).ready(function() {
+
+        $("#ck1a13").click(function() {
+            $("#showcollage").show();
+            $("#hideclass").hide();
+        });
+    });
+    $(document).ready(function() {
+
+        $("#ck1a11").click(function() {
+            $("#showcollage").hide();
+            $("#hideclass").show();
+        });
+    });
+    $(document).ready(function() {
+
+        $("#ck1a12").click(function() {
+            $("#showcollage").hide();
+            $("#hideclass").show();
+        });
+    });
+    $(document).ready(function() {
+
+        $("#ck1a14").click(function() {
+            $("#showcollage").hide();
+            $("#hideclass").show();
+        });
+    });
+
+    $(function() {
+        count = 0;
+        wordsArray = ["Beta", "Gamma", "Delta", "Alpha"];
+        setInterval(function() {
+            count++;
+            $("#word").fadeOut(400, function() {
+                $(this).text(wordsArray[count % wordsArray.length]).fadeIn(400);
             });
-        });
-        $(document).ready(function() {
+        }, 2000);
+    });
 
-            $("#ck1a14").click(function() {
-                $("#showcollage").hide();
-                $("#hideclass").show();
+    $(function() {
+        count = 0;
+        wordsArray12 = ["Traders", "MSMes", "Professional", "Startups"];
+        setInterval(function() {
+            count++;
+            $("#serviceword").fadeOut(400, function() {
+                $(this).text(wordsArray12[count % wordsArray12.length]).fadeIn(400);
             });
-        });
+        }, 2000);
+    });
+    </script>
+    <script language="javascript">
+    $(document).ready(function() {
+        $("#loadtime").change("click", function(event) {
+            var status = $("#loadtime").val();
 
-        $(function() {
-            count = 0;
-            wordsArray = ["Beta", "Gamma", "Delta", "Alpha"];
-            setInterval(function() {
-                count++;
-                $("#word").fadeOut(400, function() {
-                    $(this).text(wordsArray[count % wordsArray.length]).fadeIn(400);
-                });
-            }, 2000);
-        });
-        </script>
+            $.ajax({
+                url: '{{ path('app_home') }}',
+                type: 'POST',
+                data: { 'status': status },
+                dataType: 'json',
+                async: true,
 
-    <script language = "javascript">  
-      $(document).ready(function(){   
-         $("#loadtime").change("click", function(event){ 
-         var status = $("#loadtime").val(); 
-        
-            $.ajax({  
-               url:        '{{ path('app_home') }}',  
-               type:       'POST',
-               data:        {'status':status},   
-               dataType:   'json',  
-               async:      true,  
-               
-               success: function(response) {
-                $("#showtime").html(' ');
-                    $.each(response, function (key, value) {
+                success: function(response) {
+                    $("#showtime").html(' ');
+                    $.each(response, function(key, value) {
                         //$('#speakerResponse').empty('').append(html);
 
                         $('#showtime').append("\
-                                    <option value="+value+" >"+value+"</option>\
+                                    <option value=" + value + " >" + value + "</option>\
                                     \
                                     ");
                     })
-                  },  
-               error : function(xhr, textStatus, errorThrown) {  
-                  alert('Ajax request failed.');  
-               }  
-            });  
-         });  
-      });  
-   </script> 
-        {% endblock javascripts %}
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    alert('Ajax request failed.');
+                }
+            });
+        });
+    });
+
+    $(document).ready(function() {
+
+        // set the image-map width and height to match the img size
+        $('#image-map').css({
+            'width': $('#image-map img').width(),
+            'height': $('#image-map img').height()
+        })
+
+        //tooltip direction
+        var tooltipDirection;
+
+        for (i = 0; i < $(".pin").length; i++) {
+            // set tooltip direction type - up or down             
+            if ($(".pin").eq(i).hasClass('pin-down')) {
+                tooltipDirection = 'tooltip-down';
+            } else {
+                tooltipDirection = 'tooltip-up';
+            }
+
+            // append the tooltip
+            $("#image-map").append("<div style='left:" + $(".pin").eq(i).data('xpos') + "px;top:" + $(".pin").eq(i).data('ypos') + "px' class='" + tooltipDirection + "'>\
+                                            <div class='tooltip'>" + $(".pin").eq(i).html() + "</div>\
+                                    </div>");
+        }
+
+        // show/hide the tooltip
+        $('.tooltip-up, .tooltip-down').mouseenter(function() {
+            $(this).children('.tooltip').fadeIn(100);
+        }).mouseleave(function() {
+            $(this).children('.tooltip').fadeOut(100);
+        })
+    });
+    </script>
+    {% endblock javascripts %}

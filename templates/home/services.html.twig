@@ -132,7 +132,7 @@ a {
     padding: 13px 15px;
     font-size: 18px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
-    border:none;
+    border: none;
 }
 
 .card-action:hover {
@@ -144,7 +144,7 @@ a {
 .card-heading {
     font-size: 18px;
     font-weight: bold;
-    
+
     padding: 10px 15px;
     color: #fff;
     /* width: 250px;
@@ -158,22 +158,23 @@ a {
     color: #000000;
 }
 
-.card-price{
+.card-price {
     padding: 10px 15px;
     background: #fff;
     font-size: 20px;
     font-weight: 500;
     color: #5bb7c5;
-    
+
     line-height: 36px;
 }
-.card-price span{
-    
+
+.card-price span {
+
     background: #fff;
     font-size: 24px;
     font-weight: 500;
     color: #5bb7c5;
-    
+
     line-height: 36px;
 }
 
@@ -186,7 +187,7 @@ a {
     background-size: 200%;
     color: #fff;
     font-weight: 700;
-    
+
 }
 
 .card-button:hover {
@@ -194,13 +195,14 @@ a {
     /* background-color: #1D3461; */
     color: #fff;
     /* background-position: right; */
-	/* display: block; */
-	background-image: linear-gradient(to left, #49e6b1, #5bb7c5, lightcyan);
-	transform: scale(104%);
+    /* display: block; */
+    background-image: linear-gradient(to right, #32be8f, #5bb7c5, #32be8f);
+    transform: scale(104%);
 
 }
-.card-action-added{
-   position: relative;
+
+.card-action-added {
+    position: relative;
     float: right;
     margin-top: -25px;
     margin-right: 20px;
@@ -211,7 +213,7 @@ a {
     padding: 13px 15px;
     font-size: 18px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
-    border:none;
+    border: none;
 }
 
 
@@ -238,6 +240,170 @@ a {
         transform: scale(0.9);
         box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
     }
+}
+
+.text-center {
+    text-align: center;
+}
+
+.color-white {
+    color: #fff;
+}
+
+.box-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 35px 15px;
+    width: 100%;
+}
+
+@media screen and (min-width:1380px) {
+    .box-container {
+        flex-direction: row
+    }
+}
+
+.box-item {
+    position: relative;
+    -webkit-backface-visibility: hidden;
+    width: 415px;
+    margin-bottom: 35px;
+    max-width: 100%;
+}
+
+.flip-box {
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+}
+
+.flip-box-front,
+.flip-box-back {
+    text-transform: capitalize;
+    background-color: white;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    min-height: 250px;
+    -ms-transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
+    transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
+    -webkit-transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.flip-box-front {
+    -ms-transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.flip-box:hover .flip-box-front {
+    -ms-transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.flip-box-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    -ms-transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.flip-box:hover .flip-box-back {
+    -ms-transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.flip-box .inner {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    outline: 1px solid transparent;
+    -webkit-perspective: inherit;
+    perspective: inherit;
+    z-index: 2;
+
+    transform: translateY(-50%) translateZ(60px) scale(.94);
+    -webkit-transform: translateY(-50%) translateZ(60px) scale(.94);
+    -ms-transform: translateY(-50%) translateZ(60px) scale(.94);
+    top: 50%;
+}
+
+.flip-box-header {
+    font-size: 25px;
+}
+
+.flip-box p {
+    font-size: 16px;
+    line-height: 1.5em;
+}
+
+.flip-box-img {
+    margin-top: 25px;
+}
+
+.flip-box-button {
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 25px;
+    padding: 15px 20px;
+    text-transform: uppercase;
+}
+
+ .view-service{
+    display: table;
+    position: relative;
+    padding-bottom: 10px;
+    margin: 0 auto;
+    width: 100%;
+    color: #2C2E30;
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 20px;
+    text-align: center;
+}
+ .view-service:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: -3px;
+    height: 3px;
+    width: 140px;
+    background: #5bb7c5;
+    margin: 0 auto;
 }
 </style>
 {% if app.request.get('page') %}
@@ -293,338 +459,359 @@ a {
             </div>
         </div>
     </div>
+    
+
     <div class="main-container section-padding" style="background:url('/assets/img/background/ser.jpg'); background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; ">
         <div class="container">
             <div class="row">
-            {% for Products in Product %}
+                {% for Products in Product %}
                 <div class="col-lg-4 col-md-12 col-xs-12 page-sidebar " style="margin:10px 0px; padding:30px">
-                    <div class="card-sl">
-                        <div class="card-image">
-                            {# <img src="/assets/img/product/{{ Products.proimage }}" /> #}
+                    <div class="box-item">
+                        <div class="flip-box">
+                            <div class="flip-box-front text-center" >
+                                <div class="inner color-white">
+                                    <h3 class="flip-box-header">{{ Products.name }}</h3>
+                                    <p>{{Products.description|striptags|slice(0, 100) ~ '...' }}</p>
+                                    <div class="card-price">
+                                        <s> ₹{{ Products.regularprice|number_format(0, '.', ',') }}</s> <span> ₹{{ Products.price|number_format(0, '.', ',') }}</span>
+                                    </div>
+                                    <span class="view-service" href="">View Services <i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                            <div class="flip-box-back text-center" >
+                                <div class="inner color-white">
+                                    {# <h3 class="flip-box-header">{{ Products.name }}</h3>
+                                    <p>A short sentence describing this callout is.</p> #}
+                                    <a href="prodetail/{{Products.id}}" class="card-button"> View Details</a>                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {# <div class="card-sl">
+                        <div class="card-image">                            
                         </div>
                         {% if Products.cart == 1 %}
-                         <button  class="card-action-added" href="#" ><i class="fa fa-check"></i></button>
+                        <button class="card-action-added" href="#"><i class="fa fa-check"></i></button>
                         {% else %}
                         <form method="post">
-                        <button name="cart" value="{{Products.id}}" class="card-action" href="#" ><i class="fa fa-shopping-cart"></i></button>
+                            <button name="cart" value="{{Products.id}}" class="card-action" href="#"><i class="fa fa-shopping-cart"></i></button>
                         </form>
                         {% endif %}
                         <div class="card-heading" style="background-color:{{ Products.bgcolor }}">
                             {{ Products.name }}
                         </div>
                         <div class="card-text">
-                           {{Products.description|striptags|slice(0, 100) ~ '...' }}
+                            {{Products.description|striptags|slice(0, 100) ~ '...' }}
                         </div>
                         <div class="card-price">
-                           <s> ₹{{ Products.regularprice|number_format(0, '.', ',') }}</s> <span> ₹{{ Products.price|number_format(0, '.', ',') }}</span>
-
+                            <s> ₹{{ Products.regularprice|number_format(0, '.', ',') }}</s> <span> ₹{{ Products.price|number_format(0, '.', ',') }}</span>
                         </div>
                         <a href="prodetail/{{Products.id}}" class="card-button"> View Details</a>
-                    </div>
+                    </div> #}
                 </div>
-            {% endfor %}
+                {% endfor %}
             </div>
         </div>
-        </div>
-        {# <div class="main-container section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-12 col-xs-12 page-sidebar">
-                        <aside>
-                            <div class="widget_search">
-                                <form role="search" id="search-form">
-                                    <input type="search" class="form-control" autocomplete="off" name="s" placeholder="Search..." id="search-input" value="">
-                                    <button type="submit" id="search-submit" class="search-btn"><i class="lni-search"></i></button>
-                                </form>
-                            </div>
-                            <div class="widget categories">
-                                <h4 class="widget-title">All Categories</h4>
-                                <ul class="categories-list">
-                                    {% for Categorys in Category %}
-                                    <li>
-                                        <a href="{{ path('app_services') }}?cat={{Categorys.id}}" class="{% if app.request.get('cat') == Categorys.id %}
+    </div>
+    {# <div class="main-container section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-12 col-xs-12 page-sidebar">
+                    <aside>
+                        <div class="widget_search">
+                            <form role="search" id="search-form">
+                                <input type="search" class="form-control" autocomplete="off" name="s" placeholder="Search..." id="search-input" value="">
+                                <button type="submit" id="search-submit" class="search-btn"><i class="lni-search"></i></button>
+                            </form>
+                        </div>
+                        <div class="widget categories">
+                            <h4 class="widget-title">All Categories</h4>
+                            <ul class="categories-list">
+                                {% for Categorys in Category %}
+                                <li>
+                                    <a href="{{ path('app_services') }}?cat={{Categorys.id}}" class="{% if app.request.get('cat') == Categorys.id %}
                                                 activecat
                                             {% endif %}">
-                                            {{Categorys.name}}<span class="category-counter">
-                                                {% if app.request.get('cat') %}
-                                                {% if app.request.get('cat') == Categorys.id %}
-                                                <i class="fa fa-check" style="color:#5bb7c5;"></i>
-                                                {% endif %}
-                                                {% endif %}
-                                            </span>
-                                        </a>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </aside>
-                    </div>
-                    <div class="col-lg-9 col-md-12 col-xs-12 page-content">
-                        <div class="product-filter">
-                            <div class="short-name">
-                                <div class="dropdown" style="width:300px;">
-                                    <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Services
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        {% for Service in Services %}
-                                        <a href="{{ path('app_services') }}?ser={{Service.id}}" class="dropdown-item">{{Service.servicesname}}</a>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                                {% if app.request.get('ser') %}
-                                {% for Service in Services %}
-                                {% if Service.id == app.request.get('ser')%}
-                                <div class="filterdata">
-                                    Service {{ Service.servicesname }}
-                                </div>
-                                {% endif%}
-                                {% endfor%}
-                                {% else %}
-                                {% endif%}
-                            </div>
-                            <div class="Show-item">
-                                {% if app.request.get('ser') %}
-                                {% for Service in Services %}
-                                {% if Service.id == app.request.get('ser')%}
-                                {% endif%}
-                                {% endfor%}
-                                {% else %}
-                                <div class="filterdata">
-                                    <span>Showing ({{Product|length}} products)<span>
-                                </div>
-                                {% endif%}
-                            </div>
+                                        {{Categorys.name}}<span class="category-counter">
+                                            {% if app.request.get('cat') %}
+                                            {% if app.request.get('cat') == Categorys.id %}
+                                            <i class="fa fa-check" style="color:#5bb7c5;"></i>
+                                            {% endif %}
+                                            {% endif %}
+                                        </span>
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
                         </div>
-                        <div class="tab-content">
-                            <div class="tab-pane fade ">
-                                <div class="row">
+                    </aside>
+                </div>
+                <div class="col-lg-9 col-md-12 col-xs-12 page-content">
+                    <div class="product-filter">
+                        <div class="short-name">
+                            <div class="dropdown" style="width:300px;">
+                                <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Services
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     {% for Service in Services %}
-                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                        <div class="featured-box">
-                                            <figure>
-                                                <span class="price-save">
-                                                    33% Save
+                                    <a href="{{ path('app_services') }}?ser={{Service.id}}" class="dropdown-item">{{Service.servicesname}}</a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% if app.request.get('ser') %}
+                            {% for Service in Services %}
+                            {% if Service.id == app.request.get('ser')%}
+                            <div class="filterdata">
+                                Service {{ Service.servicesname }}
+                            </div>
+                            {% endif%}
+                            {% endfor%}
+                            {% else %}
+                            {% endif%}
+                        </div>
+                        <div class="Show-item">
+                            {% if app.request.get('ser') %}
+                            {% for Service in Services %}
+                            {% if Service.id == app.request.get('ser')%}
+                            {% endif%}
+                            {% endfor%}
+                            {% else %}
+                            <div class="filterdata">
+                                <span>Showing ({{Product|length}} products)<span>
+                            </div>
+                            {% endif%}
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade ">
+                            <div class="row">
+                                {% for Service in Services %}
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="featured-box">
+                                        <figure>
+                                            <span class="price-save">
+                                                33% Save
+                                            </span>
+                                            <div class="icon">
+                                                <span class="bg-green"><i class="lni-heart"></i></span>
+                                                <span><i class="lni-bookmark"></i></span>
+                                            </div>
+                                            <a href="#"><img class="img-fluid" src="images/thumbnails/{{Service.thumbnail}}" alt=""></a>
+                                        </figure>
+                                        <div class="feature-content">
+                                            <h4><a href="ads-details.html">{{Service.servicesname}}</a></h4>
+                                            <div class="meta-tag">
+                                                <span>
+                                                    <a href="#"><i class="lni-book"></i> busniess license</a>
                                                 </span>
-                                                <div class="icon">
-                                                    <span class="bg-green"><i class="lni-heart"></i></span>
-                                                    <span><i class="lni-bookmark"></i></span>
-                                                </div>
-                                                <a href="#"><img class="img-fluid" src="images/thumbnails/{{Service.thumbnail}}" alt=""></a>
-                                            </figure>
-                                            <div class="feature-content">
-                                                <h4><a href="ads-details.html">{{Service.servicesname}}</a></h4>
-                                                <div class="meta-tag">
+                                            </div>
+                                            <p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.
+                                                Lorem Ipsum is simply dummy text of the.
+                                            </p>
+                                            <div class="listing-bottom">
+                                                <h3 class="price float-left" style="font-size:20px;padding-right: 10px;"><s>$1499.00</s></h3>
+                                                <h3 class="price float-left">$9,999.00</h3>
+                                                <a href="prodetail/1" class="btn btn-common float-right">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div id="list-view" class="tab-pane fade active show">
+                            <div class="row">
+                                {% for Products in Product %}
+                                {% if app.request.get('cat') %}
+                                {% if Products.service.Category.id == app.request.get('cat') %}
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="featured-box">
+                                        <figure>
+                                            <span class="price-save">
+                                                33% Save
+                                            </span>
+                                            <div class="icon">
+                                                <span class="bg-green"><i class="lni-heart"></i></span>
+                                                <span><i class="lni-bookmark"></i></span>
+                                            </div>
+                                            <a href="#"><img class="img-fluid" src="/assets/img/product/{{ Products.proimage }}" alt="" style="height: 260px"></a>
+                                        </figure>
+                                        <div class="feature-content">
+                                            <h4><a href="prodetail/{{Products.id}}">{{ Products.name}}</a></h4>
+                                            <h4>{{ Products.service.servicesname }}</h4>
+                                            <div class="meta-tag">
+                                                <span>
+                                                    <a href="prodetail/{{Products.id}}"><i class="lni-book"></i>{{Products.service.Category }} </a>
                                                     <span>
-                                                        <a href="#"><i class="lni-book"></i> busniess license</a>
-                                                    </span>
-                                                </div>
-                                                <p class="dsc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.
-                                                    Lorem Ipsum is simply dummy text of the.
-                                                </p>
+                                            </div>
+                                            <div class="{{Products.service.id }}">
+                                            </div>
+                                            <div>
+                                                <p>{{Products.description|striptags|slice(0, 170) ~ '...' }} </p>
                                                 <div class="listing-bottom">
-                                                    <h3 class="price float-left" style="font-size:20px;padding-right: 10px;"><s>$1499.00</s></h3>
-                                                    <h3 class="price float-left">$9,999.00</h3>
-                                                    <a href="prodetail/1" class="btn btn-common float-right">View Details</a>
+                                                    <h3 class="price float-left" style="font-size:20px;padding-right: 10px;"><s>${{Products.regularprice}}</s></h3>
+                                                    <h3 class="price float-left">${{Products.price}}</h3>
+                                                    <a href="prodetail/{{Products.id}}" class="btn btn-common float-right">View Details</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    {% endfor %}
                                 </div>
-                            </div>
-                            <div id="list-view" class="tab-pane fade active show">
-                                <div class="row">
-                                    {% for Products in Product %}
-                                    {% if app.request.get('cat') %}
-                                    {% if Products.service.Category.id == app.request.get('cat') %}
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="featured-box">
-                                            <figure>
-                                                <span class="price-save">
-                                                    33% Save
-                                                </span>
-                                                <div class="icon">
-                                                    <span class="bg-green"><i class="lni-heart"></i></span>
-                                                    <span><i class="lni-bookmark"></i></span>
-                                                </div>
-                                                <a href="#"><img class="img-fluid" src="/assets/img/product/{{ Products.proimage }}" alt="" style="height: 260px"></a>
-                                            </figure>
-                                            <div class="feature-content">
-                                                <h4><a href="prodetail/{{Products.id}}">{{ Products.name}}</a></h4>
-                                                <h4>{{ Products.service.servicesname }}</h4>
-                                                <div class="meta-tag">
+                                {% endif %}
+                                {% elseif app.request.get('ser') %}
+                                {% if Products.service.id == app.request.get('ser') %}
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="featured-box">
+                                        <figure>
+                                            <span class="price-save">
+                                                33% Save
+                                            </span>
+                                            <div class="icon">
+                                                <span class="bg-green"><i class="lni-heart"></i></span>
+                                                <span><i class="lni-bookmark"></i></span>
+                                            </div>
+                                            <a href="#"><img class="img-fluid" src="/assets/img/product/{{ Products.proimage }}" alt="" style="height: 260px"></a>
+                                        </figure>
+                                        <div class="feature-content">
+                                            <h4><a href="ads-details.html">{{ Products.name}}</a></h4>
+                                            <h4>{{ Products.service.servicesname }}</h4>
+                                            <div class="meta-tag">
+                                                <span>
+                                                    <a href="#"><i class="lni-book"></i>{{Products.service.Category }} </a>
                                                     <span>
-                                                        <a href="prodetail/{{Products.id}}"><i class="lni-book"></i>{{Products.service.Category }} </a>
-                                                        <span>
-                                                </div>
-                                                <div class="{{Products.service.id }}">
-                                                </div>
-                                                <div>
-                                                    <p>{{Products.description|striptags|slice(0, 170) ~ '...' }} </p>
-                                                    <div class="listing-bottom">
-                                                        <h3 class="price float-left" style="font-size:20px;padding-right: 10px;"><s>${{Products.regularprice}}</s></h3>
-                                                        <h3 class="price float-left">${{Products.price}}</h3>
-                                                        <a href="prodetail/{{Products.id}}" class="btn btn-common float-right">View Details</a>
-                                                    </div>
+                                            </div>
+                                            <div class="{{Products.service.id }}">
+                                            </div>
+                                            <div>
+                                                <p>{{Products.description|striptags|slice(0, 170) ~ '...' }} </p>
+                                                <div class="listing-bottom">
+                                                    <h3 class="price float-left" style="font-size:20px;padding-right: 10px;"><s>${{Products.regularprice}}</s></h3>
+                                                    <h3 class="price float-left">${{Products.price}}</h3>
+                                                    <a href="prodetail/{{Products.id}}" class="btn btn-common float-right">View Details</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    {% endif %}
-                                    {% elseif app.request.get('ser') %}
-                                    {% if Products.service.id == app.request.get('ser') %}
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="featured-box">
-                                            <figure>
-                                                <span class="price-save">
-                                                    33% Save
-                                                </span>
-                                                <div class="icon">
-                                                    <span class="bg-green"><i class="lni-heart"></i></span>
-                                                    <span><i class="lni-bookmark"></i></span>
-                                                </div>
-                                                <a href="#"><img class="img-fluid" src="/assets/img/product/{{ Products.proimage }}" alt="" style="height: 260px"></a>
-                                            </figure>
-                                            <div class="feature-content">
-                                                <h4><a href="ads-details.html">{{ Products.name}}</a></h4>
-                                                <h4>{{ Products.service.servicesname }}</h4>
-                                                <div class="meta-tag">
-                                                    <span>
-                                                        <a href="#"><i class="lni-book"></i>{{Products.service.Category }} </a>
-                                                        <span>
-                                                </div>
-                                                <div class="{{Products.service.id }}">
-                                                </div>
-                                                <div>
-                                                    <p>{{Products.description|striptags|slice(0, 170) ~ '...' }} </p>
-                                                    <div class="listing-bottom">
-                                                        <h3 class="price float-left" style="font-size:20px;padding-right: 10px;"><s>${{Products.regularprice}}</s></h3>
-                                                        <h3 class="price float-left">${{Products.price}}</h3>
-                                                        <a href="prodetail/{{Products.id}}" class="btn btn-common float-right">View Details</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {% endif %}
-                                    {% else %}
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="featured-box">
-                                            <figure>
-                                                <span class="price-save">
-                                                    33% Save
-                                                </span>
-                                                <div class="icon">
-                                                </div>
-                                                <a href="prodetail/{{Products.id}}"><img class="img-fluid" src="/assets/img/product/{{ Products.proimage }}" alt="" style="height: 260px"></a>
-                                            </figure>
-                                            <div class="feature-content">
-                                                <h4><a href="prodetail/{{Products.id}}">{{ Products.name}}</a></h4>
-                                                <h4>{{ Products.service.servicesname }}</h4>
-                                                <div class="meta-tag">
-                                                    <span>
-                                                        <a href="#"><i class="lni-book"></i>{{Products.service.Category }} </a>
-                                                        <span>
-                                                </div>
-                                                <div class="{{Products.service.id }}">
-                                                </div>
-                                                <div>
-                                                    <p>{{Products.description|striptags|slice(0, 170) ~ '...' }} </p>
-                                                    <div class="listing-bottom">
-                                                        <h3 class="price float-left" style="font-size:20px;padding-right: 10px;"><s>₹{{Products.regularprice}}</s></h3>
-                                                        <h3 class="price float-left">₹{{Products.price}}</h3>
-                                                        <a href="prodetail/{{Products.id}}" class="btn btn-common float-right">View Details</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {% endif %}
-                                    {% endfor %}
                                 </div>
+                                {% endif %}
+                                {% else %}
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="featured-box">
+                                        <figure>
+                                            <span class="price-save">
+                                                33% Save
+                                            </span>
+                                            <div class="icon">
+                                            </div>
+                                            <a href="prodetail/{{Products.id}}"><img class="img-fluid" src="/assets/img/product/{{ Products.proimage }}" alt="" style="height: 260px"></a>
+                                        </figure>
+                                        <div class="feature-content">
+                                            <h4><a href="prodetail/{{Products.id}}">{{ Products.name}}</a></h4>
+                                            <h4>{{ Products.service.servicesname }}</h4>
+                                            <div class="meta-tag">
+                                                <span>
+                                                    <a href="#"><i class="lni-book"></i>{{Products.service.Category }} </a>
+                                                    <span>
+                                            </div>
+                                            <div class="{{Products.service.id }}">
+                                            </div>
+                                            <div>
+                                                <p>{{Products.description|striptags|slice(0, 170) ~ '...' }} </p>
+                                                <div class="listing-bottom">
+                                                    <h3 class="price float-left" style="font-size:20px;padding-right: 10px;"><s>₹{{Products.regularprice}}</s></h3>
+                                                    <h3 class="price float-left">₹{{Products.price}}</h3>
+                                                    <a href="prodetail/{{Products.id}}" class="btn btn-common float-right">View Details</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
                             </div>
                         </div>
-                        {% if total_pages > 1 %}
-                        <div class="pagination-bar">
-                            <nav>
-                                <ul class="pagination justify-content-center">
-                                    {% for i in 1..total_pages %}
-                                    {% if loop.first %}
-                                    <li class="page-item {% if current_page == 1 %} disabled  {% endif %}">
-                                        <a class="page-link" href="?page={{ current_page-1 }}" tabindex="-1"><i class="fa fa-angle-left" aria-hidden="true"></i>pre</a>
-                                    </li>
-                                    {% endif %}
-                                    <li class="page-item "><a class="page-link {% if current_page == loop.index %} active  {% endif %}  " href="?page={{ loop.index }}">{{ loop.index }}</a></li>
-                                    {% if loop.last %}
-                                    <li class="page-item {% if current_page == total_pages %} disabled  {% endif %}"><a class="page-link" href="?page={{ current_page+1 }}">Next</a></li>
-                                    {% endif %}
-                                    {% endfor %}
-                                </ul>
-                            </nav>
+                    </div>
+                    {% if total_pages > 1 %}
+                    <div class="pagination-bar">
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                {% for i in 1..total_pages %}
+                                {% if loop.first %}
+                                <li class="page-item {% if current_page == 1 %} disabled  {% endif %}">
+                                    <a class="page-link" href="?page={{ current_page-1 }}" tabindex="-1"><i class="fa fa-angle-left" aria-hidden="true"></i>pre</a>
+                                </li>
+                                {% endif %}
+                                <li class="page-item "><a class="page-link {% if current_page == loop.index %} active  {% endif %}  " href="?page={{ loop.index }}">{{ loop.index }}</a></li>
+                                {% if loop.last %}
+                                <li class="page-item {% if current_page == total_pages %} disabled  {% endif %}"><a class="page-link" href="?page={{ current_page+1 }}">Next</a></li>
+                                {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </nav>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div> #}
+    <footer>
+        <section class="footer-Content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
+                        <div class="widget">
+                            <div class="footer-logo"><img src="assets/img/logo.png" alt=""></div>
+                            <div class="textwidget">
+                                <p> footer about us</p>
+                            </div>
+                            <ul class="mt-3 footer-social">
+                                <li><a class="facebook" href="#"><i class="lni-facebook-filled"></i></a></li>
+                                <li><a class="twitter" href="#"><i class="lni-twitter-filled"></i></a></li>
+                                <li><a class="linkedin" href="#"><i class="lni-linkedin-fill"></i></a></li>
+                                <li><a class="google-plus" href="#"><i class="lni-google-plus"></i></a></li>
+                            </ul>
                         </div>
-                        {% endif %}
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
+                        <div class="widget">
+                            <h3 class="block-title">Quick Link</h3>
+                            <ul class="menu">
+                                <li><a href="#">- About Us</a></li>
+                                <li><a href="#">- Blog</a></li>
+                                <li><a href="#">- Events</a></li>
+                                <li><a href="#">- Shop</a></li>
+                                <li><a href="#">- FAQ's</a></li>
+                                <li><a href="#">- About Us</a></li>
+                                <li><a href="#">- Blog</a></li>
+                                <li><a href="#">- Events</a></li>
+                                <li><a href="#">- Shop</a></li>
+                                <li><a href="#">- FAQ's</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
+                        <div class="widget">
+                            <h3 class="block-title">Contact Info</h3>
+                            <ul class="contact-footer">
+                                <li>
+                                    <strong><i class="lni-phone"></i></strong><span>+1 555 444 66647 <br> +1 555 444 66647</span>
+                                </li>
+                                <li>
+                                    <strong><i class="lni-envelope"></i></strong><span><a href="http://preview.uideck.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="98fbf7f6ecf9fbecd8f5f9f1f4b6fbf7f5">[email&#160;protected]</a> <br> <a href="http://preview.uideck.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="582b2d2828372a2c1835393134763b3735">[email&#160;protected]</a></span>
+                                </li>
+                                <li>
+                                    <strong><i class="lni-map-marker"></i></strong><span><a href="#">9870 St Vincent Place, Glasgow, DC 45 <br>Fr 45</a></span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div> #}
-        <footer>
-            <section class="footer-Content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
-                            <div class="widget">
-                                <div class="footer-logo"><img src="assets/img/logo.png" alt=""></div>
-                                <div class="textwidget">
-                                    <p> footer about us</p>
-                                </div>
-                                <ul class="mt-3 footer-social">
-                                    <li><a class="facebook" href="#"><i class="lni-facebook-filled"></i></a></li>
-                                    <li><a class="twitter" href="#"><i class="lni-twitter-filled"></i></a></li>
-                                    <li><a class="linkedin" href="#"><i class="lni-linkedin-fill"></i></a></li>
-                                    <li><a class="google-plus" href="#"><i class="lni-google-plus"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
-                            <div class="widget">
-                                <h3 class="block-title">Quick Link</h3>
-                                <ul class="menu">
-                                    <li><a href="#">- About Us</a></li>
-                                    <li><a href="#">- Blog</a></li>
-                                    <li><a href="#">- Events</a></li>
-                                    <li><a href="#">- Shop</a></li>
-                                    <li><a href="#">- FAQ's</a></li>
-                                    <li><a href="#">- About Us</a></li>
-                                    <li><a href="#">- Blog</a></li>
-                                    <li><a href="#">- Events</a></li>
-                                    <li><a href="#">- Shop</a></li>
-                                    <li><a href="#">- FAQ's</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
-                            <div class="widget">
-                                <h3 class="block-title">Contact Info</h3>
-                                <ul class="contact-footer">
-                                    <li>
-                                        <strong><i class="lni-phone"></i></strong><span>+1 555 444 66647 <br> +1 555 444 66647</span>
-                                    </li>
-                                    <li>
-                                        <strong><i class="lni-envelope"></i></strong><span><a href="http://preview.uideck.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="98fbf7f6ecf9fbecd8f5f9f1f4b6fbf7f5">[email&#160;protected]</a> <br> <a href="http://preview.uideck.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="582b2d2828372a2c1835393134763b3735">[email&#160;protected]</a></span>
-                                    </li>
-                                    <li>
-                                        <strong><i class="lni-map-marker"></i></strong><span><a href="#">9870 St Vincent Place, Glasgow, DC 45 <br>Fr 45</a></span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!--  <div id="copyright">
+        </section>
+        <!--  <div id="copyright">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -635,13 +822,13 @@ a {
                 </div>
             </div>
         </div> -->
-        </footer>
-        <a href="#" class="back-to-top">
-            <i class="lni-chevron-up"></i>
-        </a>
-        {# <div id="preloader">
-            <div class="loader" id="loader-1"></div>
-        </div> #}
+    </footer>
+    <a href="#" class="back-to-top">
+        <i class="lni-chevron-up"></i>
+    </a>
+    {# <div id="preloader">
+        <div class="loader" id="loader-1"></div>
+    </div> #}
 </body>
 {% block javascripts %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
