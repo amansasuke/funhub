@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <body style="padding: 60px;" >
+        <table style="table-layout: fixed; width: 100%;">
+            <tbody>
+                <tr>
+                    <td class="">
+                        <div>
+                            <img src="http://thefinanzi.in:8080/assets/img/logo.png" alt="Company Logo" style="max-width: 10%;">
+                        </div>
+						<div>
+						<p style="font-size: 20px;">Invoice</p>
+						</div> 
+                    </td>
+                    <td width="15%">
+                        
+                    </td>
+                    <td>    
+                        <table class="tbl-padded">
+                            
+                            <tbody>
+                                <tr>
+                                    <td style="padding:5px;">
+                                        Invoice No- {{order.id}}
+                                    </td>
+                                </tr>
+								<tr>
+									<td style="padding:5px;">
+										<div>
+											Date - {{ "now"|date("m/d/Y") }}
+										</div>
+									</td>
+								</tr>
+                                
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div style="padding-top: 1cm; padding-bottom: 1cm;">
+            <table style="table-layout: fixed; width: 100%;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <tr>
+                                <td style="padding:5px;">
+                                    <strong >Billed To: {{order.name}}</strong>                            
+                                </td>                            
+                            </tr>
+							<tr>
+								<td style="padding:5px;">
+                                    Billing Address:{{order.address}}
+                                </td>
+							</tr>
+                            <tr>
+                                <td style="padding:5px;">
+                                    Phone Number: {{order.phoneno}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:5px;">
+                                    GSTIN: {{order.gstno}}
+                                </td>
+                            </tr>
+                            {# <tr>
+                                <td style="padding:5px;">
+                                    Place of Supply: {{order.gstno}}
+                                </td>
+                            </tr> #}
+                        </td>
+                        <td width="15%">
+                            
+                        </td>
+                        <td>
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       
+        <div>
+            <table style="table-layout: fixed; width: 100%;">
+                <thead>
+                    <tr>
+                        <th  width="10%" align="left" style=" padding: 5px;">
+                           SNo.
+                        </th>
+                        <th width="40%" align="center" style=" padding: 5px;">
+                            Service Name
+                        </th>
+                        <th align="center" style=" padding: 5px;">
+                            Qty
+                        </th>
+                        <th align="center" style=" padding: 5px;">
+                            SAC
+                        </th>
+                        <th width="20%"  align="center" style="padding : 5px;">
+                            Price
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                    <tr>
+                        <td style="border-right: 1px solid #000; border-top: 1px solid #000; padding: 5px; height: 80px;">
+                            1
+                        </td>
+                        <td align="center" style="border-right: 1px solid #000; border-top: 1px solid #000; padding: 5px;">
+                            {{ order.products.name }}    
+                        </td>
+                        <td align="center" style="border-right: 1px solid #000; border-top: 1px solid #000; padding: 5px;">
+                           1
+                        </td>
+                        <td align="center" style="border-right: 1px solid #000; border-top: 1px solid #000; padding: 5px;">
+                            9982 
+                        </td>
+                        <td align="center" style=" border-top: 1px solid #000; padding: 5px;">
+                             {{ order.products.price }}
+                        </td>
+                    </tr>
+                 
+                </tbody>
+            </table>
+        </div>
+
+        <div style="border-top: 1px solid #000;">
+            <table style="table-layout: fixed; width: 100%; border-collapse: collapse; margin-top: 50px;">
+                <tbody>
+					<tr>
+						<td align="center" class="">
+							<div>
+								<img src="http://thefinanzi.in:8080/assets/img/Sign.png" alt="Company Logo" style="max-width: 10%;">
+							</div>
+							<div>
+							<p >AUTHORIZED SIGNATORY</p>
+							</div> 
+						</td>
+						<td width="15%">
+							
+						</td>
+						<td>    
+							<table class="tbl-padded">
+								
+								<tbody>
+									<tr>
+										<td align="right" style="padding: 5px;">
+											BASE PRICE:
+										</td>
+										<td align="right" width="5%" style="padding: 5px;">
+											{{ order.products.price }}   
+										</td>
+									</tr>
+									<tr>
+										<td align="right" style="padding: 5px;">
+											CGST @9%:    
+										</td>
+										<td align="right" width="5%" style="padding: 5px;">
+											5.00   
+										</td>
+									</tr>
+									<tr>
+										<td align="right" style="padding: 5px;">
+											SGST @9%:    
+										</td>
+										<td align="right" width="5%" style="padding: 5px;">
+											10.00   
+										</td>
+									</tr>
+									<tr>
+										<td align="right" style=" padding: 8px;">
+											<span >
+												Total PRICE        
+											</span>
+										</td>
+										<td align="right" width="5%" style=" padding: 8px;">                            
+											   {{ order.products.price }}                            
+										</td>
+									</tr>
+									<tr>
+										<td align="right" style=" padding: 8px;">
+											<span >
+											   PAYMENT RECEIVED:        
+											</span>
+										</td>
+										<td align="right" width="5%" style=" padding: 8px;">
+											
+										</td>
+									</tr>
+									
+								</tbody>
+							</table>
+						</td>
+					</tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <table style="table-layout: fixed; width: 100%;">
+				<tbody>
+					<tr >
+						<td align="center" style="border-right: 1px solid #000; border-top: 1px solid #000; padding: 10px;">74, Deeplok Colony, Dehradun 248001</td>
+						<td align="center" style=" border-top: 1px solid #000; padding: 10px;">www.thefinanzi.in | contact@thefinanzi.com</td>
+					</tr>
+				</tbody>
+			</table>
+        </div>
+</body>
+
+</html>

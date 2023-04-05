@@ -465,6 +465,47 @@ a {
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; ">
         <div class="container">
+        <div class="row">
+                <div class="col-md-12 col-sm-12 text-center">
+                    <div class="contents-ctg">
+                        <div class="search-bar">
+                            <div class="search-inner">
+                                <form class="search-form" method="get">
+                                    <div class="form-group inputwithicon">
+                                        <i class="lni-tag"></i>
+                                        <input type="text" name="tags" class="form-control" placeholder="Enter Product Keyword">
+                                    </div>
+                                    {# <div class="form-group inputwithicon">
+                                        <i class="lni-target"></i>
+                                        <div class="select">
+                                            <select>
+                                                <option value="none">All Locations</option>
+                                                <option value="none">New York</option>
+                                                <option value="none">California</option>
+                                                <option value="none">Washington</option>
+                                                <option value="none">Birmingham</option>
+                                                <option value="none">Chicago</option>
+                                                <option value="none">Phoenix</option>
+                                            </select>
+                                        </div>
+                                    </div> #}
+                                    {# <div class="form-group inputwithicon">
+                                        <i class="lni-menu"></i>
+                                        <div class="select">
+                                            <select>
+                                                {% for Categorys in Category %}
+                                                <option value="{{Categorys.name}}">{{Categorys.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div> #}
+                                    <button class="btn btn-common" type="button"><i class="lni-search"></i> Search Now</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 {% for Products in Product %}
                 <div class="col-lg-4 col-md-12 col-xs-12 page-sidebar " style="margin:10px 0px; padding:30px">

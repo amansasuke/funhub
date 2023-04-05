@@ -26,6 +26,8 @@ use App\Repository\AffiliateproductRepository;
 use App\Entity\Affiliateproduct;
 use App\Entity\Affiliate;
 
+use Dompdf\Dompdf;
+
 class CheckoutController extends AbstractController
 {
     /**
@@ -106,7 +108,45 @@ class CheckoutController extends AbstractController
                 $order->setDocstatus($docstatus);
                 $order->setProducts($repo->find($product->getId()));                
                 $entityManager->persist($order);
-                $entityManager->flush();                
+                $entityManager->flush();  
+                
+                 // 2. Create a Twig template for the invoice
+            $invoiceHtml = $this->renderView('invoice_template.html.twig', [
+                'order' => $order,
+                // add any additional data here
+            ]);
+            
+
+            // 3. Generate invoice data
+            $invoiceData = [
+                'orderNumber' => 'name',
+                'items' => 'itme',
+                'totalCost' => '9999',
+                // add any additional data here
+            ];
+
+            // 4. Generate PDF invoice
+            $dompdf = new Dompdf();
+            $dompdf->loadHtml($invoiceHtml);
+            $dompdf->setPaper('A4', 'portrait');
+            $dompdf->render();
+            $pdf = $dompdf->output();
+
+            // 5. Save the PDF invoice
+            $invoiceFileName = 'invoice_' . $order->getId() . '.pdf';
+            $invoicePath = __DIR__ . '/../../public/invoices/' . $invoiceFileName;
+            file_put_contents($invoicePath, $pdf);
+
+            // 6. Send email with invoice
+            $emailsend = (new TemplatedEmail())
+            ->from('amansharmasasuke@gmail.com')
+            ->to(new Address($order->getEmail(), $order->getName()))
+            ->subject('Order confirmation')
+            ->htmlTemplate('emails/invoice.html.twig')
+            ->attachFromPath($invoicePath, $invoiceFileName)
+            ->context(['order' => $order]);
+
+            $mailer->send($emailsend);
             }         
 
              //add if user is affiliated
@@ -159,6 +199,9 @@ class CheckoutController extends AbstractController
 
             $session->set('basket', []);
             //$this->addFlash('success', 'Thank you! Received your order successfully');
+            //flash()->addSuccess('Thank you! Received your order successfully');
+            //return $this->redirectToRoute("app_dashboard");
+            
             flash()->addSuccess('Thank you! Received your order successfully');
             return $this->redirectToRoute("app_dashboard");
         }

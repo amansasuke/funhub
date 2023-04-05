@@ -182,6 +182,7 @@
 padding: 20px;
 }
 .maincon{
+    vertical-align: middle;
     border: 4px solid black;
     border-radius: 20px;
     padding: 10px;
@@ -224,37 +225,106 @@ h5{
   top: 10%;
     left: 30%;
 }
-.display-position-text{
-    position:absolute;
-    top: 20%;
-    left: 36%; 
+
+
+div.display-position a {
+    text-decoration: none;
+    color: black;
+    cursor: default;
+    font-weight: normal;
 }
+
+div.display-position a span {
+    visibility: hidden;
+    position: absolute;
+    left: 15em;
+    top: -2.3em;
+    background: #ffff;
+    width: 17em;
+    border: 1px solid #404040;
+    font-size: 0.8em;
+    padding: 0.3em;
+    cursor: default;
+    line-height: 1.4;
+}
+
+div.display-position a:hover span {
+    visibility: visible;
+}
+
 
 .display-position-invest {
   position:absolute;
     top: 48%;
     left: 20%;
 }
-.display-position-text-invest{
-    position:absolute;
-    top: 59%;
-    left: 22%; 
+
+div.display-position-invest a {
+    text-decoration: none;
+    color: black;
+    cursor: default;
+    font-weight: normal;
 }
+
+div.display-position-invest a span {
+    visibility: hidden;
+    position: absolute;
+    left: 15em;
+    top: -2.3em;
+    background: #ffff;
+    width: 17em;
+    border: 1px solid #404040;
+    font-size: 0.8em;
+    padding: 0.3em;
+    cursor: default;
+    line-height: 1.4;
+}
+
+div.display-position-invest a:hover span {
+    visibility: visible;
+}
+
 .display-position-earn{
     position:absolute;
     top: 45%;
     left: 62%;
 }
 
-.display-position-text-earn{
-    position:absolute;
-    top: 59%;
-    left: 71%; 
-}
-.logoimg img{
- width: 260px;
+div.display-position-earn a {
+    text-decoration: none;
+    color: black;
+    cursor: default;
+    font-weight: normal;
 }
 
+div.display-position-earn a span {
+    visibility: hidden;
+    position: absolute;
+    left: 15em;
+    top: -2.3em;
+    background: #ffff;
+    width: 17em;
+    border: 1px solid #404040;
+    font-size: 0.8em;
+    padding: 0.3em;
+    cursor: default;
+    line-height: 1.4;
+}
+
+div.display-position-earn a:hover span {
+    visibility: visible;
+}
+
+.logoimg img{
+ width: 280px !important;
+}
+
+.counter{
+    text-align: center;
+    border: 4px solid #5bb7c5;
+    padding: 12px 10px !important;
+    border-radius: 11px;
+}
     </style>
 {% endblock %}
 {% block body %}
@@ -294,12 +364,11 @@ h5{
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    <img src="assets/img/background/Imagehead.png" alt="Mobile App Development" title="Mobile App Development"/ style="width: 500px;">
+                    <img src="assets/img/background/Image2.png" alt="Mobile App Development" title="Mobile App Development"/ style="width: 500px;">
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="titlehead">
-                        <h1>Services built for</h1>
-                        <h1 class="year" id="serviceword">Startups</h1>
+                        <h1>Services built for <spen class="year" id="serviceword">Startups</spen></h1>                        
                     </div>
                     <div class="row">
                         <div class="col-4 text-center">
@@ -349,28 +418,31 @@ h5{
                     <img class="stretch" src="assets/img/background/Image3.png" />
                 </div>
                 <div>
-                    <div class="display-position">
-                        <img src="assets/img/background/icon14.png" style="width:250px;" />
-                    </div>
-                    <div class="display-position-text">
-                        <h1>BUY</h1>
-                    </div>
+                    <div class="display-position">                       
+                        <a href="#">
+                          <img src="assets/img/background/Cloud1.png" style="width:250px;" alt="buy" />
+                          <span>Avail our top-notch financial services, get clarity on all financial aspects and never ever look back on your finances! From business registration to investment and tax saving planning – we offer every kind of financial support your business needs.
+                          </span>
+                        </a>
+                    </div>                    
                 </div>
                 <div>
                     <div class="display-position-invest">
-                        <img src="assets/img/background/Icon11.png" style="width:250px;" />
-                    </div>
-                    <div class="display-position-text-invest">
-                        <h1>INVEST</h1>
-                    </div>
+                        <a href="#">
+                            <img src="assets/img/background/Cloud2.png" alt="invest" style="width:250px;" />
+                            <span>To make investments a minimum risk for you, we partner with major corporations worldwide. When you invest via Fintastic hub, we make it a smooth, hassle-free process for you and ensure high returns at low risk.
+                              </span>
+                        </a>
+                    </div>                    
                 </div>
                 <div>
                     <div class="display-position-earn">
-                        <img src="assets/img/background/Icon13.png" style="width:250px;" />
-                    </div>
-                    <div class="display-position-text-earn">
-                        <h1>EARN</h1>
-                    </div>
+                        <a href="#">
+                            <img src="assets/img/background/Cloud3.png" alt="earn" style="width:250px;" />
+                            <span>Join our affiliate program and refer Fintastic Hub to your business pals! Recommend once; generate passive income for life! You also earn cashback for every service you avail. Your wallet money adds up every year if you haven’t redeemed your cash back. Earn and Save with us!
+                            </span>
+                        </a>
+                    </div>                    
                 </div>
 
             </div>
@@ -425,7 +497,7 @@ h5{
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="maincon">
+                    <div class="maincon d-flex align-items-center justify-content-center">
                         <p id="finance" >From business registration, tax filing, and CFO to investment and business planning, we stay with you at every stage of your business and cater to all your financial needs in one place. No more juggling between different service providers or risking regulatory compliance! FH is your all-in-one powerhouse of finances where you achieve financial peace of mind.</p>
                         <p id="Powered" >We are your tech-focused, cloud-based and AI-powered finance squad! With our excellent cloud management system and tech-savvy partners, we strive to give you a hustle-free experience so you can be confident about the financial aspects of your business.</p>
                         <p id="Startups" >Fintastic Hub is more than your financial partner. You get exclusive access to our business community, share your experiences and achievements, network with startups and entrepreneurs and get instant updates about the evolving business world.</p>
@@ -453,7 +525,36 @@ h5{
                     <div class="titlehead" style="text-align:right;">
                         <h1>Powered by the <span>BEST.</span> </h1>
                     </div>
-                    <div class="row">
+                    <div id="logosdiv" class="owl-carousel">
+                        <div class="item">
+                            <div class="logoimg d-flex align-items-center justify-content-center" style="padding:0px 0px;  ">
+                                <img src="assets/img/background/Logo1_resized.png" >               
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="logoimg d-flex align-items-center justify-content-center" style="padding:0px 0px;  ">
+                                <img src="assets/img/background/Logo2_resized.png" >               
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="logoimg d-flex align-items-center justify-content-center" style="padding:0px 0px;  ">
+                                <img src="assets/img/background/Logo3_resized.png" >               
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="logoimg d-flex align-items-center justify-content-center" style="padding:0px 0px;  ">
+                                <img src="assets/img/background/Logo4_resized.png" >               
+                            </div>
+                        </div>
+                        
+                        <div class="item">
+                            <div class="logoimg d-flex align-items-center justify-content-center" style="padding:0px 0px;  ">
+                                <img src="assets/img/background/Logo5_resized.png" >               
+                            </div>
+                        </div>                        
+                        
+                    </div>
+                    {# <div class="row">
                         <div class="col-4 text-center">
                             <div class="logoimg" style="padding:0px 0px;  ">
                                 <img src="assets/img/background/Logo1.png" >
@@ -463,7 +564,6 @@ h5{
                         <div class="col-4 text-center">
                             <div class="logoimg" style="padding:0px 0px;  ">
                                 <img src="assets/img/background/Logo2.png" >
-                                
                             </div>
                         </div>
                         <div class="col-4 text-center">
@@ -476,8 +576,7 @@ h5{
                     <div class="row" style="margin-top: 30px;">
                         <div class="col-6 text-center">
                             <div class="logoimg" style="padding:0px 0px;  ">
-                                <img src="assets/img/background/Logo4.png" >
-                               
+                                <img src="assets/img/background/Logo4.png" >                               
                             </div>
                         </div>
                         <div class="col-6 text-center">
@@ -486,7 +585,7 @@ h5{
                                 
                             </div>
                         </div>
-                    </div>
+                    </div> #}
                 </div>
             </div>
         </div>
@@ -664,7 +763,7 @@ h5{
                     <div class="counter">
                         <div class="icon"><i class="lni-briefcase"></i></div>
                         <h2 class="counterUp">50</h2>
-                        <p>Businesses & individuals</p>
+                        <p>Businesses </p>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 work-counter-widget">
@@ -1120,6 +1219,10 @@ h5{
     });
     </script>
     <script>
+
+    $(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
 
     $(document).ready(function() {
         $("#finance").show();
