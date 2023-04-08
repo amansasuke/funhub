@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
 <style>
     #development-img img {
-    height:430px;
+    height:440px;
 }
     #intro-info {
     width:50%;
@@ -31,6 +31,7 @@
 }
 
 #word{
+    font-size: 80px !important;
     color: #32be8f;
     text-transform: uppercase;
 }
@@ -172,7 +173,7 @@
 }
 .list ul li button{
     background: white;
-    border: 4px solid black;
+    border: 2px solid black;
     border-radius: 25px 30px 0 15px;
     font-size: 20px;
     padding: 10px 40px;
@@ -235,17 +236,19 @@ div.display-position a {
 }
 
 div.display-position a span {
-    visibility: hidden;
+    visibility: hidden; 
     position: absolute;
-    left: 15em;
-    top: -2.3em;
+    left: 6em;
+    top: 11.7em;
     background: #ffff;
     width: 17em;
-    border: 1px solid #404040;
-    font-size: 0.8em;
+    border-radius: 30px;
+    border: 4px solid #00c194;
+    font-size: 20px;
     padding: 0.3em;
     cursor: default;
     line-height: 1.4;
+    padding: 10px;
 }
 
 div.display-position a:hover span {
@@ -267,17 +270,19 @@ div.display-position-invest a {
 }
 
 div.display-position-invest a span {
-    visibility: hidden;
+    visibility: hidden; 
     position: absolute;
-    left: 15em;
+    left: 12em;
     top: -2.3em;
     background: #ffff;
     width: 17em;
-    border: 1px solid #404040;
-    font-size: 0.8em;
+    border-radius: 30px;
+    border: 4px solid #08b9c7;
+    font-size: 20px;
     padding: 0.3em;
     cursor: default;
     line-height: 1.4;
+    padding: 10px;
 }
 
 div.display-position-invest a:hover span {
@@ -298,17 +303,19 @@ div.display-position-earn a {
 }
 
 div.display-position-earn a span {
-    visibility: hidden;
+    visibility: hidden; 
     position: absolute;
-    left: 15em;
+    left: -15em;
     top: -2.3em;
     background: #ffff;
     width: 17em;
-    border: 1px solid #404040;
-    font-size: 0.8em;
+    border-radius: 30px;
+    border: 4px solid #008282;
+    font-size: 20px;
     padding: 0.3em;
     cursor: default;
     line-height: 1.4;
+    padding: 10px;
 }
 
 div.display-position-earn a:hover span {
@@ -321,9 +328,9 @@ div.display-position-earn a:hover span {
 
 .counter{
     text-align: center;
-    border: 4px solid #5bb7c5;
+    
     padding: 12px 10px !important;
-    border-radius: 11px;
+    box-shadow: 0 0 15px rgba(143, 143, 143, .18);
 }
     </style>
 {% endblock %}
@@ -347,15 +354,15 @@ div.display-position-earn a:hover span {
     </script>
     <section class="cta section-padding" id="intro">
         <div class="container">
-            <div class="row">
+            <div class="row" style="padding-top: 40px;">
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" id="intro-info">
-                    <div class="titlehead">
-                        <h1>Full Service Mobile App Development Company</h1>
+                    <div class="titlehead" style="padding-left: 15px;">
+                        <h1>Your one stop destination to become financially</h1>
                         <h1 class="year" id="word">Aware</h1>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" id="development-img">
-                    <img src="assets/img/background/Imagehead.png" alt="Mobile App Development" title="Mobile App Development" />
+                    <img src="assets/img/background/Imagehead.png"  />
                 </div>
             </div>
         </div>
@@ -370,7 +377,7 @@ div.display-position-earn a:hover span {
                     <div class="titlehead">
                         <h1>Services built for <spen class="year" id="serviceword">Startups</spen></h1>                        
                     </div>
-                    <div class="row">
+                    <div class="row" style="padding-top:25px">
                         <div class="col-4 text-center">
                             <div style="padding:0px 0px;  ">
                                 <img src="assets/img/background/Icon1.png" height="120px;">
@@ -390,7 +397,7 @@ div.display-position-earn a:hover span {
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" style="padding-top:25px">
                         <div class="col-6 text-center">
                             <div style="padding:0px 0px;  ">
                                 <img src="assets/img/background/Icon4.png" height="120px;">
@@ -409,10 +416,12 @@ div.display-position-earn a:hover span {
         </div>
     </section>
     <section class="cta section-padding">
-        <div class="container-fluid ">
+        <div class="container">
             <div class="titlehead" style="text-align:right;">
-                <h1>Powered by the <span>BEST.</span> </h1>
+                <h1>Make your <span>MOVE!</span> </h1>
             </div>
+        </div>
+        <div class="container-fluid ">
             <div class="wrap">
                 <div class="area">
                     <img class="stretch" src="assets/img/background/Image3.png" />
@@ -420,7 +429,7 @@ div.display-position-earn a:hover span {
                 <div>
                     <div class="display-position">                       
                         <a href="#">
-                          <img src="assets/img/background/Cloud1.png" style="width:250px;" alt="buy" />
+                          <img src="assets/img/background/Cloud1.png" style="width:250px;cursor: pointer;" alt="buy" />
                           <span>Avail our top-notch financial services, get clarity on all financial aspects and never ever look back on your finances! From business registration to investment and tax saving planning – we offer every kind of financial support your business needs.
                           </span>
                         </a>
@@ -429,7 +438,7 @@ div.display-position-earn a:hover span {
                 <div>
                     <div class="display-position-invest">
                         <a href="#">
-                            <img src="assets/img/background/Cloud2.png" alt="invest" style="width:250px;" />
+                            <img src="assets/img/background/Cloud2.png" alt="invest" style="width:250px;cursor: pointer;" />
                             <span>To make investments a minimum risk for you, we partner with major corporations worldwide. When you invest via Fintastic hub, we make it a smooth, hassle-free process for you and ensure high returns at low risk.
                               </span>
                         </a>
@@ -438,7 +447,7 @@ div.display-position-earn a:hover span {
                 <div>
                     <div class="display-position-earn">
                         <a href="#">
-                            <img src="assets/img/background/Cloud3.png" alt="earn" style="width:250px;" />
+                            <img src="assets/img/background/Cloud3.png" alt="earn" style="width:250px;cursor: pointer;" />
                             <span>Join our affiliate program and refer Fintastic Hub to your business pals! Recommend once; generate passive income for life! You also earn cashback for every service you avail. Your wallet money adds up every year if you haven’t redeemed your cash back. Earn and Save with us!
                             </span>
                         </a>
@@ -481,12 +490,12 @@ div.display-position-earn a:hover span {
             </ul>
         </div>
     </div> #}
-    <section class="cta section-padding">
+    <section class="cta " style="padding-bottom: 60px;">
         <div class="container">
             <div class="titlehead" style="text-align:right;">
                 <h1>Unlock your <span><img src="assets/img/background/Icon15.png" width="80px"> </span> Potential.</h1>
             </div>
-            <div class="row">
+            <div class="row" style="padding-top:35px;">
                 <div class="col-4">
                     <div class="list">
                         <ul>
@@ -591,170 +600,22 @@ div.display-position-earn a:hover span {
         </div>
     </section>
 
-    <section id="about" class="section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="titlehead" style="text-align:right;">
-                        <h1>Frequently Asked <span>Questions.</span> </h1>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-5 col-xs-12">
-                    <div class="about-wrapper" style="padding-top: 100px;">
-                        <img class="img-fluid" src="assets/img/category/FAQ.png" alt="">
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-7 col-xs-12">
-                    <div class="faq section-padding">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="panel-group" id="accordion">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                                        Is one-to-one assistance available along with financial services? Where do I solve my queries?
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseOne" class="panel-collapse collapse ">
-                                                <div class="panel-body">
-                                                    <p>Yes! Once you avail our service, a dedicated financial expert from our team will be assigned to you. He/She will contact you and explain the process and be available to clarify your doubts.
-                                                    </p>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo">
-                                                        How long will it take to complete the process and get the final deliverable?
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseTwo" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <p>
-                                                        It may vary for every service, however, you can track your services in real-time on your private dashboard. The estimated completion date will be available clearly on your dashboard and our dedicated expert will contact you and explain all the requirements and the process.
-                                                    </p>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-                                                        What types of businesses do you work with?
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseThree" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <p>
-                                                        We work with startups, freelancers and entrepreneurs all over India across multiple industries including <b>insert 2-3 big industries served></b>
-                                                    </p>
-                                                    <br>
-                                                    <p>
-                                                        You can also track the status of service on real time basis from your FH dashboard. We ensure every service is completed in least possible time
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion3" href="#collapseFour">
-                                                        What is the business club? Should I become a member to avail your services?
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseFour" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <p>
-                                                        Fintastic Hub <a href="">Business </a> is a dedicated platform with a network of entrepreneurs and startup owners. You need not be a member of our business club to avail our services. It stands as a separate membership with the potential to supercharge your business.
-                                                    </p>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion4" href="#collapseFive">
-                                                        How can I become an affiliate? What are the benefits?
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseFive" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <p>
-                                                        Our affiliate program is open to everyone! As an affiliate, you can earn a commission as high as 30% when your referral purchases a service from us and set up a passive source of income.<a href=""> Click here </a>to join.</b>
-                                                    </p>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion5" href="#collapseSix">
-                                                        What are the benefits of your investment options at FH?
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseSix" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <p>
-                                                        At FH, we partner with large corporations to ease the process, take charge of the paperwork and eliminate risks as much as possible. You also earn cashback on your investments. For instance, if you get a LIC policy of 100,000 p.a. Premium, you can avail 10% of 100,000 i.,e. 10,000 rs as cashback in your bank account, which means, you easily save Rs.10,000. (Please note that the percentage of cashback may vary)
-                                                    </p>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion6" href="#collapseSeven">
-                                                        I am new to affiliate marketing. Is guidance provided?
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseSeven" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <p>
-                                                        Yes. Once you become an <a href=""> affiliate</a>, you will get access to our exclusive tools and resources which help you quickly learn affiliate marketing, refer FH and earn commissions.
-                                                    </p>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
     <section class="counter-section section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-sm-6 work-counter-widget">
                     <div class="counter">
                         <div class="icon"><i class="lni-layers"></i></div>
-                        <h2 class="counterUp">70</h2>
-                        <p>startups served
+                        <h2 class="counterUp">80</h2>
+                        <p>Startups served
                         </p>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 work-counter-widget">
                     <div class="counter">
                         <div class="icon"><i class="lni-users"></i></div>
-                        <h2 class="counterUp">10000</h2>
+                        <h2 class="counterUp">10000 </h2>
                         <p>ITRs filed
                         </p>
                     </div>
@@ -762,27 +623,27 @@ div.display-position-earn a:hover span {
                 <div class="col-md-3 col-sm-6 work-counter-widget">
                     <div class="counter">
                         <div class="icon"><i class="lni-briefcase"></i></div>
-                        <h2 class="counterUp">50</h2>
+                        <h2 class="counterUp">150</h2>
                         <p>Businesses </p>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 work-counter-widget">
                     <div class="counter">
                         <div class="icon"><i class="lni-map"></i></div>
-                        <h2 class="counterUp">1</h2>
-                        <p>Manhour saved
+                        <h2 class="counterUp">50000</h2>
+                        <p>Hours saved
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section id="content" class="section-padding" style="padding-top:0px;">
+    <section id="content" class="section-padding" >
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="titlehead" style="text-align:right;">
-                        <h1>Book Your <span>Appointment.</span> </h1>
+                        <h1>Talk to our <span>WIZARDS.</span> </h1>
                     </div>
                 </div>
                 {% if final|length > 0 %}
@@ -1029,6 +890,155 @@ div.display-position-earn a:hover span {
             </div>
         </div>
     </section> 
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="titlehead" style="text-align:right;">
+                        <h1>Frequently Asked <span>Questions.</span> </h1>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-5 col-xs-12">
+                    <div class="about-wrapper" style="padding-top: 100px;">
+                        <img class="img-fluid" src="assets/img/category/FAQ.png" alt="">
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-7 col-xs-12">
+                    <div class="faq " style="padding-top:60px;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                        Is one-to-one assistance available along with financial services? Where do I solve my queries?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse ">
+                                                <div class="panel-body">
+                                                    <p>Yes! Once you avail our service, a dedicated financial expert from our team will be assigned to you. He/She will contact you and explain the process and be available to clarify your doubts.
+                                                    </p>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo">
+                                                        How long will it take to complete the process and get the final deliverable?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        It may vary for every service, however, you can track your services in real-time on your private dashboard. The estimated completion date will be available clearly on your dashboard and our dedicated expert will contact you and explain all the requirements and the process.
+                                                    </p>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                                                        What types of businesses do you work with?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseThree" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        We work with startups, freelancers and entrepreneurs all over India across multiple industries including <b>insert 2-3 big industries served></b>
+                                                    </p>
+                                                    <br>
+                                                    <p>
+                                                        You can also track the status of service on real time basis from your FH dashboard. We ensure every service is completed in least possible time
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion3" href="#collapseFour">
+                                                        What is the business club? Should I become a member to avail your services?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFour" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        Fintastic Hub <a href="">Business </a> is a dedicated platform with a network of entrepreneurs and startup owners. You need not be a member of our business club to avail our services. It stands as a separate membership with the potential to supercharge your business.
+                                                    </p>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion4" href="#collapseFive">
+                                                        How can I become an affiliate? What are the benefits?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseFive" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        Our affiliate program is open to everyone! As an affiliate, you can earn a commission as high as 30% when your referral purchases a service from us and set up a passive source of income.<a href=""> Click here </a>to join.</b>
+                                                    </p>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion5" href="#collapseSix">
+                                                        What are the benefits of your investment options at FH?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseSix" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        At FH, we partner with large corporations to ease the process, take charge of the paperwork and eliminate risks as much as possible. You also earn cashback on your investments. For instance, if you get a LIC policy of 100,000 p.a. Premium, you can avail 10% of 100,000 i.,e. 10,000 rs as cashback in your bank account, which means, you easily save Rs.10,000. (Please note that the percentage of cashback may vary)
+                                                    </p>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion6" href="#collapseSeven">
+                                                        I am new to affiliate marketing. Is guidance provided?
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseSeven" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        Yes. Once you become an <a href=""> affiliate</a>, you will get access to our exclusive tools and resources which help you quickly learn affiliate marketing, refer FH and earn commissions.
+                                                    </p>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <footer>
         <section class="footer-Content">
             <div class="container">
@@ -1321,7 +1331,7 @@ div.display-position-earn a:hover span {
 
     $(function() {
         count = 0;
-        wordsArray12 = ["Traders", "MSMes", "Professional", "Startups"];
+        wordsArray12 = ["Traders", "MSMEs", "Professional", "Startups"];
         setInterval(function() {
             count++;
             $("#serviceword").fadeOut(400, function() {
