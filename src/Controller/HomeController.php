@@ -369,12 +369,16 @@ class HomeController extends AbstractController
 
         $isInBasket = array_key_exists($prodetail->getId(), $basket);
         $basket = $session->get('basket', []);
+
+        $Productshow = $Product->searchtags($prodetail->getName(), 5, 0 );
+
         return $this->render('home/prodetail.html.twig', [
             'controller_name' => 'HomeController',
             'prodetail' => $prodetail,
             'prodoc'=> $prodoc,
             'inBasket' => $isInBasket,
             'basket' => $basket,
+            'Productshow' => $Productshow,
         ]);
     }
 

@@ -35,6 +35,7 @@ class CheckoutController extends AbstractController
      */
     public function checkout(Request $request, ProductRepository $repo, SessionInterface $session, MailerInterface $mailer, UserRepository $userR, AffiliateproductRepository $Affiliateproduct, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER', null, 'User tried to access a page without having ROLE_USER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $waltebalanceold = $user->getWellet();
         $userdat = $doctrine->getRepository(User::class)->find($user->getId());

@@ -276,7 +276,9 @@ class DashboardController extends AbstractController
         
         //if(empty($user->getImgicon())){
             $form = $this->createFormBuilder($user)
-            ->add('email')
+            ->add('email', HiddenType::class, [
+                'data' => $user->getEmail(),
+            ])
             ->add('name', TextType ::class,array(
                 'label' => ' Full Name',
             ))
@@ -915,7 +917,8 @@ class DashboardController extends AbstractController
      * @Route("/docforme", name="app_docforme")
      */
     public function docforme(Request $request, DocForClientRepository $docForClientRepository): Response
-    {
+    {   
+        $this->denyAccessUnlessGranted('ROLE_USER', null, 'User tried to access a page without having ROLE_USER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $useremail = $user->getEmail();
 
