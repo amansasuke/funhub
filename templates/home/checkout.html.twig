@@ -168,6 +168,7 @@
                         {% if waltebalanceold |length >0 %}
                             <form class="card p-2">
                                 <div class="input-group">
+                                    <input type="hidden" class="form-control" id="nameofid" name="statte" placeholder="Use your Wallet Balance">
                                     <input type="text" class="form-control" name="usewalet" placeholder="Use your Wallet Balance">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-common">Redeem</button>
@@ -604,6 +605,7 @@ $('#gst').append('IGST 18%');
 $('#price').append('₹{{ gsttotal| number_format }}.00');
 $("#state").change(function(){
     len = this.value ;
+    document.getElementById("nameofid").value = len;
     if(len == 'Uttarakhand'){
         $("#gst").empty();
         $("#price").empty();
@@ -617,6 +619,17 @@ $("#state").change(function(){
     }
 
 });
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const firstParamValue = urlParams.get('statte');
+document.getElementById("state").value = firstParamValue;
+if(firstParamValue == 'Uttarakhand'){
+        $("#gst").empty();
+        $("#price").empty();
+        $('#gst').append('CGST 9%<br> SGST 9%');
+        $('#price').append('₹{{ cgst| number_format }}.00<br> ₹{{ cgst| number_format }}.00');
+    }
 </script>
 
 {% endblock %}
