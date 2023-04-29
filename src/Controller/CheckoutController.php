@@ -12,6 +12,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
@@ -79,6 +82,48 @@ class CheckoutController extends AbstractController
                 'data' => $user->getPhoneno(),
                 'label' => 'phone no',
             ])
+
+            ->add('state', ChoiceType::class, [
+                'choices'  => [
+                    'Andhra Pradesh' => 'Andhra Pradesh',
+                    'Andaman and Nicobar Islands' => 'Andaman and Nicobar Islands',
+                    'Arunachal Pradesh' => 'Arunachal Pradesh',
+                    'Assam' => 'Assam',
+                    'Bihar' => 'Bihar',
+                    'Chandigarh' => 'Chandigarh',
+                    'Chhattisgarh' => 'Chhattisgarh',
+                    'Dadar and Nagar Haveli' => 'Dadar and Nagar Haveli',
+                    'Daman and Diu' => 'Daman and Diu',
+                    'Delhi' => 'Delhi',
+                    'Lakshadweep' => 'Lakshadweep',
+                    'Puducherry' => 'Puducherry',
+                    'Goa' => 'Goa',                  
+                    'Gujarat' => 'Gujarat',
+                    'Haryana' => 'Haryana',
+                    'Himachal Pradesh' => 'Himachal Pradesh',
+                    'Jammu and Kashmir' => 'Jammu and Kashmir',
+                    'Jharkhand' => 'Jharkhand',
+                    'Karnataka' => 'Karnataka',
+                    'Kerala' => 'Kerala',
+                    'Madhya Pradesh' => 'Madhya Pradesh',
+                    'Maharashtra' => 'Maharashtra',
+                    'Manipur' => 'Manipur',
+                    'Meghalaya' => 'Meghalaya',
+                    'Mizoram' => 'Mizoram',
+                    'Nagaland' => 'Nagaland',
+                    'Odisha' => 'Odisha',
+                    'Punjab' => 'Punjab',
+                    'Rajasthan' => 'Rajasthan',
+                    'Sikkim' => 'Sikkim',
+                    'Tamil Nadu' => 'Tamil Nadu',
+                    'Telangana' => 'Telangana',
+                    'Tripura' => 'Tripura',
+                    'Uttar Pradesh' => 'Uttar Pradesh',
+                    'Uttarakhand' => 'Uttarakhand',
+                    'West Bengal' => 'West Bengal',
+                ],
+            ])
+            
             ->add('gstno', TextType::class, [
                 'data' => $gst,
                 'label' => 'GST No (Put your correct GST No. to claim Input Tax Credit)',
@@ -87,6 +132,12 @@ class CheckoutController extends AbstractController
             ->add('docstatus', HiddenType::class, [
                     'data' => '0',
                 ])
+            // ->add('createat', DateType::class, [
+            //     "data" => new \DateTime(),   
+            //     ])
+            ->add('grossvalue', HiddenType::class)
+            ->add('gstamount', HiddenType::class)
+            ->add('totalvalue', HiddenType::class)
             ->add('save', SubmitType::class, ['label' => 'Confirm order'])
             ->getForm();
 
@@ -98,6 +149,16 @@ class CheckoutController extends AbstractController
             $email= $form->get('email')->getData();
             $address= $form->get('address')->getData();
             $docstatus= $form->get('docstatus')->getData();
+            $state= $form->get('state')->getData();
+            $gstno= $form->get('gstno')->getData();
+            $grossvalue= $form->get('grossvalue')->getData();
+            $gstamount= $form->get('gstamount')->getData();
+            $totalvalue= $form->get('totalvalue')->getData();
+            // $createat= $form->get('createat');
+            // print_r($createat);
+            // die;
+            // $createdate= \DateTime::createFromFormat('d/m/Y',date("d/m/Y", strtotime($createat)));
+            $name= $form->get('name')->getData();
             $Affiliateproducts = new Affiliateproduct;
 
              $entityManager = $this->getDoctrine()->getManager();
@@ -107,6 +168,12 @@ class CheckoutController extends AbstractController
                 $order->setEmail($email);
                 $order->setAddress($address);
                 $order->setDocstatus($docstatus);
+                $order->setState($state);
+                $order->setGstno($gstno);
+                $order->setCreateat(new \DateTime('today'));
+                $order->setGrossvalue($grossvalue);
+                $order->setGstamount($gstamount);
+                $order->setTotalvalue($totalvalue);
                 $order->setProducts($repo->find($product->getId()));                
                 $entityManager->persist($order);
                 $entityManager->flush();  

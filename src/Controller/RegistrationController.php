@@ -83,6 +83,7 @@ class RegistrationController extends AbstractController
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
+            $this->sendsignup($user, $mailer);
             // do anything else you need here, like send an email
 
             return $userAuthenticator->authenticateUser(
@@ -98,6 +99,19 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
             'basket'=>$basket,
         ]);
+    }
+
+    private function sendsignup(User $user, MailerInterface $mailer)
+    {
+        $email = (new TemplatedEmail())
+        ->from(new Address('amansharmasasuke@gmail.com', 'The Finanzi'))
+        ->to('amansharmasasuke@gmail.com')
+        ->subject('New user sign up')
+        ->htmlTemplate('emails/usersignup.html.twig')
+        ->context(['id'=> $user->getId(), 'name'=> $user->getName() , 'phoneno'=> $user->getPhoneNo() ])
+            ;
+
+        $mailer->send($email);
     }
 
     // private function sendEmailConfirmation(User $user, MailerInterface $mailer)

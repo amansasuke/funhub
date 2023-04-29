@@ -317,7 +317,10 @@
                         <div class="mb-3">                        
                             {{ form_row(form.phoneno,{'attr': {'class': 'form-control '}}) }}                             
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3">                        
+                            {{ form_row(form.state,{'attr': {'class': 'form-control' }}) }}                            
+                        </div>
+                        {# <div class="mb-3">
                         <div>
                             <label for="form_email" class="required">State</label>
                             <select name="state" id="state" class="form-control">
@@ -359,9 +362,17 @@
                             <option value="West Bengal">West Bengal</option>
                             </select>
                             </div>
-                        </div>
+                        </div> #}
                         <div class="mb-3">                        
                             {{ form_row(form.gstno,{'attr': {'class': 'form-control'}}) }}                            
+                        </div>
+                        {# <div class="mb-3" style="display:none;">                        
+                            {{ form_row(form.createat,{'attr': {'class': 'form-control'}}) }}                            
+                        </div> #}
+                        <div class="mb-3">                        
+                            {{ form_row(form.grossvalue,{'attr': {'class': 'form-control','value':total}}) }}
+                            {{ form_row(form.gstamount,{'attr': {'class': 'form-control','value':gsttotal| number_format}}) }}
+                            {{ form_row(form.totalvalue,{'attr': {'class': 'form-control','value':grandtotal| number_format}}) }}                            
                         </div>
                         <div class="mb-3">
                             {{ form_row(form.address,{'attr': {'class': 'form-control input-md'}}) }}
@@ -603,7 +614,7 @@
 <script>
 $('#gst').append('IGST 18%');
 $('#price').append('₹{{ gsttotal| number_format }}.00');
-$("#state").change(function(){
+$("#form_state").change(function(){
     len = this.value ;
     document.getElementById("nameofid").value = len;
     if(len == 'Uttarakhand'){
@@ -623,7 +634,8 @@ $("#state").change(function(){
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const firstParamValue = urlParams.get('statte');
-document.getElementById("state").value = firstParamValue;
+document.getElementById("form_state").value = firstParamValue;
+document.querySelector("#state").value = firstParamValue;
 if(firstParamValue == 'Uttarakhand'){
         $("#gst").empty();
         $("#price").empty();
