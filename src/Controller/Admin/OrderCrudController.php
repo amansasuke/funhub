@@ -80,7 +80,7 @@ class OrderCrudController extends AbstractCrudController
         $export = Action::new('export', 'export')
             ->setIcon('fa fa-download')
             ->linkToCrudAction('export')
-            ->setCssClass('btn')
+            ->setCssClass('btn btn-success')
             ->createAsGlobalAction();
 
         return $actions->add(Crud::PAGE_INDEX, $export);

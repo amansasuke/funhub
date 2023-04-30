@@ -761,5 +761,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getExportData()
+    {
+        return \array_merge([
+            'user id' => $this->id,
+            'name' => $this->name,
+            'Mobile No.' => $this->phone_no,
+            'Email.' => $this->email,
+            'User Category' => $this->user_category,
+            'pan No.' => $this->pan_no,
+            'GST no.' => $this->GSTno,
+            'State' => $this->address,
+            'Manager' => $this->Manager,
+            'wellet' => $this->wellet,
+        ]);
+    }
     
 }
