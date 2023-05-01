@@ -188,7 +188,7 @@ class Affiliateproduct
             'IFSC' => $this->affiliateid->getIFSC(),
             'Service Purchased through affiliate link' => $this->affiliateid->getEmail(),
             'Date of Purchase' => $this->adddate? $this->adddate->format('Y-m-d'): ' ',
-            'Invoice No.' => $this->orderinfo->getId()? $this->orderinfo->getId(): ' ',
+            'Invoice No.' => $this->orderinfo? $this->orderinfo->getId(): ' ',
             'Gross Value' => $this->orderinfo->getGrossvalue(),
             'GST Amount' => $this->orderinfo->getGstamount(),
             'Total Value' => $this->orderinfo->getTotalvalue(),
