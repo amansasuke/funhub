@@ -109,6 +109,11 @@ class Order
      */
     private $totalvalue;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Affiliateproduct::class, mappedBy="orderinfo")
+     */
+    private $affiliateproducts;
+
     
 
     public function __construct()
@@ -117,6 +122,7 @@ class Order
         $this->orderdocs = new ArrayCollection();
         $this->user = new ArrayCollection();
         $this->docForClients = new ArrayCollection();
+        $this->affiliateproducts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -415,6 +421,36 @@ class Order
     public function setTotalvalue(string $totalvalue): self
     {
         $this->totalvalue = $totalvalue;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Affiliateproduct>
+     */
+    public function getAffiliateproducts(): Collection
+    {
+        return $this->affiliateproducts;
+    }
+
+    public function addAffiliateproduct(Affiliateproduct $affiliateproduct): self
+    {
+        if (!$this->affiliateproducts->contains($affiliateproduct)) {
+            $this->affiliateproducts[] = $affiliateproduct;
+            $affiliateproduct->setOrderinfo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAffiliateproduct(Affiliateproduct $affiliateproduct): self
+    {
+        if ($this->affiliateproducts->removeElement($affiliateproduct)) {
+            // set the owning side to null (unless already changed)
+            if ($affiliateproduct->getOrderinfo() === $this) {
+                $affiliateproduct->setOrderinfo(null);
+            }
+        }
 
         return $this;
     }

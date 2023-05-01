@@ -57,6 +57,21 @@ class Affiliateproduct
      */
     private $adddate;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Order::class, inversedBy="affiliateproducts")
+     */
+    private $orderinfo;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $commissionpaid;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $paymentdate;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +169,66 @@ class Affiliateproduct
     public function setAdddate(\DateTimeInterface $adddate): self
     {
         $this->adddate = $adddate;
+
+        return $this;
+    }
+
+    public function getExportData()
+    {
+        return \array_merge([
+            'affiliate Name' => $this->affiliateid->getName(),
+            'Mobile No' => $this->affiliateid->getPhoneno(),
+            'Email' => $this->affiliateid->getEmail(),
+            'PAN No.' => $this->affiliateid->getPanno(),
+            'GST No.' => $this->affiliateid->getPanno(),
+            'State' => $this->affiliateid->getAddress(),
+            'UPI ID' => $this->affiliateid->getUpiid(),
+            'Bank Name' => $this->affiliateid->getAccountname(),
+            'Account No.' => $this->affiliateid->getAccountno(),
+            'IFSC' => $this->affiliateid->getIFSC(),
+            'Service Purchased through affiliate link' => $this->affiliateid->getEmail(),
+            'Date of Purchase' => $this->adddate? $this->adddate->format('Y-m-d'): ' ',
+            'Invoice No.' => $this->orderinfo->getId(),
+            'Gross Value' => $this->orderinfo->getGrossvalue(),
+            'GST Amount' => $this->orderinfo->getGstamount(),
+            'Total Value' => $this->orderinfo->getTotalvalue(),
+            'Commission Paid' => $this->commissionpaid,
+            'Payment Date' =>  $this->paymentdate? $this->paymentdate->format('Y-m-d'): 'pending',
+        ]);
+    }
+
+    public function getOrderinfo(): ?Order
+    {
+        return $this->orderinfo;
+    }
+
+    public function setOrderinfo(?Order $orderinfo): self
+    {
+        $this->orderinfo = $orderinfo;
+
+        return $this;
+    }
+
+    public function getCommissionpaid(): ?string
+    {
+        return $this->commissionpaid;
+    }
+
+    public function setCommissionpaid(?string $commissionpaid): self
+    {
+        $this->commissionpaid = $commissionpaid;
+
+        return $this;
+    }
+
+    public function getPaymentdate(): ?\DateTimeInterface
+    {
+        return $this->paymentdate;
+    }
+
+    public function setPaymentdate(?\DateTimeInterface $paymentdate): self
+    {
+        $this->paymentdate = $paymentdate;
 
         return $this;
     }

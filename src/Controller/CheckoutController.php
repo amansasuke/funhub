@@ -250,6 +250,7 @@ class CheckoutController extends AbstractController
                     $Affiliateproducts->setOrderuserid($orderuserid);
                     $Affiliateproducts->setAffiliateid($Affiliateoyodata);
                     $Affiliateproducts->setAdddate($date);
+                    $Affiliateproducts->setOrderinfo($order);
                     $entityManager->persist($Affiliateproducts);
 
                 }   
