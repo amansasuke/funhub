@@ -189,9 +189,9 @@ class Affiliateproduct
             'Service Purchased through affiliate link' => $this->affiliateid->getEmail(),
             'Date of Purchase' => $this->adddate? $this->adddate->format('Y-m-d'): ' ',
             'Invoice No.' => $this->orderinfo? $this->orderinfo->getId(): ' ',
-            'Gross Value' => $this->orderinfo->getGrossvalue(),
-            'GST Amount' => $this->orderinfo->getGstamount(),
-            'Total Value' => $this->orderinfo->getTotalvalue(),
+            'Gross Value' => $this->orderinfo? $this->orderinfo->getGrossvalue(): ' ',
+            'GST Amount' =>  $this->orderinfo? $this->orderinfo->getGstamount(): ' ',
+            'Total Value' =>  $this->orderinfo? $this->orderinfo->getTotalvalue(): ' ',
             'Commission Paid' => $this->commissionpaid,
             'Payment Date' =>  $this->paymentdate? $this->paymentdate->format('Y-m-d'): 'pending',
         ]);
