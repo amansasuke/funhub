@@ -1,0 +1,2 @@
+"Affiliate Name","Date of Purchase","Gross Value","Commission Earned","Commission Paid","Payment Date"
+"Aman Sasuke",2023-05-01,800,444,,pending

@@ -311,7 +311,7 @@
                                                     <th>Email</th>
                                                     <th>Category</th>
                                                     <th>phoneno</th>
-                                                    <th>View Orders</th>
+                                                    <th>View Orders</th>                                                    
                                                 </tr>
                                                 {% for user in users %}
                                                 {% if user.usercategory != 'staff' %}
@@ -339,10 +339,11 @@
                                                         {{ user.phoneno }}
                                                     </td>
                                                     <td>
-                                                        <div class="btns-actions">
-                                                            <a class="btn-action btn-view" href="userorder/{{ user.id }}"><i class="lni-cart"></i></a>
+                                                        <div class="btns-actions" >
+                                                            <a class="btn btn-success btn-view" href="userorder/{{ user.id }}"><i class="lni-cart"></i></a>
                                                         </div>
                                                     </td>
+                                                    
                                                 </tr>
                                                 {% endif %}
                                                 {% endfor %}

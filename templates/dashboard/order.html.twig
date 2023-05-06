@@ -23,7 +23,8 @@
                             </div>
                             <div class="tracking-date "><img src="assets\img\logo\pay.png" class="img-responsive" alt="order-placed" height="40px" /></div>
                             <div class="tracking-content">PaymentStatus</div>
-                                <span class="badge badge-success" id="shownots" style="width: 80px;color: #fff; cursor: pointer; margin-bottom: 10px;margin-top: 10px;">Done</span>                       
+                                <span class="badge badge-success" id="shownots" style="width: 80px;color: #fff; cursor: pointer; margin-bottom: 10px;margin-top: 10px;">Done</span><br>
+                                <a href="{{ asset("invoices/invoice")}}_{{ord.id}}.pdf" class="btn btn-common"  style="font-size: 14px;background-color:#ff9800;color:#ffff;"><i class="fa fa-download"></i> Invoice  </a>                       
                         </div>
                         </div>                                
                         
@@ -185,7 +186,7 @@
                                         </div>                                        
                                         {% endif %}
                                         {% if final.status == 2 %}
-                                        <a href="adddoc/{{ord.id}}?docname={{ final.submitdoc }}" > 
+                                        <a href="adddoc/{{ord.id}}?docname={{ final.submitdoc }}&ordid={{ord.id}}" > 
                                         <div class="col-auto">
                                             <div class="avatar">
                                                 <div class="avatar-title rounded-circle bg-warning-dark">
@@ -336,7 +337,7 @@
                         {% if ord.enddate != null%}{{ord.enddate|date('d M Y')}}{% endif%}
                         </span></div>
                     </div>                        
-                    <div class="tracking-item{% for docclients in doc_for_clients %}{% if docclients.Ordername.id == ord.id %}{% else %}-pending {% endif %}{% endfor %}">
+                    <div class="tracking-item{% if ord.enddate == null%}-pending{% endif%}">
                         <div class="tracking-icon status-intransit">
                             <svg class="svg-inline--fa fa-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
                                 <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path>

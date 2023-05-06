@@ -1,0 +1,13 @@
+"Affiliate Name","Date of Purchase","Gross Value","Commission Earned","Commission Paid","Payment Date"
+"ravi pathal",2022-10-10,,2000,,pending
+"Aman Sharma",2022-09-05,,2000,,pending
+"Aman Sharma",2022-10-11,,444,,pending
+"Aman Sharma",2022-10-11,,2000,,pending
+"Aman Sharma",2022-10-11,,800,,pending
+"Aman Sharma",2022-10-15,,1000,,pending
+"Aman Sharma",2022-10-15,,1000,,pending
+"Aman Sharma",2023-01-07,,444,,pending
+"Aman Sharma",2023-01-07,,800,,pending
+"Aman Sharma",2023-01-07,,1000,,pending
+"Aman Sharma",2023-02-05,,800,,pending
+"Aman Sasuke",2023-05-01,800,444,,pending

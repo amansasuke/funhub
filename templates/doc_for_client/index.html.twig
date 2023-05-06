@@ -310,9 +310,9 @@
                                                      <th>Order Id</th>
                                                      <th>Order name</th>                                              
                                                     <th>Name</th>
-                                                    <th>Doclink</th>
                                                     <th>Status</th>
                                                     <th>actions</th>
+                                                    <th>view</th>
                                                 </tr>
                                             
                                             
@@ -322,12 +322,13 @@
                                                     <td>{{ doc_for_client.Ordername.id }}</td>
                                                     <td>{{ doc_for_client.Ordername }}</td>
                                                     <td>{{ doc_for_client.Name }}</td>
-                                                    <td>{{ doc_for_client.Doclink }}</td>
                                                     <td>{{ doc_for_client.Status ? 'Yes' : 'No' }}</td>
                                                     <td>
-                                                        <a href="{{ path('app_doc_for_client_show', {'id': doc_for_client.id}) }}">show</a>
-                                                        <a href="{{ path('app_doc_for_client_edit', {'id': doc_for_client.id}) }}">edit</a>
+                                                        {{ include('doc_for_client/_delete_form.html.twig') }}
+                                                        {# <a href="{{ path('app_doc_for_client_delete', {'id': doc_for_client.id}) }}/?orderid={{app.request.get('orderid')}}">show </a> #}
+                                                        <a href="{{ path('app_doc_for_client_edit', {'id': doc_for_client.id}) }}/?orderid={{app.request.get('orderid')}}">edit</a>
                                                     </td>
+                                                    <td><a href="{{ asset("uploads/brochures/")}}{{ doc_for_client.Doclink }}" class="btn btn-warning"><i class="lni-eye"></i></a></td>
                                                 </tr>
                                                 {% else %}
                                                 <tr>
@@ -336,7 +337,7 @@
                                                 {% endfor %}
                                             </tbody>
                                         </table>
-                                        <a href="{{ path('app_doc_for_client_new') }}" class="btn btn-primary" style="width:100%;">Create new</a>
+                                        <a href="{{ path('app_doc_for_client_new') }}/?orderid={{app.request.get('orderid')}}" class="btn btn-primary" style="width:100%;">Create new</a>
                                     </div>
                                 </div>
                             </div>

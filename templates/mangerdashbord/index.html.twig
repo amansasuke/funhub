@@ -307,11 +307,13 @@
                                     <tbody>
                                         <tr>                                           
                                             <th>order Id</th>
+                                            <th>client name</th>
                                             <th>Product</th>
                                             <th>Start Date</th>                                                                                        
-                                            <th>status</th>
+                                            <th>Doc status</th>
                                             <th>view doc</th>
                                             <th>Edit</th>
+                                            <th>Order status</th>
                                         </tr>
                                     
                                     
@@ -322,7 +324,10 @@
                                             <td>
                                             {{order.id}}
                                             </td>
-                                          
+                                          <td data-title="Title">
+                                                {{order.name}}
+                                               
+                                            </td>
                                             <td data-title="Title">
                                                 {{order.products}}
                                                
@@ -395,7 +400,15 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td> 
+                                                {% if order.enddate|length  %}
+                                                   Done                                                     
+                                                {% else %}
+                                                    panding
+                                                {% endif %}                                                
+                                            </td>
                                         </tr>
+                                        
                                         {# {% endif %} #}
                                         
                                         {% endfor %}

@@ -320,12 +320,13 @@
                                                    
                                                     <th>Product</th>
                                                     <th>user name</th>                                                    
-                                                    <th>Client Document</th>
+                                                    <th>Client Doc</th>
                                                     <th>Asign to staff</th>
                                                     <th>Set date</th>
                                                     <th>Order Doc Status </th>
                                                     <th>Staff Status </th>
                                                     <th>Order Status</th>
+                                                    <th>submit doc</th>
                                                 </tr>
                                                 {% for order in orders %}
                                                                                               
@@ -477,7 +478,12 @@
                                                         {% else %}                                                  
                                                             <div class="gap"><a class="btn  btn-info" href="#" style="width:80px;">pending</a></div>
                                                         {% endif %}
-
+                                                        <div class="gap"><a href="{{ path('app_doc_for_client_new') }}/?orderid={{order.id}}" class="btn btn-common"  style="font-size: 14px;background-color:#5bb7c5;color:#ffff;"><i class="fa fa-upload"></i> Export</a></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="btns-actions">
+                                                            <a class="btn btn-warning" href="{{path('app_doc_for_client_index')}}?orderid={{ order.id }}"><i class="lni-eye"></i></a>
+                                                        </div>
                                                     </td>
                                                 </tr>                                                
                                                 {% endfor %}

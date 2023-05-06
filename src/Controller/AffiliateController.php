@@ -19,6 +19,11 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 
+use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\Serializer\Encoder\CsvEncoder;
+use Symfony\Component\Serializer\SerializerInterface;
+
 use App\Repository\UserRepository;
 use App\Repository\AffiliateproductRepository;
 use App\Entity\Affiliateproduct;
@@ -110,9 +115,9 @@ class AffiliateController extends AbstractController
 
 
     /**
-     * @Route("/orderaffiliate", name="app_order_affiliate_index", methods={"GET"})
+     * @Route("/orderaffiliate", name="app_order_affiliate_index", methods={"GET","POST"})
      */
-    public function orderaffiliate(AffiliateRepository $affiliateRepository,AffiliateproductRepository $ap, UserRepository $userR): Response
+    public function orderaffiliate(SerializerInterface $serializer, AffiliateRepository $affiliateRepository,AffiliateproductRepository $ap, UserRepository $userR, Request $request): Response
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $user->getId();
@@ -120,7 +125,55 @@ class AffiliateController extends AbstractController
         $affiliates = $affiliateRepository->findBy(array('userid'=>$user->getId()));
 
         $affiliateuser = $userR->findBy(array('red_id'=>$user->getId()));
-        $Affiliateproduct = $ap->findBy(array('affiliateuserid'=>$user->getId()));
+        if (!empty($_GET['updateat'])) {
+            $adddate= \DateTime::createFromFormat('d/m/Y',date("d/m/Y", strtotime($_GET['updateat'])));
+            // print_r(gettype($startdate));
+            // die;
+            $Affiliateproduct = $ap->findBy(array('affiliateuserid'=>$user->getId(),'adddate'=>$adddate));
+        }else{
+            $Affiliateproduct = $ap->findBy(array('affiliateuserid'=>$user->getId()));
+        }
+
+        if ($request->isMethod('POST')) {
+            //print_r($_GET['updateat']);
+            $i=0;
+            foreach ($Affiliateproduct as $key => $value) {
+                
+               $aforder[$i]['Affiliate Name']= $value->getAffiliateid()->getName();
+               $aforder[$i]['Date of Purchase']= $value->getAdddate()->format('Y-m-d');
+               $aforder[$i]['Gross Value']= $value->getOrderinfo()? $value->getOrderinfo()->getGstamount():'';
+               $aforder[$i]['Commission Earned']= $value->getAffiliateprice();
+               $aforder[$i]['Commission Paid']= $value->getCommissionpaid();
+               $aforder[$i]['Payment Date']= $value->getPaymentdate()? $value->getPaymentdate()->format('Y-m-d'):'pending';
+               $i++;
+            }
+            
+            $data = $aforder;
+            
+            // Configure the CSV encoder
+            $encoder = new CsvEncoder();
+            // $encoder->setOptions([
+            //     'delimiter' => ';', // Set the delimiter option here
+            // ]);
+
+            // Serialize the data to CSV format
+            $csvData = $serializer->serialize($data, 'csv', ['csv_encoder' => $encoder]);
+
+            // Create a StreamedResponse to send the CSV data to the browser
+            $response = new StreamedResponse(function () use ($csvData) {
+                echo $csvData;
+            });
+
+            // Set the response headers to specify the CSV file name and type
+            $disposition = $response->headers->makeDisposition(
+                ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+                'export.csv'
+            );
+            $response->headers->set('Content-Disposition', $disposition);
+            $response->headers->set('Content-Type', 'text/csv');
+
+            return $response;
+        }
 
         return $this->render('affiliate/orderaffilite.html.twig', [
             'affiliates' => $affiliates,

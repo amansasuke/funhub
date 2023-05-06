@@ -2,6 +2,10 @@
 
 {% block title %}Hello HomeController!{% endblock %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
 {% block body %}
 
 <style type="text/css">
@@ -307,7 +311,16 @@ ol > li + li {
                                             <h4><a href="{{Productr.id}}">{{Productr.name}}</a></h4>
                                             <div class="meta-tag">
                                                 <h4 class="price">₹{{Productr.price}}</h4>
+                                                
                                             </div>
+                                            <form method="post">
+                                                {% if inBasket %}
+                                                    <a href="../cart" disabled><button class="btn btn-success"><i class="fa fa-check "></i> </button</a>
+                                                {% else %}
+                                                <button class="btn btn-success"><i class="fa fa-shopping-cart "></i> </button>
+                                                   
+                                                {% endif %}                                
+                                                </form>
                                             
                                         </div>
                                         <div class="clearfix"></div>

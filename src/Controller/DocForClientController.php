@@ -33,10 +33,12 @@ class DocForClientController extends AbstractController
      * @Route("/", name="app_doc_for_client_index", methods={"GET"})
      */
     public function index(DocForClientRepository $docForClientRepository): Response
-    {
+    {   
+        $docForClient =  $docForClientRepository->findBy(array('Ordername'=>$_GET['orderid']));
+        
         $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         return $this->render('doc_for_client/index.html.twig', [
-            'doc_for_clients' => $docForClientRepository->findAll(),
+            'doc_for_clients' => $docForClient,
         ]);
     }
 
@@ -47,11 +49,12 @@ class DocForClientController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $docForClient = new DocForClient();
+
+        $entityManager =$this->getDoctrine()->getManager();
+        $Orderd = $doctrine->getRepository(Order::class)->find($_GET['orderid']);
+       
         $form = $this->createFormBuilder($docForClient)
-            ->add('Ordername', EntityType::class,array(
-                      'class' => Order::class,
-                      'choice_label' => 'id',
-                  ))
+            
             ->add('Name', TextType::class,array(
                       'label' => ' ',
                   ))
@@ -68,11 +71,12 @@ class DocForClientController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //die;
             $docname = $form->get('Name')->getData();
-            $Ordername = $form->get('Ordername')->getData();
+            //$Ordername = $form->get('Ordername')->getData();
             $Status = $form->get('Status')->getData();                    
              $brochureFile = $form->get('Doclink')->getData();
-
+             
              if ($brochureFile) {
                 $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
                 // this is needed to safely include the file name as part of the URL
@@ -98,7 +102,7 @@ class DocForClientController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $docForClient->setName($docname);
                 $docForClient->setDoclink($newFilename);
-                $docForClient->setOrdername($Ordername);
+                $docForClient->setOrdername($Orderd);
                 $docForClient->setStatus($Status);
                 $entityManager->persist($docForClient);
                 $entityManager->flush();
@@ -108,7 +112,7 @@ class DocForClientController extends AbstractController
                 //     'order' => $order
                 // ]);
                 flash()->addSuccess('Thank you! Documents Submitted  successfully');
-                return $this->redirectToRoute("app_doc_for_client_new");
+                return $this->redirectToRoute("app_doc_for_client_new",array('orderid' => $_GET['orderid']));
             // $docForClientRepository->add($docForClient, true);
             // return $this->redirectToRoute('app_doc_for_client_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -133,16 +137,63 @@ class DocForClientController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_doc_for_client_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, DocForClient $docForClient, DocForClientRepository $docForClientRepository): Response
+    public function edit($id,Request $request, SluggerInterface $slugger, DocForClient $docForClient, DocForClientRepository $docForClientRepository, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
-        $form = $this->createForm(DocForClientType::class, $docForClient);
+        // $form = $this->createForm(DocForClientType::class, $docForClient);
+        // $form->handleRequest($request);
+        $entityManager =$this->getDoctrine()->getManager();
+        $docForClient = $doctrine->getRepository(DocForClient::class)->find($id);
+        // print_r($docForClient->getId());
+        // die();
+        $form = $this->createFormBuilder($docForClient)
+            
+            ->add('Name', TextType::class,array(
+                      'label' => ' ',
+                  ))
+            ->add('Doclink', FileType::class,array(
+                      'label' => ' ',
+                      'data_class' => null,
+                  ))
+            ->add('Status', HiddenType::class,array(
+                      'data' => 1,
+                  ))
+            
+            
+            ->getForm();
+        //$form = $this->createForm(DocForClientType::class, $docForClient);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $brochureFile = $form->get('Doclink')->getData();
+            $brochureFile = $form->get('Doclink')->getData();
+             
+             if ($brochureFile) {
+                $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$brochureFile->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $brochureFile->move(
+                        $this->getParameter('brochures_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+            }
+            
             $docForClientRepository->add($docForClient, true);
 
-            return $this->redirectToRoute('app_doc_for_client_index', [], Response::HTTP_SEE_OTHER);
+            $entityManager = $this->getDoctrine()->getManager();
+                
+                $docForClient->setDoclink($newFilename);
+            
+                $entityManager->persist($docForClient);
+                $entityManager->flush();
+            return $this->redirectToRoute('app_doc_for_client_index',array('orderid' => $_GET['orderid']), Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('doc_for_client/edit.html.twig', [
@@ -152,15 +203,15 @@ class DocForClientController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_doc_for_client_delete", methods={"POST"})
+     * @Route("/{id}/{ord}", name="app_doc_for_client_delete", methods={"POST"})
      */
-    public function delete(Request $request, DocForClient $docForClient, DocForClientRepository $docForClientRepository): Response
+    public function delete($id,$ord,Request $request, DocForClient $docForClient, DocForClientRepository $docForClientRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         if ($this->isCsrfTokenValid('delete'.$docForClient->getId(), $request->request->get('_token'))) {
             $docForClientRepository->remove($docForClient, true);
         }
 
-        return $this->redirectToRoute('app_doc_for_client_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_doc_for_client_index',array('orderid' => $ord), Response::HTTP_SEE_OTHER);
     }
 }

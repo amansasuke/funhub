@@ -1865,7 +1865,7 @@ a.back-to-top:focus {
 }
 
 .owl-nav div:hover {
-    background: #f06292 !important;
+    background: #009688 !important;
     box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15)
 }
 
@@ -2110,7 +2110,7 @@ a.back-to-top:focus {
 }
 
 #categories .owl-theme .owl-nav div:hover {
-    background: #f06292 !important;
+    background: #009688 !important;
     box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15)
 }
 

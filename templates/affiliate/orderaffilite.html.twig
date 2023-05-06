@@ -591,69 +591,103 @@ h6 {
                     <div class="row">
                         <div class="col-12">
                             <div class="card">  
-                                {# <div class="card-header">
-                                    <h5 class="card-title mb-0">Affiliate User</h5>
-                                </div>  #}                             
+                                <div class="card-header">
+                                    {# <h5 class="card-title mb-0">Affiliate User</h5> #}
+                                                              
                                 <div class="card-body">
-                                   <div class="inner-box1">
-                                <div class="dashboard-box">
-                                    <h5 class="dashbord-title">Affiliate User</h2>
-                                </div>
-                                {% if affiliates|length ==0 %}
-                                <div class="row" style="text-align: center;">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="dashboardbox" >
-                                        <div class="noimg">
-                                                    <img src="../assets/img/details/noaff.png" height="300px;">
+                                <div class="inner-box1">
+                                    <div class="dashboard-box float-left">
+                                        <h5 class="dashbord-title">Affiliate Orders</h2>
+                                    </div>
+                                    <div class="card-actions ">                                      
+                                        <div class="row float-right">
+                                            <div class="col-12  ">
+                                                <form style="float:left">
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <input type="date" name="updateat" value="{{app.request.get('updateat')}}">
+                                                            
+                                                            <span class="input-group-append">
+                                                                <button type="submin" class="btn btn-secondary" type="button">Go</button>
+                                                            </span>
+                                                            {% if {{app.request.get('updateat')}} %}
+                                                            <span class="input-group-append">
+                                                                <a href="" class="btn btn-secondary" ><i class="fa fa-download"></i> </a>
+                                                            </span>
+                                                            {% endif %}                                                        
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                                                                 
+                                                <form method="post" style="float:left; margin-left:20px">
+                                                    <button class="btn btn-common"  style="font-size: 14px;background-color:#5bb7c5;color:#ffff;"><i class="fa fa-download"></i> Export  </a>                                            
+                                                </form>
+                                                
+                                            </div>                                                
+                                            </div>
+                                            
+                                        
+                                    </div>
+                                    {% if affiliates|length ==0 %}
+                                    <div class="row" style="text-align: center;">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="dashboardbox" >
+                                            <div class="noimg">
+                                                        <img src="../assets/img/details/noaff.png" height="300px;">
+                                                    </div>
+                                                <div class="post-btn">
+                                                    <a class="btn btn-primary" href="{{ path('app_affiliate_new') }}" style="border-radius:30px;font-size: 18px;background-color: #5bb7c5;"><i class="lni-plus"></i> Become An Affiliate</a>
                                                 </div>
-                                            <div class="post-btn">
-                                                <a class="btn btn-primary" href="{{ path('app_affiliate_new') }}" style="border-radius:30px;font-size: 18px;background-color: #5bb7c5;"><i class="lni-plus"></i> Become An Affiliate</a>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                {%else%}
-                                <div class="dashboard-wrapper">
-                                    <table class="rwd-table">
-                                        <tbody>
-                                            <tr>
-                                                <th>Id</th>
-                                                <th>product name </th>
-                                                <th>service name</th>
-                                                <th>price </th>
-                                                <th>your erning</th>
-                                            </tr>
-                                            {% if affiliateuser|length ==0 %}
+                                    {% else %}
+                                    <div class="dashboard-wrapper">
+                                        <table class="rwd-table">
+                                            <tbody>
                                                 <tr>
-                                                    <td colspan="5" style="text-align:center"> <h4>No order has been placed by any of your affiliate yet</h4> </td>
+                                                    <th>Id</th>
+                                                    <th>product name </th>
+                                                    <th>service name</th>
+                                                    <th>price </th>
+                                                    <th>your erning</th>
                                                 </tr>
-                                            {% else %}
-                                        
-                                            {% for ap in Affiliateproduct %}
-                                            <tr data-category="active">
-                                                <td>
-                                                    {{ ap.id }}
-                                                </td>
-                                                <td>
-                                                    {{ ap.productname }}
-                                                </td>
-                                                <td>
-                                                    {{ ap.servicename }}
-                                                </td>
-                                                <td>
-                                                    {{ ap.productprice }}
-                                                </td>
-                                                <td>
-                                                    {{ ap.affiliateprice }}
-                                                </td>
-                                            </tr>
-                                            {% endfor %}
-                                            {% endif %}
-                                        </tbody>
-                                    </table>
+                                                {% if affiliateuser|length ==0 %}
+                                                    <tr>
+                                                        <td colspan="5" style="text-align:center"> <h4>No order has been placed by any of your affiliate yet</h4> </td>
+                                                    </tr>
+                                                {% else %}
+                                                    {% if Affiliateproduct|length ==0 %}
+                                                        <tr>
+                                                            <td colspan="5" style="text-align:center"> <h4>No order found affiliate </h4> </td>
+                                                        </tr>
+                                                    {% else %}
+                                                        {% for ap in Affiliateproduct %}
+                                                        <tr data-category="active">
+                                                            <td>
+                                                                {{ ap.id }}
+                                                            </td>
+                                                            <td>
+                                                                {{ ap.productname }}
+                                                            </td>
+                                                            <td>
+                                                                {{ ap.servicename }}
+                                                            </td>
+                                                            <td>
+                                                                {{ ap.productprice }}
+                                                            </td>
+                                                            <td>
+                                                                {{ ap.affiliateprice }}
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    {% endif %}
                                 </div>
-                                {%endif%}
-                            </div>
                                 </div>
                             </div>
                         </div>
