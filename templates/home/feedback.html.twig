@@ -67,6 +67,15 @@
 	content:"\f005";
 	color:#e3cf7a
 }
+.titlehead h1{
+    font-size: 50px;
+    font-weight: 900;
+    margin-bottom: 30px;
+    text-align:right
+}
+.titlehead span{
+    color: #32be8f;
+}
 </style>
 
 <body>
@@ -87,7 +96,14 @@
     </div> #}
     <section class="testimonial section-padding">
         <div class="container section-padding">    
-        <h3 class="section-title">Feedback</h3>
+       
+        <div class="row section-padding">
+                <div class="col-md-12">
+                    <div class="titlehead">
+                        <h1>Feedback</spen></h1>                        
+                    </div>
+                </div>
+            </div>
             <div class="row">
             
                 {% for Feed in Feedback %}

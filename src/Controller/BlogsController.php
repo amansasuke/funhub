@@ -8,24 +8,27 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\PostRepository;
 use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use App\Repository\ProductRepository;
 
 class BlogsController extends AbstractController
 {
     /**
      * @Route("/blogs", name="app_blogs")
      */
-    public function index(PostRepository $re, CategoryRepository $rep, SessionInterface $session): Response
+    public function index(PostRepository $re,ProductRepository $Product, CategoryRepository $rep, SessionInterface $session): Response
     {
         $post = $re->findBy([]);
         $Category = $rep->findBy([]);
         $basket = $session->get('basket', []);
         $Recent = $re->findBy(array(), array('id' => 'desc'));
+        $service = $Product->findBy(array(), array('id' => 'desc'));
         return $this->render('blogs/index.html.twig', [
             'controller_name' => 'HomeController',
             'post' => $post,
             'Category' => $Category,
             'basket'=>$basket,
             'Recent' => $Recent,
+            'service' => $service,
         ]);
     }
 
