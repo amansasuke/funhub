@@ -91,25 +91,87 @@ ol > li + li {
   margin-top: 2rem;
 }
 
+.btn-newadd{
+    background:#ffff;
+    border:1px solid black;
+    font-weight: 600;
+    color:black;
+}
+/* structure */
+.d-display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4rem;
+  height: 90vh;
+  padding: 2rem;
+}
+
+details[open],
+details summary,
+.d-imgs {
+  display: block;
+  width: 100% !important;
+  border:1px solid #e8e8e1;
+}
+details summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1rem;
+  width: 100%;
+  cursor: pointer;
+  color: black;
+
+  font-size: 1rem;
+}
+details summary:after {
+  content: "›";
+  font-size: 2rem;
+  transition: 0.3s;
+  transform: rotate(90deg);
+}
+
+/* transitions */
+details {
+  
+  transition: height 0.3s ease;
+}
+details[open] {
+ 
+}
+details p {
+  height: fit-content;
+  padding: 1rem;
+}
+details div {
+  height: fit-content;
+  padding: 1rem;
+}
+details[open] summary:after {
+  transform: rotate(-90deg);
+}
+
+
+/* responsive */
+@media (max-width: 1190px) {
+  body,
+  .d-display {
+    height: fit-content;
+    width: 100%;
+  }
+  .d-display {
+    justify-content: center;
+    padding: 2rem 0;
+  }
+}
+
+
     </style>
 <body>
     
-    <div class="page-header" style="background: url(assets/img/banner1.jpg);">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="breadcrumb-wrapper">
-                        <h2 class="product-title">Details</h2>
-                        <ul class="breadcrumb">
-                            <li><a href="#">Home /</a></li>
-                            <li class="current">Details</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="section-padding">
+    <div class="section-padding" style="padding-top:120px;">
         <div class="container">
             <div class="product-info row">
                 <div class="col-lg-8 col-md-12 col-xs-12">
@@ -160,6 +222,15 @@ ol > li + li {
                                 Up for sale we have a vintage Raleigh Sport Men’s Bicycle. This bike does have some general wear and surface corrosion on some of the parts but is overall in good shape. It has been checked out and does work. Brakes and gears work. Seat is fully intact. Frame and fenders are in nice shape with minimal wear. A few minor dents in the fenders but most of the paint is intact.
                             </p> -->
                         </div>
+                        <div class="staff-inner" style="padding:20px 0px;">                                
+                                <form method="post">
+                                {% if inBasket %}
+                                    <a href="../cart" class="btn btn-newadd btn-lg " style="width:100%" disabled>Go to cart</a>
+                                {% else %}
+                                    <button class="btn btn-newadd btn-lg " style="width:100%">Add to cart</button>
+                                {% endif %}                                
+                                </form>
+                            </div>
                         <!-- <div class="tag-bottom">
                             <div class="float-left">
                                 <ul class="advertisement">
@@ -185,75 +256,97 @@ ol > li + li {
                                 </div>
                             </div>
                         </div> -->
-                        <div class="faq">
-                          <!--   <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-12"> -->
-                                        <div class="panel-group" id="accordion">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="font-size: 22px">
-                                                            Details of the services
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapseOne" class="panel-collapse collapse ">
-                                                    <div class="panel-body">
-                                                        <main>
-                                                        {{prodetail.howdone| raw}}
-                                                        </main>
+                         <div class="faq">
+                            <div class='d-details'>
+                                <details class='tab-control'>
+                                <summary> Details of the services</summary>
+                                {{prodetail.howdone| raw}}
+                                </details>
+                                <details class='tab-control'>
+                                <summary>Estimates of server components</summary>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                </details>
+                                <details class='tab-control'>
+                                <summary>Documents required</summary>
+                                <div class="panel-body">
+                                    {% for prodocs in prodoc %}
+                                        {% for prodo in prodocs.Newdocinfo %}
+                                        <p>
+                                            {{ prodo.name }}
+                                        </p>
+                                        <br>
+                                        {% endfor %}
+                                    {% endfor %}
+                                        <br>                                
+                                </div>
+                                </details>
+                                
+                            </div>
+                        </div>
+                        {# <div class="faq">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="font-size: 22px">
+                                                Details of the services
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse ">
+                                        <div class="panel-body">
+                                            <main>
+                                            {{prodetail.howdone| raw}}
+                                            </main>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title " >
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="font-size: 22px">
+                                                Estimates of server components
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <p>
+                                                Fintatstic Hub club has built a network of existing, new businesses, professionals, individuals to help our clients
+                                            </p>
+                                            <br>
+                                            <p>leverage varied resources, share and learn from experiences and build relations.</p>
                                         </div>
-                                                </div>
-                                            </div>
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title " >
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="font-size: 22px">
-                                                           Estimates of server components
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapseTwo" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        <p>
-                                                            Fintatstic Hub club has built a network of existing, new businesses, professionals, individuals to help our clients
-                                                        </p>
-                                                        <br>
-                                                        <p>leverage varied resources, share and learn from experiences and build relations.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" style="font-size:22px;">
-                                                           Documents required
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapseFour" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                    {% for prodocs in prodoc %}
-                                                        {% for prodo in prodocs.Newdocinfo %}
-                                                        <p>
-                                                            {{ prodo.name }}
-                                                        </p>
-                                                        <br>
-                                                        {% endfor %}
-                                                    {% endfor %}
-                                                        <br>
-                                                       
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" style="font-size:22px;">
+                                                Documents required
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFour" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                        {% for prodocs in prodoc %}
+                                            {% for prodo in prodocs.Newdocinfo %}
+                                            <p>
+                                                {{ prodo.name }}
+                                            </p>
+                                            <br>
+                                            {% endfor %}
+                                        {% endfor %}
+                                            <br>
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                       <!--  </div>
-                    </div>
-                </div> -->
+                        </div> #}
+                            </div>
+                        </div>
+                       
                 <div class="col-lg-4 col-md-6 col-xs-12">
                     <aside class="details-sidebar">
                         {# <div class="widget">
@@ -276,19 +369,7 @@ ol > li + li {
                         </div> #}
                         <div class="widget">
                             <h4 class="widget-title text-center">Add To Cart</h4>
-                            <div class="staff-inner">
-                                <!-- <div class="staff-title">
-                                    <div class="staff-photo">
-                                        <a href="#"><img src="assets/img/productinfo/staff.jpg" alt=""></a>
-                                    </div>
-                                    <div class="staff-details">
-                                        <h3><a href="#">Tahmina Anny</a></h3>
-                                        <span><i class="lni-phone-handset"></i>(123) 123-456</span>
-                                    </div>
-                                </div> -->
-                                <!-- <input type="text" class="form-control" placeholder="Your Email"> -->
-                                <!-- <input type="text" class="form-control" placeholder="Your Phone"> -->
-                                <!-- <p>I'm interested in this property [ID 123456] and I'd like to know more details.</p> -->
+                            <div class="staff-inner">                                
                                 <form method="post">
                                 {% if inBasket %}
                                     <a href="../cart" class="btn btn-success btn-lg " style="width:100%" disabled>Go to cart</a>
@@ -320,8 +401,7 @@ ol > li + li {
                                                 <button class="btn btn-success"><i class="fa fa-shopping-cart "></i> </button>
                                                    
                                                 {% endif %}                                
-                                                </form>
-                                            
+                                            </form>                                            
                                         </div>
                                         <div class="clearfix"></div>
                                     </li>

@@ -171,7 +171,7 @@
                                                         <tbody>
                                                             <tr>
                                                                 <th>Id</th>
-                                                                <th>Client</th>
+                                                                <th>orderid</th>
                                                                 <th>StartDate</th>
                                                                 <th>EndDate</th>
                                                                 <th>StartTime</th>
@@ -184,11 +184,12 @@
                                                             <tr>
                                                                 <td>{{ appointment.id }}</td>                                                               
                                                                 <td>
-                                                                    {% for users in user %}
+                                                                    {{appointment.ClientId}}
+                                                                    {# {% for users in user %}
                                                                     {% if users.id == appointment.ClientId %}
                                                                     {{ users.name }}
                                                                     {% endif %}
-                                                                    {% endfor %}
+                                                                    {% endfor %} #}
                                                                 </td>
                                                                 <td>{{ appointment.StartDate ? appointment.StartDate|date('Y-m-d') : '' }}</td>
                                                                 <td>{{ appointment.EndDate ? appointment.EndDate|date('Y-m-d') : '' }}</td>

@@ -30,6 +30,7 @@ use App\Entity\Eventbooking;
 use App\Entity\Docforpro;
 use App\Entity\Affiliate;
 use App\Entity\Affiliateproduct;
+use App\Entity\Promo;
 
 class adminController extends AbstractDashboardController
 {
@@ -86,7 +87,9 @@ class adminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Affiliate', 'fa fa-file-word', Affiliate::class);
         yield MenuItem::linkToCrud('Affiliateproduct', 'fa fa-file-word', Affiliateproduct::class);
         
-        
+        yield MenuItem::section('Promo Code');
+    
+        yield MenuItem::linkToCrud('Promo Code', 'fa fa-code', Promo::class);
 
         yield MenuItem::section('Appointment');
         yield MenuItem::linkToCrud('Booking', 'fa fa-calendar', Eventbooking::class)->setDefaultSort(['id' => 'DESC']);

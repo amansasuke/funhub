@@ -76,7 +76,7 @@ class DashboardController extends AbstractController
      * 
      * @IsGranted("ROLE_USER")
      */
-    public function index(ManagerRegistry $doctrine,AppointmentRepository $appointmentRepository, DocumentsforproductRepository $doc, DocforproRepository $docforpro, OrderdocRepository $od, DocForClientRepository $docForClientRepository, UseractivityRepository $avtivity): Response
+    public function index(ManagerRegistry $doctrine,AppointmentRepository $appointmentRepository, DocumentsforproductRepository $doc, DocforproRepository $docforpro, OrderdocRepository $od, DocForClientRepository $docForClientRepository, UseractivityRepository $avtivity, FeedbackRepository $FeedbackRepository): Response
     {   
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $user->getUsername();
@@ -249,8 +249,10 @@ class DashboardController extends AbstractController
             $l++;
         }
 
+        $Feedback = $FeedbackRepository->findBy(array(),array('id' => 'DESC'));
+        
 
-        $appointment = $appointmentRepository->findBy(array('ClientId'=>$user->getId()));
+        $appointment = $appointmentRepository->findBy([]);
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('dashboard/index.html.twig', [
@@ -262,6 +264,7 @@ class DashboardController extends AbstractController
             'appointments'=>$appointment,
             'doc_for_clients' => $docForClientRepository->findAll(),
             'avtivity'=>  $avtivity,
+            'feedback' => $Feedback
 
         ]);
     }

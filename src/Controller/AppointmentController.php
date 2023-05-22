@@ -28,6 +28,7 @@ use App\Entity\AssignGroupUser;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Repository\OrderdocRepository;
+use App\Entity\Order;
 
 /**
  * @Route("/appointment")
@@ -73,7 +74,18 @@ class AppointmentController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
          $user = $this->get('security.token_storage')->getToken()->getUser();
         $user->getUsername();
-        $us = $userR->findBy(array('Manager'=>$user));
+        $usw = $userR->findBy(array('Manager'=>$user));
+        $i=0;
+        foreach ($usw as $key => $value) {
+            # code...
+            $us[$i] = $doctrine->getRepository(Order::class)->findBy(
+                ['email' => $value->getEmail()]
+            );
+            $i++;
+            //print_r($us->getId());
+        }
+        
+        
         //$assignGroup = $assignGroup->findBy([]);
 
         // foreach($assignGroup as $assign){
@@ -97,15 +109,19 @@ class AppointmentController extends AbstractController
         // }
 
         // $us =[];
-        // foreach ($mangerId as $key => $manger) {
+        // foreach ($us as $key => $manger) {
 
-        //     $us[] = $userR->find($manger);
+        //    // $us[] = $userR->find($manger);
+        //    print_r($manger->getId());
             
         // }
+       
 
         $choices = [];
-        foreach ($us as $choice) {
-        $choices[$choice->getName()] = $choice->getId();
+        foreach ($us as $key => $manger) {
+            foreach ($manger as $choice) {
+            $choices[$choice->getId()] = $choice->getId();
+            }
         }
 
         $appointment = new Appointment();

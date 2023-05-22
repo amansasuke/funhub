@@ -119,7 +119,7 @@ class MangerController extends AbstractController
         $user = $userR->find($id);
        $email = $user->getEmail();
         $order = $doctrine->getRepository(Order::class)->findBy(
-            ['email' => $email]
+            ['email' => $email],  array('id' => 'desc')
         );
 
         

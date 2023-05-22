@@ -111,7 +111,7 @@
                     <div id="testimonials">
                         <div class="item">
                             <div class="img-thumb">
-                                <img src="{{ asset('assets/img/user/') }}{% if Feed.icon != null %}{{Feed.icon}}{% else %}usericon.png{% endif %}" alt="" style="width:80px;height: 80px;">
+                                <img src="{{ asset('assets/img/user/') }}{% if Feed.icon %}{{Feed.icon}}{% else %}usericon.png{% endif %}" alt="" style="width:80px;height: 80px;">
                             </div>
                             <div class="testimonial-item">
                                 <div class="content">

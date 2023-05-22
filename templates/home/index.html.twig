@@ -369,32 +369,187 @@ font-size: 24px;
     height :190px;
 }
 
-.socials a {
-width: 40px;
-height: 40px;
-display: inline-block;
-border-radius: 50%;
-margin: 0 5px;
-}
-.socials a i {
-color: #fff;
-padding: 12px 0;
-}    
 
-.socials a:nth-child(1) {
-background: #3b5998;
-}.socials a:nth-child(2) {
-background: #ff0000;
-}.socials a:nth-child(3) {
-background: #007bb5;
-}.socials a:nth-child(4) {
-background: #ea4c89;
-}
 
 @media (max-width: 800px){
     .mx-30{
         margin-bottom: 30px;
     }
+}
+.team-boxed {
+  color:#313437;
+  background-color:#eef4f7;
+}
+
+.team-boxed p {
+  color:#7d8285;
+}
+
+.team-boxed h2 {
+  font-weight:bold;
+  margin-bottom:40px;
+  padding-top:40px;
+  color:inherit;
+}
+
+@media (max-width:767px) {
+  .team-boxed h2 {
+    margin-bottom:25px;
+    padding-top:25px;
+    font-size:24px;
+  }
+}
+
+.team-boxed .intro {
+  font-size:16px;
+  max-width:500px;
+  margin:0 auto;
+}
+
+.team-boxed .intro p {
+  margin-bottom:0;
+}
+
+.team-boxed .people {
+  padding:50px 0;
+}
+
+.team-boxed .item {
+  text-align:center;
+}
+
+.team-boxed .item .box {
+  text-align:center;
+  padding:30px;
+  background-color:#fff;
+  margin-bottom:30px;
+}
+
+.team-boxed .item .name {
+  font-weight:bold;
+  margin-top:28px;
+  margin-bottom:8px;
+  color:inherit;
+}
+
+.team-boxed .item .title {
+  text-transform:uppercase;
+  font-weight:bold;
+  color:#d0d0d0;
+  letter-spacing:2px;
+  font-size:13px;
+}
+
+.team-boxed .item .description {
+  font-size:15px;
+  margin-top:15px;
+  margin-bottom:20px;
+}
+
+.team-boxed .item img {
+  max-width:160px;
+}
+
+.team-boxed .social {
+  font-size:18px;
+  color:#a2a8ae;
+}
+
+.team-boxed .social a {
+  color:inherit;
+  margin:0 10px;
+  display:inline-block;
+  opacity:0.7;
+}
+.box1{
+    border-radius:20px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(143, 143, 143, .18);
+}
+
+.arrowBox{
+  position: relative;
+    width: 170px;
+    background: linear-gradient(to right, #32be8f, #5bb7c5, #32be8f);
+    height: 60px;
+    line-height: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #000;
+    font-size: 23px;
+    font-weight: 600;
+    padding-top:5px;
+}
+
+.arrowBox a{
+  color:#fff;
+}
+
+/*top arrow*/
+
+.arrow-top:before{
+  position: absolute;
+  top: -10px;
+  left:50%;
+  margin-left: -10px;
+  content:"";
+  display:block;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #0085D1; 
+}
+
+/*bottom arrow*/
+
+.arrow-bottom:after{
+  position: absolute;
+  bottom: -10px;
+  left:50%;
+  margin-left: -10px;
+  content:"";
+  display:block;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #0085D1; 
+}
+
+/*right arrow*/
+
+.arrow-right:after{
+    content: "";
+    position: absolute;
+    right: -20px;
+    top: 0;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 20px solid #32be8f; 
+}
+
+/*left arrow*/
+
+.arrow-left:before{
+    content: "";
+    background:;
+    position: absolute;
+    left: -20px;
+    top: 0;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-right: 20px solid #32be8f; 
+}
+.flex-container {
+  display: flex;
+  justify-content: center
+
+}
+
+.flex-container .textflex {
+height:60px;
+background:#32be8f5c;
+  margin-bottom:30px; 
+  text-align:center;
+  color:#fff;
+  padding-left:20px;
 }
 
     </style>
@@ -480,6 +635,43 @@ background: #ea4c89;
             </div>
         </div>
     </section>
+        <div class="container section-padding">
+            <div class="intro">
+                <div class="titlehead" style="text-align:right;">
+                    <h1>Our Top <span>Services</span> </h1>
+                </div>
+                
+            </div>
+            <div class="row people">
+                <div class="col-md-6 col-lg-4 item">
+                    <div class="box1 card-body"><img class="rounded-circle" src="assets/img/1.jpg">
+                        <h5 class="name">Startup India Registration</h5>
+                        
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius  </p>
+                        <div class="social"><a href="#">Read More</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 item">
+                    <div class="box1 card-body"><img class="rounded-circle" src="assets/img/2.jpg">
+                        <h5 class="name">Business <br> Registration</h5>
+                       
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius </p>
+                         <div class="social"><a href="#">Read More</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 item">
+                    <div class="box1 card-body"><img class="rounded-circle" src="assets/img/3.jpg">
+                        <h5 class="name">income tax <br> retion</h5>
+                        
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. 
+                        </p>
+                         <div class="social"><a href="#">Read More</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section class="cta section-padding">
         <div class="container">
             <div class="titlehead" style="text-align:right;">
@@ -495,8 +687,8 @@ background: #ea4c89;
                     <div class="display-position">                       
                         <a href="#">
                           <img src="assets/img/background/Cloud1.png" style="width:250px;cursor: pointer;" alt="buy" />
-                          <span>Avail our top-notch financial services, get clarity on all financial aspects and never ever look back on your finances! From business registration to investment and tax saving planning – we offer every kind of financial support your business needs.
-                          </span>
+                          {# <span>Avail our top-notch financial services, get clarity on all financial aspects and never ever look back on your finances! From business registration to investment and tax saving planning – we offer every kind of financial support your business needs.
+                          </span> #}
                         </a>
                     </div>                    
                 </div>
@@ -504,8 +696,8 @@ background: #ea4c89;
                     <div class="display-position-invest">
                         <a href="#">
                             <img src="assets/img/background/Cloud2.png" alt="invest" style="width:250px;cursor: pointer;" />
-                            <span>To make investments a minimum risk for you, we partner with major corporations worldwide. When you invest via Fintastic hub, we make it a smooth, hassle-free process for you and ensure high returns at low risk.
-                              </span>
+                            {# <span>To make investments a minimum risk for you, we partner with major corporations worldwide. When you invest via Fintastic hub, we make it a smooth, hassle-free process for you and ensure high returns at low risk.
+                              </span> #}
                         </a>
                     </div>                    
                 </div>
@@ -513,12 +705,21 @@ background: #ea4c89;
                     <div class="display-position-earn">
                         <a href="#">
                             <img src="assets/img/background/Cloud3.png" alt="earn" style="width:250px;cursor: pointer;" />
-                            <span>Join our affiliate program and refer Fintastic Hub to your business pals! Recommend once; generate passive income for life! You also earn cashback for every service you avail. Your wallet money adds up every year if you haven’t redeemed your cash back. Earn and Save with us!
-                            </span>
+                            {# <span>Join our affiliate program and refer Fintastic Hub to your business pals! Recommend once; generate passive income for life! You also earn cashback for every service you avail. Your wallet money adds up every year if you haven’t redeemed your cash back. Earn and Save with us!
+                            </span> #}
                         </a>
                     </div>                    
                 </div>
 
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="flex-container"> <div href="#" class="arrowBox arrow-left">BUY </div><p class="textflex">Avail our top-notch financial services, get clarity on all financial aspects and never ever look back on your finances! From business registration to investment and tax saving planning – we offer every kind of financial support your business needs.</p> </div>
+                    <div class="flex-container"> <p class="textflex">Join our affiliate program and refer Fintastic Hub to your business pals! Recommend once; generate passive income for life! You also earn cashback for every service you avail. Your wallet money adds up every year if you haven’t redeemed your cash back. Earn and Save with us!</p> <div href="#" class="arrowBox arrow-right">EARN </div> </div>
+                    <div class="flex-container"> <div href="#" class="arrowBox arrow-left">INVEST</div><p class="textflex">To make investments a minimum risk for you, we partner with major corporations worldwide. When you invest via Fintastic hub, we make it a smooth, hassle-free process for you and ensure high returns at low risk.</p> </div>
+                </div>
             </div>
         </div>
     </section>
@@ -754,43 +955,7 @@ background: #ea4c89;
     </section>
 
     
-    <section class="counter-section section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6 work-counter-widget">
-                    <div class="counter">
-                        <div class="icon"><i class="lni-layers"></i></div>
-                        <h2 class="counterUp">80</h2>
-                        <p>Startups served
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 work-counter-widget">
-                    <div class="counter">
-                        <div class="icon"><i class="lni-users"></i></div>
-                        <h2 class="counterUp">10000 </h2>
-                        <p>ITRs filed
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 work-counter-widget">
-                    <div class="counter">
-                        <div class="icon"><i class="lni-briefcase"></i></div>
-                        <h2 class="counterUp">150</h2>
-                        <p>Businesses </p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 work-counter-widget">
-                    <div class="counter">
-                        <div class="icon"><i class="lni-map"></i></div>
-                        <h2 class="counterUp">50000</h2>
-                        <p>Hours saved
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
     <section id="content" class="section-padding" >
         <div class="container">
             <div class="row">
@@ -1187,6 +1352,43 @@ background: #ea4c89;
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="counter-section section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 work-counter-widget">
+                    <div class="counter">
+                        <div class="icon"><i class="lni-layers"></i></div>
+                        <h2 class="counterUp">80</h2>
+                        <p>Startups served
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 work-counter-widget">
+                    <div class="counter">
+                        <div class="icon"><i class="lni-users"></i></div>
+                        <h2 class="counterUp">10000 </h2>
+                        <p>ITRs filed
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 work-counter-widget">
+                    <div class="counter">
+                        <div class="icon"><i class="lni-briefcase"></i></div>
+                        <h2 class="counterUp">150</h2>
+                        <p>Businesses </p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 work-counter-widget">
+                    <div class="counter">
+                        <div class="icon"><i class="lni-map"></i></div>
+                        <h2 class="counterUp">50000</h2>
+                        <p>Hours saved
+                        </p>
                     </div>
                 </div>
             </div>

@@ -28,6 +28,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\AffiliateproductRepository;
 use App\Entity\Affiliateproduct;
 use App\Entity\Affiliate;
+use App\Repository\PromoRepository;
+use App\Entity\Promo;
 
 use Dompdf\Dompdf;
 
@@ -36,12 +38,19 @@ class CheckoutController extends AbstractController
     /**
      * @Route("/checkout")
      */
-    public function checkout(Request $request, ProductRepository $repo, SessionInterface $session, MailerInterface $mailer, UserRepository $userR, AffiliateproductRepository $Affiliateproduct, ManagerRegistry $doctrine): Response
+    public function checkout(Request $request, ProductRepository $repo, SessionInterface $session, MailerInterface $mailer, UserRepository $userR, AffiliateproductRepository $Affiliateproduct,PromoRepository $Promo, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER', null, 'User tried to access a page without having ROLE_USER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $waltebalanceold = $user->getWellet();
         $userdat = $doctrine->getRepository(User::class)->find($user->getId());
+        $discount=NULL;
+        if (isset($_GET['promo']) && $_GET['promo'] !="" ) {
+            $Promo = $Promo->findBy(array('code'=>$_GET['promo']));
+            foreach ($Promo as $key => $value) {
+               $discount = $value->getDiscount();
+            }
+        }
        
 
         $basket = $session->get('basket', []);
@@ -283,6 +292,7 @@ class CheckoutController extends AbstractController
             'form' => $form->createView(),
             'basket'=>$basket,
             'phone' =>$user->getPhoneno(),
+            'discount'=>$discount,
         ]);
     }
 
