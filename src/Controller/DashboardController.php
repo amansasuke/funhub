@@ -402,7 +402,7 @@ class DashboardController extends AbstractController
         $entityManager =$this->getDoctrine()->getManager();
         $appointment  = $doctrine->getRepository(Appointment::class)->find($id);
         $userdat = $doctrine->getRepository(User::class)->find($appointment->getMangerId());
-        $clientuserdat = $doctrine->getRepository(User::class)->find($appointment->getClientId());
+        $clientuserdat = $doctrine->getRepository(Order::class)->find($appointment->getClientId());
         $appointment->setClientStartDate($startdate);
         $appointment->setClientStartTime($starttime);
         $appointment->setClientEndTime($endtime);

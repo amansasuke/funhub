@@ -46,9 +46,13 @@ class CheckoutController extends AbstractController
         $userdat = $doctrine->getRepository(User::class)->find($user->getId());
         $discount=NULL;
         if (isset($_GET['promo']) && $_GET['promo'] !="" ) {
-            $Promo = $Promo->findBy(array('code'=>$_GET['promo']));
-            foreach ($Promo as $key => $value) {
-               $discount = $value->getDiscount();
+            $Promos = $Promo->findBy(array('code'=>$_GET['promo']));
+            foreach ($Promos as $key => $value) {
+                if($value->isStatus() != true ){
+                    $discount = $value->getDiscount();
+                }else{
+                    flash()->addError ('This Promocode Is Expired');
+                }             
             }
         }
        
@@ -275,6 +279,10 @@ class CheckoutController extends AbstractController
 
             $this->sendEmailConfirmation($order, $mailer);
 
+            if ($discount != NULL) {
+                $this->promocode($_GET['promo'], $Promo,$doctrine);
+            }
+
             $session->set('basket', []);
             //$this->addFlash('success', 'Thank you! Received your order successfully');
             //flash()->addSuccess('Thank you! Received your order successfully');
@@ -306,5 +314,22 @@ class CheckoutController extends AbstractController
             ->context(['order' => $order]);
 
         $mailer->send($email);
+    }
+
+    private function promocode($Promocode,PromoRepository $Promo, $doctrine)
+    {
+        $Promo = $Promo->findBy(array('code'=>$Promocode));
+
+        foreach ($Promo as $key => $value) {
+            $codeid = $value->getId();
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $promocode = $doctrine->getRepository(Promo::class)->find($codeid);
+        $promocode->setStatus(true);
+    
+        $entityManager->persist($promocode);
+        $entityManager->flush();
+       
     }
 }
