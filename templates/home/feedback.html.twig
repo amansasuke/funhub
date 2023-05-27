@@ -1,53 +1,51 @@
 {% extends 'getrout.html.twig' %}
 {% block title %}About Us!{% endblock %}
 {% block body %}
-
 <style>
-
 .rating {
-	font-size:1.2rem;
-  line-height: 1.2rem;
-  display: inline-block;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    display: inline-block;
 }
 
 .rating .star {
-  position: relative;
-  float: left;
-  width: 1.4rem;
-  height: 1.2rem;
-	font-family:FontAwesome;
-	font-weight:normal;
-	font-style:normal;
-  text-shadow: 1px 1px 2px rgba(0,0,0,.4);
-  border: 0;
-  background: transparent;
+    position: relative;
+    float: left;
+    width: 1.4rem;
+    height: 1.2rem;
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, .4);
+    border: 0;
+    background: transparent;
 }
 
 .rating .star:before {
-	position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 1.2rem;
-  height: 1.2rem;
-  transform: translate(-50%, -50%);
-  content:"\f006";
-	color:#777;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.2rem;
+    height: 1.2rem;
+    transform: translate(-50%, -50%);
+    content: "\f006";
+    color: #777;
 }
 
 .rating--read-only .star--full:before {
-  content:"\f005";
-	color:#f7ca0a;
+    content: "\f005";
+    color: #f7ca0a;
 }
 
 .rating--read-only .star--half:after {
-	position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 1.2rem;
-  height: 1.2rem;
-  transform: translate(-50%, -50%);
-  content:"\f089";
-  color:#e3cf7a;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.2rem;
+    height: 1.2rem;
+    transform: translate(-50%, -50%);
+    content: "\f089";
+    color: #e3cf7a;
 }
 
 /* Floating this right, means that the stars
@@ -55,25 +53,27 @@
  * rule defined below. @see https://css-tricks.com/star-ratings/
  */
 .rating--interactive .star {
-  float: right;
+    float: right;
 }
 
 .rating--interactive .star:hover {
-	cursor:pointer;
+    cursor: pointer;
 }
 
 .rating--interactive .star:hover:before,
-.rating--interactive .star:hover ~ .star:before {
-	content:"\f005";
-	color:#e3cf7a
+.rating--interactive .star:hover~.star:before {
+    content: "\f005";
+    color: #e3cf7a
 }
-.titlehead h1{
+
+.titlehead h1 {
     font-size: 50px;
     font-weight: 900;
     margin-bottom: 30px;
-    text-align:right
+    text-align: right
 }
-.titlehead span{
+
+.titlehead span {
     color: #32be8f;
 }
 </style>
@@ -95,17 +95,16 @@
         </div>
     </div> #}
     <section class="testimonial section-padding">
-        <div class="container section-padding">    
-       
-        <div class="row section-padding">
+        <div class="container section-padding">
+            {# <div class="row section-padding">
                 <div class="col-md-12">
                     <div class="titlehead">
-                        <h1>Feedback</spen></h1>                        
+                        <h1>Feedback</spen>
+                        </h1>
                     </div>
                 </div>
-            </div>
+            </div> #}
             <div class="row">
-            
                 {% for Feed in Feedback %}
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div id="testimonials">
@@ -120,40 +119,39 @@
                                     <div class="info-text" style="margin-top:0px;">
                                         <div class="review" itemscope itemtype="http://schema.org/Review">
                                             <div class="rating rating--read-only" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
-                                                <div aria-hidden="true">                                                
+                                                <div aria-hidden="true">
                                                     {% if Feed.reating == 5 %}
-                                                        <span class="star star--full"></span>
-                                                        <span class="star star--full"></span>
-                                                        <span class="star star--full"></span>
-                                                        <span class="star star--full"></span>
-                                                        <span class="star star--full"></span>
+                                                    <span class="star star--full"></span>
+                                                    <span class="star star--full"></span>
+                                                    <span class="star star--full"></span>
+                                                    <span class="star star--full"></span>
+                                                    <span class="star star--full"></span>
                                                     {% endif %}
                                                     {% if Feed.reating == 4 %}
-                                                        <span class="star star--full"></span>
-                                                        <span class="star star--full"></span>
-                                                        <span class="star star--full"></span>
-                                                        <span class="star star--full"></span>
-                                                        <span class="star "></span>
+                                                    <span class="star star--full"></span>
+                                                    <span class="star star--full"></span>
+                                                    <span class="star star--full"></span>
+                                                    <span class="star star--full"></span>
+                                                    <span class="star "></span>
                                                     {% endif %}
                                                     {% if Feed.reating == 3 %}
-                                                        <span class="star star--full"></span>
-                                                        <span class="star star--full"></span>
-                                                        <span class="star star--full"></span>
-                                                        <span class="star "></span>
-                                                        <span class="star "></span>
+                                                    <span class="star star--full"></span>
+                                                    <span class="star star--full"></span>
+                                                    <span class="star star--full"></span>
+                                                    <span class="star "></span>
+                                                    <span class="star "></span>
                                                     {% endif %}
                                                 </div>
                                             </div>
                                         </div>
-                                         
                                     </div>
-                                    <p class="description">{{ Feed.disreviwe }}</p>                                                                        
+                                    <p class="description">{{ Feed.disreviwe }}</p>
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
-                {% endfor %}                                        
+                {% endfor %}
             </div>
         </div>
     </section>

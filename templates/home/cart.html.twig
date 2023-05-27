@@ -7,7 +7,7 @@
 
 <body>
     
-    <div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    {# <div class="page-header" style="background: url(assets/img/banner1.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> #}
     <style type="text/css">
         
 .checkout ul{
@@ -68,9 +68,47 @@
     display: block;
     text-align: center;
 }
+.dashboardtable thead tr th{
+    text-align: center;
+}
+.dashboardtable thead  tr {
+    /* text-align: left; */
+}
+.btns-actionsside{
+    
+    width: 100%;
+    float: left;
+    margin: -5px 0;
+}
+
+.btns-actionsside .btn-action {
+    margin: 5px;
+    width: 40px;
+    height: 40px;
+    float: left;
+    color: #363b4d;
+    line-height: 40px;
+    border-radius: 4px;
+    background: #f7f7f7;
+    text-align: center;
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out
+}
+
+.btns-actionsside .btn-action i {
+    display: block;
+    line-height: 40px
+}
+.dashboard-wrapper{
+    padding:0px;
+}
     </style>
-    <div class="error section-padding"  >
-        <div class="container">
+    <div class="error section-padding "  >
+        <div class="container section-padding">
+        <div class="col-12">
+                <h3 class="section-title">Cart</h3>
+            </div>
             <div class="row justify-content-center">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="page-content">
@@ -89,30 +127,30 @@
                                     <thead>
                                         <tr>
                                            
-                                            <th>Photo</th>
-                                            <th>Title</th>
-                                            <th>Service type</th>
-                                            <th>Status</th>
-                                            <th>Price</th>
-                                            <th>Action</th>
+                                            <th align="center">ID</th>
+                                            <th  align="center" >Title</th>
+                                            {# <th>Service type</th> #}
+                                            <th  align="center">Status</th>
+                                            <th align="center">Price</th>
+                                            <th >Action</th>
                                         </tr>
                                     </thead>
                                     {% for product in basket %}
 	                                    <tbody>
 	                                        <tr data-category="active">
 	                                        
-	                                            <td class="photo"><img class="img-fluid" src="{{ asset("images/thumbnails/")}}{{product.service.thumbnail}}" alt=""></td>
-	                                            <td data-title="Title">
+	                                            <td align="center" ><h3>{{product.id}}</h3></td>
+	                                            <td align="center" data-title="Title">
 	                                                <h3>{{product.name}}</h3>
-	                                                <span>Ad ID: {{product.id}}</span>
+
 	                                            </td>
-	                                            <td data-title="Category"><span class="adcategories">{{product.service}}</span></td>
-	                                            <td data-title="Ad Status"><span class="adstatus adstatusactive">active</span></td>
-	                                            <td data-title="Price">
+	                                            {# <td data-title="Category"><span class="adcategories">{{product.service}}</span></td> #}
+	                                            <td align="center" data-title="Ad Status"><span class="adstatus adstatusactive">active</span></td>
+	                                            <td align="center" data-title="Price">
 	                                                <h3>{{product.price|number_format(2, '.', ',')}}</h3>
 	                                            </td>
-	                                            <td data-title="Action">
-	                                                <div class="btns-actions">
+	                                            <td align="center" data-title="Action">
+	                                                <div class="btns-actionsside">
 	                                                    <a class="btn-action btn-view" href="prodetail/{{product.id}}"><i class="lni-eye"></i></a>  
 	                                                    <form method="post">  
 	                                                    <input type="hidden" name="id" value="{{ product.id }}">      

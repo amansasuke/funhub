@@ -338,7 +338,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/prodetail/{id}")
+     * @Route("/prodetail/{id}", name="app_prodetail" )
      */
     public function productdetail($id,Request $request, ServicesRepository $repo,DocumentsforproductRepository $Doc, DocforproRepository $docforpro, ProductRepository $Product, SessionInterface $session): Response
     {
@@ -353,7 +353,7 @@ class HomeController extends AbstractController
         // }
         // die();
 
-        $Servicesid = $prodetail->getService()->getid();
+        //$Servicesid = $prodetail->getService()->getid();
         
         //$Services = $Product->findBy(array('services_id' => $Servicesid));
 
@@ -379,7 +379,27 @@ class HomeController extends AbstractController
             'inBasket' => $isInBasket,
             'basket' => $basket,
             'Productshow' => $Productshow,
+            'proid'       => $id,
         ]);
+    }
+
+    /**
+     * @Route("/addtocart", name="app_addtocart", methods={"GET", "POST"})
+     */
+    public function addtocart(Request $request, SessionInterface $session,ProductRepository $Product): Response
+    {   
+        $addoncart = $request->request->get('addoncart'); 
+        $proid = $request->request->get('proid');
+
+        $prodetail = $Product->find($addoncart);
+
+        $basket = $session->get('basket', []);
+        $basket[$prodetail->getId()] = $prodetail;
+        $session->set('basket', $basket);
+
+        //$this->addFlash('success', 'Thank you! Successfully added to cart !');
+        flash()->addSuccess('Thank you! Successfully added to cart !');
+        return $this->redirectToRoute('app_prodetail',['id' => $proid], Response::HTTP_SEE_OTHER);
     }
 
     /**

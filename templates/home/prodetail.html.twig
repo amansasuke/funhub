@@ -1,26 +1,23 @@
 {% extends 'getrout.html.twig' %}
-
 {% block title %}Hello HomeController!{% endblock %}
-
 {% block stylesheets %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
-
 {% block body %}
-
 <style type="text/css">
-        .list-specification i{
-            color: #40e0d0;
-            margin-top: 5px;
-            font-size: 14px;
-            padding-left: 10px;
-        }
-        .list-specification li{
-            font-size: 15px;
-            margin: 10px 0px;
-        }
+.list-specification i {
+    color: #40e0d0;
+    margin-top: 5px;
+    font-size: 14px;
+    padding-left: 10px;
+}
 
-        /*** FONTS ***/
+.list-specification li {
+    font-size: 15px;
+    margin: 10px 0px;
+}
+
+/*** FONTS ***/
 @import url(https://fonts.googleapis.com/css?family=Montserrat:900|Raleway:400,400i,700,700i);
 /*** VARIABLES ***/
 /* Colors */
@@ -34,7 +31,7 @@
 *,
 *:before,
 *:after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 
@@ -47,135 +44,153 @@
 }*/
 
 ol {
-  counter-reset: gradient-counter;
-  list-style: none;
-  margin: 1rem 0;
-  padding-left: 30px;
-}
-ol > li {
-  background: white;
-  border-radius: 0 0.5rem 0.5rem 0.5rem;
-  counter-increment: gradient-counter;
-
-  min-height: 5px;
-  /*padding: 1rem 1rem 1rem 3rem;*/
-  position: relative;
-  color: black;
-  font-size: 16px;
+    counter-reset: gradient-counter;
+    list-style: none;
+    margin: 1rem 0;
+    padding-left: 30px;
 }
 
-ol > li::before, ol > li::after {
-  content: "";
-  
-  
-  overflow: hidden;
-  position: absolute;
-  
+ol>li {
+    background: white;
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+    counter-increment: gradient-counter;
 
-}
-ol > li::before {
-  align-items: flex-end;
-  content: counter(gradient-counter);
-  color: #1d1f20;
-  display: flex;
-  margin-left: -15px;
-  justify-content: flex-end;
-  
-  z-index: 1;
-}
-ol > li:nth-child(10n+1):before {
-  
+    min-height: 5px;
+    /*padding: 1rem 1rem 1rem 3rem;*/
+    position: relative;
+    color: black;
+    font-size: 16px;
 }
 
-ol > li + li {
-  margin-top: 2rem;
+ol>li::before,
+ol>li::after {
+    content: "";
+
+
+    overflow: hidden;
+    position: absolute;
+
+
 }
 
-.btn-newadd{
-    background:#ffff;
-    border:1px solid black;
+ol>li::before {
+    align-items: flex-end;
+    content: counter(gradient-counter);
+    color: #1d1f20;
+    display: flex;
+    margin-left: -15px;
+    justify-content: flex-end;
+
+    z-index: 1;
+}
+
+ol>li:nth-child(10n+1):before {}
+
+ol>li+li {
+    margin-top: 2rem;
+}
+
+.btn-newadd {
+    background: #ffff;
+    border: 1px solid black;
     font-weight: 600;
-    color:black;
+    color: black;
 }
+
 /* structure */
 .d-display {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 4rem;
-  height: 90vh;
-  padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
+    height: 90vh;
+    padding: 2rem;
 }
 
 details[open],
 details summary,
 .d-imgs {
-  display: block;
-  width: 100% !important;
-  border:1px solid #e8e8e1;
+    display: block;
+    width: 100% !important;
+    border: 1px solid #e8e8e1;
 }
-details summary {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1rem;
-  width: 100%;
-  cursor: pointer;
-  color: black;
 
-  font-size: 1rem;
+details summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1rem;
+    width: 100%;
+    cursor: pointer;
+    color: black;
+
+    font-size: 1rem;
 }
+
 details summary:after {
-  content: "›";
-  font-size: 2rem;
-  transition: 0.3s;
-  transform: rotate(90deg);
+    content: "›";
+    font-size: 2rem;
+    transition: 0.3s;
+    transform: rotate(90deg);
 }
 
 /* transitions */
 details {
-  
-  transition: height 0.3s ease;
+
+    transition: height 0.3s ease;
 }
-details[open] {
- 
-}
+
+details[open] {}
+
 details p {
-  height: fit-content;
-  padding: 1rem;
+    height: fit-content;
+    padding: 1rem;
 }
+
 details div {
-  height: fit-content;
-  padding: 1rem;
+    height: fit-content;
+    padding: 1rem;
 }
+
 details[open] summary:after {
-  transform: rotate(-90deg);
+    transform: rotate(-90deg);
 }
 
 
 /* responsive */
 @media (max-width: 1190px) {
-  body,
-  .d-display {
-    height: fit-content;
-    width: 100%;
-  }
-  .d-display {
-    justify-content: center;
-    padding: 2rem 0;
-  }
+
+    body,
+    .d-display {
+        height: fit-content;
+        width: 100%;
+    }
+
+    .d-display {
+        justify-content: center;
+        padding: 2rem 0;
+    }
 }
 
+.ads-details-info h1 {
+    text-transform: capitalize;
+}
 
-    </style>
+.ads-details-info h1 span {
+    font-size: 25px;
+
+}
+</style>
+
 <body>
-    
-    <div class="section-padding" style="padding-top:120px;">
+    <div class="section-padding" style="padding-top:120px; background:url('/assets/img/background/ser.jpg'); background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; ">
         <div class="container">
             <div class="product-info row">
                 <div class="col-lg-8 col-md-12 col-xs-12">
-                    <div class="ads-details-wrapper">
+                    {# <div class="ads-details-wrapper">
                         <div id="owl-demo" class="owl-carousel owl-theme">
                             <div class="item">
                                 <div class="product-img">
@@ -196,18 +211,19 @@ details[open] summary:after {
                                 <span class="price">33%</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="details-box">
+                    </div> #}
+                    <div class="details-box" style="margin-top: 0px; background-color: #fff;">
                         <div class="ads-details-info">
-                            <h2>{{prodetail.name}}</h2>
-                            <h2> <span><s>₹{{prodetail.regularprice}}</s></span> ₹{{prodetail.price}}</h2>
+                            <h1>{{prodetail.name}}</h1>
+                            <h1>₹{{prodetail.price|number_format(0, '.', ',') }} <span><s>₹{{prodetail.regularprice|number_format(0, '.', ',') }}</s></span> </h1>
+                            <span style="color:black;">TAX EXCLUSIVE</span>
                             <div class="details-meta">
                                 <span><a href="#"><i class="lni-book"></i> Business license</a></span>
                                 <span><a href="#"><i class="lni-eye"></i> 99 Buyrs</a></span>
                                 <!-- <span><a href="#"><i class="lni-eye"></i> 299 View</a></span> -->
                             </div>
                             <p class="mb-4">{{prodetail.description| raw}}</p>
-                           <!--  <h4 class="title-small mb-3">Specification:</h4>
+                            <!--  <h4 class="title-small mb-3">Specification:</h4>
                             <ul class="list-specification">
                                 <li><i class="lni-check-mark-circle"></i> 256GB PCIe flash storage</li>
                                 <li><i class="lni-check-mark-circle"></i> 2.7 GHz dual-core Intel Core i5</li>
@@ -222,15 +238,16 @@ details[open] summary:after {
                                 Up for sale we have a vintage Raleigh Sport Men’s Bicycle. This bike does have some general wear and surface corrosion on some of the parts but is overall in good shape. It has been checked out and does work. Brakes and gears work. Seat is fully intact. Frame and fenders are in nice shape with minimal wear. A few minor dents in the fenders but most of the paint is intact.
                             </p> -->
                         </div>
-                        <div class="staff-inner" style="padding:20px 0px;">                                
-                                <form method="post">
+                        <div class="staff-inner" style="padding:20px 0px;">
+                            <form method="post">
                                 {% if inBasket %}
-                                    <a href="../cart" class="btn btn-newadd btn-lg " style="width:100%" disabled>Go to cart</a>
+                                <a href="../cart" class="btn btn-newadd btn-lg " style="width:100%" disabled>Go to cart</a>
                                 {% else %}
-                                    <button class="btn btn-newadd btn-lg " style="width:100%">Add to cart</button>
-                                {% endif %}                                
-                                </form>
-                            </div>
+                                <button class="btn btn-newadd btn-lg " style="width:100%">Add to cart</button>
+                                {% endif %}
+                            </form>
+                            <a href="../cart" class="btn btn-common btn-lg " style="width:100%; margin-top: 10px;" disabled>BUY NOW</a>
+                        </div>
                         <!-- <div class="tag-bottom">
                             <div class="float-left">
                                 <ul class="advertisement">
@@ -256,31 +273,30 @@ details[open] summary:after {
                                 </div>
                             </div>
                         </div> -->
-                         <div class="faq">
+                        <div class="faq">
                             <div class='d-details'>
                                 <details class='tab-control'>
-                                <summary> Details of the services</summary>
-                                {{prodetail.howdone| raw}}
+                                    <summary> Details of the services</summary>
+                                    {{prodetail.howdone| raw}}
                                 </details>
                                 <details class='tab-control'>
-                                <summary>Estimates of server components</summary>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <summary>Estimates of server components</summary>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                 </details>
                                 <details class='tab-control'>
-                                <summary>Documents required</summary>
-                                <div class="panel-body">
-                                    {% for prodocs in prodoc %}
+                                    <summary>Documents required</summary>
+                                    <div class="panel-body">
+                                        {% for prodocs in prodoc %}
                                         {% for prodo in prodocs.Newdocinfo %}
                                         <p>
                                             {{ prodo.name }}
                                         </p>
                                         <br>
                                         {% endfor %}
-                                    {% endfor %}
-                                        <br>                                
-                                </div>
+                                        {% endfor %}
+                                        <br>
+                                    </div>
                                 </details>
-                                
                             </div>
                         </div>
                         {# <div class="faq">
@@ -296,14 +312,14 @@ details[open] summary:after {
                                     <div id="collapseOne" class="panel-collapse collapse ">
                                         <div class="panel-body">
                                             <main>
-                                            {{prodetail.howdone| raw}}
+                                                {{prodetail.howdone| raw}}
                                             </main>
-                                    </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title " >
+                                        <h4 class="panel-title ">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="font-size: 22px">
                                                 Estimates of server components
                                             </a>
@@ -329,24 +345,22 @@ details[open] summary:after {
                                     </div>
                                     <div id="collapseFour" class="panel-collapse collapse">
                                         <div class="panel-body">
-                                        {% for prodocs in prodoc %}
+                                            {% for prodocs in prodoc %}
                                             {% for prodo in prodocs.Newdocinfo %}
                                             <p>
                                                 {{ prodo.name }}
                                             </p>
                                             <br>
                                             {% endfor %}
-                                        {% endfor %}
+                                            {% endfor %}
                                             <br>
-                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div> #}
-                            </div>
-                        </div>
-                       
+                    </div>
+                </div>
                 <div class="col-lg-4 col-md-6 col-xs-12">
                     <aside class="details-sidebar">
                         {# <div class="widget">
@@ -362,52 +376,61 @@ details[open] summary:after {
                                     </div>
                                 </div>
                                 <input type="text" class="form-control" placeholder="Your Email">
-                                <input type="text" class="form-control" placeholder="Your Phone"> 
+                                <input type="text" class="form-control" placeholder="Your Phone">
                                 <p>I'm interested in this property [ID 123456] and I'd like to know more details.</p>
                                 <button class="btn btn-common fullwidth mt-4">Send Message</button>
                             </div>
                         </div> #}
-                        <div class="widget">
+                        <div class="widget" style="background-color: #fff;">
                             <h4 class="widget-title text-center">Add To Cart</h4>
-                            <div class="staff-inner">                                
+                            <div class="staff-inner">
                                 <form method="post">
-                                {% if inBasket %}
+                                    {% if inBasket %}
                                     <a href="../cart" class="btn btn-success btn-lg " style="width:100%" disabled>Go to cart</a>
-                                {% else %}
-                                    <button class="btn btn-common btn-lg " style="width:100%">Add to cart</button>
-                                {% endif %}                                
+                                    {% else %}
+                                    <button class="btn btn-common btn-lg" style="width:100%">Add to cart</button>
+                                    {% endif %}
                                 </form>
                             </div>
                         </div>
-                        {% if Productshow %}                        
-                            <div class="widget">
-                                <h4 class="widget-title">Service Add Ons</h4>
-                                <ul class="posts-list">
+                        {% if Productshow %}
+                        <div class="widget">
+                            <h4 class="widget-title">Frequently Bought Together</h4>
+                            <ul class="posts-list">
                                 {% for Productr in Productshow %}
-                                    <li>
-                                        <div class="widget-thumb">
-                                            <a href="{{Productr.id}}"><img src="{{ asset("images/thumbnails/")}}{{Productr.service.thumbnail}}" alt="" /></a>
+                                <li>
+                                    <div class="widget-thumb">
+                                        <a href="{{Productr.id}}"></a>
+                                    </div>
+                                    <div class="widget-content">
+                                        <h4><a href="{{Productr.id}}">{{Productr.name}}</a></h4>
+                                        <div class="meta-tag">
+                                            <h4 class="price">₹{{Productr.price}}</h4>
                                         </div>
-                                        <div class="widget-content">
-                                            <h4><a href="{{Productr.id}}">{{Productr.name}}</a></h4>
-                                            <div class="meta-tag">
-                                                <h4 class="price">₹{{Productr.price}}</h4>
-                                                
-                                            </div>
-                                            <form method="post">
-                                                {% if inBasket %}
-                                                    <a href="../cart" disabled><button class="btn btn-success"><i class="fa fa-check "></i> </button</a>
-                                                {% else %}
-                                                <button class="btn btn-success"><i class="fa fa-shopping-cart "></i> </button>
-                                                   
-                                                {% endif %}                                
-                                            </form>                                            
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </li>
+                                        <form method="post" action="{{ path('app_addtocart') }}">
+                                        {% if basket|length > 0 %}
+                                            {% for item in basket %}
+                                                {% if item.id == Productr.id %}
+                                                    <a href="../cart" disabled><button class="btn btn-success"><i class="fa fa-check "></i> </button></a> 
+                                                {% else %} 
+                                                    <input type="hidden" name="proid" value="{{proid}}">
+                                                    <input type="hidden" name="addoncart" value="{{Productr.id}}">
+                                                    <button class="btn btn-success"><i class="fa fa-shopping-cart "></i> </button>
+                                                {% endif %} 
+                                            {% endfor %} 
+                                            
+                                        {% else %}
+                                            <input type="hidden" name="proid" value="{{proid}}">
+                                            <input type="hidden" name="addoncart" value="{{Productr.id}}">
+                                            <button class="btn btn-success"><i class="fa fa-shopping-cart "></i> </button>
+                                        {% endif %}
+                                        </form>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li>
                                 {% endfor %}
-                                </ul>
-                            </div>
+                            </ul>
+                        </div>
                         {% endif %}
                     </aside>
                 </div>
@@ -447,7 +470,7 @@ details[open] summary:after {
                         <div class="widget">
                             <div class="footer-logo"><img src="assets/img/logo.png" alt=""></div>
                             <div class="textwidget">
-                                <p>  footer about us</p>
+                                <p> footer about us</p>
                             </div>
                             <ul class="mt-3 footer-social">
                                 <li><a class="facebook" href="#"><i class="lni-facebook-filled"></i></a></li>

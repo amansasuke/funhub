@@ -4,23 +4,9 @@
 {# {{ form(form) }} #}
 
 <body>
-    <div class="page-header" style="background: url(assets/img/banner1.jpg);">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="breadcrumb-wrapper">
-                        <h2 class="product-title">Checkout</h2>
-                        <ol class="breadcrumb">
-                            <li><a href="#">Home /</a></li>
-                            <li class="current">Checkout</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <div class="error section-padding">
-        <div class="container">
+        <div class="container section-padding">
             <div class="col-12">
                 <h3 class="section-title">Checkout</h3>
             </div>
@@ -98,7 +84,7 @@
                                 </strong>                                 
                             </li> #}
                             <li class="list-group-item d-flex justify-content-between">
-                                {% if app.request.get('usewalet') and app.request.get('usewalet')< waltebalanceold %}
+                                {% if app.request.get('usewalet') and app.request.get('usewalet')<= waltebalanceold %}
                                     <div >
                                         <h6 class="my-0">Total</h6>                                
                                         <p class="my-0" >Wallet balance </p>
@@ -128,7 +114,31 @@
                                         <p class="my-0" id="price"></p>                                   
                                         {# <span>₹{{ gsttotal| number_format }}.00</span>                                                                  #}
                                     </strong>
-
+                                {% elseif discount != null %}
+                                    <div >
+                                        <h6 class="my-0">Total</h6>                                
+                                        <p class="my-0" >Promocode </p>
+                                        <p class="my-0" >Gross Value </p>
+                                        <p class="my-0" id="gst" ></p>                                   
+                                    </div>
+                                    <strong>                                                                                                                                   
+                                        ₹{{ total | number_format(2) }}<br>
+                                        
+                                        <span style="color: 
+                                        red">-{{discount}}%</span><a href="/checkout" style="color: 
+                                        red"> <i class="fa fa-times"></i> </a>
+                                        <br>
+                                        {%  set totaldis = ( total / 100) * discount %}
+                                        {%  set total = total - totaldis %}
+                                        <hr style="margin-top: 0px;margin-bottom: 0px;border: 0;border-top: 1px solid rgba(0,0,0,.1);">
+                                        ₹{{ total| number_format(2)}}                                                                                                                               
+                                        <br> 
+                                        {%  set gsttotal = ( total / 100) * 18 %}
+                                        {%  set cgst = ( gsttotal / 2) %} 
+                                        <p class="my-0" id="price"></p>                                   
+                                        {# <span>₹{{ gsttotal| number_format }}.00</span>                                                                  #}
+                                    </strong>
+                                    
                                 {% else %}
                                     <div >
                                         <h6 class="my-0">Total</h6>                                  
@@ -145,7 +155,7 @@
                                 {% endif %}
                             </li>
                             {% if app.request.get('usewalet') %}
-                                {% if app.request.get('usewalet')> waltebalanceold %}
+                                {% if app.request.get('usewalet') > waltebalanceold %}
                             <div class="list-group-item d-flex justify-content-between">
                                     <span style="color: red">You don’t have enough Wallet Balance</span><br>                                    
                             </div>
@@ -153,18 +163,7 @@
                                 {% endif %}
                                 {% else %}                        
                             {% endif %}
-                            {% if discount != null %}
-                            <li class="list-group-item d-flex justify-content-between">
-                                <div >
-                                    <h6 class="my-0">Promocode</h6>                                    
-                                </div>
-                                <strong style="color:red;"> 
-                                 {{discount}}% Off
-                                </strong>                                                                                                            
-                                    {%  set distol = ( total / 100) * discount %}
-                                    {%  set total = total - distol %}                                                                                                  
-                            </li>
-                            {% endif %}
+                            
                             <li class="list-group-item d-flex justify-content-between">
                                 <div >
                                     <h6 class="my-0">Grand Total</h6>                                    
@@ -519,7 +518,7 @@
                     
                 </div>
             </div>
-            <footer class="my-5 pt-5 text-muted text-center text-small">
+            <footer class="text-muted text-center text-small">
                 <p class="mb-1">&copy; 2017-2019 Company Name</p>
                 <ul class="list-inline">
                     <li class="list-inline-item"><a href="#">Privacy</a></li>

@@ -34,7 +34,9 @@ class RegistrationFormType extends AbstractType
             $redid = 0;
         }
         $builder
-            ->add('email')
+            ->add('email', TextType ::class,array(
+                'label' => false,
+            ))
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -42,19 +44,22 @@ class RegistrationFormType extends AbstractType
                         'message' => 'You should agree to our terms.',
                     ]),
                 ],
-                'label' => 'I AGREE WITH TERMS AND CONDITIONS',
+                'label' => ' I AGREE WITH TERMS AND CONDITIONS ',
+                'attr' => [
+                'class' => 'float-right',
+            ]
             ])
             ->add('plainPassword', RepeatedType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
-                'label' => 'confirm  Password',
+                'label' => false,
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'invalid_message' => 'The password fields must match.',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options'  => ['label' => 'Password'],
-                'second_options' => ['label' => 'Confirm Password'],
+                'first_options'  => ['label' => false],
+                'second_options' => ['label' => false],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -67,17 +72,22 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('name')
-            ->add('address')
+            ->add('name', TextType ::class,array(
+                'label' => false,
+            ))
+            ->add('address', TextType ::class,array(
+                'label' => false,
+            ))
             ->add('pan_no', TextType ::class,array(
                 'label' => ' PAN Number',
+                'label' => false,
             ))
             ->add('GSTno', TextType::class,array(
-                      'label' => ' GST No (optional)',
+                      'label' => false,
                       'required' => false,
                   ))
             ->add('phone_no',NumberType::class, [
-
+                'label' => false,
             'constraints' => [
                 new Length([
                     'min' => 10,
@@ -85,18 +95,22 @@ class RegistrationFormType extends AbstractType
                     // max length allowed by Symfony for security reasons
                     'max' => 15,
                 ]),
+
                 
             ]]
             )
             ->add('gender', ChoiceType::class, [
+                'label' => false,
                 'choices'  => [
+                     NULL => NULL,
                     'Male' => 'male',
                     'Female' => 'female',                  
                 ],
             ])
             ->add('user_category', ChoiceType::class, [
+                'label' => false,
                 'choices'  => [
-                    'Choose your category' => NULL,
+                    NULL => NULL,
                     'Individual' => 'Individual',
                     'Proprietor (Business)' => 'Proprietor (Business)',
                     'Partnership Firm' => 'Partnership Firm',
@@ -106,8 +120,7 @@ class RegistrationFormType extends AbstractType
                     'One Person Company' => 'One Person Company',
                     'Start-Up' => 'Start-Up',
 
-                ],
-                'label' => 'User Category',
+                ],                
             ])
             //->add('red_id')
             ->add('red_id', HiddenType::class,array(
