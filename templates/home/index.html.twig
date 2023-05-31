@@ -613,6 +613,31 @@ details[open] summary:after {
     transform: rotate(-90deg);
 }
 
+.buy{
+    margin-top: 30px;
+}
+.buyhead{
+    display: flex;
+    border: 1px solid #b1acac;
+    box-shadow: 0 0 15px rgba(143, 143, 143, .18);
+}
+.header-design{
+    background: linear-gradient(to right, #32be8f, #5bb7c5, #32be8f);
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(143, 143, 143, .18);
+     
+}
+.header-design h4{
+margin-bottom: 0px;
+padding-top: 12px;
+font-size: 25px;
+width: 100px;
+}
+.text-design{
+        padding-left: 10px;
+}
+
 
     </style>
 {% endblock %}
@@ -744,47 +769,30 @@ details[open] summary:after {
                 <h1>Make your <span>MOVE!</span> </h1>
             </div>
         </div>
-        <div class="container-fluid ">
-            <div class="wrap">
-                <div class="area">
-                    <img class="stretch" src="assets/img/background/Image3.png" />
-                </div>
-                <div>
-                    <div class="display-position">                       
-                        <a href="#">
-                          <img src="assets/img/background/Cloud1.png" style="width:250px;cursor: pointer;" alt="buy" />
-                          {# <span>Avail our top-notch financial services, get clarity on all financial aspects and never ever look back on your finances! From business registration to investment and tax saving planning – we offer every kind of financial support your business needs.
-                          </span> #}
-                        </a>
-                    </div>                    
-                </div>
-                <div>
-                    <div class="display-position-invest">
-                        <a href="#">
-                            <img src="assets/img/background/Cloud2.png" alt="invest" style="width:250px;cursor: pointer;" />
-                            {# <span>To make investments a minimum risk for you, we partner with major corporations worldwide. When you invest via Fintastic hub, we make it a smooth, hassle-free process for you and ensure high returns at low risk.
-                              </span> #}
-                        </a>
-                    </div>                    
-                </div>
-                <div>
-                    <div class="display-position-earn">
-                        <a href="#">
-                            <img src="assets/img/background/Cloud3.png" alt="earn" style="width:250px;cursor: pointer;" />
-                            {# <span>Join our affiliate program and refer Fintastic Hub to your business pals! Recommend once; generate passive income for life! You also earn cashback for every service you avail. Your wallet money adds up every year if you haven’t redeemed your cash back. Earn and Save with us!
-                            </span> #}
-                        </a>
-                    </div>                    
-                </div>
-
-            </div>
-        </div>
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <div class="flex-container"> <div href="#" class="arrowBox arrow-left">BUY </div><p class="textflex">Avail our top-notch financial services, get clarity on all financial aspects and never ever look back on your finances! From business registration to investment and tax saving planning – we offer every kind of financial support your business needs.</p> </div>
-                    <div class="flex-container"> <p class="textflex">Join our affiliate program and refer Fintastic Hub to your business pals! Recommend once; generate passive income for life! You also earn cashback for every service you avail. Your wallet money adds up every year if you haven’t redeemed your cash back. Earn and Save with us!</p> <div href="#" class="arrowBox arrow-right">EARN </div> </div>
-                    <div class="flex-container"> <div href="#" class="arrowBox arrow-left">INVEST</div><p class="textflex">To make investments a minimum risk for you, we partner with major corporations worldwide. When you invest via Fintastic hub, we make it a smooth, hassle-free process for you and ensure high returns at low risk.</p> </div>
+                <div class="col-md-5">
+                    <img src="assets/img/background/buysection.png" alt="Our Locations" >                    
+                </div>
+                <div class="col-md-7">
+                   <div class="buy">
+                       <div class="buyhead" >
+                           <div class="header-design"> <h4> BUY</h4></div>
+                           <div class="text-design"><p>Avail our top-notch financial services, get clarity on all financial aspects and never ever look back on your finances! From business registration to investment and tax saving planning – we offer every kind of financial support your business needs.</p></div>
+                       </div>
+                   </div> 
+                   <div class="buy">
+                       <div class="buyhead" >
+                           <div class="header-design"> <h4> EARN</h4></div>
+                           <div class="text-design"><p>Join our affiliate program and refer Fintastic Hub to your business pals! Recommend once; generate passive income for life! You also earn cashback for every service you avail. Your wallet money adds up every year if you haven’t redeemed your cash back. Earn and Save with us!</p></div>
+                       </div>
+                   </div> 
+                   <div class="buy">
+                       <div class="buyhead" >
+                           <div class="header-design"> <h4> INVEST</h4></div>
+                           <div class="text-design"><p>To make investments a minimum risk for you, we partner with major corporations worldwide. When you invest via Fintastic hub,we make it a  smooth, hassle-free process for you and ensure high returns at low risk.</p></div>
+                       </div>
+                   </div>     
                 </div>
             </div>
         </div>
@@ -822,13 +830,6 @@ details[open] summary:after {
             </ul>
         </div>
     </div> #}
-    <div class="wrapper">
-        <div class="container">
-            <div class="row">
-                
-            </div>
-        </div>  
-    </div>
 
     <section class="cta " style="padding-bottom: 60px;">
         <div class="container">
