@@ -344,7 +344,8 @@ padding-top: 120px;
 }
 .card-img-top {
 /* box-shadow: 0 5px 10px rgba(0,0,0,0.5); */
-width:250px !important;
+width:100% !important;
+
 }
 .card-body{
     
@@ -618,9 +619,12 @@ details[open] summary:after {
 }
 .buyhead{
     display: flex;
+    align-items: center;
     border: 1px solid #b1acac;
     box-shadow: 0 0 15px rgba(143, 143, 143, .18);
+
 }
+
 .header-design{
     background: linear-gradient(to right, #32be8f, #5bb7c5, #32be8f);
     padding: 16px;
@@ -630,7 +634,7 @@ details[open] summary:after {
 }
 .header-design h4{
 margin-bottom: 0px;
-padding-top: 12px;
+
 font-size: 25px;
 width: 100px;
 }
@@ -638,6 +642,290 @@ width: 100px;
         padding-left: 10px;
 }
 
+
+/* ----- The actual thing ----- */
+
+.stepborder{
+    width: 100%;
+    height: 100%;
+    background: white;
+    /*background: linear-gradient(-135deg, transparent 55px, #f3f3f3 0);*/
+    box-shadow: 0 0 15px rgba(143, 143, 143, .18);
+    /*border-top-right-radius: 50%;*/
+    /*border-radius: 31% 69% 49% 51% / 50% 38% 62% 50% ;*/
+    border-radius: 0px 128px 0px 128px;
+-moz-border-radius: 0px 128px 0px 128px;
+-webkit-border-radius: 0px 128px 0px 128px;
+border: 0px solid #000000;
+}
+/*.stepborder::after{
+    content: '';
+    position: absolute;
+    border-right: 1px solid grey;
+    height: 100px;
+    width: 2px;
+    z-index: 9;
+    top: 0;
+    right: 39px;
+    transform: rotate(-45deg);
+}*/
+/* Variables */
+.myflex{
+    display: flex!important;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+}
+
+:root {
+  --rating-size: 6rem;
+  --bar-size: 10px;
+  --background-color:#ffff;
+  --rating-color-default: #5bb7c5;
+  --rating-color-background: #ffff;
+  --rating-color-good: #32be8f;
+  --rating-color-meh: #ffdb72;
+  --rating-color-bad: #00619b;
+  --rating-color-step: #673ab7;
+  --rating-color-step6: #ff9f00;
+  --rating-color-step7: #8bc34a; 
+  
+}
+
+/* Rating item */
+.rating {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  overflow: hidden;
+  
+  background: var(--rating-color-default);
+  color: var(--rating-color-default);
+  width: var(--rating-size);
+  height: var(--rating-size);
+
+  /* Basic style for the text */
+  font-size: calc(var(--rating-size) / 3);
+  line-height: 1;
+}
+
+/* Rating circle content */
+.rating span {
+  position: relative;
+  display: flex;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.rating span small {
+  font-size: 0.5em;
+  font-weight: 900;
+  align-self: center;
+}
+
+/* Bar mask, creates an inner circle with the same color as thee background */
+.rating::after {
+  content: "";
+  position: absolute;
+  inset: var(--bar-size);
+  background: var(--background-color);
+  border-radius: inherit;
+  z-index: 1;
+}
+
+/* Bar background */
+.rating::before {
+  content: "";
+  position: absolute;
+  inset: var(--bar-size);
+  border-radius: inherit;
+  box-shadow: 0 0 0 1rem var(--rating-color-background);
+  z-index: -1;
+}
+
+/* Classes to give different colors to ratings, based on their score */
+.rating.good {
+  background: var(--rating-color-good);
+  color: var(--rating-color-good);
+}
+
+.rating.meh {
+  background: var(--rating-color-meh);
+  color: var(--rating-color-meh);
+}
+
+.rating.bad {
+  background: var(--rating-color-bad);
+  color: var(--rating-color-bad);
+}
+.rating.step {
+  background: var(--rating-color-step);
+  color: var(--rating-color-step);
+}
+.rating.step6 {
+  background: var(--rating-color-step6);
+  color: var(--rating-color-step6);
+}
+.rating.step7 {
+  background: var(--rating-color-step7);
+  color: var(--rating-color-step7);
+}
+.imgstep{
+    margin: 15px 0px;
+}
+.steptext p{
+    font-size: 25px;
+    text-transform: capitalize;
+}
+
+.hidden { display: none;}
+.readmore { margin: 0 5px;}
+
+
+.flip-box {
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    height: 400px;
+    
+}
+
+.flip-box-front,
+.flip-box-back {
+    text-transform: capitalize;
+    background-color: white;
+    background-size: cover;
+    background-position: center;
+     height: 400px;
+     box-shadow: 0 0 15px rgba(143, 143, 143, .18);
+    border-radius: 0px 128px 0px 128px;
+-moz-border-radius: 0px 128px 0px 128px;
+-webkit-border-radius: 0px 128px 0px 128px;
+border: 0px solid #000000;
+    min-height: 250px;
+    -ms-transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
+    transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
+    -webkit-transition: transform 0.7s cubic-bezier(.4, .2, .2, 1);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.flip-box-front {
+    -ms-transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.flip-box:hover .flip-box-front {
+    -ms-transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.flip-box-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 0px 128px 0px 128px;
+-moz-border-radius: 0px 128px 0px 128px;
+-webkit-border-radius: 0px 128px 0px 128px;
+border: 0px solid #000000;
+    -ms-transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.flip-box:hover .flip-box-back {
+    -ms-transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.flip-box .inner {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    outline: 1px solid transparent;
+    -webkit-perspective: inherit;
+    perspective: inherit;
+    z-index: 2;
+
+    transform: translateY(-50%) translateZ(60px) scale(.94);
+    -webkit-transform: translateY(-50%) translateZ(60px) scale(.94);
+    -ms-transform: translateY(-50%) translateZ(60px) scale(.94);
+    top: 50%;
+}
+
+.flip-box-header {
+    font-size: 25px;
+}
+
+.flip-box p {
+    font-size: 16px;
+    line-height: 1.5em;
+}
+
+.flip-box-img {
+    margin-top: 25px;
+}
+
+.flip-box-button {
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 25px;
+    padding: 15px 20px;
+    text-transform: uppercase;
+}
+
+ .view-service{
+    display: table;
+    position: relative;
+    padding-bottom: 10px;
+    margin: 0 auto;
+    width: 100%;
+    color: #2C2E30;
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 20px;
+    text-align: center;
+}
+ .view-service:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: -3px;
+    height: 3px;
+    width: 140px;
+    background: #5bb7c5;
+    margin: 0 auto;
+}
 
     </style>
 {% endblock %}
@@ -659,17 +947,19 @@ width: 100px;
         });
     });
     </script>
-    <section class="cta section-padding" id="intro">
+
+
+    <section class="cta section-padding" id="intro" >
         <div class="container">
             <div class="row" style="padding-top: 40px;">
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" id="intro-info">
+                <div class="col-md-6" >
                     <div class="titlehead" style="padding-left: 15px;">
-                        <h1>Your one stop destination to become financially</h1>
+                        <h1>Your one <br> stop <br> destination <br> to become financially</h1>
                         <h1 class="year" id="word">Aware</h1>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" id="development-img">
-                    <img src="assets/img/background/Imagehead.png"  />
+                <div class="col-md-6" >
+                    <img src="assets/img/background/Imagehead.png" style="width:100%;"  />
                 </div>
             </div>
         </div>
@@ -705,7 +995,7 @@ width: 100px;
                         
                         <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. 
                         </p>
-                         <div class="social"><a href="#">Read More</div>
+                         <div class="social"><a href="#">Read More</a> </div>
                     </div>
                 </div>
             </div>
@@ -715,26 +1005,26 @@ width: 100px;
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    <img src="assets/img/background/homet.gif" alt="Mobile App Development" title="Mobile App Development"/ style="width: 500px;">
+                    <img src="assets/img/background/homet.gif" alt="Mobile App Development" title="Mobile App Development"/ style="width: 100%;">
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="titlehead">
                         <h1>Services built for <spen class="year" id="serviceword">Startups</spen></h1>                        
                     </div>
                     <div class="row" style="padding-top:25px">
-                        <div class="col-4 text-center">
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 text-center">
                             <div style="padding:0px 0px;  ">
                                 <img src="assets/img/background/Icon1.png" height="120px;">
                                 <h5>Book Keeping</h5>
                             </div>
                         </div>
-                        <div class="col-4 text-center">
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 text-center">
                             <div style="padding:0px 0px;  ">
                                 <img src="assets/img/background/Icon2.png" height="120px;">
                                 <h5>Business Licenses</h5>
                             </div>
                         </div>
-                        <div class="col-4 text-center">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
                             <div style="padding:0px 0px;  ">
                                 <img src="assets/img/background/icon3.png" height="120px;">
                                 <h5>Taxation</h5>
@@ -742,13 +1032,13 @@ width: 100px;
                         </div>
                     </div>
                     <div class="row" style="padding-top:25px">
-                        <div class="col-6 text-center">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
                             <div style="padding:0px 0px;  ">
                                 <img src="assets/img/background/Icon4.png" height="120px;">
                                 <h5>Statutory <br> Compliances</h5>
                             </div>
                         </div>
-                        <div class="col-6 text-center">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
                             <div style="padding:0px 0px;  ">
                                 <img src="assets/img/background/icon5.png" height="120px;">
                                 <h5>Virtual <br> CFO</h5>
@@ -771,8 +1061,8 @@ width: 100px;
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-5">
-                    <img src="assets/img/background/buysection.png" alt="Our Locations" >                    
+                <div class="col-md-5 text-center">
+                    <img src="assets/img/background/buysection.png" alt="Our Locations" style="width: 70%;" >                    
                 </div>
                 <div class="col-md-7">
                    <div class="buy">
@@ -788,11 +1078,216 @@ width: 100px;
                        </div>
                    </div> 
                    <div class="buy">
-                       <div class="buyhead" >
+                       <div class="buyhead"  style="height:110px" >
                            <div class="header-design"> <h4> INVEST</h4></div>
                            <div class="text-design"><p>To make investments a minimum risk for you, we partner with major corporations worldwide. When you invest via Fintastic hub,we make it a  smooth, hassle-free process for you and ensure high returns at low risk.</p></div>
                        </div>
                    </div>     
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="titlehead" style="text-align:right;">
+                        <h1>Our <span> 7 </span> Simple Step Process  </h1>
+                    </div>
+                    <div id="stepdiv" class="owl-carousel">
+                        <div class="item">
+                            <div class="flip-box">
+                                <div class="flip-box-front text-center" >
+                                    <div class="stepborder">
+                                    <div class="myflex">
+                                        <div class="rating"><span>01</span></div>
+                                        <div class="imgstep" style="padding:0px 0px;  ">
+                                            <img src="assets/img/category/step1.png">               
+                                        </div>
+                                        <div class="steptext">
+                                            <h5>Purchase</h5>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="flip-box-back text-center" >
+                                    <div class="inner color-white">
+                                       <div>
+                                            <p class="shortened">Explore our services and purchase your required plan through our secured payment channel. There’s a wide range of financial services you can choose from including business registration, tax filing, bookkeeping, CFO, etc. Your search is made easy with the navigation toolbar on our website.</p>
+                                        </div>                               
+                                    </div>
+                                </div>
+                            </div>
+                            {# <div class="stepborder">
+                                <div class="myflex">
+                                    <div class="rating"><span>01</span></div>
+                                    <div class="imgstep" style="padding:0px 0px;  ">
+                                        <img src="assets/img/category/step1.png">               
+                                    </div>
+                                    <div class="steptext">
+                                        <h5>Purchase</h5>
+                                    </div>
+                                    <div>
+                                        <p class="shortened">Explore our services and purchase your required plan through our secured payment channel. There’s a wide range of financial services you can choose from including business registration, tax filing, bookkeeping, CFO, etc. Your search is made easy with the navigation toolbar on our website.</p>
+                                    </div>
+                                </div>
+                            </div> #}
+                        </div>
+                        <div class="item">
+                            <div class="flip-box">
+                                <div class="flip-box-front text-center" >
+                                    <div class="stepborder">
+                                        <div class="myflex">
+                                            <div class="rating good"><span>02</span></div>
+                                            <div class="imgstep" style="padding:0px 0px;  ">
+                                                <img src="assets/img/category/step2.png">               
+                                            </div>
+                                            <div class="steptext">
+                                                <h5>Download your invoice</h5>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flip-box-back text-center" >
+                                    <div class="inner color-white">
+                                       <div>
+                                            <p class="shortened">Once you purchase, kindly download the GST invoice that’s provided.</p>
+                                        </div>                              
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div> 
+                        <div class="item">
+                            <div class="flip-box">
+                                <div class="flip-box-front text-center" >
+                                    <div class="stepborder">
+                                        <div class="myflex">
+                                            <div class="rating meh"><span>03</span></div>
+                                            <div class="imgstep" style="padding:0px 0px;  ">
+                                                <img src="assets/img/category/step3.png">               
+                                            </div>
+                                            <div class="steptext">
+                                                <h5>Upload required Documents</h5>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flip-box-back text-center" >
+                                    <div class="inner color-white">
+                                       <div>
+                                            <p class="shortened">You’ll be guided with a list of documents you need to submit to get started. Please upload them to fully set up your profile and access your dashboard.</p>
+                                        </div>                              
+                                    </div>
+                                </div>
+                            </div> 
+                            
+                        </div>
+                        <div class="item">
+                            <div class="flip-box">
+                                <div class="flip-box-front text-center" >
+                                    <div class="stepborder">
+                                        <div class="myflex">
+                                            <div class="rating bad"><span>04</span></div>
+                                            <div class="imgstep" style="padding:0px 0px;  ">
+                                                <img src="assets/img/category/step4.png">               
+                                            </div>
+                                            <div class="steptext">
+                                                <h5>Get your personal dashboard and track your service</h5>
+                                            </div>                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flip-box-back text-center" >
+                                    <div class="inner color-white">
+                                       <div>
+                                            <p class="shortened">You can now access your personal dashboard and stay updated! You will be able to track the real-time status of the service availed. Acceptance of the documents submitted, status of onboarding call, start date of the service, expected deadline, payment status, and everything else can be easily tracked on your dashboard.</p>
+                                        </div>                              
+                                    </div>
+                                </div>
+                            </div>                             
+                        </div> 
+                        <div class="item">
+                            <div class="flip-box">
+                                <div class="flip-box-front text-center" >
+                                    <div class="stepborder">
+                                        <div class="myflex">
+                                            <div class="rating step"><span>05</span></div>
+                                            <div class="imgstep" style="padding:0px 0px;  ">
+                                                <img src="assets/img/category/step5.png">               
+                                            </div>
+                                            <div class="steptext">
+                                                <h5> Get access to a dedicated space on our cloud server</h5>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flip-box-back text-center" >
+                                    <div class="inner color-white">
+                                       <div>
+                                            <p class="shortened">Each one of our clients is assigned a private cloud space where all your financial documents and data will be stored. You can access your space anytime, anywhere in the world.nd everything else can be easily tracked on your dashboard.</p>
+                                        </div>                              
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="item">
+                            <div class="flip-box">
+                                <div class="flip-box-front text-center" >
+                                    <div class="stepborder">
+                                        <div class="myflex">
+                                            <div class="rating step6"><span>06</span></div>
+                                            <div class="imgstep" style="padding:0px 0px;  ">
+                                                <img src="assets/img/category/step6.png">               
+                                            </div>
+                                            <div class="steptext">
+                                                <h5>Meet your professional expert</h5>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flip-box-back text-center" >
+                                    <div class="inner color-white">
+                                       <div>
+                                            <p class="shortened">No more back-and-forth conversations to sort out any issues! A financial expert from our team will be assigned to you. You can contact them directly to get your queries answered. The expert will be available throughout the process and ensure your service is done on time without any setbacks.</p>
+                                        </div>                             
+                                    </div>
+                                </div>
+                            </div> 
+                            
+                        </div>
+                        <div class="item">
+                            <div class="flip-box">
+                                <div class="flip-box-front text-center" >
+                                    <div class="stepborder">
+                                        <div class="myflex">
+                                            <div class="rating step7"><span>07</span></div>
+                                            <div class="imgstep" style="padding:0px 0px;  ">
+                                                <img src="assets/img/category/step7.png">               
+                                            </div>
+                                            <div class="steptext">
+                                                <h5>Get access to the final deliverable post-completion of service</h5>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flip-box-back text-center" >
+                                    <div class="inner color-white">
+                                       <div>
+                                            <p class="shortened">Congrats! You will get the final deliverable of the service availed! Never look back on finances when we are by your side!</p>
+                                        </div>                             
+                                    </div>
+                                </div>
+                            </div> 
+                            
+                        </div>                                            
+                    </div>
                 </div>
             </div>
         </div>
@@ -948,7 +1443,7 @@ width: 100px;
             </div>
             <div class="row">
                 <div class="col-md-12 d-flex justify-content-center">
-                    <a href=""class="btn btn-common" style="width:300px;" >Explore Services </a>
+                    <a href="/services"class="btn btn-common loginfirst" style="width:300px;" >Explore Services </a>
                 </div>
             </div>
         </div>
@@ -1087,10 +1582,10 @@ width: 100px;
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+
+                            <div class="col-md-12" style="display:flex; justify-content: center;">
+
                                 <button type="submit" id="submit" class="btn btn-common">Submit Now</button>
-                                <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                <div class="clearfix"></div>
                             </div>
                         </div>
                     </form>
@@ -1345,137 +1840,7 @@ width: 100px;
                             </details>
                         </div>
                     </div>
-                    {# <div class="faq " style="padding-top:60px;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="panel-group" id="accordion">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                                        Is one-to-one assistance available along with financial services? Where do I solve my queries?
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseOne" class="panel-collapse collapse ">
-                                                <div class="panel-body">
-                                                    <p>Yes! Once you avail our service, a dedicated financial expert from our team will be assigned to you. He/She will contact you and explain the process and be available to clarify your doubts.
-                                                    </p>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo">
-                                                        How long will it take to complete the process and get the final deliverable?
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseTwo" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <p>
-                                                        It may vary for every service, however, you can track your services in real-time on your private dashboard. The estimated completion date will be available clearly on your dashboard and our dedicated expert will contact you and explain all the requirements and the process.
-                                                    </p>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-                                                        What types of businesses do you work with?
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseThree" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <p>
-                                                        We work with startups, freelancers and entrepreneurs all over India across multiple industries including <b>insert 2-3 big industries served></b>
-                                                    </p>
-                                                    <br>
-                                                    <p>
-                                                        You can also track the status of service on real time basis from your Finanzi dashboard. We ensure every service is completed in least possible time
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion3" href="#collapseFour">
-                                                        What is the business club? Should I become a member to avail your services?
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseFour" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <p>
-                                                        Finanzi <a href="">Business </a> is a dedicated platform with a network of entrepreneurs and startup owners. You need not be a member of our business club to avail our services. It stands as a separate membership with the potential to supercharge your business.
-                                                    </p>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion4" href="#collapseFive">
-                                                        How can I become an affiliate? What are the benefits?
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseFive" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <p>
-                                                        Our affiliate program is open to everyone! As an affiliate, you can earn a commission as high as 30% when your referral purchases a service from us and set up a passive source of income.<a href=""> Click here </a>to join.</b>
-                                                    </p>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion5" href="#collapseSix">
-                                                        What are the benefits of your investment options at FH?
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseSix" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <p>
-                                                        At Finanzi, we partner with large corporations to ease the process, take charge of the paperwork and eliminate risks as much as possible. You also earn cashback on your investments. For instance, if you get a LIC policy of 100,000 p.a. Premium, you can avail 10% of 100,000 i.,e. 10,000 rs as cashback in your bank account, which means, you easily save Rs.10,000. (Please note that the percentage of cashback may vary)
-                                                    </p>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion6" href="#collapseSeven">
-                                                        I am new to affiliate marketing. Is guidance provided?
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseSeven" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <p>
-                                                        Yes. Once you become an <a href=""> affiliate</a>, you will get access to our exclusive tools and resources which help you quickly learn affiliate marketing, refer Finanzi and earn commissions.
-                                                    </p>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> #}
+                   
                 </div>
             </div>
         </div>
@@ -1527,76 +1892,18 @@ width: 100px;
                 </div>
             </div>
         </div>
+
     </section>
-    <footer>
-        <section class="footer-Content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
-                        <div class="widget">
-                            <div class="footer-logo"><img src="assets/img/logo.png" alt=""></div>
-                            <div class="textwidget">
-                                <p> footer about us</p>
-                            </div>
-                            <ul class="mt-3 footer-social">
-                                <li><a class="facebook" href="#"><i class="lni-facebook-filled"></i></a></li>
-                                <li><a class="twitter" href="#"><i class="lni-twitter-filled"></i></a></li>
-                                <li><a class="linkedin" href="#"><i class="lni-linkedin-fill"></i></a></li>
-                                <li><a class="google-plus" href="#"><i class="lni-google-plus"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
-                        <div class="widget">
-                            <h3 class="block-title">Quick Link</h3>
-                            <ul class="menu">
-                                <li><a href="#">- About Us</a></li>
-                                <li><a href="#">- Blog</a></li>
-                                <li><a href="#">- Events</a></li>
-                                <li><a href="#">- Shop</a></li>
-                                <li><a href="#">- FAQ's</a></li>
-                                <li><a href="#">- About Us</a></li>
-                                <li><a href="#">- Blog</a></li>
-                                <li><a href="#">- Events</a></li>
-                                <li><a href="#">- Shop</a></li>
-                                <li><a href="#">- FAQ's</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
-                        <div class="widget">
-                            <h3 class="block-title">Contact Info</h3>
-                            <ul class="contact-footer">
-                                <li>
-                                    <strong><i class="lni-phone"></i></strong><span>+1 555 444 66647 <br> +1 555 444 66647</span>
-                                </li>
-                                <li>
-                                    <strong><i class="lni-envelope"></i></strong><span><a href="http://preview.uideck.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cdaea2a3b9acaeb98da0aca4a1e3aea2a0">[email&#160;protected]</a> <br> <a href="http://preview.uideck.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d8abada8a8b7aaac98b5b9b1b4f6bbb7b5">[email&#160;protected]</a></span>
-                                </li>
-                                <li>
-                                    <strong><i class="lni-map-marker"></i></strong><span><a href="#">9870 St Vincent Place, Glasgow, DC 45 <br>Fr 45</a></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <div id="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="site-info text-center">
-                            <p><a target="_blank" href="#">The Finanzi</a></p>
-                        </div>
-                    </div>
+    <section style="mb-5">
+        <div class="container mb-5">
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-center">
+                    <a href="/services"class="btn btn-common loginfirst" style="width:300px;" >Explore Services </a>
                 </div>
             </div>
         </div>
-    </footer>
-    <a href="#" class="back-to-top">
-        <i class="lni-chevron-up"></i>
-    </a>
+    </section>
+   {% include  'footer.html.twig' %}
     {# <div id="preloader">
         <div class="loader" id="loader-1"></div>
     </div> #}
@@ -1905,4 +2212,36 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
+<script type="text/javascript">
+//  $(function () {
+    
+//     var maxL = 100;
+    
+//     $('.shortened').each(function () {
+        
+//         var text = $(this).text();
+//         if(text.length > maxL) {
+            
+//             var begin = text.substr(0, maxL),
+//                 end = text.substr(maxL);
+
+//             $(this).html(begin)
+//                 .append($('<a class="readmore"/>').html('read more...'))
+//                 .append($('<div class="hidden" />').html(end));
+                
+            
+//         }
+        
+        
+//     });
+            
+//     $(document).on('click', '.readmore', function () {
+//         $(this).next('.readmore').hide();
+//         $(this).next('.hidden').slideToggle(400);
+//     })        
+    
+    
+// })
+
+</script>
     {% endblock javascripts %}

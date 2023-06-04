@@ -590,7 +590,7 @@ a.back-to-top:focus {
 }
 
 .navbar-brand img {
-    width: 75px
+    width: 75px;
 }
 
 .top-nav-collapse {
@@ -779,7 +779,7 @@ a.back-to-top:focus {
     }
 
     .navbar-brand img {
-        width: 75%
+        width: 50px
     }
 
     .slicknav_menu {
@@ -799,7 +799,7 @@ a.back-to-top:focus {
     }
 
     .navbar-brand img {
-        width: 75%
+        width: 50px
     }
 
     #mobile-menu {
@@ -4880,7 +4880,7 @@ footer .footer-Content {
 }
 
 .footer-logo img{
-    width: 54px;
+    width: 150px;
 }
 
 .textwidget {

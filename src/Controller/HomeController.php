@@ -49,7 +49,7 @@ class HomeController extends AbstractController
      */
     public function index(PostRepository $re ,  SessionInterface $session, EventbookingRepository $eventbookingRepository, Request $request, MangereventbookingRepository $MangereventbookingRepository): Response
     {
-        $post = $re->findBy([]);
+        $post = $re->findBy(array(), array('id' => 'desc'));
 
         $basket = $session->get('basket', []);
 
