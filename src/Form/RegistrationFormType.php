@@ -104,7 +104,8 @@ class RegistrationFormType extends AbstractType
                 'choices'  => [
                      NULL => NULL,
                     'Male' => 'male',
-                    'Female' => 'female',                  
+                    'Female' => 'female',  
+                    'Others' => 'others',                
                 ],
             ])
             ->add('user_category', ChoiceType::class, [

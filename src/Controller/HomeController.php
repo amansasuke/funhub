@@ -403,6 +403,25 @@ class HomeController extends AbstractController
     }
 
     /**
+     * @Route("/buynow", name="app_buynow", methods={"GET", "POST"})
+     */
+    public function buynow(Request $request, SessionInterface $session,ProductRepository $Product): Response
+    {   
+        $addoncart = $request->request->get('addoncart'); 
+        $proid = $request->request->get('proid');
+
+        $prodetail = $Product->find($addoncart);
+
+        $basket = $session->get('basket', []);
+        $basket[$prodetail->getId()] = $prodetail;
+        $session->set('basket', $basket);
+
+        //$this->addFlash('success', 'Thank you! Successfully added to cart !');
+        //flash()->addSuccess('Thank you! Successfully added to cart !');
+        return $this->redirectToRoute('app_checkout');
+    }
+
+    /**
      * @Route("/aboutus", name="app_about")
      */
     public function aboutus(Request $request, SessionInterface $session): Response

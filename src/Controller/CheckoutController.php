@@ -36,13 +36,14 @@ use Dompdf\Dompdf;
 class CheckoutController extends AbstractController
 {
     /**
-     * @Route("/checkout")
+     * @Route("/checkout",  name="app_checkout")
      */
     public function checkout(Request $request, ProductRepository $repo, SessionInterface $session, MailerInterface $mailer, UserRepository $userR, AffiliateproductRepository $Affiliateproduct,PromoRepository $Promo, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER', null, 'User tried to access a page without having ROLE_USER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $waltebalanceold = $user->getWellet();
+       
         $userdat = $doctrine->getRepository(User::class)->find($user->getId());
         $discount=NULL;
         if (isset($_GET['promo']) && $_GET['promo'] !="" ) {
@@ -68,10 +69,15 @@ class CheckoutController extends AbstractController
                 $i++;
             }
 
-        $percentage =10;
+        $percentage =5;
         $new_width = ($percentage / 100) * $total;
         $waltebalance =  round($new_width);
-        $waltebalanceNEW= $waltebalanceold + $waltebalance;
+        if (isset($_GET['usewalet'])) {
+            $waltebalanceNEW= ($waltebalanceold - $_GET['usewalet']) + $waltebalance;
+        }else{
+            $waltebalanceNEW= $waltebalanceold + $waltebalance;
+        }
+        
 
         $order = new Order;
 
@@ -98,6 +104,7 @@ class CheckoutController extends AbstractController
 
             ->add('state', ChoiceType::class, [
                 'choices'  => [
+                    'choose state' => NULL ,
                     'Andhra Pradesh' => 'Andhra Pradesh',
                     'Andaman and Nicobar Islands' => 'Andaman and Nicobar Islands',
                     'Arunachal Pradesh' => 'Arunachal Pradesh',
@@ -135,6 +142,7 @@ class CheckoutController extends AbstractController
                     'Uttarakhand' => 'Uttarakhand',
                     'West Bengal' => 'West Bengal',
                 ],
+                'required' => true,
             ])
             
             ->add('gstno', TextType::class, [
@@ -167,6 +175,13 @@ class CheckoutController extends AbstractController
             $grossvalue= $form->get('grossvalue')->getData();
             $gstamount= $form->get('gstamount')->getData();
             $totalvalue= $form->get('totalvalue')->getData();
+            
+            
+            if (gettype($state) !='string'){
+                
+                flash()->addError ('please select state');
+                return $this->redirectToRoute("app_checkout");             
+            }
             // $createat= $form->get('createat');
             // print_r($createat);
             // die;
@@ -192,7 +207,7 @@ class CheckoutController extends AbstractController
                 $entityManager->flush();  
                 
                  // 2. Create a Twig template for the invoice
-            $invoiceHtml = $this->renderView('invoice_template.html.twig', [
+                $invoiceHtml = $this->renderView('invoice_template.html.twig', [
                 'order' => $order,
                 // add any additional data here
             ]);

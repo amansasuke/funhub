@@ -62,6 +62,8 @@ class RegistrationController extends AbstractController
     
                 }
                 $user->setImgicon($newFilename);
+            }else{
+                flash()->addError ('please upload Profile Picture');
             }
             // encode the plain password
             $user->setPassword(
