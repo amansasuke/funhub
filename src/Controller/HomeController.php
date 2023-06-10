@@ -140,7 +140,7 @@ class HomeController extends AbstractController
     
             ->add('dis', TextType::class,array(
                       'data' => ' ',
-                      'label' =>false,
+                      'label' =>'Add your query',
                       'attr' => ['placeholder' => 'Enter Your Title *'],
                       
                   ))
@@ -148,6 +148,7 @@ class HomeController extends AbstractController
              "widget" => 'single_text',
                 "format" => 'yyyy-MM-dd',
                 "data" => new \DateTime(),
+                'label' =>'Booking Date',
              ])
 
             ->add('bookingtime', TimeType::class, [
@@ -173,7 +174,7 @@ class HomeController extends AbstractController
             ->add('status', HiddenType::class, [
                     'data' => 'available',
                 ])
-            ->add('save', SubmitType::class, ['label' => 'booking'])
+            ->add('save', SubmitType::class, ['label' => 'Confirm'])
             ->getForm();
         $form->handleRequest($request);
 

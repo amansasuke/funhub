@@ -344,7 +344,7 @@ padding-top: 120px;
 }
 .card-img-top {
 /* box-shadow: 0 5px 10px rgba(0,0,0,0.5); */
-width:100% !important;
+width:60% !important;
 
 }
 .card-body{
@@ -953,7 +953,7 @@ border: 0px solid #000000;
         <div class="container">
             <div class="row" style="padding-top: 40px;">
                 <div class="col-md-6" >
-                    <div class="titlehead" style="padding-left: 15px;">
+                    <div class="titlehead" style="padding-left: 15px; padding-top: 25px;">
                         <h1 style="line-height:1.2;">Your one stop <br> destination to <br> become financially</h1>
                         <h1 class="year" id="word">Aware</h1>
                     </div>
@@ -1239,7 +1239,7 @@ border: 0px solid #000000;
                                 <div class="flip-box-back text-center" >
                                     <div class="inner color-white">
                                        <div>
-                                            <p class="shortened">Each one of our clients is assigned a private cloud space where all your financial documents and data will be stored. You can access your space anytime, anywhere in the world.nd everything else can be easily tracked on your dashboard.</p>
+                                            <p class="shortened">Each one of our clients is assigned a private cloud space where all your financial documents and data will be stored. You can access your space anytime, anywhere in the world and everything else can be easily tracked on your dashboard.</p>
                                         </div>                              
                                     </div>
                                 </div>
@@ -1377,7 +1377,7 @@ border: 0px solid #000000;
                             </h5>
                             <div class="tetx-div d-flex align-items-center">
                                 <p class="card-text">
-                                Fintastic Hub is more than your financial partner. You get exclusive access to our business community, share your experiences and achievements, network with startups and entrepreneurs and get instant updates about the evolving business world.
+                                Finanzi is more than your financial partner. You get exclusive access to our business community, share your experiences and achievements, network with startups and entrepreneurs and get instant updates about the evolving business world.
                                 </p>
                             </div>
                         </div>
@@ -1403,7 +1403,7 @@ border: 0px solid #000000;
                             </h5>
                             <div class="tetx-div d-flex align-items-center">
                                 <p class="card-text">
-                                We make every penny count. With FH, you unlock the hidden opportunities to grow your business, speed up your profit maximization and leverage investments with our expert guidance.
+                                We make every penny count. With Finanzi, you unlock the hidden opportunities to grow your business, speed up your profit maximization and leverage investments with our expert guidance.
                                 </p>
                             </div>
                         </div>
@@ -1458,7 +1458,7 @@ border: 0px solid #000000;
             </div>
         </div>
     </section>
-    <section class="cta section-padding" id="intro">
+    <section class="cta " id="intro" style="padding-top:60px;">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -1491,41 +1491,21 @@ border: 0px solid #000000;
                             <div class="logoimg d-flex align-items-center justify-content-center" style="padding:0px 0px;  ">
                                 <img src="assets/img/background/Logo5_resized.png" >               
                             </div>
+                        </div>  
+
+                        <div class="item" >
+                            <div class="logoimg d-flex align-items-center justify-content-center" style="padding: 0px 0px;">
+                                <img src="assets/img/background/Logo6_resized.png" >               
+                            </div>
+                        </div>
+                        
+                        <div class="item" style="">
+                            <div class="logoimg d-flex align-items-center justify-content-center" style="padding: 0px 0px;">
+                                <img src="assets/img/background/Logo7_resized.png" >               
+                            </div>
                         </div>                        
                         
                     </div>
-                    {# <div class="row">
-                        <div class="col-4 text-center">
-                            <div class="logoimg" style="padding:0px 0px;  ">
-                                <img src="assets/img/background/Logo1.png" >
-                                
-                            </div>
-                        </div>
-                        <div class="col-4 text-center">
-                            <div class="logoimg" style="padding:0px 0px;  ">
-                                <img src="assets/img/background/Logo2.png" >
-                            </div>
-                        </div>
-                        <div class="col-4 text-center">
-                            <div class="logoimg" style="padding:0px 0px;  ">
-                                <img src="assets/img/background/logo3.png" >
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-top: 30px;">
-                        <div class="col-6 text-center">
-                            <div class="logoimg" style="padding:0px 0px;  ">
-                                <img src="assets/img/background/Logo4.png" >                               
-                            </div>
-                        </div>
-                        <div class="col-6 text-center">
-                            <div class="logoimg" style="padding:0px 0px;  ">
-                                <img src="assets/img/background/Logo5.png" style="width:500px;" >
-                                
-                            </div>
-                        </div>
-                    </div> #}
                 </div>
             </div>
         </div>
@@ -1593,9 +1573,9 @@ border: 0px solid #000000;
                                 </div>
                             </div>
 
-                            <div class="col-md-12" style="display:flex; justify-content: center;">
+                            <div class="col-md-12" style="display:flex; justify-content: center; padding-top:20px;">
 
-                                <button type="submit" id="submit" class="btn btn-common">Submit Now</button>
+                                <button type="submit" id="submit" class="btn btn-common">Confirm</button>
                             </div>
                         </div>
                     </form>
@@ -1612,7 +1592,7 @@ border: 0px solid #000000;
                                 <div class="row">
                                     <div class="col-md-12 ">
                                         <div class="form-group col-md-8 mx-auto">
-                                            {{ form_row(form.dis,{'attr': {'class': 'form-control event dis'}}) }}
+                                            {{ form_row(form.dis,{'attr': {'class': 'form-control event dis','placeholder':'Massage'}}) }}
                                             {# <textarea class="form-control" placeholder="Massage" rows="7" data-error="Write your message" required></textarea>
                                             <div class="help-block with-errors"></div> #}
                                         </div>
@@ -1644,7 +1624,7 @@ border: 0px solid #000000;
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 ">
+                            <div class="col-md-12 " style="padding-top: 20px;">
                                 {% if app.user %}
                                 {{ form_row(form.save,{'attr': {'class': 'btn btn-primary loginfirst'}}) }}
                                 {% else %}
@@ -1820,7 +1800,7 @@ border: 0px solid #000000;
                                 <summary>What types of businesses do you work with?</summary>
                                 
                                     <p>
-                                        We work with startups, freelancers and entrepreneurs all over India across multiple industries including <b>insert 2-3 big industries served</b>                                    
+                                        We work with startups, freelancers and entrepreneurs all over India across multiple industries including e-commerce, retail, non-profit, logistics, manufacturing etc.                                    
                                         You can also track the status of service on real time basis from your Finanzi dashboard. We ensure every service is completed in least possible time
                                     </p>
                                
@@ -1828,13 +1808,13 @@ border: 0px solid #000000;
                             <details class='tab-control'>
                                 <summary>What is the business club? Should I become a member to avail your services?</summary>                                
                                     <p>
-                                        Our affiliate program is open to everyone! As an affiliate, you can earn a commission as high as 30% when your referral purchases a service from us and set up a passive source of income.<a href=""> Click here </a>to join.</b>
+                                        You can cancel any time before the service work is started. In case if you have prepaid for the year your subscription will continue until the end of your billing cycle. If you decide not to renew after the year is over, you can let us know in advance and we’ll stop billing you for the next cycle.
                                     </p>                                
                             </details>
                             <details class='tab-control'>
-                                <summary>How can I become an affiliate? What are the benefits?</summary>                              
+                                <summary>What is the cancellation policy? What if I prepaid for the year?</summary>                              
                                     <p>
-                                        Our affiliate program is open to everyone! As an affiliate, you can earn a commission as high as 30% when your referral purchases a service from us and set up a passive source of income.<a href=""> Click here </a>to join.</b>
+                                        Our affiliate program is open to everyone! As an affiliate, you can earn a commission as high as 20% when your referral purchases a service from us and set up a passive source of income.<a href="/affiliated"> Click here </a>to join.</b>
                                     </p>                                
                             </details>
                             <details class='tab-control'>
