@@ -19,7 +19,7 @@
     {% endblock %}
     
 <body>
-    <div class="page-header" style="background: url({{ asset('assets/img/banner1.jpg')}});">
+    {# <div class="page-header" style="background: url({{ asset('assets/img/banner1.jpg')}});">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -33,13 +33,13 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div id="content" class="section-padding">
+    </div> #}
+    <div id="content" class="section-padding" style="padding-top:104px;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-xs-12">
                     <div class="blog-post single-post">
-                        <div class="post-thumb">
+                        <div class="post-thumb" style="text-align: center;">
                             <a href="#"><img class="img-fluid" src="{{ asset("images/thumbnails/")}}{{post.thumbnail}} "alt=""></a>
                             <div class="hover-wrap">
                             </div>
@@ -154,12 +154,13 @@
                         <h4 class="widget-title">All Categories</h4>
                         <ul class="categories-list">
                             {% for Categorys in Category %}
-                                <li>
-                                    <a href="#">
-                                        {# <i class="lni-dinner"></i> #}
-                                        {{Categorys.name}}<span class="category-counter"></span>
-                                    </a>
-                                </li>
+                                {% if Categorys.name != 'Services built' %}
+                                    <li>                                
+                                        <a href="#">
+                                            {{Categorys.name}}<span class="category-counter"></span>
+                                        </a>                                    
+                                    </li>
+                                {% endif %}
                             {% endfor %}
                             
                         </ul>

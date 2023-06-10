@@ -954,7 +954,7 @@ border: 0px solid #000000;
             <div class="row" style="padding-top: 40px;">
                 <div class="col-md-6" >
                     <div class="titlehead" style="padding-left: 15px;">
-                        <h1 style="line-height:1.5;">Your one stop <br> destination to <br> become financially</h1>
+                        <h1 style="line-height:1.2;">Your one stop <br> destination to <br> become financially</h1>
                         <h1 class="year" id="word">Aware</h1>
                     </div>
                 </div>
@@ -1014,7 +1014,7 @@ border: 0px solid #000000;
                     <div class="row" style="padding-top:25px">
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 text-center">
                             <div style="padding:0px 0px;  ">
-                                <a href="/blogs/5">
+                                <a href="/blogs/4">
                                     <img src="assets/img/background/Icon1.png" height="120px;">
                                     <h5>Book Keeping</h5>
                                 </a>
@@ -1022,7 +1022,7 @@ border: 0px solid #000000;
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 text-center">
                             <div style="padding:0px 0px;  ">
-                                <a href="/blogs/7">
+                                <a href="/blogs/6">
                                     <img src="assets/img/background/Icon2.png" height="120px;">
                                     <h5>Business Licenses</h5>
                                 </a>
@@ -1030,21 +1030,25 @@ border: 0px solid #000000;
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
                             <div style="padding:0px 0px;  ">
+                            <a href="/blogs/8">
                                 <img src="assets/img/background/icon3.png" height="120px;">
                                 <h5>Taxation</h5>
+                            </a>
                             </div>
                         </div>
                     </div>
                     <div class="row" style="padding-top:25px">
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
                             <div style="padding:0px 0px;  ">
+                            <a href="/blogs/6">
                                 <img src="assets/img/background/Icon4.png" height="120px;">
                                 <h5>Statutory <br> Compliances</h5>
+                                </a>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
                             <div style="padding:0px 0px;  ">
-                                 <a href="/blogs/6">
+                                 <a href="/blogs/5">
                                     <img src="assets/img/background/icon5.png" height="120px;">
                                     <h5>Virtual <br> CFO</h5>
                                 </a>
@@ -1757,28 +1761,30 @@ border: 0px solid #000000;
                 </div>
             <div class="row">
                 {% for posts in post %}
-                <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
-                    <div class="blog-item-wrapper">
-                        <div class="blog-item-img">
-                            <a href="blogs/{{posts.id}}">
-                                <img src="images/thumbnails/{{posts.thumbnail}}" alt="">
-                            </a>
-                        </div>
-                        <div class="blog-item-text">
-                            <div class="meta-tags">
-                                <span class="user float-left"><a href="#"><i class="lni-user"></i> {{ posts.category }}</a></span>
-                                <span class="date float-right"><i class="lni-calendar"></i> </span>
+                    {% if posts.category != 'Services built' %}                    
+                        <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
+                            <div class="blog-item-wrapper">
+                                <div class="blog-item-img">
+                                    <a href="blogs/{{posts.id}}">
+                                        <img src="images/thumbnails/{{posts.thumbnail}}" alt="">
+                                    </a>
+                                </div>
+                                <div class="blog-item-text">
+                                    <div class="meta-tags">
+                                        <span class="user float-left"><a href="#"><i class="lni-user"></i> {{ posts.category }}</a></span>
+                                        <span class="date float-right"><i class="lni-calendar"></i> </span>
+                                    </div>
+                                    <h3>
+                                        <a href="blogs/{{posts.id}}"> {{ posts.title}}</a>
+                                    </h3>
+                                    <p>
+                                        {{ posts.content| raw}}
+                                    </p>
+                                    <a href="blogs/{{posts.id}}" class="btn btn-common">Read More</a>
+                                </div>
                             </div>
-                            <h3>
-                                <a href="blogs/{{posts.id}}"> {{ posts.title}}</a>
-                            </h3>
-                            <p>
-                                {{ posts.content| raw}}
-                            </p>
-                            <a href="blogs/{{posts.id}}" class="btn btn-common">Read More</a>
                         </div>
-                    </div>
-                </div>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>

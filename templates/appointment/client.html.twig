@@ -324,8 +324,9 @@
                                                                 <td>{{ appointment.id }}</td>
                                                                 <td>
                                                                     {% for users in user %}
+                                                                    {{appointment.ClientId}}
                                                                     {% if users.id == appointment.ClientId %}
-                                                                    {{ users.name }}
+                                                                    {{ users.id }}
                                                                     {% endif %}
                                                                     {% endfor %}
                                                                 </td>
