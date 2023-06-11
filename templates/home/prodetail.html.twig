@@ -87,7 +87,7 @@ ol>li::before {
 ol>li:nth-child(10n+1):before {}
 
 ol>li+li {
-    margin-top: 2rem;
+    margin-top: 0.2rem;
 }
 
 .btn-newadd {
@@ -222,7 +222,7 @@ details[open] summary:after {
                                 <span><a href="#"><i class="lni-eye"></i> 99 Buyrs</a></span>
                                 <!-- <span><a href="#"><i class="lni-eye"></i> 299 View</a></span> -->
                             </div>
-                            <p class="mb-4">{{prodetail.description| raw}}</p>
+                            {{prodetail.description| raw}}
                             <!--  <h4 class="title-small mb-3">Specification:</h4>
                             <ul class="list-specification">
                                 <li><i class="lni-check-mark-circle"></i> 256GB PCIe flash storage</li>
@@ -238,7 +238,7 @@ details[open] summary:after {
                                 Up for sale we have a vintage Raleigh Sport Men’s Bicycle. This bike does have some general wear and surface corrosion on some of the parts but is overall in good shape. It has been checked out and does work. Brakes and gears work. Seat is fully intact. Frame and fenders are in nice shape with minimal wear. A few minor dents in the fenders but most of the paint is intact.
                             </p> -->
                         </div>
-                        <div class="staff-inner" style="padding:20px 0px;">
+                        <div class="staff-inner" style="">
                             <form method="post">
                                 {% if inBasket %}
                                 <a href="../cart" class="btn btn-newadd btn-lg " style="width:100%" disabled>Go to cart</a>
@@ -251,6 +251,9 @@ details[open] summary:after {
                                 <input type="hidden" name="addoncart" value="{{prodetail.id}}">
                                 <button class="btn btn-common btn-lg " style="width:100%; margin-top: 10px;" >BUY NOW</button>
                              </form>
+                        </div>
+                        <div class="staff-inner" style="text-align: center;">
+                            <img src="/assets/img/background/Servicesing.png" alt="" style="width:500px">
                         </div>
                         <!-- <div class="tag-bottom">
                             <div class="float-left">
