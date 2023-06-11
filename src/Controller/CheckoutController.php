@@ -250,7 +250,11 @@ class CheckoutController extends AbstractController
                 foreach ($basket as $product) {
                     $producname = $product->getName();
                     $producprice = $product->getPrice();
-                    $getService = $product->getService()->getServicesname();
+
+                    $orderpro = $repo->find($product->getId());
+                    
+                    $getService = $orderpro->getService()->getServicesname();
+                    
                     $orderuserid = $user->getId();
                     $affiliateuser = $user->getRedId();
 

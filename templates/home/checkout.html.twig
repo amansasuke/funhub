@@ -541,7 +541,7 @@
                             <button class="btn btn-common btn-search" type="button">Search Now</button>
                         </form>
                         <div class="description">
-                            <span>Or Goto <a href="{{path('app_home')}}">Homepage</a></span>
+                            <span>Or Goto <a href="#">Homepage</a></span>
                         </div>
                     </div>
                 </div>
@@ -555,12 +555,13 @@
     <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 </body>
 <script>
+
 $('#gst').append('IGST 18%');
 $('#price').append('₹{{ gsttotal| number_format }}.00');
 $("#form_state").change(function(){
     len = this.value ;
     document.getElementById("nameofid").value = len;
-    if(len == 'Uttarakhand'){
+    if(len == '35'){
         $("#gst").empty();
         $("#price").empty();
         $('#gst').append('CGST 9%<br> SGST 9%');
