@@ -53,16 +53,20 @@ class AppointmentController extends AbstractController
     /**
      * @Route("/clientappointment", name="app_client_appointment", methods={"GET"})
      */
-    public function clientindex(AppointmentRepository $appointmentRepository, UserRepository $userR): Response
+    public function clientindex(AppointmentRepository $appointmentRepository, ManagerRegistry $doctrine, UserRepository $userR): Response
     {
         $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
         $manger = $this->get('security.token_storage')->getToken()->getUser();
         $manger->getUsername();
         $users = $userR->findBy([]);
 
+        $order = $doctrine->getRepository(Order::class)->findBy([]);
+
+
         return $this->render('appointment/client.html.twig', [
             'appointments' => $appointmentRepository->findBy(array('MangerID'=>$manger->getId())),
             'user'=>$users,
+            'order'=> $order,
         ]);
     }
 
