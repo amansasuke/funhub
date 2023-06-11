@@ -327,6 +327,7 @@ class DashboardController extends AbstractController
             ->add('imgicon', FileType::class, array(
                 'data_class' => null,
                 'required' => false,
+                'label' => '',
                 ))
             
             ->add('save', SubmitType::class, ['label' => 'Update Profile'])
@@ -354,6 +355,10 @@ class DashboardController extends AbstractController
                         $user->setImgicon($newFilename);
                         $entityManager->persist($user);
                         $entityManager->flush();
+                    }else{
+                       $entityManager = $this->getDoctrine()->getManager();
+                        $entityManager->persist($user);
+                        $entityManager->flush(); 
                     }
                     flash()->addSuccess('Thank you! profile update successfully');
                    // $this->addFlash('success', 'Thank you! profile update successfully');

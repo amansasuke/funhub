@@ -1466,7 +1466,7 @@ border: 0px solid #000000;
                         <h1>Powered by the <span>BEST.</span> </h1>
                     </div>
                     <div id="logosdiv" class="owl-carousel">
-                        <div class="item">
+                        <div class="item" style="height: 272px;">
                             <div class="logoimg d-flex align-items-center justify-content-center" style="padding:0px 0px;  ">
                                 <img src="assets/img/background/Logo1_resized.png" >               
                             </div>
@@ -1729,11 +1729,46 @@ border: 0px solid #000000;
                                 </div>
                             </div>
                         </div>
+                        <div class="item">
+                            <div class="item">
+                                
+                                <div class="img-thumb">
+                                   <a href="#" class="video-btn" data-toggle="modal" data-src="https://www.youtube.com/embed/immbOqvDLYY" data-target="#video_pop"> <img src="assets/img/testimonial/icon.png" alt="" style="width:80px;"></a>
+                                </div>
+                                <div class="testimonial-item">
+                                    <div class="content">
+                                        <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
+                                        <div class="info-text">
+                                            <h2><a href="#">Priyanka</a></h2>
+                                            <h4><a href="#">CEO of Dropbox</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+      <!-- POPUP -->
+        <div class="modal fade" id="video_pop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:100px">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-body">        
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                   </button>        
+                   <!-- 16:9 aspect ratio -->
+                   <div class="embed-responsive embed-responsive-16by9">
+                     <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always"></iframe>
+                   </div>                
+             </div>        
+           </div>
+         </div>
+        </div>
+
+
     <section id="blog" class="section-padding">
         <div class="container">                
             <div class="titlehead" style="text-align:right;">
@@ -1806,13 +1841,13 @@ border: 0px solid #000000;
                                
                             </details>
                             <details class='tab-control'>
-                                <summary>What is the business club? Should I become a member to avail your services?</summary>                                
+                                <summary>What is the cancellation policy? What if I prepaid for the year?</summary>                                
                                     <p>
                                         You can cancel any time before the service work is started. In case if you have prepaid for the year your subscription will continue until the end of your billing cycle. If you decide not to renew after the year is over, you can let us know in advance and we’ll stop billing you for the next cycle.
                                     </p>                                
                             </details>
                             <details class='tab-control'>
-                                <summary>What is the cancellation policy? What if I prepaid for the year?</summary>                              
+                                <summary>How can I become an affiliate? What are the benefits?</summary>                              
                                     <p>
                                         Our affiliate program is open to everyone! As an affiliate, you can earn a commission as high as 20% when your referral purchases a service from us and set up a passive source of income.<a href="/affiliated"> Click here </a>to join.</b>
                                     </p>                                
@@ -1836,6 +1871,7 @@ border: 0px solid #000000;
                 </div>
             </div>
         </div>
+  
     </section>
     <section class="counter-section section-padding">
         <div class="container">
@@ -1902,6 +1938,29 @@ border: 0px solid #000000;
     {% endblock %}
     {% block javascripts %}
     <script type="text/javascript">
+
+       $(document).ready(function() {  
+     // Gets the video src from the data-src on each button    
+     var $videoSrc;  
+     $('.video-btn').click(function() {
+       $videoSrc = $(this).data( "src" );      
+     });
+     //console.log($videoSrc);  
+       
+     // when the modal is opened autoplay it  
+     $('#video_pop').on('shown.bs.modal', function (e) {
+       
+     // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+     $("#video").attr('src',$videoSrc + "?rel=0&amp;showinfo=0&amp;modestbranding=1&amp;autoplay=1" ); 
+     })
+       // stop playing the youtube video when I close the modal
+     $('#video_pop').on('hide.bs.modal', function (e) {
+       $("#video").attr('src',$videoSrc); 
+     }) 
+   
+    }); 
+
+
     $(document).ready(function() {
         setInterval(function() {
             console.log('#sizedModalLg.show()');
