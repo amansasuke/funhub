@@ -252,7 +252,7 @@ class CheckoutController extends AbstractController
                     $producprice = $product->getPrice();
 
                     $orderpro = $repo->find($product->getId());
-                    
+
                     $getService = $orderpro->getService()->getServicesname();
                     
                     $orderuserid = $user->getId();
@@ -265,9 +265,9 @@ class CheckoutController extends AbstractController
                         
                         }
                       if ($waltebalanceold == 0) {
-                            $percentage =20;
-                        }else{
                             $percentage =10;
+                        }else{
+                            $percentage =5;
                         }
                     $date = new \DateTime('@'.strtotime('now'));
 

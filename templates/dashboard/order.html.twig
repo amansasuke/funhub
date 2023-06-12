@@ -40,40 +40,40 @@
                             
                             <!-- Modal -->                            
                             {% for appointment in appointments %}
-                            {% if appointment.Clientid ==  ord.id %}
-                            {% if appointment.ClientStatus !="submit" %}
-                            <h5>Call Availability </h5>
-                            <table>
-                                <tr>
-                                    <th>Start Date :</th>
-                                    <td>{{ appointment.StartDate ? appointment.StartDate|date('d-m-Y') : '' }} to
-                                        {{ appointment.EndDate ? appointment.EndDate|date('d-m-Y') : '' }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Start Time :</th>
-                                    <td>{{ appointment.StartTime ? appointment.StartTime|date('h:i A') : '' }} - {{ appointment.EndTime ? appointment.EndTime|date('h:i A') : '' }}</td>
-                                </tr>
-                            </table>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter{{ord.id}}">
-                                Book an Appointment
-                            </button>
-                                {% include '/dashboard/apoointmodal.html.twig' %}
-                            {% else %}
-                            <h5>Call Schedule  </h5>
-                            <table>
-                                <tr>
-                                    <th>Start Date :</th>
-                                    <td>{{ appointment.clientStartDate ? appointment.ClientStartDate|date('d-m-Y') : '' }} 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Start Time :</th>
-                                    <td>{{ appointment.clientStartTime ? appointment.clientStartTime|date('h:i A') : '' }} - {{ appointment.clientEndTime ? appointment.clientEndTime|date('h:i A') : '' }}</td>
-                                </tr>
-                            </table>
-                            {% endif %}
-                            {% endif %}
+                                {% if appointment.Clientid ==  ord.id %}
+                                    {% if appointment.ClientStatus !="submit" %}
+                                        <h5>Call Availability </h5>
+                                        <table>
+                                            <tr>
+                                                <th>Start Date :</th>
+                                                <td>{{ appointment.StartDate ? appointment.StartDate|date('d-m-Y') : '' }} to
+                                                    {{ appointment.EndDate ? appointment.EndDate|date('d-m-Y') : '' }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Start Time :</th>
+                                                <td>{{ appointment.StartTime ? appointment.StartTime|date('h:i A') : '' }} - {{ appointment.EndTime ? appointment.EndTime|date('h:i A') : '' }}</td>
+                                            </tr>
+                                        </table>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter{{ord.id}}">
+                                            Book an Appointment
+                                        </button>
+                                        {% include '/dashboard/apoointmodal.html.twig' %}
+                                    {% else %}
+                                        <h5>Call Schedule  </h5>
+                                        <table>
+                                            <tr>
+                                                <th>Start Date :</th>
+                                                <td>{{ appointment.clientStartDate ? appointment.ClientStartDate|date('d-m-Y') : '' }} 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Start Time :</th>
+                                                <td>{{ appointment.clientStartTime ? appointment.clientStartTime|date('h:i A') : '' }} - {{ appointment.clientEndTime ? appointment.clientEndTime|date('h:i A') : '' }}</td>
+                                            </tr>
+                                        </table>
+                                    {% endif %}
+                                {% endif %}
                             {% endfor %}
                         </div>
                         {# appointmrnt #}
@@ -357,12 +357,12 @@
                         {% endif %}
                         {% endfor %}
                     </div>
-                    <div class="tracking-item-pending">
-                        <div class="tracking-icon status-intransit">
+                    <div class="tracking-item-pending" style="border: none">
+                        {# <div class="tracking-icon status-intransit">
                             <svg class="svg-inline--fa fa-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
                                 <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path>
                             </svg>
-                        </div>
+                        </div> #}
                         <div class="tracking-date"><img src="assets\img\logo\feedback.png" height="40px" class="img-responsive" alt="order-placed" /></div>
                         <div class="tracking-content">Feedback</div>
                         <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal{{ord.id}}">Submit your Feedback </button>

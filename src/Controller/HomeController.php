@@ -525,7 +525,7 @@ class HomeController extends AbstractController
             $Feed[$i]['disreviwe'] = $value->getDisreviwe();
             $Feed[$i]['reating'] = $value->getReating();
             $Feed[$i]['proname'] = $value->getProname();
-            $userdat = $doctrine->getRepository(User::class)->find($value->getId());
+            $userdat = $doctrine->getRepository(User::class)->find($value->getUserid());
             if (!empty($userdat)) {
                 $Feed[$i]['username'] = $userdat->getName();
                 $Feed[$i]['icon'] = $userdat->getImgicon();

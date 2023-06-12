@@ -620,7 +620,7 @@ details[open] summary:after {
 .buyhead{
     display: flex;
     align-items: center;
-    border: 1px solid #b1acac;
+    /* border: 1px solid #b1acac; */
     box-shadow: 0 0 15px rgba(143, 143, 143, .18);
 
 }
@@ -932,6 +932,9 @@ border: 0px solid #000000;
     top: -114px;
     left: 0;
 }
+.modal-dialog {max-width: 700px;margin: 130px auto;}
+.modal-body {position:relative;padding:0px;}
+.close {position:absolute;right:-30px;top:0;z-index:999;font-size:32px;font-weight: normal;color:#32be8f;opacity:1;background:white;}
 
     </style>
 {% endblock %}
@@ -1647,6 +1650,29 @@ border: 0px solid #000000;
             </div>
         </div>
     </section>
+
+
+ <!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>        
+        <!-- 16:9 aspect ratio -->
+          <div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="" id="video" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
     <section class="testimonial section-padding">
         <div class="container">
             <div class="row">    
@@ -1738,8 +1764,8 @@ border: 0px solid #000000;
                         <div class="item">
                             <div class="item">
                                 
-                                <div class="img-thumb">
-                                   <a href="#" class="video-btn" data-toggle="modal" data-src="https://www.youtube.com/shorts/b6URAYhlFYY" data-target="#video_pop"> <img src="assets/img/testimonial/icon.png" alt="" style="width:80px;"></a>
+                                <div class="img-thumb">                            
+                                   <a href="#" class="video-btn" data-toggle="modal" data-src="https://www.youtube.com/embed/qK2947tj4BM" data-target="#myModal"> <img src="assets/img/testimonial/icon.png" alt="" style="width:80px;"></a>
                                 </div>
                                 <div class="testimonial-item">
                                     <div class="content">
@@ -1752,6 +1778,25 @@ border: 0px solid #000000;
                                 </div>
                             </div>
                         </div>
+
+                        <div class="item">
+                            <div class="item">
+                                
+                                <div class="img-thumb">                            
+                                   <a href="#" class="video-btn" data-toggle="modal" data-src="https://www.youtube.com/embed/b6URAYhlFYY" data-target="#myModal"> <img src="assets/img/testimonial/icon.png" alt="" style="width:80px;"></a>
+                                </div>
+                                <div class="testimonial-item">
+                                    <div class="content">
+                                        <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
+                                        <div class="info-text">
+                                            <h2><a href="#">Priyanka</a></h2>
+                                            <h4><a href="#">CEO of Dropbox</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -1944,7 +1989,24 @@ border: 0px solid #000000;
     {% endblock %}
     {% block javascripts %}
     <script type="text/javascript">
-
+    $(document).ready(function() {
+// get video source from data-src button
+var $videoSrc;  
+$('.video-btn').click(function() {
+    $videoSrc = $(this).data( "src" );
+});
+console.log($videoSrc);
+// autoplay video on modal load  
+$('#myModal').on('shown.bs.modal', function (e) {
+// youtube iframe configuration and settings
+$("#video").attr('src',$videoSrc + "?autoplay=1&rel=0&controls=1&loop=1&modestbranding=1"); 
+})
+// stop playing the youtube video when modal closed
+$('#myModal').on('hide.bs.modal', function (e) {
+    // stop video
+    $("#video").attr('src',$videoSrc); 
+}) 
+});
        $(document).ready(function() {  
      // Gets the video src from the data-src on each button    
      var $videoSrc;  
