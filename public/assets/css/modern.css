@@ -12975,12 +12975,12 @@ a.text-tertiary:hover {
 }
 
 .breadcrumb-item a {
-    color: #dee2e6;
+    color: black;
     font-weight: 400
 }
 
 .breadcrumb-item.active {
-    color: #fff;
+    color: black;
     font-weight: 500
 }
 
@@ -14021,7 +14021,8 @@ a.card {
 
 .header-title {
     font-size: 1.64062rem;
-    color: #fff
+    color: black;
+    text-shadow: 2px 2px #fff;
 }
 
 .header-subtitle {
@@ -14393,7 +14394,7 @@ a.card {
 }
 
 .navbar-theme .navbar-nav .nav-link {
-    color: #5bb7c5;
+    color: #fff;
 }
 
 .navbar-theme .navbar-nav .nav-link:focus,
@@ -14409,7 +14410,7 @@ a.card {
 .navbar-theme .navbar-nav .nav-link.active,
 .navbar-theme .navbar-nav .nav-link.show,
 .navbar-theme .navbar-nav .show>.nav-link {
-    color: #5bb7c5;
+    color: #fff;
 }
 
 .navbar-theme .navbar-toggler {

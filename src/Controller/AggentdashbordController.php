@@ -22,6 +22,7 @@ use App\Repository\OrderdocRepository;
 use App\Entity\Orderdoc;
 use App\Entity\User;
 use App\Repository\UserRepository;
+use App\Repository\DocforproRepository;
 
 class AggentdashbordController extends AbstractController
 {
@@ -57,10 +58,33 @@ class AggentdashbordController extends AbstractController
     /**
      * @Route("/submitdoc/{id}", name="app_submitdoc" )
      */
-    public function submitdoc($id,ManagerRegistry $doctrine, OrderdocRepository $Orderdoc): Response
+    public function submitdoc($id,ManagerRegistry $doctrine, OrderdocRepository $Orderdoc,DocforproRepository $docforpro): Response
     {
         //$this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_staff');
         $Orderdoc = $Orderdoc->findBy([]);
+
+        
+        $order = $doctrine->getRepository(Order::class)->findBy(
+            ['id' => $id],  array('id' => 'desc')
+        );
+        
+        foreach($order as $orderid){
+            $pro = $orderid->getProducts()->getId();      
+            echo "<br>";
+        }
+        $docforpro = $docforpro->findBy(['proinfo' => $pro],  array('id' => 'desc'));
+
+        $rqedoc =[];
+        $j=0;
+        foreach($docforpro as $dof){
+            foreach ($dof->getNewdocinfo() as $key => $value) {
+                $rqedoc[$j]['name']=$value->getName();
+                $j++;
+            }
+            
+        }
+        print_r($rqedoc);
+       // die;
 
         $sunmitdoc =[];
         $i = 0;
@@ -81,6 +105,7 @@ class AggentdashbordController extends AbstractController
 
         return $this->render('manger/orderdoc.html.twig', [
             'sunmitdoc' => $sunmitdoc,
+            'docforpro' => $rqedoc,
         ]);
     }
 

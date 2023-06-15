@@ -582,7 +582,9 @@ hr.new2 {
                                 <div class="card-body">
                                     <div class="dashboard-wrapper">
                                         {{ include('doc_for_client/_form.html.twig') }}
-                                        <a href="{{ path('app_doc_for_client_index') }}">back to list</a>
+                                        {% if app.request.get('userid') %}
+                                        <a href="{{ path('app_userorder', {'id': app.request.get('userid')}) }}">back to list</a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

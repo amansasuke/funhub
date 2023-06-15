@@ -19,6 +19,10 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+
 
 use App\Repository\AssignGroupRepository;
 use App\Repository\AssignGroupUserRepository;
@@ -73,7 +77,7 @@ class AppointmentController extends AbstractController
     /**
      * @Route("/new", name="app_appointment_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, AppointmentRepository $appointmentRepository,ManagerRegistry $doctrine,AssignGroupRepository $assignGroup, UserRepository $userR): Response
+    public function new(Request $request, AppointmentRepository $appointmentRepository,ManagerRegistry $doctrine,AssignGroupRepository $assignGroup, UserRepository $userR, MailerInterface $mailer): Response
     {
         $this->denyAccessUnlessGranted('ROLE_MANGER', null, 'User tried to access a page without having ROLE_MANGER');
          $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -192,7 +196,23 @@ class AppointmentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $ClientId = $form->get('ClientId')->getData(); 
+
+            $getorder= $doctrine->getRepository(Order::class)->findById($ClientId);
+
+            
             $appointmentRepository->add($appointment, true);
+
+            foreach ($getorder as $key => $value) {
+               
+                $email = (new TemplatedEmail())
+                ->from('amansharmasasuke@gmail.com') //;
+                ->to(new Address($value->getEmail()))
+                ->subject('Onbording Call')
+                ->htmlTemplate('emails/onboadcall.html.twig')
+                ->context(['orderId' => $value->getId()]);
+                $mailer->send($email);
+            }
 
             return $this->redirectToRoute('app_appointment_index', [], Response::HTTP_SEE_OTHER);
         }

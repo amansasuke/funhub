@@ -303,117 +303,129 @@
                                 </div> #}
                                 <div class="card-body">
                                     <div class="dashboard-wrapper">
-                                <table class="rwd-table">
-                                    <tbody>
-                                        <tr>                                          
-                                            <th>order Id</th>
-                                            <th>Doc Name</th>
-                                            <th>View Doc</th>
-                                            <th>Status</th>
-                                            <th>Remark</th>
-                                            <th>Edit Status</th>                                        
-                                        </tr>
-                                    {% if sunmitdoc|length > 0 %}
-                                        
-                                        {% for doc in sunmitdoc %}
-                                        <tr data-category="active">
-                                            <td>
-                                             {{doc.id}}
-                                            </td>
-                                          
-                                            <td data-title="Title">
-                                                {{doc.docname}}
-                                            </td>
-                                            <td>
-                                            <div class="btns-actions" style="min-width:0px;">
-                                                <a href="{{ asset("uploads/brochures/")}}{{doc.doclink}}" target="_blank" class="btn btn-info btn-view" style="z-index: 999;"><i class="lni-eye"></i></a>
-                                            </div>
-                                            </td>
-                                            <td data-title="Title">
-                                           
-                                            {% if doc.docstatus == 0 %}
-                                                <span class="badge badge-danger" style="color:#ffff;font-size: 14px;padding: 10px;">padding</span>
-                                            {% endif %}
-                                            {% if doc.docstatus == 1 %}
-                                                <span class="badge badge-success" style="color:#ffff;font-size: 14px;padding: 10px;">Done</span>
-                                            {% endif %}
-                                            {% if doc.docstatus == 2 %}
-                                                <span class="badge badge-warning" style="color:#ffff;font-size: 14px;padding: 10px;">Again</span>
-                                            {% endif %}
-        
-                                            </td>
-                                            <td data-title="Title">
-                                            {{  doc.remark }}
-                                            {% if doc.remark =='submitdoc'  %}
-                                            <div class="btns-actions">
-                                                <a href="#" target="_blank" class="btn btn-common" style="z-index: 999;">Upload</a>
-                                            </div>
-                                            {% endif %}    
-                                            </td>
-                                            <td data-title="Title">
-                                                {# <div class="btns-actions">
-                                                    <a href="../editorder/{{doc.docid}}" target="_blank" class="btn btn-success" style="z-index: 999;">Edit</a>
-                                                </div>  #}
-                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#orderstatus{{doc.docid}}" style="color:#fff; width:80px;" >
-                                                    Edit
-                                                </button>  
+                                        <table class="rwd-table">
+                                            <tbody>
+                                                <tr>                                          
+                                                    <th>order Id</th>
+                                                    <th>Doc Name</th>
+                                                    <th>View Doc</th>
+                                                    <th>Status</th>
+                                                    <th>Remark</th>
+                                                    <th>Edit Status</th>                                        
+                                                </tr>
+                                            {% if sunmitdoc|length > 0 %}
+                                                
+                                                {% for doc in sunmitdoc %}
+                                                <tr data-category="active">
+                                                    <td>
+                                                    {{doc.id}}
+                                                    </td>
+                                                
+                                                    <td data-title="Title">
+                                                        {{doc.docname}}
+                                                    </td>
+                                                    <td>
+                                                    <div class="btns-actions" style="min-width:0px;">
+                                                        <a href="{{ asset("uploads/brochures/")}}{{doc.doclink}}" target="_blank" class="btn btn-info btn-view" style="z-index: 999;"><i class="lni-eye"></i></a>
+                                                    </div>
+                                                    </td>
+                                                    <td data-title="Title">
+                                                
+                                                    {% if doc.docstatus == 0 %}
+                                                        <span class="badge badge-danger" style="color:#ffff;font-size: 14px;padding: 10px;">padding</span>
+                                                    {% endif %}
+                                                    {% if doc.docstatus == 1 %}
+                                                        <span class="badge badge-success" style="color:#ffff;font-size: 14px;padding: 10px;">Done</span>
+                                                    {% endif %}
+                                                    {% if doc.docstatus == 2 %}
+                                                        <span class="badge badge-warning" style="color:#ffff;font-size: 14px;padding: 10px;">Again</span>
+                                                    {% endif %}
+                
+                                                    </td>
+                                                    <td data-title="Title">
+                                                    {{  doc.remark }}
+                                                    {% if doc.remark =='submitdoc'  %}
+                                                    <div class="btns-actions">
+                                                        <a href="#" target="_blank" class="btn btn-common" style="z-index: 999;">Upload</a>
+                                                    </div>
+                                                    {% endif %}    
+                                                    </td>
+                                                    <td data-title="Title">
+                                                        {# <div class="btns-actions">
+                                                            <a href="../editorder/{{doc.docid}}" target="_blank" class="btn btn-success" style="z-index: 999;">Edit</a>
+                                                        </div>  #}
+                                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#orderstatus{{doc.docid}}" style="color:#fff; width:80px;" >
+                                                            Edit
+                                                        </button>  
 
-                                                <div class="modal fade" id="orderstatus{{doc.docid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle{{doc.docid}}" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLongTitle">Update  Document status</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
+                                                        <div class="modal fade" id="orderstatus{{doc.docid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle{{doc.docid}}" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="exampleModalLongTitle">Update  Document status</h5>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                            </div>
+                                                                            <form action="{{ path('app_editorder',  {'id': doc.docid}) }}" method="post">
+                                                                                <div class="modal-body">
+                                                                                    <div class="form-group">
+                                                                                        <input type="hidden" name="orderid" value="{{doc.id}}"> 
+                                                                                        <label for="exampleInputEmail1">Status</label>
+                                                                                        <select id="form_status" name="status" class="form-control input-md">
+                                                                                        <option value="0">Submited Doc</option>
+                                                                                        <option value="1" >Done</option>
+                                                                                        <option value="2" >Submit Again</option>
+                                                                                        </select>
+                                                                                        
+                                                                                        <small id="emailHelp" class="form-text text-muted">Please Edit  Document submit status</small>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="exampleInputEmail1">Remark</label>
+                                                                                        <input type="text" name="remark" class="form-control input-md" > 
+                                                                                        
+                                                                                        
+                                                                                        <small id="emailHelp" class="form-text text-muted">Please Edit Document submit Remark</small>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
                                                                     </div>
-                                                                    <form action="{{ path('app_editorder',  {'id': doc.docid}) }}" method="post">
-                                                                        <div class="modal-body">
-                                                                            <div class="form-group">
-                                                                                 <input type="hidden" name="orderid" value="{{doc.id}}"> 
-                                                                                <label for="exampleInputEmail1">Status</label>
-                                                                                <select id="form_status" name="status" class="form-control input-md">
-                                                                                <option value="0">Submited Doc</option>
-                                                                                <option value="1" >Done</option>
-                                                                                <option value="2" >Submit Again</option>
-                                                                                </select>
-                                                                                
-                                                                                <small id="emailHelp" class="form-text text-muted">Please Edit  Document submit status</small>
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="exampleInputEmail1">Remark</label>
-                                                                                <input type="text" name="remark" class="form-control input-md" > 
-                                                                                
-                                                                                
-                                                                                <small id="emailHelp" class="form-text text-muted">Please Edit Document submit Remark</small>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                                                        </div>
-                                                                    </form>
                                                                 </div>
-                                                            </div>
+                                                                                                    
+                                                    </td>
+                                                </tr>
+                                            
+                                                {% endfor %}
+                                                {% else %}
+                                                <tr>
+                                                    <td colspan="6">
+                                                        <div style="text-align: center; padding: 20px;">
+                                                            <h4>No Document Submitted</h4>
                                                         </div>
-                                                                                              
-                                            </td>
-                                        </tr>
-                                       
-                                        {% endfor %}
-                                        {% else %}
-                                        <tr>
-                                            <td colspan="6">
-                                                <div style="text-align: center; padding: 20px;">
-                                                    <h4>No Document Submitted</h4>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                                {% endif %}
 
-                                    </tbody>
-                                </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Required Documents</h5>
+                                    <h6 class="card-subtitle text-muted">Those are the documents received for this order</h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    {% for doc in docforpro %}
+                                        <button class="btn mb-1 btn-Primary" >{{doc.name}}</button>                                        
+                                    {% endfor %}
+                                    
                                 </div>
                             </div>
                         </div>

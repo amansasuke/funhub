@@ -478,7 +478,7 @@
                                                         {% else %}                                                  
                                                             <div class="gap"><a class="btn  btn-info" href="#" style="width:80px;">pending</a></div>
                                                         {% endif %}
-                                                        <div class="gap"><a href="{{ path('app_doc_for_client_new') }}/?orderid={{order.id}}" class="btn btn-common"  style="font-size: 14px;background-color:#5bb7c5;color:#ffff;"><i class="fa fa-upload"></i> Export</a></div>
+                                                        <div class="gap"><a href="{{ path('app_doc_for_client_new') }}/?orderid={{order.id}}&userid={{userid}}" class="btn btn-common"  style="font-size: 14px;background-color:#5bb7c5;color:#ffff;"><i class="fa fa-upload"></i>Upload</a></div>
                                                     </td>
                                                     <td>
                                                         <div class="btns-actions">

@@ -75,7 +75,7 @@ class MangerController extends AbstractController
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $us = $userR->findBy(array('Manager'=>$user));        
+        $us = $userR->findBy(array('Manager'=>$user), array('id' => 'desc'));        
 
         return $this->render('manger/assignstaff.html.twig', [
             'users' => $us,
@@ -92,7 +92,7 @@ class MangerController extends AbstractController
         $user = $userR->find($id);
         $userId = $user->getId();
         $order = $doctrine->getRepository(Order::class)->findBy([]);
-
+        $assignorder=[];
         foreach ($order as $key => $value) {
             $userod= $value->getUser();
             foreach ($userod as $key => $useid) {
