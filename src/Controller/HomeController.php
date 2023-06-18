@@ -436,6 +436,46 @@ class HomeController extends AbstractController
     }
 
     /**
+     * @Route("/privacy", name="app_privacy")
+     */
+    public function privacy(Request $request, SessionInterface $session): Response
+    {
+        $basket = $session->get('basket', []);
+        return $this->render('home/privacy.html.twig', [
+            'controller_name' => 'HomeController',
+            'basket' => $basket,
+            
+        ]);
+    }
+
+     /**
+     * @Route("/refund ", name="app_refund")
+     */
+    public function refund(Request $request, SessionInterface $session): Response
+    {
+        $basket = $session->get('basket', []);
+        return $this->render('home/refund.html.twig', [
+            'controller_name' => 'HomeController',
+            'basket' => $basket,
+            
+        ]);
+    }
+
+    /**
+     * @Route("/terms", name="app_terms")
+     */
+    public function terms(Request $request, SessionInterface $session): Response
+    {
+        $basket = $session->get('basket', []);
+        return $this->render('home/terms.html.twig', [
+            'controller_name' => 'HomeController',
+            'basket' => $basket,
+            
+        ]);
+    }
+
+
+    /**
      * @Route("/club", name="app_club")
      */
     public function club(Request $request, SessionInterface $session): Response

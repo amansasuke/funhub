@@ -361,6 +361,18 @@ a:hover{
 <script>
 const inputs = document.querySelectorAll(".input");
 
+$('input').each(
+    function(index){  
+        var input = $(this);
+
+        //console.log('Type: ' + input.attr('type') + 'Name: ' + input.attr('name') + 'Value: ' + input.val());
+        
+        if (input.val().length > 0 && input.val() != 0) {
+            let parent = this.parentNode.parentNode.parentNode;
+            parent.classList.add("focus");
+        }
+    }
+);
 
 function addcl(){
 	let parent = this.parentNode.parentNode;

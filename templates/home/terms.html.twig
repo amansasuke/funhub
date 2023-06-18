@@ -1,0 +1,284 @@
+{% extends 'getrout.html.twig' %}
+{% block title %}About Us!{% endblock %}
+{% block body %}
+<style>
+.rating {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    display: inline-block;
+}
+
+.rating .star {
+    position: relative;
+    float: left;
+    width: 1.4rem;
+    height: 1.2rem;
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, .4);
+    border: 0;
+    background: transparent;
+}
+
+.rating .star:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.2rem;
+    height: 1.2rem;
+    transform: translate(-50%, -50%);
+    content: "\f006";
+    color: #777;
+}
+
+.rating--read-only .star--full:before {
+    content: "\f005";
+    color: #f7ca0a;
+}
+
+.rating--read-only .star--half:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.2rem;
+    height: 1.2rem;
+    transform: translate(-50%, -50%);
+    content: "\f089";
+    color: #e3cf7a;
+}
+
+/* Floating this right, means that the stars
+ * fill from the left, because of the successor 
+ * rule defined below. @see https://css-tricks.com/star-ratings/
+ */
+.rating--interactive .star {
+    float: right;
+}
+
+.rating--interactive .star:hover {
+    cursor: pointer;
+}
+
+.rating--interactive .star:hover:before,
+.rating--interactive .star:hover~.star:before {
+    content: "\f005";
+    color: #e3cf7a
+}
+
+.titlehead h1 {
+    font-size: 50px;
+    font-weight: 900;
+    margin-bottom: 30px;
+    text-align: right
+}
+
+.titlehead span {
+    color: #32be8f;
+}
+
+.mainhead {
+   padding-bottom: 50px;
+}
+</style>
+
+<body>
+    <div id="content" class="section-padding" style="padding-top:100px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                            <div class="" >
+                                <div style="text-align:center;">
+                                    <h1>Terms & Conditions </h1>
+                                </div>
+                            <div>                            
+                            <div class="mainhead">                              
+                                <div>
+                                    <h5>1. Acceptance of Terms</h5>
+                                    <p>
+                                        By accessing and using our platform “Finanzi”, you agree to comply with and be bound by the following terms and conditions. If you do not agree with these terms, please do not use the platform.
+                                    </p>
+                                    <h5>2. Definitions </h5>
+                                    <ul>
+                                        <li>a)  "Finanzi" or “Platform” refers to the financial services platform www.thefinanzi.in.</li>
+                                        <li>
+                                            b)  "User" refers to any person who accesses or uses the Finanzi.
+                                        </li>
+                                    </ul>
+                                    <h5>3. Services Provided</h5>
+                                    <p>The website provides a range of professional financial services including, but not limited to, income tax return filing, GST filings, financial consultancy, bookkeeping services, and assistance with certifications and licenses. Our team of experts is dedicated to delivering accurate and timely financial solutions to individuals and businesses. It is important to note that while we strive to provide comprehensive information and guidance, the content on the website is for general purposes only and should not be considered as a substitute for personalized professional advice. We recommend consulting with our professionals directly for specific and tailored financial guidance relevant to your unique circumstances.</p>
+                                </div>                                
+                                <div>
+                                    <h5>4. User Responsibilities</h5>
+                                    <ul>
+                                        <li>a)  Users are responsible for providing accurate and current information when using the platform</li>
+                                        <li>
+                                            b)  Users must not engage in any illegal or unauthorized activities when accessing or using the platform
+                                        </li>
+                                        <li>
+                                            c)  Users should exercise caution and verify the accuracy of information provided on the platform before making any financial decisions.
+                                        </li>
+                                        <li>
+                                            d)  Users must not attempt to access restricted areas of the platform or interfere with its functionality.
+                                        </li>
+                                        <li>                                            
+                                            e)  In order to access certain features or services on the platform, users may be required to create an account by completing a registration process. By signing up, users agree to provide accurate and up-to-date information. 
+                                        </li>
+
+                                        <li>
+                                            f)  Users may also be required to provide consent for the collection, use, and processing of their personal information in accordance with Finanzi's privacy policy. 
+                                        </li>
+                                        <li>
+                                            b)  Users must not engage in any illegal or unauthorized activities when accessing or using the platform
+                                        </li>
+                                        <li>
+                                            g)  Users understand that their account is personal and should not be shared with others. Users are responsible for maintaining the confidentiality of their account credentials and for any activities that occur under their account. 
+                                        </li>
+                                        <li>
+                                            h)  Finanzi reserves the right to suspend or terminate user accounts in the event of a violation of these terms and conditions or for any other reason deemed necessary by Finanzi owners.
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5>5. Intellectual Property </h5>
+                                    <ul>
+                                        <li>a)  All content on the platform, including text, graphics, logos, images, videos, and software, is the property of the platform owners and is protected by intellectual property laws</li>
+                                        <li>
+                                            b)  Users are granted a limited, non-exclusive, and non-transferable license to access and use the platform solely for personal, non-commercial purposes.
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5>6. Acceptable Use </h5>
+                                    <p>
+                                        You agree not to misuse the Services or help anyone else to do so. For example, you must not do (or even try to do) any of the following in connection with the Services:
+                                    </p>
+                                    <ul>
+                                        <li>a)  use the Services (a) to violate any law, statute, ordinance or regulation (including those governing export control, consumer protection, unfair competition, anti-discrimination or false advertising), including, but not limited to, transactions relating to counterfeit goods, stolen goods, illegal or controlled substances, substances that pose a risk to consumer safety, illegal online gambling/wagering, escort services, pyramid schemes, counterfeit goods, the unlicensed sale of firearms, or any type of money laundering, or (b) in connection with any of the foregoing;
+                                        </li>
+                                        <li>
+                                            b)  process false or inaccurate transactions;
+                                        </li>
+                                        <li>
+                                            c)  probe, scan, or test the vulnerability of any system or network;
+                                        </li>
+                                        <li>
+                                            d)  breach or otherwise circumvent any security or authentication measures;
+                                        </li>
+                                        <li>
+                                            e)  use the Services for personal, family or household purposes;
+                                        </li>
+                                        <li>
+                                            f)  abuse referrals or promotions;
+                                        </li>
+                                        <li>
+                                            g)  sell the Services unless specifically authorized to do so; 
+                                        </li>
+
+                                        <li>
+                                         h) harass or abuse Finanzi personnel or representatives or agents performing services on behalf of Finanzi; or
+                                        </li>
+                                        <li>
+                                            i)  represent our personnel, or request our personnel to act, as your employee, officer, signatory, agent or fiduciary
+                                        </li>
+                                        <li>
+                                            You may not knowingly facilitate or aid a third party in any of the foregoing activities.
+                                        </li>
+                                    </ul>                                    
+                                    <div>
+                                        <h5>7. Disclaimer of Liability</h5>
+                                        <ul>
+                                            <li>a)  Finanzi owners does not guarantee the accuracy, completeness, or reliability of the information provided on the platform.
+                                            </li>
+                                            <li>
+                                                b)  Users acknowledge that any reliance on the information provided on the platform is at their own risk.
+                                            </li>
+                                            <li>
+                                                c)  Finanzi owners and its affiliates shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising out of or in connection with the use of the platform or the information provided.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h5>8. No Warranty</h5>
+                                        <ul>
+                                            <li>
+                                                a)  Finanzi owners makes no warranties or representations, express or implied, regarding the platform, its content, or any services provided. The platform is provided on an "as is" and "as available" basis. 
+                                            </li>
+                                            <li>
+                                                b)  Finanzi owners does not warrant that the platform will be uninterrupted, error-free, or free from viruses or other harmful components. 
+                                            </li>
+                                            <li>
+                                                c)  Any information or materials obtained through the platform are used at the user's own discretion and risk. Finanzi owners shall not be responsible for any damage to computer systems or loss of data resulting from the use of the platform
+                                            </li>
+                                            <li>
+                                                d)  Finanzi owners disclaims all warranties, whether express, implied, or statutory, including but not limited to warranties of accuracy, reliability, completeness, merchantability, fitness for a particular purpose, and non-infringement.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h5>9. Exclusion of Damages</h5>
+                                        <ul>
+                                            <li>
+                                                a)  To the fullest extent permitted by applicable law, Finanzi owners and its affiliates, directors, officers, employees, agents, and licensors shall not be liable for any indirect, incidental, consequential, special, or exemplary damages, including but not limited to damages for loss of profits, goodwill, data, or other intangible losses arising out of or in connection with the use or inability to use the platform or any services provided. 
+                                            </li>
+                                            <li>
+                                                b)  Finanzi owners shall not be liable for any damages or losses resulting from unauthorized access to or alteration of user data or transmissions. 
+                                            </li>
+                                            <li>
+                                                c)  Finanzi owners shall not be responsible for any delays, interruptions, errors, or omissions in the operation of the platform, including technical or mechanical malfunctions. 
+                                            </li>
+                                            <li>
+                                               d)   The limitations of liability set forth in these terms and conditions shall apply even if Finanzi owners has been advised of the possibility of such damages
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h5>10. Indemnification</h5>
+                                        <ul>
+                                            <li>
+                                                a)  Users agree to indemnify, defend, and hold harmless Finanzi owners and its affiliates, directors, officers, employees, agents, and licensors from and against any and all claims, liabilities, damages, losses, costs, and expenses, including reasonable attorneys' fees, arising out of or in connection with the user's access to or use of the platform, violation of these terms and conditions, or infringement of any intellectual property or other rights of any third party. 
+                                            </li>
+                                            <li>
+                                                b)  Finanzi owners reserves the right, at its own expense, to assume the exclusive defence and control of any matter otherwise subject to indemnification by the user. The user agrees to cooperate with Finanzi owner's defence of such claims. 
+                                            </li> 
+                                        </ul>                                           
+                                    </div>
+                                    <div>
+                                        <h5>11. Third-Party Links</h5>
+                                        <p>The platform may contain links to third-party websites that are not owned or controlled by Finanzi. The inclusion of these links does not imply endorsement or responsibility for the content, products, or services offered on these websites. Users access third-party websites at their own risk.</p>
+                                    </div>
+                                    <div>
+                                        <h5>12. Privacy Policy</h5>
+                                        <p>Finanzi's privacy policy outlines how user information is collected, used, and protected. It is important to review the privacy policy to understand Finanzi's practices regarding user privacy.</p>
+                                    </div>
+                                    <div>
+                                        <h5>13. Modifications to Terms and Conditions</h5>
+                                        <p>Finanzi owners reserves the right to modify or update these terms and conditions at any time without prior notice. Users are responsible for regularly reviewing the terms and conditions to stay informed about any changes.</p>
+                                    </div>
+                                    <div>
+                                        <h5>14. Governing Law</h5>
+                                        <p>These terms and conditions shall be governed by and construed in accordance with the laws of India. Any disputes arising out of or in connection with these terms shall be subject to the exclusive jurisdiction of the courts of Dehradun.</p>
+                                    </div>
+                                    <div>
+                                        <h5>15. Severability</h5>
+                                        <p>If any provision of these terms and conditions is found to be invalid or unenforceable, the remaining provisions shall continue to be valid and enforceable to the fullest extent permitted by law.</p>
+                                    </div>
+                                    <div>
+                                        <h5>16. Waiver</h5>
+                                        <p>Waiver by either Party of any terms or conditions of the Terms in any instance shall not be deemed or construed to be a waiver of such term or condition for the future, or of any subsequent breach thereof. All remedies, rights, undertakings, obligations and agreements contained in the Terms shall be cumulative, and none of them shall be in limitation of any other remedy, right, undertaking, obligation or agreement of either Party.</p>
+                                    </div>
+                                    <div>
+                                        <h5>17. Entire Agreement</h5>
+                                        <p>These terms and conditions constitute the entire agreement between the user and Finanzi owners, superseding any prior agreements or understandings.</p>
+                                    </div>  
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'footer.html.twig' %}
+</body>
+{% endblock %}

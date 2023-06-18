@@ -182,10 +182,7 @@ class CheckoutController extends AbstractController
                 flash()->addError ('please select state');
                 return $this->redirectToRoute("app_checkout");             
             }
-            // $createat= $form->get('createat');
-            // print_r($createat);
-            // die;
-            // $createdate= \DateTime::createFromFormat('d/m/Y',date("d/m/Y", strtotime($createat)));
+
             $name= $form->get('name')->getData();
             $Affiliateproducts = new Affiliateproduct;
 
@@ -204,45 +201,40 @@ class CheckoutController extends AbstractController
                 $order->setTotalvalue($totalvalue);
                 $order->setProducts($repo->find($product->getId()));                
                 $entityManager->persist($order);
-                $entityManager->flush();  
-                
+                $entityManager->flush();                  
                  // 2. Create a Twig template for the invoice
                 $invoiceHtml = $this->renderView('invoice_template.html.twig', [
                 'order' => $order,
                 // add any additional data here
             ]);
-            
+            // 1. Generate PDF invoice
+                $dompdf = new Dompdf();
+                $dompdf->loadHtml($invoiceHtml);
+                $dompdf->setPaper('A4', 'portrait');
 
-            // 3. Generate invoice data
-            $invoiceData = [
-                'orderNumber' => 'name',
-                'items' => 'itme',
-                'totalCost' => '9999',
-                // add any additional data here
-            ];
+                // 2. Load external CSS stylesheets, if any
+                $dompdf->set_option('isRemoteEnabled', true);
 
-            // 4. Generate PDF invoice
-            $dompdf = new Dompdf();
-            $dompdf->loadHtml($invoiceHtml);
-            $dompdf->setPaper('A4', 'portrait');
-            $dompdf->render();
-            $pdf = $dompdf->output();
+                // 3. Render the PDF
+                $dompdf->render();
+                $pdf = $dompdf->output();
 
-            // 5. Save the PDF invoice
-            $invoiceFileName = 'invoice_' . $order->getId() . '.pdf';
-            $invoicePath = __DIR__ . '/../../public/invoices/' . $invoiceFileName;
-            file_put_contents($invoicePath, $pdf);
+                // 4. Save the PDF invoice
+                $invoiceFileName = 'invoice_' . $order->getId() . '.pdf';
+                $invoicePath = __DIR__ . '/../../public/invoices/' . $invoiceFileName;
+                file_put_contents($invoicePath, $pdf);
 
-            // 6. Send email with invoice
-            $emailsend = (new TemplatedEmail())
-            ->from('amansharmasasuke@gmail.com')
-            ->to(new Address($order->getEmail(), $order->getName()))
-            ->subject('Order confirmation')
-            ->htmlTemplate('emails/invoice.html.twig')
-            ->attachFromPath($invoicePath, $invoiceFileName)
-            ->context(['order' => $order]);
+                // 5. Send email with invoice
+                $emailsend = (new TemplatedEmail())
+                    ->from('amansharmasasuke@gmail.com')
+                    ->to(new Address($order->getEmail(), $order->getName()))
+                    ->subject('Order confirmation')
+                    ->htmlTemplate('emails/invoice.html.twig')
+                    ->attachFromPath($invoicePath, $invoiceFileName)
+                    ->context(['order' => $order]);
 
-            $mailer->send($emailsend);
+                $mailer->send($emailsend);
+
             }         
 
              //add if user is affiliated
@@ -303,14 +295,11 @@ class CheckoutController extends AbstractController
             }
 
             $session->set('basket', []);
-            //$this->addFlash('success', 'Thank you! Received your order successfully');
-            //flash()->addSuccess('Thank you! Received your order successfully');
-            //return $this->redirectToRoute("app_dashboard");
             
             flash()->addSuccess('Thank you! Received your order successfully');
             return $this->redirectToRoute("app_dashboard");
         }
-
+        $orderId = '';
         return $this->render('home/checkout.html.twig', [
             'total' => $total,
             'pro'=>$pro,
@@ -320,6 +309,7 @@ class CheckoutController extends AbstractController
             'basket'=>$basket,
             'phone' =>$user->getPhoneno(),
             'discount'=>$discount,
+            'razorpayOrderId' => $orderId,
         ]);
     }
 
@@ -351,4 +341,15 @@ class CheckoutController extends AbstractController
         $entityManager->flush();
        
     }
+
+    /**
+     * @Route("/handlePaymentSuccess",  name="app_handlePaymentSuccess",  methods={"GET", "POST"})
+     */
+    public function handlePaymentSuccess(Request $request):Response
+    {
+        print_r($request);
+        die;
+    }
+
+    
 }

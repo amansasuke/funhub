@@ -1,30 +1,27 @@
 {% extends 'getrout.html.twig' %}
-
 {% block title %}Password Reset Email Sent{% endblock %}
-
 {% block body %}
 <div class="error section-padding">
-<div class="container">
-<div class="row justify-content-center">
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-<div class="error-content">
-<div class="error-message">
-{% if app.request.get('noemail') %}
-<h3> Your email is not registered, <a href="{{path('app_register')}}">Click Here </a> to register</h3>
-{% else %}
-<h3>If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
-        This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</h3>
-<p>If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
-{% endif %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                <div class="error-content">
+                    <div class="error-message">
+                        {% if app.request.get('noemail') %}
+                        <h3> Your email is not registered, <a href="{{path('app_register')}}">Click Here </a> to register</h3>
+                        {% else %}
+                        <h3>If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
+                            This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</h3>
+                        <p>If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+                        {% endif %}
+                    </div>
+                    <div class="description">
+                        <span>Or Goto <a href="{{path('app_home')}}">Homepage</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="description">
-<span>Or Goto <a href="{{path('app_home')}}">Homepage</a></span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-{% include  'footer.html.twig' %}
+{% include 'footer.html.twig' %}
 {% endblock %}
