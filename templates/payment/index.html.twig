@@ -1,0 +1,41 @@
+{# {% extends 'base.html.twig' %} #}
+
+{% block title %}Payment{% endblock %}
+
+{% block body %}
+    <div class="example-wrapper">
+        <h1>Razorpay Payment Form</h1>
+        
+        <form id="razorpay-payment-form">
+            <input type="hidden" name="amount" value="1000">
+            <input type="hidden" name="currency" value="INR">
+            <!-- Include other required form fields -->
+
+            <button type="submit">Pay with Razorpay</button>
+        </form>
+    </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('razorpay-payment-form');
+            var options = {
+                key: 'rzp_test_7fBzWp1ySpgsgJ',
+                amount: form.querySelector('input[name="amount"]').value,
+                currency: form.querySelector('input[name="currency"]').value,
+                // Add other required options
+
+                handler: function (response) {
+                    // Handle the payment success response
+                    console.log(response);
+                },
+            };
+            
+            var rzp = new Razorpay(options);
+            rzp.open();
+
+            // Submit the payment form
+           // form.submit();
+        });
+    </script>
+{% endblock %}

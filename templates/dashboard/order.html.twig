@@ -1,15 +1,35 @@
 <div class="panel-group" id="accordion">
     {% for ord in order %}
     {# {% for pro in ord.products %} #}
+    {# <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" aria-expanded="false">
+            How can i cancel or change my order?
+            </a>
+            </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse" style="">
+                <div class="panel-body">
+                <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas expedita, repellendus est nemo cum quibusdam optio, voluptate hic a tempora facere, nihil non itaque alias similique quas quam odit consequatur.
+                </p>
+            </div>
+        </div>
+    </div> #}
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion{{ord.id}}" href="#collapse{{ord.id}}" style="font-size:20px;">
+                <a data-toggle="collapse" data-parent="#accordion{{ord.id}}" href="#collapse{{ord.id}}" class="collapsed" aria-expanded="false" style="font-size:20px;">
+            {{ord.products}} ₹ {{ord.products.price}}
+            </a>
+                {# <a data-toggle="collapse" data-parent="#accordion{{ord.id}}" href="#collapse{{ord.id}}" style="font-size:20px;">
                     {{ord.products}} ₹ {{ord.products.price}}
-                </a>
+                </a> #}
             </h4>
         </div>
-        <div id="collapse{{ord.id}}" class="panel-collapse collapse {% if app.request.get('ordid') %} {% if ord.id == app.request.get('ordid') %} show {% endif %} {% endif %}">
+        <div id="collapse{{ord.id}}" class="panel-collapse collapse {% if app.request.get('ordid') %} {% if ord.id == app.request.get('ordid') %} show {% endif %} {% endif %}" style="">
+        {# <div id="collapse{{ord.id}}" class="panel-collapse collapse {% if app.request.get('ordid') %} {% if ord.id == app.request.get('ordid') %} show {% endif %} {% endif %}"> #}
             <div class="panel-body">
                 <div id="tracking-pre">
                 </div>
@@ -188,7 +208,7 @@
                                         </div>                                        
                                         {% endif %}
                                         {% if final.status == 2 %}
-                                        <a href="adddoc/{{ord.id}}?docname={{ final.submitdoc }}&ordid={{ord.id}}" > 
+                                        <a href="adddoc/{{ord.id}}?docname={{ final.submitdoc }}&ordid={{ord.id}}&docid={{final.id}}" > 
                                         <div class="col-auto">
                                             <div class="avatar">
                                                 <div class="avatar-title rounded-circle bg-warning-dark">

@@ -36,7 +36,7 @@ class AdddocController extends AbstractController
     /**
      * @Route("/adddoc/{id}", name="app_adddoc")
      */
-    public function index($id,Request $request, ManagerRegistry $doctrine, DocumentsforproductRepository $doc,SluggerInterface $slugger): Response
+    public function index($id,Request $request, OrderdocRepository $OrderdocRepository, ManagerRegistry $doctrine, DocumentsforproductRepository $doc,SluggerInterface $slugger): Response
     {   
 
         $orderid=  $_GET['ordid'];
@@ -64,7 +64,7 @@ class AdddocController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            
             //this will be test for new data from the add join for order doc
             // $order1 = $form->getData();
             //     $or = $doctrine->getRepository(Order::class)->find($id);
@@ -118,7 +118,12 @@ class AdddocController extends AbstractController
                 // $Orderdoc->setDoclink($newFilename);
                 // $Orderdoc->setDoclink($newFilename);
             
-
+                if (isset($_GET['docid'])) {
+                    $Orderdoc = $OrderdocRepository->findById($_GET['docid']);
+                    foreach ($Orderdoc as $key => $value) {
+                        $OrderdocRepository->remove($value, true);
+                    }              
+                }
 
 
 

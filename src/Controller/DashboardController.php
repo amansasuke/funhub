@@ -276,7 +276,7 @@ class DashboardController extends AbstractController
     public function userprofile(Request $request,SluggerInterface $slugger): Response
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
-        
+        $icon  = $user->getImgicon();       
         //if(empty($user->getImgicon())){
             $form = $this->createFormBuilder($user)
             ->add('email', HiddenType::class, [
@@ -327,7 +327,7 @@ class DashboardController extends AbstractController
             ->add('imgicon', FileType::class, array(
                 'data_class' => null,
                 'required' => false,
-                'label' => '',
+                'label' => false,
                 ))
             
             ->add('save', SubmitType::class, ['label' => 'Update Profile'])
@@ -356,7 +356,8 @@ class DashboardController extends AbstractController
                         $entityManager->persist($user);
                         $entityManager->flush();
                     }else{
-                       $entityManager = $this->getDoctrine()->getManager();
+                       $entityManager = $this->getDoctrine()->getManager();                       
+                       $user->setImgicon($icon);
                         $entityManager->persist($user);
                         $entityManager->flush(); 
                     }

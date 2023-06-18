@@ -70,7 +70,7 @@ class AggentdashbordController extends AbstractController
         
         foreach($order as $orderid){
             $pro = $orderid->getProducts()->getId();      
-            echo "<br>";
+            
         }
         $docforpro = $docforpro->findBy(['proinfo' => $pro],  array('id' => 'desc'));
 
@@ -83,7 +83,7 @@ class AggentdashbordController extends AbstractController
             }
             
         }
-        print_r($rqedoc);
+     
        // die;
 
         $sunmitdoc =[];

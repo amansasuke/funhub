@@ -1,0 +1,181 @@
+{% extends 'getrout.html.twig' %}
+{% block title %}About Us!{% endblock %}
+{% block body %}
+<style>
+.rating {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    display: inline-block;
+}
+
+.rating .star {
+    position: relative;
+    float: left;
+    width: 1.4rem;
+    height: 1.2rem;
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, .4);
+    border: 0;
+    background: transparent;
+}
+
+.rating .star:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.2rem;
+    height: 1.2rem;
+    transform: translate(-50%, -50%);
+    content: "\f006";
+    color: #777;
+}
+
+.rating--read-only .star--full:before {
+    content: "\f005";
+    color: #f7ca0a;
+}
+
+.rating--read-only .star--half:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.2rem;
+    height: 1.2rem;
+    transform: translate(-50%, -50%);
+    content: "\f089";
+    color: #e3cf7a;
+}
+
+/* Floating this right, means that the stars
+ * fill from the left, because of the successor 
+ * rule defined below. @see https://css-tricks.com/star-ratings/
+ */
+.rating--interactive .star {
+    float: right;
+}
+
+.rating--interactive .star:hover {
+    cursor: pointer;
+}
+
+.rating--interactive .star:hover:before,
+.rating--interactive .star:hover~.star:before {
+    content: "\f005";
+    color: #e3cf7a
+}
+
+.titlehead h1 {
+    font-size: 50px;
+    font-weight: 900;
+    margin-bottom: 30px;
+    text-align: right
+}
+
+.titlehead span {
+    color: #32be8f;
+}
+
+.mainhead {
+   padding-bottom: 50px;
+}
+</style>
+
+<body>
+    <div id="content" class="section-padding" style="padding-top:100px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                            <div class="" >
+                                <div style="text-align:center;">
+                                    <h1>Refund Policy </h1>
+                                </div>
+                            <div>                            
+                            <div class="mainhead">                              
+                                <div>
+                                    <p>Thank you for choosing Finanzi. We strive to provide you with the best possible experience and customer satisfaction. However, we understand that there may be situations where you need to seek a refund for the services provided. This refund policy outlines the terms and conditions for refund requests and how they will be processed.</p>
+                                    <h5>1. Definition</h5>
+                                    <p>
+                                        “Platform” refers to www.thefinanzi.in”
+                                    </p>
+                                    <h5>2. Eligibility for Refund: </h5>
+                                    <ul>
+                                        <li>a)  Refunds are applicable only to specific services or products offered on our platform.</li>
+                                        <li>
+                                           b)   To be eligible for a refund, you must have a valid reason for the request. Valid reasons may include technical issues, dissatisfaction with the service, or any other genuine concern related to the service or product.
+                                        </li>
+                                        <li>
+                                            c)  Refund requests must be made within 30 days timeframe from the date of purchase or subscription.
+                                        </li>
+                                    </ul>                                    
+                                </div>                                
+                                <div>
+                                    <h5>3. Refund Request Process:</h5>
+                                    <ul>
+                                        <li>a)  To initiate a refund request, you must contact our customer support team through the designated channels provided on our platform. Please provide all necessary details, including your name, contact information, service or product details, and the reason for the refund request.</li>
+                                        <li>
+                                            b)  Our customer support team will review your request and may require additional information or documentation to process your refund. Please cooperate with any such requests promptly.
+                                        </li>
+                                        <li>
+                                            c)  We reserve the right to investigate the refund request to verify its validity. This may include reviewing service usage, transaction records, and any other relevant information related to the refund request.
+                                        </li>
+                                        <li>
+                                            d)  We aim to process refund requests within a reasonable timeframe, typically within 15 business days. However, depending on the complexity of the request or the investigation required, the refund process may take longer.
+                                        </li>
+                                        <li>                                            
+                                            e)  In order to access certain features or services on the platform, users may be required to create an account by completing a registration process. By signing up, users agree to provide accurate and up-to-date information. 
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5>4. Refund Approval and Processing: </h5>
+                                    <ul>
+                                        <li>a)  If your refund request is approved, we will issue the refund using the original payment method or any other method deemed appropriate by our platform.</li>
+                                        <li>
+                                            b)  In case of credit card payments, the refund amount will be credited back to the same credit card used for the initial purchase. Please note that it may take a few business days for the refund to reflect in your account, depending on the policies of your card issuer.
+                                        </li>
+
+                                        <li>
+                                            c)  If the refund is provided in the form of virtual credits or any other non-monetary value, the credited amount will be adjusted accordingly in your account.
+                                        </li>
+                                        <li>
+                                            d)  If the refund request is denied, we will provide you with a detailed explanation for the decision. You may have the option to appeal the decision or seek further clarification through our customer support team.
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5>5. Non-Refundable Services or Products:</h5>                                    
+                                    <ul>
+                                        <li>a)  Some services or products may be explicitly marked as non-refundable. These could include certain subscription plans, one-time services, or products with limited usability.
+                                        </li>
+                                        <li>
+                                            b)  Once you purchase a non-refundable service or product, you acknowledge and accept that it is not eligible for a refund under any circumstances, unless prohibited by applicable consumer protection laws.
+                                        </li>                                        
+                                    </ul>                                    
+                                    <div>
+                                        <h5>6. Modifications to the Refund Policy:</h5>
+                                        <ul>
+                                            <li>a)  We reserve the right to modify or update this refund policy at any time without prior notice. Any changes made to the policy will be effective immediately upon posting on our website or platform.
+                                            </li>
+                                            <li>
+                                                b)  It is your responsibility to review the refund policy periodically to stay informed about any updates or changes.
+                                            </li>                                            
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p>
+                                            Please note that this refund policy is a general guideline, and specific details may vary depending on the services or products offered on our platform. We encourage you to review the terms and conditions of the specific service or product for more precise information about eligibility and refund procedures. If you have any further questions or require assistance, please contact our customer support team.
+                                        </p>
+                                    </div>  
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'footer.html.twig' %}
+</body>
+{% endblock %}
