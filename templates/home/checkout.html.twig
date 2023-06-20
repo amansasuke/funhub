@@ -4,7 +4,9 @@
 {# {{ form(form) }} #}
 
 <body>
-    
+    <div id="preloader" style="display: none;">
+        <div class="loader" id="loader-1"></div>
+    </div>
     <div class="error section-padding">
         <div class="container section-padding">
             <div class="col-12">
@@ -310,7 +312,7 @@
                 <div class="col-md-8 order-md-1">
                     <h4 class="mb-3">Billing Details </h4>
                   
-                        {{ form_start(form,{'attr': {'class': 'login-form'}}) }}
+                        {{ form_start(form,{'attr': {'class': 'login-form', 'id': 'checkout-form'}}) }}
                         <div class="form-group">
                             <div class="input-icon">
                                 
@@ -392,130 +394,65 @@
                             </div>
                         </div>
 
-                        {# {{ form(form) }} #}
-                        <!-- <div class="row">
-                            <div class="mb-3">
-                                <label for="firstName">Name</label>
-                                <input type="text" class="form-control input-md" id="firstName" placeholder="" value="" required>
-                                <div class="invalid-feedback">
-                                    Valid first name is required.
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="lastName">Last name</label>
-                                <input type="text" class="form-control input-md" id="lastName" placeholder="" value="" required>
-                                <div class="invalid-feedback">
-                                    Valid last name is required.
-                                </div>
-                            </div>
-                        </div> -->
-                       {#  <div class="mb-3">
-                            <label for="firstName">Name</label>
-                            <input type="text" class="form-control input-md" id="firstName" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                                Valid first name is required.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email">Email </label>
-                            <input type="email" class="form-control input-md" id="email" placeholder="you@example.com">
-                            <div class="invalid-feedback">
-                                Please enter a valid email address for shipping updates.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="address">Address</label>
-                            <input type="text" class="form-control input-md" id="address" placeholder="1234 Main St" required>
-                            <div class="invalid-feedback">
-                                Please enter your shipping address.
-                            </div>
-                        </div> #}
-                        <!-- <div class="mb-3">
-                            <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-                            <input type="text" class="form-control input-md" id="address2" placeholder="Apartment or suite">
-                        </div> -->
-                        {# <div class="row">
-                            <div class="col-md-5 mb-3">
-                                <label for="country">User category</label>
-                                <select class="custom-select d-block w-100" id="country" required>
-                                    <option value="">Choose...</option>
-                                    <option>United States</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Please select a valid country.
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="state">Gender</label>
-                                <select class="custom-select d-block w-100" id="state" required>
-                                    <option value="">Choose...</option>
-                                    <option>California</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Please provide a valid state.
-                                </div>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="zip">Pan no</label>
-                                <input type="text" class="form-control input-md" id="zip" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Pan no
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="mb-4">
-                        <h4 class="mb-3">Payment</h4>
-                        <div class="d-block my-3">
-                            <div class="custom-control custom-radio">
-                                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                                <label class="custom-control-label" for="credit">Credit card</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                                <label class="custom-control-label" for="debit">Debit card</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                                <label class="custom-control-label" for="paypal">PayPal</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="cc-name">Name on card</label>
-                                <input type="text" class="form-control input-md" id="cc-name" placeholder="" required>
-                                <small class="text-muted">Full name as displayed on card</small>
-                                <div class="invalid-feedback">
-                                    Name on card is required
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="cc-number">Credit card number</label>
-                                <input type="text" class="form-control input-md" id="cc-number" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Credit card number is required
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3 mb-3">
-                                <label for="cc-expiration">Expiration</label>
-                                <input type="text" class="form-control input-md" id="cc-expiration" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Expiration date required
-                                </div>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="cc-cvv">CVV</label>
-                                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Security code required
-                                </div>
-                            </div>
-                        </div> #}
-                        {{ form_row(form.save,{'attr': {'class': 'btn-block btn btn-common'}}) }}
-                       {#  <button class="btn btn-common btn-lg btn-block" type="submit">Continue to checkout</button> #}
+                        {{ form_row(form.save,{'attr': {'class': 'btn-block btn btn-common'}}) }}                       
                         {{ form_end(form) }}
-                    
+                        
+
+                    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                    <script>
+                    var razorpayOrderId = "{{ razorpayOrderId }}"; // Get the Razorpay order ID from the PHP variable
+
+                    // Handle form submission
+                    document.getElementById('checkout-form').addEventListener('submit', function(event) {
+                        event.preventDefault(); // Prevent form submission
+
+                        var preloader = document.getElementById("preloader");
+                        preloader.style.display = "block";
+                        // Perform any additional validation if needed
+
+                        // Submit the form asynchronously
+                        var form = document.getElementById('checkout-form');
+                        
+                        var formData = new FormData(form);
+                        var xhr = new XMLHttpRequest();
+                        xhr.open(form.method, form.action, true);
+                        xhr.onreadystatechange = function() {
+                        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                            // Form submission successful
+                            // Create a Razorpay popup
+                            
+                            var options = {
+                            key: 'rzp_test_7fBzWp1ySpgsgJ', // Replace with your Razorpay API key
+                            amount: {{ grandtotal * 100 }}, // Convert the total to the smallest currency unit (in paise)
+                            currency: 'INR', // Replace with your currency code
+                            order_id: razorpayOrderId,
+                            name: "The Finanzi ",
+                            handler: function(response) {
+                                // Handle successful payment
+                                console.log(response);
+                                // Redirect to a success page or perform any other desired action
+                                window.location.href = "{{ path('app_dashboard') }}";
+                            },
+                            prefill: {
+                                // Pre-fill customer details if needed
+                                name: "{{ form.name.vars.value }}",
+                                email: "{{ form.email.vars.value }}",
+                                contact: "{{ form.phoneno.vars.value }}",
+                            },
+                            };
+
+                            var rzp = new Razorpay(options);
+                            preloader.style.display = "none";
+                            rzp.open(); // Open the Razorpay popup
+                        }else {
+                            // Form submission failed
+                            console.log('Form submission failed');
+                        }
+                        };
+                        xhr.send(formData);
+                    });
+                    </script>
+
                 </div>
             </div>
             <footer class="text-muted text-center text-small">

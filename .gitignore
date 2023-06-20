@@ -8,6 +8,7 @@
 .env
 /var/
 /vendor/
+/public/invoices/
 composer.phar
 ###< symfony/framework-bundle ###
 
