@@ -4870,7 +4870,7 @@ textarea {
 }
 
 footer .footer-Content {
-    background-color: #153039;
+    background-color: #05685ff0;
     padding: 60px 0;
     color: #bfbfbf
 }
@@ -4906,7 +4906,7 @@ footer .menu li {
 }
 
 footer .menu li a {
-    color: #bfbfbf;
+    color: #fff;
     font-size: 15px
 }
 
@@ -5264,7 +5264,7 @@ footer .menu li a:hover {
 
 .panel-default .panel-heading a:after {
     font-family: lineicons;
-    content: "\e9d6";
+    content: "\e9bc";
     position: absolute;
     left: 0;
     color: #5bb7c5;
@@ -5275,7 +5275,7 @@ footer .menu li a:hover {
 }
 
 .panel-default .panel-heading .collapsed:after {
-    content: "\e9bc"
+    content: "\e9d6"
 }
 
 .panel-default .panel-collapse .panel-body {

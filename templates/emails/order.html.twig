@@ -1,15 +1,3 @@
-
-
-<p>Thank you for your order. You have purchased the following:</p>
-
-<ul>
-{% for product in order.products %}
-    <li>{{ product.name }}</li>
-{% endfor %}
-</ul>
-
-<p>We will confirm when your order has been dispatched.</p>
-
 <html lang="en-US">
 
 <head>
@@ -63,7 +51,7 @@
                                             <li>service name:  {{order.products.name}}</li>                                            
                                         </ul>     
 
-                                        <a href="http://thefinanzi.in:8080/{{ path('app_dashboard') }}"
+                                        <a href="http://thefinanzi.in:8080{{ path('app_dashboard') }}"
                                             style="background:#5bb7c5;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">
                                             Check you order
                                         </a>                                        
