@@ -406,6 +406,20 @@ a {
     background: #5bb7c5;
     margin: 0 auto;
 }
+.bgimg{
+    background-image: url('/assets/img/background/ser.jpg');
+    background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+}
+@media (max-width:767px) {
+    .bgimg{
+        background-image:none;
+    }
+    .contents-ctg{
+        padding: 0px;
+    }
+}
 </style>
 {% if app.request.get('page') %}
 {% set current_page = app.request.get('page') %}
@@ -416,9 +430,7 @@ a {
 <body>
 
 
-    <div class="main-container section-padding" style="background:url('/assets/img/background/ser.jpg'); background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; ">
+    <div class="main-container section-padding bgimg" >
         <div class="container">
         <div class="row">
                 <div class="col-md-12 col-sm-12 text-center">

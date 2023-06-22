@@ -181,12 +181,30 @@ details[open] summary:after {
     font-size: 25px;
 
 }
+.proimg{
+    width: 500px;
+}
+.bgimg{
+    padding-top:120px;
+    background-image: url('/assets/img/background/ser.jpg');
+    background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+}
+@media (max-width:767px) {
+    .bgimg{
+        background-image:none;
+    }
+}
+@media (max-width:767px) {
+    .proimg{
+        width: 300px;
+    }
+}
 </style>
 
 <body>
-    <div class="section-padding" style="padding-top:120px; background:url('/assets/img/background/ser.jpg'); background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; ">
+    <div class="section-padding bgimg" >
         <div class="container">
             <div class="product-info row">
                 <div class="col-lg-8 col-md-12 col-xs-12">
@@ -253,7 +271,7 @@ details[open] summary:after {
                              </form>
                         </div>
                         <div class="staff-inner" style="text-align: center;">
-                            <img src="/assets/img/background/Servicesing.png" alt="" style="width:500px">
+                            <img src="/assets/img/background/Servicesing.png" alt="" class="proimg">
                         </div>
                         <!-- <div class="tag-bottom">
                             <div class="float-left">

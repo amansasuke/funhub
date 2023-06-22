@@ -85,6 +85,54 @@
 .titlehead span{
     color: #32be8f;
 }
+.banerimg{
+    width: 90%;
+}
+.lastimg{
+    width: 500px;
+}
+.lastsection{
+    padding: 60px 0px;
+    margin-top: 40px;
+}
+.myoffset{
+        margin-left: 8.3333%;
+    }
+@media (max-width:767px) {
+
+    .vision-head {
+        font-size: 40px;
+        text-align: center;
+    }
+    .banerimg{
+        width: 80% !important;
+   }
+   .bnrsection {
+       text-align: center; 
+    }
+    .card-shape{
+        height: 100px;
+    }
+    .mobpad{
+        padding-top: 200px;
+    }
+    .titlehead h1{
+      text-align:center;
+    font-size: 35px;
+    font-weight: 900;
+    margin-bottom: 30px;
+    }
+    .lastimg{
+        width: 100%;
+    }
+    .lastsection{
+        padding: 0px 0px;
+        margin-top: 0px;
+    }
+    .myoffset{
+        margin-left: 0px;
+    }
+}
 </style>
 
 <body>
@@ -106,10 +154,13 @@
     <section id="about" class="section-padding">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-lg-6 col-xs-12">
-                    <img class="img-fluid" src="assets/img/about/about.png" alt="" width="90%;">
-                    <h1 class="vision-head">Our vision <br>& Our Mission </h1>
-                    <h5><i> Finanzi: Empowering businesses with financial literacy</i></h5>
+                <div class="col-md-6 col-lg-6 col-xs-12 ">
+                    <div class="bnrsection">
+                        <img  src="assets/img/about/about.png" alt=""
+                         class="banerimg">
+                        <h1 class="vision-head">Our vision <br>& Our Mission </h1>
+                        <h5><i> Finanzi: Empowering businesses with financial literacy</i></h5>
+                    </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xs-12">
                     <div class="about-wrapper">
@@ -143,7 +194,7 @@
                     
                 </div>
                 <div class="row row-cols-1 row-cols-md-3 g-4" style="padding-top:170px;">
-                    <div class="col-md-6" >
+                    <div class="col-md-6 " >
                         <div class="card card-pink h-100 overflow-hidden shadow bg-white border-0 px-0">
                             <div class="card-shape">
                                 <img src="assets/img/about/t2.jpg" class="card-img-top rounded-circle" alt="Jane" style="width:70%;">                                
@@ -168,11 +219,11 @@
                                 <small class="text-muted">Head of Project Management</small>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6" >
+                    </div>                    
+                    <div class="col-md-6 mobpad" >
                         <div class="card card-pink h-100 overflow-hidden shadow bg-white border-0 px-0">
                             <div class="card-shape">
-                                <img src="assets/img/about/t1.jpg" class="card-img-top rounded-circle" alt="Jane" style="width:70%;">                                
+                                <img src="assets/img/about/t4.jpg" class="card-img-top rounded-circle" alt="Jane" style="width:70%;">                                
                             </div>
                             <div class="card-body">
                                 <blockquote>
@@ -194,9 +245,7 @@
                                 <small class="text-muted">Head of Project Management</small>
                             </div>
                         </div>
-                    </div>
-                   
-                                      
+                    </div>                   
                 </div>
                 <div class="row row-cols-1 row-cols-md-3 g-4" style="padding-top:190px;">
                     <div class="col-md-6" >
@@ -225,10 +274,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6" >
+                    <div class="col-md-6 mobpad" >
                         <div class="card card-pink h-100 overflow-hidden shadow bg-white border-0 px-0">
                             <div class="card-shape">
-                                <img src="assets/img/about/t4.jpg" class="card-img-top rounded-circle" alt="Jane" style="width:70%;">                                
+                                <img src="assets/img/about/t1.jpg" class="card-img-top rounded-circle" alt="Jane" style="width:70%;">                                
                             </div>
                             <div class="card-body">
                                 <blockquote>
@@ -250,19 +299,17 @@
                                 <small class="text-muted">Head of Project Management</small>
                             </div>
                         </div>
-                    </div>
-                   
-                                      
+                    </div>                
                 </div>              
             </div>
     </section>
-    <section class="section-padding" style="margin-top: 40px;">
+    <section class="lastsection">
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-sm-5 ">
-                    <img src="assets/img/about/AboutUsimage.png" width="500px;">
+                    <img src="assets/img/about/AboutUsimage.png" class="lastimg" >
                 </div>
-                <div class="col-md-6 col-sm-6 offset-1" >
+                <div class="col-md-6 col-sm-6 myoffset" >
                     <div class="head-faq text-center shadow" style="border-radius: 40px;padding: 26px 26px 26px 26px !important;box-shadow: 0 0 15px rgba(143, 143, 143, .18);">
                         <h5 style="color:black !important;font-weight: 900; letter-spacing: 1px; font-size: 20px;">Get to know us why we are your financial magicians!!! We would love to interact with you and discover how Finanzi can be you <span style="color:red;">FINANCIAL GAME CHANGER</span> </h5>
                     </div>
