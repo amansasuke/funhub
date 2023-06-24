@@ -203,37 +203,37 @@ class CheckoutController extends AbstractController
                 $entityManager->persist($order);
                 $entityManager->flush();                  
                  // 2. Create a Twig template for the invoice
-                $invoiceHtml = $this->renderView('invoice_template.html.twig', [
-                'order' => $order,
-                // add any additional data here
-            ]);
-            // 1. Generate PDF invoice
-                $dompdf = new Dompdf();
-                $dompdf->loadHtml($invoiceHtml);
-                $dompdf->setPaper('A4', 'portrait');
+            //     $invoiceHtml = $this->renderView('invoice_template.html.twig', [
+            //     'order' => $order,
+            //     // add any additional data here
+            //     ]);
+            // // 1. Generate PDF invoice
+            //     $dompdf = new Dompdf();
+            //     $dompdf->loadHtml($invoiceHtml);
+            //     $dompdf->setPaper('A4', 'portrait');
 
-                // 2. Load external CSS stylesheets, if any
-                $dompdf->set_option('isRemoteEnabled', true);
+            //     // 2. Load external CSS stylesheets, if any
+            //     $dompdf->set_option('isRemoteEnabled', true);
 
-                // 3. Render the PDF
-                $dompdf->render();
-                $pdf = $dompdf->output();
+            //     // 3. Render the PDF
+            //     $dompdf->render();
+            //     $pdf = $dompdf->output();
 
-                // 4. Save the PDF invoice
-                $invoiceFileName = 'invoice_' . $order->getId() . '.pdf';
-                $invoicePath = __DIR__ . '/../../public/invoices/' . $invoiceFileName;
-                file_put_contents($invoicePath, $pdf);
+            //     // 4. Save the PDF invoice
+            //     $invoiceFileName = 'invoice_' . $order->getId() . '.pdf';
+            //     $invoicePath = __DIR__ . '/../../public/invoices/' . $invoiceFileName;
+            //     file_put_contents($invoicePath, $pdf);
 
-                // 5. Send email with invoice
-                $emailsend = (new TemplatedEmail())
-                    ->from('amansharmasasuke@gmail.com')
-                    ->to(new Address($order->getEmail(), $order->getName()))
-                    ->subject('Order confirmation')
-                    ->htmlTemplate('emails/invoice.html.twig')
-                    ->attachFromPath($invoicePath, $invoiceFileName)
-                    ->context(['order' => $order]);
+            //     // 5. Send email with invoice
+            //     $emailsend = (new TemplatedEmail())
+            //         ->from('amansharmasasuke@gmail.com')
+            //         ->to(new Address($order->getEmail(), $order->getName()))
+            //         ->subject('Order confirmation')
+            //         ->htmlTemplate('emails/invoice.html.twig')
+            //         ->attachFromPath($invoicePath, $invoiceFileName)
+            //         ->context(['order' => $order]);
 
-                $mailer->send($emailsend);
+            //     $mailer->send($emailsend);
 
             }         
 
