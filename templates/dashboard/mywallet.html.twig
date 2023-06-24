@@ -157,6 +157,21 @@
 .card1 .card1-body .card1-cancel-button a:hover {
     color: var(--dark-blue);
 }
+@media (max-width:767px) {
+ .card1 .card1-body .card1-payment-button a {
+    width: 100px !important;
+    height: 30px;
+    border: 0;
+    padding: 8px;
+    font-size: 10px !important;
+    background: var(--bright-blue);
+    color: white;
+    font-weight: 500;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px 0px hsl(245deg 75% 52% / 44%);
+    cursor: pointer;
+}
+}
 </style>
 
 <body>
@@ -234,7 +249,7 @@
                                                                     <div class="card1-title">Services</div>
                                                                     <div class="card1-text">Redeem your wallet points while purchasing any of our services</div>
                                                                     <div class="card1-payment-button" style="text-align: center;">
-                                                                        <a href="services">Proceed to Services</a>
+                                                                        <a href="services" >Proceed to Services</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -264,33 +279,7 @@
                     </div>
                 </div>
             </main>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row text-muted">
-                        <div class="col-8 text-left">
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <a class="text-muted" href="#">Support</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-muted" href="#">Privacy</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-muted" href="#">Terms of Service</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-muted" href="#">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-4 text-right">
-                            <p class="mb-0">
-                                &copy; 2020 - <a href="dashboard-default.html" class="text-muted">Spark</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+             
         </div>
     </div>
     <svg width="0" height="0" style="position:absolute">

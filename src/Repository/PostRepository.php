@@ -39,20 +39,29 @@ class PostRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Post[] Returns an array of Post objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    // public function postlimt()
+    // {
+    //     return $this->createQueryBuilder('p')    
+    //         ->orderBy('p.id', 'DESC')
+    //         ->setMaxResults(3)            
+    //         ->getQuery()
+    //         ->execute();
+    // }
+
+   /**
+    * @return Post[] Returns an array of Post objects
+    */
+   public function postlimt(): array
+   {
+       return $this->createQueryBuilder('p')
+           ->andWhere('p.category != :val')
+           ->setParameter('val', '3')
+           ->orderBy('p.id', 'DESC')
+           ->setMaxResults(3)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?Post
 //    {

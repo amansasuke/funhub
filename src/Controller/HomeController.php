@@ -49,7 +49,7 @@ class HomeController extends AbstractController
      */
     public function index(PostRepository $re ,  SessionInterface $session, EventbookingRepository $eventbookingRepository, Request $request, MangereventbookingRepository $MangereventbookingRepository): Response
     {
-        $post = $re->findBy(array(), array('id' => 'desc'));
+        $post = $re->postlimt();
 
         $basket = $session->get('basket', []);
 
@@ -272,7 +272,7 @@ class HomeController extends AbstractController
         if (isset($_GET['tags'])) {
             $Productshow = $Product->searchtags($_GET['tags'], $myLimit, $pginateStartIndex );
         }else{
-            $Productshow = $Product->findBy(array(),array('id' => 'DESC'),
+            $Productshow = $Product->findBy(array(),array('bgcolor' => 'ASC'),
             $myLimit,
             $pginateStartIndex);
         }

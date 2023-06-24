@@ -201,6 +201,9 @@ details[open] summary:after {
         width: 300px;
     }
 }
+.tab-control{
+    color:black;
+}
 </style>
 
 <body>
@@ -305,22 +308,35 @@ details[open] summary:after {
                                     {{prodetail.howdone| raw}}
                                 </details>
                                 <details class='tab-control'>
-                                    <summary>Estimates of server components</summary>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <summary>Inclusions</summary>
+                                    {{prodetail.Inclusions| raw}}
                                 </details>
                                 <details class='tab-control'>
                                     <summary>Documents required</summary>
-                                    <div class="panel-body">
+                                    <div class="panel-body">                                    
                                         {% for prodocs in prodoc %}
-                                        {% for prodo in prodocs.Newdocinfo %}
-                                        <p>
-                                            {{ prodo.name }}
-                                        </p>
+                                        {% for prodo in prodocs.Newdocinfo %}                                        
+                                            {{ prodo.name }}                                        
                                         <br>
                                         {% endfor %}
-                                        {% endfor %}
-                                        <br>
+                                        {% endfor %}                                    
                                     </div>
+                                </details>
+                                <details class='tab-control'>
+                                    <summary>Exclusions</summary>
+                                    {{prodetail.Exclusions| raw}}
+                                </details>
+                                <details class='tab-control'>
+                                    <summary>Bonus</summary>
+                                    {{prodetail.Bonus| raw}}
+                                </details>
+                                <details class='tab-control'>
+                                    <summary>Estimared</summary>
+                                    {{prodetail.Estimared| raw}}
+                                </details>
+                                <details class='tab-control'>
+                                    <summary>Deliverables</summary>
+                                    {{prodetail.Deliverables| raw}}
                                 </details>
                             </div>
                         </div>

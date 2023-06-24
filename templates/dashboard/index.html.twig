@@ -283,6 +283,14 @@ a:link { text-decoration: none; }
  .rating input:checked ~ label:before, .rating:not(:checked) > label:hover:before, .rating:not(:checked) > label:hover ~ label:before {
      color: #f9df4a;
 }
+.noimg img{
+    height: 300px;
+}
+@media (max-width:767px) {
+    .noimg img{
+        height: 100px;
+    }
+}
 </style>
 
 <body>
@@ -337,7 +345,7 @@ a:link { text-decoration: none; }
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="dashboardbox">
                                                 <div class="noimg">
-                                                    <img src="assets/img/details/kindpng_1749396.png" height="300px;">
+                                                    <img src="assets/img/details/kindpng_1749396.png" >
                                                 </div>
                                                 <div class="post-btn" style="text-align:center";>
                                                     
@@ -363,33 +371,7 @@ a:link { text-decoration: none; }
                     </div>
                 </div>
             </main>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row text-muted">
-                        <div class="col-8 text-left">
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <a class="text-muted" href="#">Support</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-muted" href="#">Privacy</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-muted" href="#">Terms of Service</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="text-muted" href="#">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-4 text-right">
-                            <p class="mb-0">
-                                &copy; 2020 - <a href="dashboard-default.html" class="text-muted">Spark</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+             
         </div>
     </div>
     <svg width="0" height="0" style="position:absolute">
