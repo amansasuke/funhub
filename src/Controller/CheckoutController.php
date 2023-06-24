@@ -323,6 +323,16 @@ class CheckoutController extends AbstractController
             ->context(['order' => $order]);
 
         $mailer->send($email);
+
+        $emailsend = (new TemplatedEmail())
+                ->from('amansharmasasuke@gmail.com')
+                ->to(new Address($order->getEmail(), $order->getName()))
+                ->subject('Order confirmation')
+                ->htmlTemplate('emails/invoice.html.twig')
+                //->attachFromPath($invoicePath, $invoiceFileName)
+                ->context(['order' => $order]);
+
+            $mailer->send($emailsend);
     }
 
     private function promocode($Promocode,PromoRepository $Promo, $doctrine)
