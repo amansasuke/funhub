@@ -88,13 +88,13 @@ class RegistrationController extends AbstractController
             $this->sendsignup($user, $mailer);
             // do anything else you need here, like send an email
 
-            return $userAuthenticator->authenticateUser(
-                $user,
-                $authenticator,
-                $request
-            );
+            // return $userAuthenticator->authenticateUser(
+            //     $user,
+            //     $authenticator,
+            //     $request
+            // );
 
-            //return $this->redirectToRoute('app_sentverifiy');
+            return $this->redirectToRoute('app_sentverifiy');
         }
         $basket = $session->get('basket', []);
         return $this->render('registration/register.html.twig', [

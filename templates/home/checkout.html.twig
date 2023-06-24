@@ -28,21 +28,7 @@
                                 <h6 class="my-0">₹{{ product.price | number_format(2) }}</h6>
                                 </div>
                             </li>
-                        {% endfor %}
-                            {# <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Second product</h6>
-                                    <small class="text-muted">Brief description</small>
-                                </div>
-                                <span class="text-muted">$8</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Third item</h6>
-                                    <small class="text-muted">Brief description</small>
-                                </div>
-                                <span class="text-muted">$5</span>
-                            </li> #}
+                        {% endfor %}                            
                             <li class="list-group-item d-flex justify-content-between bg-light">
                                 <div class="text-success">
                                     <h6 class="my-0">Points Earned</h6>
@@ -57,34 +43,7 @@
                                 </div>
                                 <h6 class="text-info">₹{{waltebalanceold| number_format(2)}}</h6>
                             </li>
-                            
-                            {# <li class="list-group-item d-flex justify-content-between">
-                                <div >
-                                    <h6 class="my-0">Total</h6>                                  
-                                    <p class="my-0" id="gst"></p>
-                                    
-                                </div> 
-                                <strong>
-                                    {% if app.request.get('usewalet') %}
-                                        {% if app.request.get('usewalet')> waltebalanceold %}
-                                            ₹{{ total | number_format(2) }}
-                                        {% else %}
-                                            ₹{{ total | number_format(2) }}<br>
-                                            {%  set total = total - app.request.get('usewalet') %}
-                                            <span style="color: 
-                                            red">-{{app.request.get('usewalet')| number_format(2)}}</span><a href="/checkout" style="color: 
-                                            red"> <i class="fa fa-times"></i> </a>
-                                            <br>
-                                             ₹{{ total| number_format(2)}} 
-                                        {% endif %}
-                                     {% else %}
-                                        ₹{{ total | number_format(2) }}
-                                    {% endif %}
-                                    <br> 
-                                    {%  set gsttotal = ( total / 100) * 18 %}                                    
-                                    <span>₹{{ gsttotal| number_format }}.00</span>                                                                 
-                                </strong>                                 
-                            </li> #}
+                                                        
                             <li class="list-group-item d-flex justify-content-between">
                                 {% if app.request.get('usewalet') and app.request.get('usewalet')<= waltebalanceold %}
                                     <div >
@@ -403,54 +362,67 @@
                     var razorpayOrderId = "{{ razorpayOrderId }}"; // Get the Razorpay order ID from the PHP variable
 
                     // Handle form submission
-                    document.getElementById('checkout-form').addEventListener('submit', function(event) {
-                        event.preventDefault(); // Prevent form submission
+                   document.getElementById('checkout-form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent form submission
 
-                        var preloader = document.getElementById("preloader");
-                        preloader.style.display = "block";
-                        // Perform any additional validation if needed
+  // Show the preloader spinner
+  var preloader = document.getElementById("preloader");
+  preloader.style.display = "block";
 
-                        // Submit the form asynchronously
-                        var form = document.getElementById('checkout-form');
-                        
-                        var formData = new FormData(form);
-                        var xhr = new XMLHttpRequest();
-                        xhr.open(form.method, form.action, true);
-                        xhr.onreadystatechange = function() {
-                        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                            // Form submission successful
-                            // Create a Razorpay popup
-                            
-                            var options = {
-                            key: 'rzp_test_7fBzWp1ySpgsgJ', // Replace with your Razorpay API key
-                            amount: {{ grandtotal * 100 }}, // Convert the total to the smallest currency unit (in paise)
-                            currency: 'INR', // Replace with your currency code
-                            order_id: razorpayOrderId,
-                            name: "The Finanzi ",
-                            handler: function(response) {
-                                // Handle successful payment
-                                console.log(response);
-                                // Redirect to a success page or perform any other desired action
-                                window.location.href = "{{ path('app_dashboard') }}";
-                            },
-                            prefill: {
-                                // Pre-fill customer details if needed
-                                name: "{{ form.name.vars.value }}",
-                                email: "{{ form.email.vars.value }}",
-                                contact: "{{ form.phoneno.vars.value }}",
-                            },
-                            };
+  // Create a Razorpay popup
+  var options = {
+    key: 'rzp_test_7fBzWp1ySpgsgJ', // Replace with your Razorpay API key
+    amount: {{ grandtotal * 100 }}, // Convert the total to the smallest currency unit (in paise)
+    currency: 'INR', // Replace with your currency code
+    order_id: razorpayOrderId,
+    name: "The Finanzi ",
+    handler: function(response) {
+      // Handle successful payment
+      console.log(response);
 
-                            var rzp = new Razorpay(options);
-                            preloader.style.display = "none";
-                            rzp.open(); // Open the Razorpay popup
-                        }else {
-                            // Form submission failed
-                            console.log('Form submission failed');
-                        }
-                        };
-                        xhr.send(formData);
-                    });
+      // Submit the form asynchronously
+      var form = document.getElementById('checkout-form');
+      var formData = new FormData(form);
+      var xhr = new XMLHttpRequest();
+      xhr.open(form.method, form.action, true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          // Hide the preloader spinner
+          preloader.style.display = "none";
+
+          if (xhr.status === 200) {
+            // Form submission successful
+            // Redirect to a success page or perform any other desired action
+            window.location.href = "{{ path('app_dashboard') }}";
+          } else {
+            // Form submission failed
+            preloader.style.display = "none";
+            console.log('Form submission failed');
+          }
+        }
+      };
+      xhr.send(formData);
+    },
+    prefill: {
+      // Pre-fill customer details if needed
+      name: "{{ form.name.vars.value }}",
+      email: "{{ form.email.vars.value }}",
+      contact: "{{ form.phoneno.vars.value }}",
+    },
+    modal: {
+      ondismiss: function() {
+        // Razorpay popup minimized or closed
+        // Hide the preloader spinner
+        preloader.style.display = "none";
+      }
+    }
+  };
+
+  var rzp = new Razorpay(options);
+  rzp.open(); // Open the Razorpay popup
+});
+
+
                     </script>
 
                 </div>
