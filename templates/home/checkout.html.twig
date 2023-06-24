@@ -2,6 +2,13 @@
 {% block body %}
 
 {# {{ form(form) }} #}
+<style>
+.disable {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+</style>
 
 <body>
     <div id="preloader" style="display: none;">
@@ -28,7 +35,21 @@
                                 <h6 class="my-0">₹{{ product.price | number_format(2) }}</h6>
                                 </div>
                             </li>
-                        {% endfor %}                            
+                        {% endfor %}
+                            {# <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0">Second product</h6>
+                                    <small class="text-muted">Brief description</small>
+                                </div>
+                                <span class="text-muted">$8</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0">Third item</h6>
+                                    <small class="text-muted">Brief description</small>
+                                </div>
+                                <span class="text-muted">$5</span>
+                            </li> #}
                             <li class="list-group-item d-flex justify-content-between bg-light">
                                 <div class="text-success">
                                     <h6 class="my-0">Points Earned</h6>
@@ -43,7 +64,34 @@
                                 </div>
                                 <h6 class="text-info">₹{{waltebalanceold| number_format(2)}}</h6>
                             </li>
-                                                        
+                            
+                            {# <li class="list-group-item d-flex justify-content-between">
+                                <div >
+                                    <h6 class="my-0">Total</h6>                                  
+                                    <p class="my-0" id="gst"></p>
+                                    
+                                </div> 
+                                <strong>
+                                    {% if app.request.get('usewalet') %}
+                                        {% if app.request.get('usewalet')> waltebalanceold %}
+                                            ₹{{ total | number_format(2) }}
+                                        {% else %}
+                                            ₹{{ total | number_format(2) }}<br>
+                                            {%  set total = total - app.request.get('usewalet') %}
+                                            <span style="color: 
+                                            red">-{{app.request.get('usewalet')| number_format(2)}}</span><a href="/checkout" style="color: 
+                                            red"> <i class="fa fa-times"></i> </a>
+                                            <br>
+                                             ₹{{ total| number_format(2)}} 
+                                        {% endif %}
+                                     {% else %}
+                                        ₹{{ total | number_format(2) }}
+                                    {% endif %}
+                                    <br> 
+                                    {%  set gsttotal = ( total / 100) * 18 %}                                    
+                                    <span>₹{{ gsttotal| number_format }}.00</span>                                                                 
+                                </strong>                                 
+                            </li> #}
                             <li class="list-group-item d-flex justify-content-between">
                                 {% if app.request.get('usewalet') and app.request.get('usewalet')<= waltebalanceold %}
                                     <div >
@@ -353,7 +401,7 @@
                             </div>
                         </div>
 
-                        {{ form_row(form.save,{'attr': {'class': 'btn-block btn btn-common'}}) }}                       
+                        {{ form_row(form.save,{'attr': {'class': 'btn-block btn btn-common disable'}}) }}                       
                         {{ form_end(form) }}
                         
 
@@ -468,6 +516,7 @@
 $('#gst').append('IGST 18%');
 $('#price').append('₹{{ gsttotal| number_format }}.00');
 $("#form_state").change(function(){
+    $("#form_save").removeClass("disable");
     len = this.value ;
     document.getElementById("nameofid").value = len;
     if(len == '35'){
