@@ -13980,7 +13980,7 @@ a.card {
     cursor: pointer;
     height: 2px;
     width: 20px;
-    background: #5bb7c5;
+    background: #fff;
     display: block;
     content: "";
     transition: background .1s ease-in-out, color .1s ease-in-out
@@ -14005,7 +14005,7 @@ a.card {
 .sidebar-toggle:hover .hamburger,
 .sidebar-toggle:hover .hamburger:after,
 .sidebar-toggle:hover .hamburger:before {
-    background: #17a2b8
+    background: #fff
 }
 
 .hamburger-right,
