@@ -237,12 +237,7 @@ details[open] summary:after {
                         <div class="ads-details-info">
                             <h1>{{prodetail.name}}</h1>
                             <h1>₹{{prodetail.price|number_format(0, '.', ',') }} <span><s>₹{{prodetail.regularprice|number_format(0, '.', ',') }}</s></span> </h1>
-                            <span style="color:black;">This price is exclusive of GST</span>
-                            <div class="details-meta">
-                                <span><a href="#"><i class="lni-book"></i> Business license</a></span>
-                                <span><a href="#"><i class="lni-eye"></i> 99 Buyrs</a></span>
-                                <!-- <span><a href="#"><i class="lni-eye"></i> 299 View</a></span> -->
-                            </div>
+                            <span style="color:black;">This price is exclusive of GST</span>                            
                             {{prodetail.description| raw}}
                             <!--  <h4 class="title-small mb-3">Specification:</h4>
                             <ul class="list-specification">
@@ -308,10 +303,6 @@ details[open] summary:after {
                                     {{prodetail.howdone| raw}}
                                 </details>
                                 <details class='tab-control'>
-                                    <summary>Inclusions</summary>
-                                    {{prodetail.Inclusions| raw}}
-                                </details>
-                                <details class='tab-control'>
                                     <summary>Documents required</summary>
                                     <div class="panel-body">                                    
                                         {% for prodocs in prodoc %}
@@ -323,6 +314,10 @@ details[open] summary:after {
                                     </div>
                                 </details>
                                 <details class='tab-control'>
+                                    <summary>Inclusions</summary>
+                                    {{prodetail.Inclusions| raw}}
+                                </details>                                
+                                <details class='tab-control'>
                                     <summary>Exclusions</summary>
                                     {{prodetail.Exclusions| raw}}
                                 </details>
@@ -331,7 +326,7 @@ details[open] summary:after {
                                     {{prodetail.Bonus| raw}}
                                 </details>
                                 <details class='tab-control'>
-                                    <summary>Estimared</summary>
+                                    <summary>Estimated time of completion</summary>
                                     {{prodetail.Estimared| raw}}
                                 </details>
                                 <details class='tab-control'>

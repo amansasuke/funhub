@@ -10,7 +10,7 @@
     wow.init();
     $('[data-toggle="tooltip"]').tooltip()
     var testiOwl = $("#testimonials");
-    testiOwl.owlCarousel({ autoplay: true, margin: 30, dots: false, autoplayHoverPause: true, nav: false, loop: true, responsiveClass: true, responsive: { 0: { items: 1, }, 991: { items: 2 } } });
+    testiOwl.owlCarousel({ autoplay: true, margin: 30, dots: true, autoplayHoverPause: true, nav: true, loop: true, navText: ['<i class="lni-chevron-left"></i>', '<i class="lni-chevron-right"></i>'], responsiveClass: true, responsive: { 0: { items: 1, }, 991: { items: 2 } } });
     var testiOwl = $("#logosdiv");
     testiOwl.owlCarousel({ autoplay: true, margin: 30, dots: false, autoplayHoverPause: true, nav: true, loop: true, navText: ['<i class="lni-chevron-left"></i>', '<i class="lni-chevron-right"></i>'], responsiveClass: true, responsive: { 0: { items: 1, }, 991: { items: 4 } } });
     var testiOwl = $("#stepdiv");

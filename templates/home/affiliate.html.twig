@@ -642,8 +642,9 @@ header .footer-wave {
 }
 
 #development-img img {
-    height:440px;
-}
+     width: 100%;
+    padding-top: 20px;
+  }
 .testbaner  span{
    font-size: 50px;
     font-weight: 900;
@@ -661,9 +662,8 @@ header .footer-wave {
 
     
     #development-img {
-    width:50%;
-    text-align: center;
-}
+     text-align: center;
+  }
 
 
 details[open],
@@ -736,7 +736,8 @@ details[open] summary:after {
    width:100%;
  }
   #development-img img {
-      height: 350px;
+     width: 100%;
+    padding-top: 20px;
   }
   .titlehead h1{
       text-align:center;
@@ -748,6 +749,21 @@ details[open] summary:after {
     margin-top: 5.8%;
     text-align: center;
   }
+  .mobile{
+    display: none !important;
+  }
+  .deask{
+    display: block !important;
+  }
+
+  @media (max-width:991px) {
+    .mobile{
+    display: block !important;
+    }
+    .deask{
+      display: none !important;
+    }
+  }
 </style>
 
 <body>
@@ -755,15 +771,12 @@ details[open] summary:after {
     <section class="cta section-padding" id="intro">
         <div class="container">
             <div class="row" >
-                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 mtdast">
-                    <div class="testbaner" style="padding-left: 35px;">
-                        <h1>Refer once; <br> Earn commission for a </h1>
-                        <span>Lifetime</span>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7" id="development-img">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 deask " id="development-img">
                     <img src="assets/img/background/AffiliatePage.png"  />
                 </div>
+                /* <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mobile " id="development-img">
+                    <img src="assets/img/background/affiliatemobile.png"  />
+                </div> */
             </div>
         </div>
     </section>
