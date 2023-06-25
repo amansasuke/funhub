@@ -1876,7 +1876,7 @@ padding-left: 30px; padding-top: 25px;
                                         <a href="blogs/{{posts.id}}"> {{ posts.title}}</a>
                                     </h3>
                                     <p>
-                                        {{ posts.content| raw}}
+                                        {{ posts.content|striptags|slice(0, 150) ~ '...'}}
                                     </p>
                                     <a href="blogs/{{posts.id}}" class="btn btn-common">Read More</a>
                                 </div>

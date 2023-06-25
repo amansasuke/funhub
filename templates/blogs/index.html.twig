@@ -18,6 +18,11 @@
     color:black !important;
 }
 </style>
+{% if app.request.get('page') %}
+{% set current_page = app.request.get('page') %}
+{% else %}
+{% set current_page = 1 %}
+{% endif %}
 <body>
     
     <div id="content" class="section-padding" style="padding-top:104px;">
@@ -28,7 +33,7 @@
                 {% for posts in post %}
                     <div class="blog-post">
                         <div class="post-thumb">
-                            <a href="{{ path('app_blogs') }}/{{posts.id}}"><img class="img-fluid" src="images/thumbnails/{{posts.thumbnail}}" alt=""></a>
+                            <a href="{{ path('app_blogs') }}/{{posts.id}}"><img class="img-fluid" src="images/thumbnails/{{posts.thumbnail}}" alt="" style="width: 100%;"></a>
                             <div class="hover-wrap"></div>
                         </div>
                         <div class="post-content">
@@ -40,23 +45,32 @@
                             </div>
                             <h2 class="post-title"><a href="">{{ posts.title}}</a></h2>
                             <div class="entry-summary">
-                                <p> {{ posts.content| raw}}</p>
+                                <p> {{ posts.content|striptags|slice(0, 350) ~ '...'}}</p>
                             </div>
                             <a href="{{ path('app_blogs') }}/{{posts.id}}" class="btn btn-common">Read More</a>
                         </div>
                     </div>
                 {% endfor %}
                    
+                    {% if total_pages > 1 %}
                     <div class="pagination-bar">
                         <nav>
-                            <ul class="pagination">
-                                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                            <ul class="pagination justify-content-center">
+                                {% for i in 1..total_pages %}
+                                {% if loop.first %}
+                                <li class="page-item {% if current_page == 1 %} disabled  {% endif %}">
+                                    <a class="page-link" href="?page={{ current_page-1 }}" tabindex="-1"><i class="fa fa-angle-left" aria-hidden="true"></i>pre</a>
+                                </li>
+                                {% endif %}
+                                <li class="page-item "><a class="page-link {% if current_page == loop.index %} active  {% endif %}  " href="?page={{ loop.index }}">{{ loop.index }}</a></li>
+                                {% if loop.last %}
+                                <li class="page-item {% if current_page == total_pages %} disabled  {% endif %}"><a class="page-link" href="?page={{ current_page+1 }}">Next</a></li>
+                                {% endif %}
+                                {% endfor %}
                             </ul>
                         </nav>
                     </div>
+                {% endif %}
                 </div>
                 <aside id="sidebar" class="col-lg-4 col-md-12 col-xs-12 right-sidebar">
                     <div class="widget_search">
