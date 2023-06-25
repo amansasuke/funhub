@@ -95,6 +95,7 @@ class DashboardController extends AbstractController
                $sunmitdoc[$i]['doclink'] = $Ordoc->getDoclink();
                $sunmitdoc[$i]['remark'] = $Ordoc->getRemark();
                $sunmitdoc[$i]['status'] = $Ordoc->getStatus();
+               $sunmitdoc[$i]['docremark'] = $Ordoc->getDocremark();
                $i++;
             }
         }
@@ -151,6 +152,7 @@ class DashboardController extends AbstractController
                             $submitorderdoc[$l]['id'] = $submited['id'];
                             $submitorderdoc[$l]['remark'] = $submited['remark'];
                             $submitorderdoc[$l]['status'] = $submited['status'];
+                            $submitorderdoc[$l]['docremark'] = $submited['docremark'];
                             
                             $l++;
                         }
@@ -180,6 +182,7 @@ class DashboardController extends AbstractController
                         $finalredocsub[$u]['doclink'] = $submitorder['doclink'];
                         $finalredocsub[$u]['id'] = $submitorder['id'];
                         $finalredocsub[$u]['status'] = $submitorder['status'];
+                        $finalredocsub[$u]['docremark'] = $submitorder['docremark'];
                   
                     }
                 $v++;

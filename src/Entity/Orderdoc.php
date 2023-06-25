@@ -44,6 +44,11 @@ class Orderdoc
      */
     private $remark;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $docremark;
+
     public function __construct()
     {
         $this->orderid = new ArrayCollection();
@@ -132,5 +137,17 @@ class Orderdoc
     public function isStatus(): ?bool
     {
         return $this->status;
+    }
+
+    public function getDocremark(): ?string
+    {
+        return $this->docremark;
+    }
+
+    public function setDocremark(?string $docremark): self
+    {
+        $this->docremark = $docremark;
+
+        return $this;
     }
 }

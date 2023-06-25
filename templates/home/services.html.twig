@@ -1,4 +1,4 @@
-{% extends 'getrout.html.twig' %}
+{% extends 'base.html.twig' %}
 {% block title %}Hello HomeController!{% endblock %}
 {% block body %}
 <style type="text/css">
@@ -284,7 +284,7 @@ a {
 
 .flip-box-front,
 .flip-box-back {
-    text-transform: capitalize;
+    
     background-color: white;
     background-size: cover;
     background-position: center;
@@ -456,16 +456,34 @@ a {
                                             </select>
                                         </div>
                                     </div> #}
-                                    {# <div class="form-group inputwithicon">
+                                    <div class="form-group inputwithicon">
                                         <i class="lni-menu"></i>
                                         <div class="select">
-                                            <select>
+                                            {# <ul class="categories-list">
+                                            {% for Categorys in Category %}
+                                            <li>
+                                                <a href="{{ path('app_services') }}?cat={{Categorys.id}}" class="{% if app.request.get('cat') == Categorys.id %}
+                                                            activecat
+                                                        {% endif %}">
+                                                    {{Categorys.name}}<span class="category-counter">
+                                                        {% if app.request.get('cat') %}
+                                                        {% if app.request.get('cat') == Categorys.id %}
+                                                        <i class="fa fa-check" style="color:#5bb7c5;"></i>
+                                                        {% endif %}
+                                                        {% endif %}
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul> #}
+                                            <select  name="cat" id="cat">
+                                                <option value="">Select Catagory</option>
                                                 {% for Categorys in Category %}
-                                                <option value="{{Categorys.name}}">{{Categorys.name}}</option>
+                                                <option value="{{Categorys.id}}">{{Categorys.servicesname}}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
-                                    </div> #}
+                                    </div>
                                     <button class="btn btn-common" type="submit"><i class="lni-search"></i> Search Now</button>
                                 </form>
                             </div>

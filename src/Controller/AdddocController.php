@@ -49,6 +49,7 @@ class AdddocController extends AbstractController
                   ))
             ->add('doclink', FileType::class,array(
                       'label' => ' ',
+                      'required' => false,
                   ))
             ->add('status', HiddenType::class,array(
                       'data' => '',
@@ -56,7 +57,10 @@ class AdddocController extends AbstractController
             ->add('remark', HiddenType::class,array(
                       'data' => 'Pending for Approval',
                   ))
-            ->add('save', SubmitType::class, ['label' => 'Upload'])
+            ->add('docremark', TextType::class,array(
+                    'label' => false,
+                ))
+            ->add('save', SubmitType::class, ['label' => 'Submit'])
             ->getForm();
 
         
@@ -65,18 +69,9 @@ class AdddocController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             
-            //this will be test for new data from the add join for order doc
-            // $order1 = $form->getData();
-            //     $or = $doctrine->getRepository(Order::class)->find($id);
-            //     $order1->getOrderid()->add($or);
-
-            // $entityManager = $this->getDoctrine()->getManager();
-            // $entityManager->persist($order1);
-            // $entityManager->flush();
-            // return $this->render('confirmation.html.twig')
-
-            // //$or = $form->getData();
-            $docname = $form->get('docname')->getData();                    
+            $docname = $form->get('docname')->getData();
+            $docremark = $form->get('docremark')->getData();
+            $newFilename='';                    
              $brochureFile = $form->get('doclink')->getData();
 
              if ($brochureFile) {
@@ -98,14 +93,11 @@ class AdddocController extends AbstractController
                 //$or = $this->getDoctrine()->getManager($order)->find($id);
                 $or = $doctrine->getRepository(Order::class)->find($id);
                 $Orderdoc->getOrderid()->add($or);
-                // updates the 'brochureFilename' property to store the PDF file name
-                // instead of its contents
-                // docname
-                //$Orderdoc->setDocname($docname);
                 $status='0';
                 $entityManager = $this->getDoctrine()->getManager();
                 $Orderdoc->setDocname($docname);
                 $Orderdoc->setDoclink($newFilename);
+                $Orderdoc->setDoclink($docremark);
                 $Orderdoc->setStatus($status);
 
                 // foreach ($order as $key => $value) {

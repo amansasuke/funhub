@@ -270,7 +270,8 @@ class HomeController extends AbstractController
          $Services = $repo->findBy([]);
          
         if (isset($_GET['tags'])) {
-            $Productshow = $Product->searchtags($_GET['tags'], $myLimit, $pginateStartIndex );
+            
+            $Productshow = $Product->searchtags($_GET['tags'], $_GET['cat']);
         }else{
             $Productshow = $Product->findBy(array(),array('bgcolor' => 'ASC'),
             $myLimit,
@@ -289,14 +290,14 @@ class HomeController extends AbstractController
          // }
             
         //$Category = $rep->search('V');
-         //$Category = $rep->findBy([]);
+         $Category = $rep->findBy([]);
 
-        $search = $request->query->get('cat');
-        if ($search) {
-            $Category = $rep->search($search);
-        } else {
-            $Category = $rep->findBy([]);
-        }
+        // $search = $request->query->get('cat');
+        // if ($search) {
+        //     $Category = $rep->search($search);
+        // } else {
+        //     $Category = $rep->findBy([]);
+        // }
         $basket = $session->get('basket', []);
         if ($request->isMethod('POST')) {
             $id = $request->request->get('cart');
@@ -327,7 +328,7 @@ class HomeController extends AbstractController
          
         return $this->render('home/services.html.twig', [
             'Services' => $Services,
-            'Category' => $Category,
+            'Category' => $Services,
             'post' => $post,
             'basket'=>$basket,
             'Product'=>$proget,
