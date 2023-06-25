@@ -128,7 +128,7 @@
     <div class="wrapper">
         {% include '/manger/mangernev.html.twig' %}
         <div class="main">
-            <nav class="navbar navbar-expand navbar-theme">
+            {# <nav class="navbar navbar-expand navbar-theme">
                 <a class="sidebar-toggle d-flex mr-2">
                     <i class="hamburger align-self-center"></i>
                 </a>
@@ -216,7 +216,7 @@
                         </li>
                     </ul>
                 </div>
-            </nav>
+            </nav> #}
             <main class="content">
                 <div class="container-fluid">
                     <div class="header">
@@ -227,7 +227,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard-default.html">Dashboard</a></li>
                                 <li class="breadcrumb-item"><a href="#">Manager</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Assign Orders</li>
+                                <li class="breadcrumb-item active" aria-current="page">Order docs</li>
                             </ol>
                         </nav>
                     </div>
@@ -244,6 +244,7 @@
                                                 <tr>                                          
                                                     <th>order Id</th>
                                                     <th>Doc Name</th>
+                                                    <th>client Remark</th>
                                                     <th>View Doc</th>
                                                     <th>Status</th>
                                                     <th>Remark</th>
@@ -253,40 +254,43 @@
                                                 
                                                 {% for doc in sunmitdoc %}
                                                 <tr data-category="active">
-                                                    <td>
+                                                    <td style="width: 10%;">
                                                     {{doc.id}}
                                                     </td>
                                                 
-                                                    <td data-title="Title">
+                                                    <td style="width: 15%;" >
                                                         {{doc.docname}}
                                                     </td>
-                                                    <td>
-                                                    <div class="btns-actions" style="min-width:0px;">
-                                                        <a href="{{ asset("uploads/brochures/")}}{{doc.doclink}}" target="_blank" class="btn btn-info btn-view" style="z-index: 999;"><i class="lni-eye"></i></a>
-                                                    </div>
+                                                    <td data-title="Title" style="width: 15%;">
+                                                        {{doc.docremark}}
                                                     </td>
-                                                    <td data-title="Title">
+                                                    <td style="width: 15%;" >
+                                                        <div class="btns-actions" style="width: 15%;">
+                                                            <a href="{{ asset("uploads/brochures/")}}{{doc.doclink}}" target="_blank" class="btn btn-info btn-view" style="z-index: 999;"><i class="lni-eye"></i></a>
+                                                        </div>
+                                                    </td>
+                                                    <td data-title="Title" style="width: 15%;">
                                                 
-                                                    {% if doc.docstatus == 0 %}
-                                                        <span class="badge badge-danger" style="color:#ffff;font-size: 14px;padding: 10px;">padding</span>
-                                                    {% endif %}
-                                                    {% if doc.docstatus == 1 %}
-                                                        <span class="badge badge-success" style="color:#ffff;font-size: 14px;padding: 10px;">Done</span>
-                                                    {% endif %}
-                                                    {% if doc.docstatus == 2 %}
-                                                        <span class="badge badge-warning" style="color:#ffff;font-size: 14px;padding: 10px;">Again</span>
-                                                    {% endif %}
+                                                        {% if doc.docstatus == 0 %}
+                                                            <span class="badge badge-danger" style="color:#ffff;font-size: 14px;padding: 10px;">padding</span>
+                                                        {% endif %}
+                                                        {% if doc.docstatus == 1 %}
+                                                            <span class="badge badge-success" style="color:#ffff;font-size: 14px;padding: 10px;">Done</span>
+                                                        {% endif %}
+                                                        {% if doc.docstatus == 2 %}
+                                                            <span class="badge badge-warning" style="color:#ffff;font-size: 14px;padding: 10px;">Again</span>
+                                                        {% endif %}
                 
                                                     </td>
-                                                    <td data-title="Title">
-                                                    {{  doc.remark }}
-                                                    {% if doc.remark =='submitdoc'  %}
-                                                    <div class="btns-actions">
-                                                        <a href="#" target="_blank" class="btn btn-common" style="z-index: 999;">Upload</a>
-                                                    </div>
-                                                    {% endif %}    
+                                                    <td data-title="Title" style="width: 15%;">
+                                                        {{  doc.remark }}
+                                                        {% if doc.remark =='submitdoc'  %}
+                                                        <div class="btns-actions">
+                                                            <a href="#" target="_blank" class="btn btn-common" style="z-index: 999;">Upload</a>
+                                                        </div>
+                                                        {% endif %}    
                                                     </td>
-                                                    <td data-title="Title">
+                                                    <td data-title="Title" style="width: 15%;">
                                                         {# <div class="btns-actions">
                                                             <a href="../editorder/{{doc.docid}}" target="_blank" class="btn btn-success" style="z-index: 999;">Edit</a>
                                                         </div>  #}
@@ -357,10 +361,12 @@
                                     <h5 class="card-title">Required Documents</h5>
                                     <h6 class="card-subtitle text-muted">Those are the documents received for this order</h6>
                                 </div>
-                                <div class="card-body text-center">
+                                <div class="card-body ">
+                                    <ul>
                                     {% for doc in docforpro %}
-                                        <button class="btn mb-1 btn-Primary" >{{doc.name}}</button>                                        
+                                        <li >{{doc.name}}</li>                                        
                                     {% endfor %}
+                                    </ul>
                                     
                                 </div>
                             </div>

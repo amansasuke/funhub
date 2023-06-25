@@ -97,6 +97,7 @@ class AggentdashbordController extends AbstractController
                     $sunmitdoc[$i]['doclink'] = $Ordoc->getDoclink();
                     $sunmitdoc[$i]['docstatus'] = $Ordoc->getStatus();
                     $sunmitdoc[$i]['remark'] = $Ordoc->getRemark();
+                    $sunmitdoc[$i]['docremark'] = $Ordoc->getDocremark();
 
                     $i++;
                 }

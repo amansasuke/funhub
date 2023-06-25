@@ -54,7 +54,7 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
         if($userApiToken){
         return new RedirectResponse($this->urlGenerator->generate('app_dashboard'));
         }else{
-            return new RedirectResponse($this->urlGenerator->generate('app_sentverifiy'));
+            return new RedirectResponse($this->urlGenerator->generate('app_logout'));
         }
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
