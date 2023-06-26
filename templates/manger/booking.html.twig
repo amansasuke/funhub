@@ -6,6 +6,17 @@
 <style type="text/css">
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap");
 
+@media (max-width:767px) {
+    
+
+.btn-primary{
+    font-size:12px !important;
+}
+.fc .fc-toolbar-title {
+    font-size: 0.75em;
+    margin: 0;
+}
+}
 
 </style>
 <body>
@@ -20,7 +31,7 @@
                 <form class="form-inline d-none d-sm-inline-block">
                     <input class="form-control form-control-lite" type="text" placeholder="Search projects...">
                 </form>
-                <div class="navbar-collapse collapse">
+                {# <div class="navbar-collapse collapse">
                     <ul class="navbar-nav ml-auto">
                          
                         <li class="nav-item dropdown ml-lg-2">
@@ -100,7 +111,7 @@
                             </div>
                         </li>
                     </ul>
-                </div>
+                </div> #}
             </nav>
             <main class="content">
                 <div class="container-fluid">
@@ -111,7 +122,7 @@
                         </h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="dashboard-default.html">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Calendar</li>
                             </ol>
                         </nav>

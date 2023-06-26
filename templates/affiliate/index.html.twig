@@ -461,6 +461,18 @@ h6 {
     .noaffimg{
         height: 100px;
     }
+    .card-block {
+    padding: 0.25rem;
+    }
+    .copybtnrow{
+        height:150px;
+    }
+    .copy-button button {
+        margin-top:5px;
+    }
+    .copy-button button{
+        width:100%;
+    }
 }
 </style>
 
@@ -488,7 +500,7 @@ h6 {
                         </h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="dashboard-default.html">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
                                 {# <li class="breadcrumb-item"><a href="#">Affiliate</a></li> #}
                                 <li class="breadcrumb-item active" aria-current="page">Affiliate</li>
                             </ol>
@@ -521,7 +533,7 @@ h6 {
                                 {% for affiliate in affiliates %}
                                 <div class="page-content page-container" id="page-content">
                                     <div class="padding">
-                                        <div class="row container d-flex justify-content-center">
+                                        <div class="row d-flex justify-content-center">
                                             <div class="col-xl-12 col-md-12">
                                                 <div class="card1 user-card-full">
                                                     <div class="row m-l-0 m-r-0">
@@ -567,12 +579,16 @@ h6 {
                                                                         <a class="btn btn-primary" href="{{ affiliate.id }}/edit" style="border:none;font-size: 18px;background-color: green;"><i class="lni-pencil"></i> Edit</a>
                                                                     </div>
                                                                 </div>
-                                                                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Share your Affiliate Link to start earning</h6>
-                                                                <div class="copy-button">
-                                                                    {% for affiliate in affiliates %}
-                                                                    <input id="copyvalue" type="text" readonly value="http://thefinanzi.in:8080/register?affiliateid={{ affiliate.userid }}" />
-                                                                    <button onclick="copyIt()" class="copybtn">COPY</button>
-                                                                    {% endfor %}
+                                                                <div class="row copybtnrow">
+                                                                <div class="col-sm-12">
+                                                                    <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Share your Affiliate Link to start earning</h6>
+                                                                    <div class="copy-button">
+                                                                        {% for affiliate in affiliates %}
+                                                                        <input id="copyvalue" type="text" readonly value="http://thefinanzi.in:8080/register?affiliateid={{ affiliate.userid }}" />
+                                                                        <button onclick="copyIt()" class="copybtn">COPY</button>
+                                                                        {% endfor %}
+                                                                    </div>
+                                                                </div>
                                                                 </div>
                                                             </div>
                                                         </div>

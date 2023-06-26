@@ -51,7 +51,7 @@ class BlogsController extends AbstractController
         
         $Category = $rep->findBy([]);
         $basket = $session->get('basket', []);
-        $Recent = $re->findBy(array(), array('id' => 'desc'));
+        $Recent = $re->postlimt();
         $service = $Product->findBy(array(), array('id' => 'desc'));
         return $this->render('blogs/index.html.twig', [
             'controller_name' => 'HomeController',

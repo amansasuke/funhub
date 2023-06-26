@@ -339,9 +339,12 @@ div.display-position-earn a:hover span {
 .wrapper {
 padding-top: 120px;
 }
-.item{
+#potential .item{
     text-align:center;
 }
+/* .item{
+    
+} */
 .card-img-top {
 /* box-shadow: 0 5px 10px rgba(0,0,0,0.5); */
 width:60% !important;
@@ -983,6 +986,10 @@ padding-left: 30px; padding-top: 25px;
   object-fit: cover;
 }
 
+.testimonial-item {
+    height: 319px
+}
+
 .modal-dialog {max-width: 700px;margin: 130px auto;}
 .modal-body {position:relative;padding:0px;}
 .close {position:absolute;right:-30px;top:0;z-index:999;font-size:32px;font-weight: normal;color:#32be8f;opacity:1;background:white;}
@@ -1144,13 +1151,13 @@ padding-left: 30px; padding-top: 25px;
                    <div class="buy">
                        <div class="buyhead" >
                            <div class="header-design"> <h4> EARN</h4></div>
-                           <div class="text-design"><p>Join our affiliate program and refer Fintastic Hub to your business pals! Recommend once; generate passive income for life! You also earn cashback for every service you avail. Your wallet money adds up every year if you haven’t redeemed your cash back. Earn and Save with us!</p></div>
+                           <div class="text-design"><p>Join our affiliate program and refer Finanzi to your business pals! Recommend once; generate passive income for life! You also earn cashback for every service you avail. Your wallet money adds up every year if you haven’t redeemed your cash back. Earn and Save with us!</p></div>
                        </div>
                    </div> 
                    <div class="buy ">
                        <div class="buyhead divhight" >
                            <div class="header-design"> <h4> INVEST</h4></div>
-                           <div class="text-design "><p>To make investments a minimum risk for you, we partner with major corporations worldwide. When you invest via Fintastic hub,we make it a  smooth, hassle-free process for you and ensure high returns at low risk.</p></div>
+                           <div class="text-design "><p>To make investments a minimum risk for you, we partner with major corporations worldwide. When you invest via Finanzi ,we make it a  smooth, hassle-free process for you and ensure high returns at low risk.</p></div>
                        </div>
                    </div>     
                 </div>
@@ -1692,24 +1699,7 @@ padding-left: 30px; padding-top: 25px;
 
  <!-- Button trigger modal -->
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>        
-        <!-- 16:9 aspect ratio -->
-          <div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src="" id="video" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 
     <section class="testimonial section-padding">
         <div class="container">
@@ -1740,7 +1730,7 @@ padding-left: 30px; padding-top: 25px;
                                 <div class="img-thumb">
                                     <img src="assets/img/testimonial/neha.jpeg" alt="">
                                 </div>
-                                <div class="testimonial-item">
+                                <div class="testimonial-item" >
                                     <div class="content">
                                         <p class="description">I always file my tax return with finanzi, not only do they file my return but also helps me in tax planning which saves a good amount of tax.</p>
                                         <div class="info-text">
@@ -1777,7 +1767,7 @@ padding-left: 30px; padding-top: 25px;
                                         <p class="description">I availed tax return service from finanzi and the experience was amazing. The filing was seamless and they delivered within stipulated time period. They also assisted me in tax audit requirement. I highly recommend their services to everyone.</p>
                                         <div class="info-text">
                                             <h2><a href="#">Vaidya Shikha Prakash</a></h2>
-                                            <h4><a href="#">Functional Ayurveda</a></h4>
+                                            <h4><a href="#">Ayurvedic Practitioner</a></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -1814,6 +1804,7 @@ padding-left: 30px; padding-top: 25px;
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
 
@@ -1837,11 +1828,29 @@ padding-left: 30px; padding-top: 25px;
 
                     </div>
                 </div>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>        
+                            <!-- 16:9 aspect ratio -->
+                            <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="" id="video" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
       <!-- POPUP -->
-        <div class="modal fade" id="video_pop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:100px">
+        {# <div class="modal fade" id="video_pop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:100px">
          <div class="modal-dialog" role="document">
            <div class="modal-content">
              <div class="modal-body">        
@@ -1855,7 +1864,7 @@ padding-left: 30px; padding-top: 25px;
              </div>        
            </div>
          </div>
-        </div>
+        </div> #}
 
 
     <section id="blog" class="" style="padding-top:60px;">

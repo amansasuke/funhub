@@ -9,6 +9,8 @@
     var wow = new WOW({ mobile: false });
     wow.init();
     $('[data-toggle="tooltip"]').tooltip()
+    var testiOwl = $("#testimonialsfeed");
+    testiOwl.owlCarousel({ autoplay: true, margin: 30, dots: true, autoplayHoverPause: true, nav: true, loop: true, navText: ['<i class="lni-chevron-left"></i>', '<i class="lni-chevron-right"></i>'], responsiveClass: true, responsive: { 0: { items: 1, }, 991: { items: 2 } } });
     var testiOwl = $("#testimonials");
     testiOwl.owlCarousel({ autoplay: true, margin: 30, dots: true, autoplayHoverPause: true, nav: true, loop: true, navText: ['<i class="lni-chevron-left"></i>', '<i class="lni-chevron-right"></i>'], responsiveClass: true, responsive: { 0: { items: 1, }, 991: { items: 2 } } });
     var testiOwl = $("#logosdiv");

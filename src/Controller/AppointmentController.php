@@ -50,7 +50,7 @@ class AppointmentController extends AbstractController
         $users = $userR->findBy([]);
 
         return $this->render('appointment/index.html.twig', [
-            'appointments' => $appointmentRepository->findBy(array('MangerID'=>$manger->getId())),
+            'appointments' => $appointmentRepository->findBy(array('MangerID'=>$manger->getId()),array('id' => 'desc')),
             'user'=>$users,
         ]);
     }
@@ -68,7 +68,7 @@ class AppointmentController extends AbstractController
 
 
         return $this->render('appointment/client.html.twig', [
-            'appointments' => $appointmentRepository->findBy(array('MangerID'=>$manger->getId())),
+            'appointments' => $appointmentRepository->findBy(array('MangerID'=>$manger->getId()),array('id' => 'desc')),
             'user'=>$users,
             'order'=> $order,
         ]);

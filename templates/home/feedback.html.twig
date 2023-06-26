@@ -1,5 +1,5 @@
-{% extends 'getrout.html.twig' %}
-{% block title %}About Us!{% endblock %}
+{% extends 'base.html.twig' %}
+{% block title %}Feedback!{% endblock %}
 {% block body %}
 <style>
 .rating {
@@ -76,6 +76,18 @@
 .titlehead span {
     color: #32be8f;
 }
+.img-thumb img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+.testimonial-item {
+    height: 319px
+}
+
+.modal-dialog {max-width: 700px;margin: 130px auto;}
+.modal-body {position:relative;padding:0px;}
+.close {position:absolute;right:-30px;top:0;z-index:999;font-size:32px;font-weight: normal;color:#32be8f;opacity:1;background:white;}
 </style>
 
 <body>
@@ -155,9 +167,182 @@
             </div>
         </div>
     </section>
+    <section class="testimonial section-padding">
+        <div class="container">
+            <div class="row">    
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                
+                    <div class="titlehead" style="text-align:right !important;">
+                        <h1>Client <span>Testimonial.</span> </h1>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div id="testimonialsfeed" class="owl-carousel">
+                        {# <div class="item">
+                            <div class="img-thumb">
+                                <img src="assets/img/testimonial/img1.png" alt="">
+                            </div>
+                            <div class="testimonial-item">
+                                <div class="content">
+                                    <p class="description">Eiusmod tempor incidiunt labore velit dolore magna aliqu sed eniminim veniam quis nostrud exercition eullamco laborisaa, Eiusmod tempor incidiunt labore velit dolore magna.</p>
+                                    <div class="info-text">
+                                        <h2><a href="#">Josh Rossi</a></h2>
+                                        <h4><a href="#">CEO of Fiverr</a></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> #}
+                        <div class="item">
+                            <div class="item">
+                                <div class="img-thumb">
+                                    <img src="assets/img/testimonial/neha.jpeg" alt="">
+                                </div>
+                                <div class="testimonial-item" >
+                                    <div class="content">
+                                        <p class="description">I always file my tax return with finanzi, not only do they file my return but also helps me in tax planning which saves a good amount of tax.</p>
+                                        <div class="info-text">
+                                            <h2><a href="#">Neha Gupta</a></h2>
+                                            <h4><a href="#">Salaried Employee</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item">
+                                <div class="img-thumb">
+                                    <img src="assets/img/testimonial/Ayush.jpeg" alt="">
+                                </div>
+                                <div class="testimonial-item">
+                                    <div class="content">
+                                        <p class="description">My monthly GST filings and year end tax return filing is handled by finanzi and they  deliver the best quality service. My filing has never been late even for a day and they are very prompt to ask for documentation to ensure completion of service on time.</p>
+                                        <div class="info-text">
+                                            <h2><a href="#">Ayush Jain</a></h2>
+                                            <h4><a href="#">Proprietor, Arihant Traders</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item">
+                                <div class="img-thumb">
+                                    <img src="assets/img/testimonial/Shikha.jpeg" alt="">
+                                </div>
+                                <div class="testimonial-item">
+                                    <div class="content">
+                                        <p class="description">I availed tax return service from finanzi and the experience was amazing. The filing was seamless and they delivered within stipulated time period. They also assisted me in tax audit requirement. I highly recommend their services to everyone.</p>
+                                        <div class="info-text">
+                                            <h2><a href="#">Vaidya Shikha Prakash</a></h2>
+                                            <h4><a href="#">Ayurvedic Practitioner</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item">
+                                <div class="img-thumb">
+                                    <img src="assets/img/testimonial/robin.jpeg" alt="" style="width:80px;height:80px;">
+                                </div>
+                                <div class="testimonial-item">
+                                    <div class="content">
+                                        <p class="description">Finanzi has been an integral part of Valley Culture since the day it was incorporated. They handle monthly and annual closing financial procedures for our business ranging from strategy building, cash flow management, stock audit, financial reporting. They have even helped us raise grant under Startup Uttarakhand. They also handle all our tax compliances and we have never faced any issue or delays on their part.</p>
+                                        <div class="info-text">
+                                            <h2><a href="#">Robin Nagar</a></h2>
+                                            <h4><a href="#">Co-founder, Valley Culture</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item">
+                                
+                                <div class="img-thumb">                            
+                                   <a href="#" class="video-btn" data-toggle="modal" data-src="https://www.youtube.com/embed/qK2947tj4BM" data-target="#myModal"> <img src="assets/img/testimonial/icon.png" alt="" style="width:80px;"></a>
+                                </div>
+                                <div class="testimonial-item">
+                                    <div class="content">
+                                        <p class="description">Finanzi has been my financial advisor from day one of my business. Their work ethics are commendable. Always delivered work within stipulated time and you can connect with them freely anytime and they are always able to support in the best possible manner.</p>
+                                        <div class="info-text">
+                                            <h2><a href="#">Akshat Parashar</a></h2>
+                                            <h4><a href="#">CEO, Qinda</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="item">
+                                
+                                <div class="img-thumb">                            
+                                   <a href="#" class="video-btn" data-toggle="modal" data-src="https://www.youtube.com/embed/b6URAYhlFYY" data-target="#myModal"> <img src="assets/img/testimonial/icon.png" alt="" style="width:80px;"></a>
+                                </div>
+                                <div class="testimonial-item">
+                                    <div class="content">
+                                        <p class="description">Finanzi has helped us in every financial aspect of our business, ranging from business registration, startup registration, fund raising, book-keeping, monthly and annual compliances, taxation. We are so proud to be a customer of Finanzi.</p>
+                                        <div class="info-text">
+                                            <h2><a href="#">Yash Gupta</a></h2>
+                                            <h4><a href="#">CEO, Aticx</a></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>        
+                            <!-- 16:9 aspect ratio -->
+                            <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="" id="video" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     {% include  'footer.html.twig' %}
     {# <div id="preloader">
         <div class="loader" id="loader-1"></div>
     </div> #}
 </body>
 {% endblock %}
+
+{% block javascripts %}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        // get video source from data-src button
+        var $videoSrc;  
+        $('.video-btn').click(function() {
+            $videoSrc = $(this).data( "src" );
+        });
+        console.log($videoSrc);
+        // autoplay video on modal load  
+        $('#myModal').on('shown.bs.modal', function (e) {
+        // youtube iframe configuration and settings
+        $("#video").attr('src',$videoSrc + "?autoplay=1&rel=0&controls=1&loop=1&modestbranding=1"); 
+        })
+        // stop playing the youtube video when modal closed
+        $('#myModal').on('hide.bs.modal', function (e) {
+            // stop video
+            $("#video").attr('src',$videoSrc); 
+        }) 
+    });
+</script>
+
+{% endblock javascripts %}

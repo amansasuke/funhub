@@ -430,7 +430,7 @@ class DashboardController extends AbstractController
 
 
         //$this->addFlash('success', 'Thank you! appointment book successfully');
-        flash()->addSuccess('Thank you! “Appointment booked successfully');
+        flash()->addSuccess('Thank you! Appointment booked successfully');
         return $this->redirectToRoute("app_dashboard");
     }
 
