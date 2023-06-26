@@ -44,7 +44,7 @@ class AdddocController extends AbstractController
         $order = new Order;
 
         $form = $this->createFormBuilder($Orderdoc)
-            ->add('docname', TextType::class,array(
+            ->add('docname', HiddenType::class,array(
                       'label' => ' ',
                   ))
             ->add('doclink', FileType::class,array(
@@ -97,7 +97,7 @@ class AdddocController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $Orderdoc->setDocname($docname);
                 $Orderdoc->setDoclink($newFilename);
-                $Orderdoc->setDoclink($docremark);
+                $Orderdoc->setDocremark($docremark);
                 $Orderdoc->setStatus($status);
 
                 // foreach ($order as $key => $value) {

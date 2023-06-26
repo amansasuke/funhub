@@ -265,9 +265,14 @@
                                                         {{doc.docremark}}
                                                     </td>
                                                     <td style="width: 15%;" >
+                                                    {% if doc.doclink|length > 0 %}                                        
                                                         <div class="btns-actions" style="width: 15%;">
                                                             <a href="{{ asset("uploads/brochures/")}}{{doc.doclink}}" target="_blank" class="btn btn-info btn-view" style="z-index: 999;"><i class="lni-eye"></i></a>
                                                         </div>
+                                                    {% else %}
+                                                        <small>Document not available</small>
+                                                    {% endif %}                                                    
+                                                    
                                                     </td>
                                                     <td data-title="Title" style="width: 15%;">
                                                 

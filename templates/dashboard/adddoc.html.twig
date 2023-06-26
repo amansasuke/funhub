@@ -440,8 +440,13 @@ hr.new2 {
                                 <div class="card-body">
                                     {{ form_start(form,{'attr': {'class': 'login-form'}}) }}
                                     <label class="tg-fileuploadlabel" for="tg-photogallery">
+
                                     <div class="textwidget" style="padding:5px;">
                                      {{ form_row(form.docname,{'attr': {'class': 'btn btn-warning','value': app.request.get('docname')}}) }}
+          
+                                    </div>
+                                    <div class="textwidget" style="padding:5px;">                                     
+                                    <p class="btn btn-warning"> {{app.request.get('docname')}} </p>
                                     </div>
                                     <div class="textwidget" style="padding:5px;">
                                      {{ form_row(form.doclink,{'attr': {'id': 'tg-photogallery'}}) }}
