@@ -566,6 +566,16 @@ color: black;
 font-size: 16px;
 }
 
+@media (max-width:767px) {
+    .btn-primary{
+        font-size:12px !important;
+    }
+    .fc .fc-toolbar-title {
+        font-size: 0.75em;
+        margin: 0;
+    }
+}
+
 
 </style>
 <body>
@@ -573,7 +583,7 @@ font-size: 16px;
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Book your appointment</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Book your appointment wdasdad</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -659,7 +669,7 @@ font-size: 16px;
                                             <div class="form-group">
                                                 <div class="help-block with-errors"></div>
                                                 <label for="form_dis" class="required">Date</label>
-                                                <input type="date" name="startdate" class="form-control event">
+                                                <input type="date" name="startdate" class="form-control event" id="startdate">
                                                 {# <select class="form-select form-control event" name="startdate" id="loadtime" aria-label="Default select example">
                                                 {% for date in dates %}  
                                                     <option value="{{date.date}}">{{date.date }}</option>
@@ -805,6 +815,13 @@ font-size: 16px;
 </body>
 {% endblock %}
 {% block javascripts %}
+<script>
+  $(document).ready(function() {
+    var today = new Date().toISOString().split('T')[0];
+    console.log(today);
+    $('#startdate').attr('min', today);
+  });
+</script>
 
 <script>
         $(function() {
@@ -890,4 +907,6 @@ function copyIt() {
          });  
       });  
    </script>
+   
+
 {% endblock %}

@@ -795,9 +795,13 @@ class DashboardController extends AbstractController
                       'label' =>'Title',
                   ))
             ->add('bookingstart', DateType::class, [
-             "widget" => 'single_text',
+                "widget" => 'single_text',
                 "format" => 'yyyy-MM-dd',
                 "data" => new \DateTime(),
+                'label' =>'Booking Date',
+                'attr' => [
+                    'min' => (new \DateTime())->format('Y-m-d'),
+                ],
              ])
 
             // ->add('bookingtime', TimeType::class, [
@@ -842,7 +846,7 @@ class DashboardController extends AbstractController
             $Event->add($eventbooking, true);
 
             //$this->addFlash('success', 'Thank you! Your booking is Submit!');
-            flash()->addSuccess('Thank you! Your booking is Submit!');
+            flash()->addSuccess('Thank you! Appointment request submitted successfully');
             return $this->redirectToRoute("app_mybooking");
         }
         

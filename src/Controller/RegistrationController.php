@@ -63,7 +63,7 @@ class RegistrationController extends AbstractController
                 }
                 $user->setImgicon($newFilename);
             }else{
-                flash()->addError ('please upload Profile Picture');
+                flash()->addError ('Profile pic is missing, please update it later from profile setting');
             }
             // encode the plain password
             $user->setPassword(

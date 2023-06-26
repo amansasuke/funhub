@@ -29,6 +29,9 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use App\Entity\Eventbooking;
 use App\Form\EventbookingType;
 use App\Repository\EventbookingRepository;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
 use App\Entity\Mangereventbooking;
 use App\Repository\MangereventbookingRepository;
@@ -145,10 +148,13 @@ class HomeController extends AbstractController
                       
                   ))
             ->add('bookingstart', DateType::class, [
-             "widget" => 'single_text',
+                "widget" => 'single_text',
                 "format" => 'yyyy-MM-dd',
                 "data" => new \DateTime(),
                 'label' =>'Booking Date',
+                'attr' => [
+                    'min' => (new \DateTime())->format('Y-m-d'),
+                ],
              ])
 
             ->add('bookingtime', TimeType::class, [
@@ -183,7 +189,7 @@ class HomeController extends AbstractController
             $eventbookingRepository->add($eventbooking, true);
 
             //$this->addFlash('success', 'Thank you! Your booking is Submit!');
-            flash()->addSuccess('Thank you! Your booking is Submit!');
+            flash()->addSuccess('Thank you! Appointment request submitted successfully');
         }
 
         if ($request->isXmlHttpRequest() || $request->query->get('showJson') == 1) {  
@@ -239,7 +245,7 @@ class HomeController extends AbstractController
 
         $totalpro = $Product->findBy(array());
         $total_count =count($totalpro);
-        $count_per_page=12;
+        $count_per_page=9;
 
         $total_pages=ceil($total_count/$count_per_page);
         if(isset($_GET['page'])){
@@ -254,7 +260,7 @@ class HomeController extends AbstractController
                 $page=$total_pages;
             }
     
-            $myLimit=12;
+            $myLimit=9;
             $myOffset=0;
             if($page>1){
                 $myOffset= $count_per_page * ($page-1); 
@@ -262,7 +268,7 @@ class HomeController extends AbstractController
             
             $pginateStartIndex = ($myOffset > 0) ? $myOffset : $myOffset;
         }else{
-            $myLimit=12;
+            $myLimit=9;
 		    $pginateStartIndex=0;
         }
 
@@ -504,9 +510,31 @@ class HomeController extends AbstractController
     /**
      * @Route("/contact", name="app_contact")
      */
-    public function contact(Request $request, SessionInterface $session): Response
+    public function contact(Request $request, SessionInterface $session,  MailerInterface $mailer): Response
     {
         $basket = $session->get('basket', []);
+
+        if ($request->isMethod('POST')) {
+            $name = $request->request->get('name');
+            $phone = $request->request->get('phone');
+            $email = $request->request->get('email');
+            $message = $request->request->get('message');
+            
+
+            $email = (new TemplatedEmail())
+                ->from($email)
+                ->to(new Address('contact@thefinanzi.com'))
+                ->subject('contact message')
+                ->htmlTemplate('emails/contactmail.html.twig')
+                ->context(['name' => $name, 'phone' => $phone,'emailid' => $email,'msg'=>$message ]);
+            $mailer->send($email);
+
+
+            //$this->addFlash('success', 'Thank you! Query Message sent successfully');
+            flash()->addSuccess('Thank you! Query Message sent successfully');
+            return $this->redirectToRoute("app_contact");
+        }
+
         return $this->render('home/contact.html.twig', [
             'controller_name' => 'HomeController',
             'basket'=>$basket,
