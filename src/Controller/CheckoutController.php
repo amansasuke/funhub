@@ -46,18 +46,27 @@ class CheckoutController extends AbstractController
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $waltebalanceold = $user->getWellet();
        
-        $userdat = $doctrine->getRepository(User::class)->find($user->getId());
+        $userdat = $user;
         $discount=NULL;
+
         if (isset($_GET['promo']) && $_GET['promo'] !="" ) {
-            $Promos = $Promo->findBy(array('code'=>$_GET['promo']));
-            foreach ($Promos as $key => $value) {
-                if($value->isStatus() != true ){
-                    $discount = $value->getDiscount();
-                }else{
-                    flash()->addError ('This Promocode Is Expired');
-                }             
+            $Promo = $Promo->findOneBy(['code' => $_GET['promo'], 'status' => true]);
+            if ($Promo) {
+                flash()->addError('This Promocode Is Expired');
+            } else {
+                $discount = $Promo->getDiscount();
             }
         }
+        // if (isset($_GET['promo']) && $_GET['promo'] !="" ) {
+        //     $Promos = $Promo->findBy(array('code'=>$_GET['promo']));
+        //     foreach ($Promos as $key => $value) {
+        //         if($value->isStatus() != true ){
+        //             $discount = $value->getDiscount();
+        //         }else{
+        //             flash()->addError ('This Promocode Is Expired');
+        //         }             
+        //     }
+        // }
        
 
         $basket = $session->get('basket', []);
@@ -237,8 +246,8 @@ class CheckoutController extends AbstractController
 
             //     $mailer->send($emailsend);
 
-            $message = new GeneratePdfAndSendEmailMessage($order->getId());
-            $messageBus->dispatch($message);
+            // $message = new GeneratePdfAndSendEmailMessage($order->getId());
+            // $messageBus->dispatch($message);
 
             }         
 
