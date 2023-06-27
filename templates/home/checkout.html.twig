@@ -93,7 +93,7 @@
                                 </strong>                                 
                             </li> #}
                             <li class="list-group-item d-flex justify-content-between">
-                                {% if app.request.get('usewalet') and app.request.get('usewalet')<= waltebalanceold %}
+                                {% if app.request.get('usewalet') and app.request.get('usewalet')<= waltebalanceold and app.request.get('usewalet') < total %}
                                     <div >
                                         <h6 class="my-0">Total</h6>                                
                                         <p class="my-0" >Wallet balance </p>
@@ -165,12 +165,17 @@
                             </li>
                             {% if app.request.get('usewalet') %}
                                 {% if app.request.get('usewalet') > waltebalanceold %}
-                            <div class="list-group-item d-flex justify-content-between">
-                                    <span style="color: red">You don’t have enough Wallet Balance</span><br>                                    
-                            </div>
-                                {% else %}                                    
+                                    <div class="list-group-item d-flex justify-content-between">
+                                            <span style="color: red">You don’t have enough Wallet Balance</span><br>                                    
+                                    </div>                                   
                                 {% endif %}
-                                {% else %}                        
+                                {% if app.request.get('usewalet') > total %}
+                                    <div class="list-group-item d-flex justify-content-between">
+                                            <span style="color: red">Points available for redemption are restricted to the price of service purchased</span><br>                                    
+                                    </div>                                   
+                                {% endif %}
+                                
+
                             {% endif %}
                             
                             <li class="list-group-item d-flex justify-content-between">

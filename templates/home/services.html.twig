@@ -68,16 +68,17 @@ ol li i {
     display: none;
 }
 
-.dropdown-toggle {
+ .dropdown-toggle {
     width: 100%;
     background: #ffff;
     border: none;
     border-bottom: 3px solid #40e0d0;
+    color:black;
 }
 
 .dropdown-menu {
     width: 100%;
-}
+} 
 
 
 .truncate {
@@ -476,12 +477,24 @@ a {
                                             </li>
                                             {% endfor %}
                                         </ul> #}
-                                            <select  name="cat" id="cat">
+                                        <div class="dropdown" style="z-index:999;">
+                                        <button class=" form-control" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height:25px;">
+                                            Select Catagory
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            {% for Categorys in Category %}
+                                                <option value="{{Categorys.id}}"></option>
+                                                <a class="dropdown-item" href="/services?tags=&cat={{Categorys.id}}">{{Categorys.servicesname}}</a>
+                                            {% endfor %}
+                                            
+                                        </div>
+                                        </div>
+                                            {# <select  name="cat" id="cat">
                                                 <option value="">Select Catagory</option>
                                                 {% for Categorys in Category %}
                                                 <option value="{{Categorys.id}}">{{Categorys.servicesname}}</option>
                                                 {% endfor %}
-                                            </select>
+                                            </select> #}
                                         </div>
                                     </div>
                                     <button class="btn btn-common" type="submit"><i class="lni-search"></i> Search Now</button>

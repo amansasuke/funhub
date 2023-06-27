@@ -277,7 +277,12 @@ class HomeController extends AbstractController
          
         if (isset($_GET['tags'])) {
             
-            $Productshow = $Product->searchtags($_GET['tags'], $_GET['cat']);
+            if (isset($_GET['cat'])){
+                $cat= $_GET['cat'];
+            }else{
+                $cat= '';
+            }
+            $Productshow = $Product->searchtags($_GET['tags'], $cat);
         }else{
             $Productshow = $Product->findBy(array(),array('bgcolor' => 'ASC'),
             $myLimit,
@@ -523,7 +528,7 @@ class HomeController extends AbstractController
 
             $email = (new TemplatedEmail())
                 ->from($email)
-                ->to(new Address('contact@thefinanzi.com'))
+                ->to(new Address('amansharmasasuke@gmail.com'))
                 ->subject('contact message')
                 ->htmlTemplate('emails/contactmail.html.twig')
                 ->context(['name' => $name, 'phone' => $phone,'emailid' => $email,'msg'=>$message ]);

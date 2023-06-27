@@ -32,13 +32,15 @@ use App\Repository\PromoRepository;
 use App\Entity\Promo;
 
 use Dompdf\Dompdf;
+use Symfony\Component\Messenger\MessageBusInterface;
+use App\Message\GeneratePdfAndSendEmailMessage;
 
 class CheckoutController extends AbstractController
-{
+{   
     /**
      * @Route("/checkout",  name="app_checkout")
      */
-    public function checkout(Request $request, ProductRepository $repo, SessionInterface $session, MailerInterface $mailer, UserRepository $userR, AffiliateproductRepository $Affiliateproduct,PromoRepository $Promo, ManagerRegistry $doctrine): Response
+    public function checkout(Request $request, ProductRepository $repo, SessionInterface $session, MailerInterface $mailer, UserRepository $userR, AffiliateproductRepository $Affiliateproduct,PromoRepository $Promo, ManagerRegistry $doctrine, MessageBusInterface $messageBus): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER', null, 'User tried to access a page without having ROLE_USER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -72,7 +74,7 @@ class CheckoutController extends AbstractController
         $percentage =5;
         $new_width = ($percentage / 100) * $total;
         $waltebalance =  round($new_width);
-        if (isset($_GET['usewalet']) &&  $_GET['usewalet'] <= $waltebalanceold) {            
+        if (isset($_GET['usewalet']) &&  $_GET['usewalet'] <= $waltebalanceold && $_GET['usewalet'] < $total ) {            
             $waltebalanceNEW= ($waltebalanceold - $_GET['usewalet']) + $waltebalance;
         }else{
             $waltebalanceNEW= $waltebalanceold + $waltebalance;
@@ -235,6 +237,9 @@ class CheckoutController extends AbstractController
 
             //     $mailer->send($emailsend);
 
+            $message = new GeneratePdfAndSendEmailMessage($order->getId());
+            $messageBus->dispatch($message);
+
             }         
 
              //add if user is affiliated
@@ -322,17 +327,7 @@ class CheckoutController extends AbstractController
             ->htmlTemplate('emails/order.html.twig')
             ->context(['order' => $order]);
 
-        $mailer->send($email);
-
-        $emailsend = (new TemplatedEmail())
-                ->from('amansharmasasuke@gmail.com')
-                ->to(new Address($order->getEmail(), $order->getName()))
-                ->subject('Order confirmation')
-                ->htmlTemplate('emails/invoice.html.twig')
-                //->attachFromPath($invoicePath, $invoiceFileName)
-                ->context(['order' => $order]);
-
-            $mailer->send($emailsend);
+        $mailer->send($email);        
     }
 
     private function promocode($Promocode,PromoRepository $Promo, $doctrine)
