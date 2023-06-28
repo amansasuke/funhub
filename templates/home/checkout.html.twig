@@ -92,6 +92,7 @@
                                     <span>₹{{ gsttotal| number_format }}.00</span>                                                                 
                                 </strong>                                 
                             </li> #}
+                            {%  set realtotal = total %}
                             <li class="list-group-item d-flex justify-content-between">
                                 {% if app.request.get('usewalet') and app.request.get('usewalet')<= waltebalanceold and app.request.get('usewalet') < total %}
                                     <div >
@@ -169,8 +170,9 @@
                                             <span style="color: red">You don’t have enough Wallet Balance</span><br>                                    
                                     </div>                                   
                                 {% endif %}
-                                {% if app.request.get('usewalet') > total %}
+                                {% if app.request.get('usewalet') >= realtotal %}
                                     <div class="list-group-item d-flex justify-content-between">
+                                    {{total}} {{app.request.get('usewalet')}}
                                             <span style="color: red">Points available for redemption are restricted to the price of service purchased</span><br>                                    
                                     </div>                                   
                                 {% endif %}

@@ -932,7 +932,7 @@ class DashboardController extends AbstractController
     /**
      * @Route("/docforme", name="app_docforme")
      */
-    public function docforme(Request $request, DocForClientRepository $docForClientRepository): Response
+    public function docforme(Request $request,ManagerRegistry $doctrine, DocForClientRepository $docForClientRepository,OrderdocRepository $Orderdoc): Response
     {   
         $this->denyAccessUnlessGranted('ROLE_USER', null, 'User tried to access a page without having ROLE_USER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -964,9 +964,72 @@ class DashboardController extends AbstractController
             $j++;
             # code...
         }
+
+        $order = $doctrine->getRepository(Order::class)->findBy(
+            ['email' => $user->getEmail()],  array('id' => 'desc')
+        );
+        $orderuser = [];
+        foreach ($order as $key => $value) {
+            $orderuser[] = $value->getId();
+            
+        }
+        
+        $Orderdoc = $Orderdoc->findBy([]);
+        $sunmitdoc = [];
+        $i = 0;
+        
+        foreach ($Orderdoc as $Ordoc) {
+            foreach ($Ordoc->getOrderid() as $Oroc) {
+                foreach ($orderuser as $id) {
+                    if ($Oroc->getId() == $id) { // Check if the IDs match
+                        $sunmitdoc[$i]['id'] = $Oroc->getId();
+                        $sunmitdoc[$i]['docid'] = $Ordoc->getId();
+                        $sunmitdoc[$i]['docname'] = $Ordoc->getDocname();
+                        $sunmitdoc[$i]['doclink'] = $Ordoc->getDoclink();
+                        $sunmitdoc[$i]['docstatus'] = $Ordoc->getStatus();
+                        $sunmitdoc[$i]['remark'] = $Ordoc->getRemark();
+                        $sunmitdoc[$i]['docremark'] = $Ordoc->getDocremark();
+        
+                        $i++;
+                    }
+                }
+            }
+        }
+
+        $combinedArray = [];
+
+        foreach ($sunmitdoc as $item) {
+            $id = $item['id'];
+            if (isset($combinedArray[$id])) {
+                $combinedArray[$id]['docname'][] = $item['docname'];
+                $combinedArray[$id]['doclink'][] = $item['doclink'];
+                $combinedArray[$id]['docstatus'][] = $item['docstatus'];
+                $combinedArray[$id]['remark'][] = $item['remark'];
+                $combinedArray[$id]['docremark'][] = $item['docremark'];
+            } else {
+                $combinedArray[$id] = [
+                    'id' => $item['id'],
+                    'docid' => $item['docid'],
+                    'docname' => [$item['docname']],
+                    'doclink' => [$item['doclink']],
+                    'docstatus' => [$item['docstatus']],
+                    'remark' => [$item['remark']],
+                    'docremark' => [$item['docremark']],
+                ];
+            }
+        }
+
+        $resultArray = array_values($combinedArray);
+
+        
+        // echo "<pre>";
+        // print_r($resultArray);
+        // die;
+
         
         return $this->render('dashboard/mydocs.html.twig', [
             'mydoc' => $docfor,
+            'orderdoc' => $resultArray,
             
         ]);
     }

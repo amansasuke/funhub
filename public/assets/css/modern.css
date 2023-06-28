@@ -15274,6 +15274,21 @@ pre.snippet {
     content: " "
 }
 
+@media screen and (max-width:768px) {
+    .wrapper:before {
+        width: 100%;
+        height: 264px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url(/assets/img/background/mobent.png) !important;
+        background-position: center; /* Center the image */
+      background-repeat: no-repeat; /* Do not repeat the image */
+      background-size: cover;
+        content: " "
+    }
+}
+
 .wizard.sw-theme-default>.nav .nav-link.active {
     color: #3b7ddd !important
 }

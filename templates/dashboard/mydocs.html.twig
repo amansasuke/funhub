@@ -6,7 +6,7 @@
 {# {% include 'dashboard/test.html.twig' %} #}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-.panel-group .panel {
+    .panel-group .panel {
     margin-bottom: 24px
 }
 
@@ -260,8 +260,8 @@ hr.new2 {
 
 a:link { text-decoration: none; }
 
-.wrimagecard{	
-	margin-top: 0;
+.wrimagecard{ 
+  margin-top: 0;
     margin-bottom: 1.5rem;
     text-align: left;
     position: relative;
@@ -271,7 +271,7 @@ a:link { text-decoration: none; }
     transition: all 0.3s ease;
 }
 .wrimagecard .fa{
-	position: relative;
+  position: relative;
     font-size: 70px;
 }
 .wrimagecard-topimage_header{
@@ -302,11 +302,11 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 </style>
 
 <body>
-    {#    #}
+    {# #}
     <div class="wrapper">
         {% include '/dashboard/nev.html.twig' %}
         <div class="main">
-            <nav class="navbar navbar-expand navbar-theme" >
+            <nav class="navbar navbar-expand navbar-theme">
                 <a class="sidebar-toggle d-flex mr-2">
                     <i class="hamburger align-self-center"></i>
                 </a>
@@ -317,7 +317,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
                     <input class="form-control form-control-lite" type="text" placeholder="Search ...">
                 </form> #}
                 {{ render(controller(
-                    'App\\Controller\\DashboardController::recentArticles'
+                'App\\Controller\\DashboardController::recentArticles'
                 )) }}
             </nav>
             <main class="content">
@@ -339,24 +339,24 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
                             <div class="card">
                                 <div class="card-header">
                                     <div class="card-actions float-left">
-                                      <h5 class="card-title mb-0">My Documents</h5>
+                                        <h5 class="card-title mb-0">My Documents</h5>
                                     </div>
                                     <div class="card-actions float-right">
-                                      <form>
-                                        <div class="row">
-                                          <div class="col-4">
-                                            <input type="date" name="updateat" placeholder="search" class="form-control input-md">
-                                          </div>
-                                            <div class="col-4">                                        
-                                              <input type="text" name="search" placeholder="search" class="form-control input-md">                                        
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <input type="date" name="updateat" placeholder="search" class="form-control input-md">
+                                                </div>
+                                                <div class="col-4">
+                                                    <input type="text" name="search" placeholder="search" class="form-control input-md">
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="post-btn" style="text-align:center" ;="">
+                                                        <button type="submin" class="btn btn-common" style="font-size: 14px;background-color:#5bb7c5;color:#ffff; width: 100%;"><i class="fa fa-search"></i> Filter </a>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-4">
-                                              <div class="post-btn" style="text-align:center" ;="">                                                    
-                                                  <button type="submin"  class="btn btn-common"  style="font-size: 14px;background-color:#5bb7c5;color:#ffff; width: 100%;"><i class="fa fa-search"></i> Filter  </a>                                            
-                                              </div>
-                                            </div>
-                                        </div>
-                                      </form>                                                                          
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -367,42 +367,80 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
                                                 {# <div class="noimg">
                                                     <img src="assets/img/details/kindpng_1749396.png" height="300px;">
                                                 </div> #}
-                                              
                                             </div>
                                         </div>
                                     </div>
                                     {% else %}
                                     <div class="row" style="padding-top:2px;">
-                                     {% for mydocs in mydoc %}
-                                     <div class="col-6">
-                                        <div class="wrimagecard wrimagecard-topimage">
-                                              <a href="{{ asset("uploads/brochures/")}}{{ mydocs.doclink }}">
-                                              <div class="wrimagecard-topimage_header" style="background-color: rgba(22, 160, 133, 0.1) ">
-                                                    <center><i class="fa fa-file" style="color:#16A085"></i></center>
-                                                  </div>
-                                                  <div class="wrimagecard-topimage_title">
-                                                    <h4>{{ mydocs.docname }}
-                                                    <div class="pull-right badge"  ><i class="fa fa-download" style="color:green; font-size:30px;" aria-hidden="true"></i></div></h4>
-                                                  </div>
+                                        {% for mydocs in mydoc %}
+                                        <div class="col-6">
+                                            <div class="wrimagecard wrimagecard-topimage">
+                                                <a href="{{ asset("uploads/brochures/")}}{{ mydocs.doclink }}">
+                                                    <div class="wrimagecard-topimage_header" style="background-color: rgba(22, 160, 133, 0.1) ">
+                                                        <center><i class="fa fa-file" style="color:#16A085"></i></center>
+                                                    </div>
+                                                    <div class="wrimagecard-topimage_title">
+                                                        <h4>{{ mydocs.docname }}
+                                                            <div class="pull-right badge"><i class="fa fa-download" style="color:green; font-size:30px;" aria-hidden="true"></i></div>
+                                                        </h4>
+                                                    </div>
                                                 </a>
-                                              </div>
+                                            </div>
                                         </div>
-                                     
                                         {# <div class="col-6">
-                                            <a href="{{ asset("uploads/brochures/")}}{{ mydocs.doclink }}" target="_blank" >                                                                                                     
-                                                <button class="btn btn-info" style="width:100%;">{{ mydocs.docname }}</button>                                                
+                                            <a href="{{ asset("uploads/brochures/")}}{{ mydocs.doclink }}" target="_blank">
+                                                <button class="btn btn-info" style="width:100%;">{{ mydocs.docname }}</button>
                                             </a>
-                                        </div>  #}
-                                         {% endfor %}                                       
+                                        </div> #}
+                                        {% endfor %}
                                     </div>
                                     {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-actions float-left">
+                                        <h5 class="card-title mb-0">dorder doc</h5>
+                                    </div>
+                                    <div class="card-actions float-right">
+                                        <div class="row" style="padding-top:2px;">
+                                            {% for doc in orderdoc %}
+                                            <div class="col-6">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            <a data-toggle="collapse" data-parent="#accordion{{doc.id}}" href="#collapse{{doc.id}}">
+                                                                Order Id: {{doc.id}}
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse{{doc.id}}" class="panel-collapse collapse">
+                                                        <div class="panel-body">
+                                                            {% for name in doc.docname %}
+                                                            <h4>{{ name }}</h4>
+                                                            {% endfor %}
+                                                            <br>
+                                                            {% for link in doc.doclink %}
+                                                            <a href="{{ asset("uploads/brochures/")}}{{ link }}"><i class="fa fa-download" style="color:green; font-size:30px;" aria-hidden="true"></i></a>
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
-             
         </div>
     </div>
     <svg width="0" height="0" style="position:absolute">
@@ -413,7 +451,6 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
             </symbol>
         </defs>
     </svg>
-    
 </body>
 {% endblock %}
 {% block javascripts %}
