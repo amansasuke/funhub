@@ -59,6 +59,7 @@ class AdddocController extends AbstractController
                   ))
             ->add('docremark', TextType::class,array(
                     'label' => false,
+                    'required' => false,
                 ))
             ->add('save', SubmitType::class, ['label' => 'Submit'])
             ->getForm();
