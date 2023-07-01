@@ -206,7 +206,7 @@ class AppointmentController extends AbstractController
             foreach ($getorder as $key => $value) {
                
                 $email = (new TemplatedEmail())
-                ->from('amansharmasasuke@gmail.com') //;
+                ->from('contact@thefinanzi.in') //;
                 ->to(new Address($value->getEmail()))
                 ->subject('Onbording Call')
                 ->htmlTemplate('emails/onboadcall.html.twig')

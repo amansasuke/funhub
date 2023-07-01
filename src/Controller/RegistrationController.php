@@ -80,7 +80,7 @@ class RegistrationController extends AbstractController
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address('amansharmasasuke@gmail.com', 'The Finanzi'))
+                    ->from(new Address('contact@thefinanzi.in', 'The Finanzi'))
                     ->to($user->getEmail())
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
@@ -106,8 +106,8 @@ class RegistrationController extends AbstractController
     private function sendsignup(User $user, MailerInterface $mailer)
     {
         $email = (new TemplatedEmail())
-        ->from(new Address('amansharmasasuke@gmail.com', 'The Finanzi'))
-        ->to('amansharmasasuke@gmail.com')
+        ->from(new Address('contact@thefinanzi.in', 'The Finanzi'))
+        ->to('contact@thefinanzi.in')
         ->subject('New user sign up')
         ->htmlTemplate('emails/usersignup.html.twig')
         ->context(['id'=> $user->getId(), 'name'=> $user->getName() , 'phoneno'=> $user->getPhoneNo() ])

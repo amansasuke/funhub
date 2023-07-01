@@ -421,7 +421,7 @@ class DashboardController extends AbstractController
         $entityManager->flush();
         
         $email = (new TemplatedEmail())
-            ->from('amansharmasasuke@gmail.com')
+            ->from('contact@thefinanzi.in')
             ->to(new Address($userdat->getEmail()))
             ->subject('Appointment book')
             ->htmlTemplate('emails/clientbooking.html.twig')
@@ -884,7 +884,7 @@ class DashboardController extends AbstractController
             $msg = $request->request->get('msg');
             
                 $email = (new TemplatedEmail())
-                ->from('amansharmasasuke@gmail.com')
+                ->from('contact@thefinanzi.in')
                 ->to(new Address($manageremail))
                 ->subject('query message')
                 ->htmlTemplate('emails/querymessage.html.twig')

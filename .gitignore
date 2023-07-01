@@ -8,8 +8,12 @@
 .env
 /var/
 /vendor/
-/public/invoices/
+composer.lock
+/public/invoices
+/public/img/user/
+/public/uploads
 composer.phar
+
 ###< symfony/framework-bundle ###
 
 ###> symfony/web-server-bundle ###

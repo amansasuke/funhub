@@ -64,7 +64,7 @@ class GeneratePdfAndSendEmailHandler implements MessageHandlerInterface
           
 
             $emailsend = (new TemplatedEmail())
-                    ->from('amansharmasasuke@gmail.com')
+                    ->from('contact@thefinanzi.in')
                     ->to(new Address($value->getEmail(), $value->getName()))
                     ->subject('Order confirmation')
                     ->htmlTemplate('emails/invoice.html.twig')

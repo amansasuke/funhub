@@ -226,7 +226,7 @@ class CheckoutController extends AbstractController
 
             //     // 5. Send email with invoice
             //     $emailsend = (new TemplatedEmail())
-            //         ->from('amansharmasasuke@gmail.com')
+            //         ->from('contact@thefinanzi.in')
             //         ->to(new Address($order->getEmail(), $order->getName()))
             //         ->subject('Order confirmation')
             //         ->htmlTemplate('emails/invoice.html.twig')
@@ -316,7 +316,7 @@ class CheckoutController extends AbstractController
     private function sendEmailConfirmation(Order $order, MailerInterface $mailer)
     {
         $email = (new TemplatedEmail())
-            ->from('amansharmasasuke@gmail.com')
+            ->from('contact@thefinanzi.in')
             ->to(new Address($order->getEmail(), $order->getName()))
             ->subject('Order confirmation')
             ->htmlTemplate('emails/order.html.twig')
@@ -325,7 +325,7 @@ class CheckoutController extends AbstractController
         $mailer->send($email);
 
         $emailsend = (new TemplatedEmail())
-                ->from('amansharmasasuke@gmail.com')
+                ->from('contact@thefinanzi.in')
                 ->to(new Address($order->getEmail(), $order->getName()))
                 ->subject('Order Invoice')
                 ->htmlTemplate('emails/invoice.html.twig')

@@ -528,7 +528,7 @@ class HomeController extends AbstractController
 
             $email = (new TemplatedEmail())
                 ->from($email)
-                ->to(new Address('amansharmasasuke@gmail.com'))
+                ->to(new Address('contact@thefinanzi.in'))
                 ->subject('contact message')
                 ->htmlTemplate('emails/contactmail.html.twig')
                 ->context(['name' => $name, 'phone' => $phone,'emailid' => $email,'msg'=>$message ]);
