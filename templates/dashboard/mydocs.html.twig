@@ -372,73 +372,77 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
                                     </div>
                                     {% else %}
                                     <div class="row" style="padding-top:2px;">
-                                        {% for mydocs in mydoc %}
+                                      {% for mydocs in srchdocforme %}
                                         <div class="col-6">
-                                            <div class="wrimagecard wrimagecard-topimage">
-                                                <a href="{{ asset("uploads/brochures/")}}{{ mydocs.doclink }}">
-                                                    <div class="wrimagecard-topimage_header" style="background-color: rgba(22, 160, 133, 0.1) ">
-                                                        <center><i class="fa fa-file" style="color:#16A085"></i></center>
-                                                    </div>
-                                                    <div class="wrimagecard-topimage_title">
-                                                        <h4>{{ mydocs.docname }}
-                                                            <div class="pull-right badge"><i class="fa fa-download" style="color:green; font-size:30px;" aria-hidden="true"></i></div>
-                                                        </h4>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        {# <div class="col-6">
-                                            <a href="{{ asset("uploads/brochures/")}}{{ mydocs.doclink }}" target="_blank">
-                                                <button class="btn btn-info" style="width:100%;">{{ mydocs.docname }}</button>
+                                          <div class="wrimagecard wrimagecard-topimage">
+                                            <a href="{{ asset("uploads/brochures/")}}{{ mydocs.doclink }}">
+                                                <div class="wrimagecard-topimage_header" style="background-color: rgba(22, 160, 133, 0.1) ">
+                                                    <center><i class="fa fa-file" style="color:#16A085"></i></center>
+                                                </div>
+                                                <div class="wrimagecard-topimage_title">
+                                                    <h4>{{ mydocs.docname }}
+                                                        <div class="pull-right badge"><i class="fa fa-download" style="color:green; font-size:30px;" aria-hidden="true"></i></div>
+                                                    </h4>
+                                                </div>
                                             </a>
-                                        </div> #}
-                                        {% endfor %}
+                                          </div>
+                                        </div>                                        
+                                      {% endfor %}
+                                      
+                                    </div>
+                                    <div class="row" >
+                                        {% for doc in orderdoc %}
+                                        <div class="col-6">
+                                          <div class="panel panel-default">
+                                              <div class="panel-heading">
+                                                  <h4 class="panel-title">
+                                                      <a data-toggle="collapse" data-parent="#accordion{{doc.id}}" href="#collapse{{doc.id}}">
+                                                          Order Id: {{doc.id}} {{doc.prodname}} 
+                                                      </a>
+                                                  </h4>
+                                              </div>
+                                              <div id="collapse{{doc.id}}" class="panel-collapse collapse">
+                                                  <div class="panel-body">                                                           
+                                                      <table class="table">
+                                                        <tbody>
+                                                          {% for docinfo in doc.docs %} 
+                                                            <tr>                                                                                                                                   
+                                                              <td>{{ docinfo.docname }}</td>
+                                                              <td>
+                                                                {% if docinfo.doclink %}                                                                    
+                                                                  <a href="{{ asset("uploads/brochures/")}}{{ docinfo.doclink }}"><i class="fa fa-download" style="color:green; font-size:30px;" aria-hidden="true"></i>
+                                                                  </a>
+                                                                {% endif %}
+                                                              </td>
+                                                            </tr>
+                                                          {% endfor %}
+                                                          {% for mydocs in mydoc %}
+                                                            {% if mydocs.id == doc.id  %} 
+                                                              <tr>                                                                                                                                   
+                                                                <td>{{ mydocs.docname }}</td>
+                                                                <td>
+                                                                  {% if mydocs.doclink %}                                                                    
+                                                                    <a href="{{ asset("uploads/brochures/")}}{{ mydocs.doclink }}"><i class="fa fa-download" style="color:green; font-size:30px;" aria-hidden="true"></i>
+                                                                    </a>
+                                                                  {% endif %}
+                                                                </td>
+                                                              </tr>
+                                                            {% endif %}
+                                                          {% endfor %}
+                                                        </tbody>
+                                                      </table>                                                                                                                        
+                                                  </div>
+                                              </div>
+                                          </div>
+                                        </div>
+                                      {% endfor %}
                                     </div>
                                     {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="card-actions ">
-                                        <h5 class="card-title mb-0">dorder doc</h5>
-                                    </div>
-                                    <div class="card-actions">
-                                        <div class="row" style="padding-top:2px;">
-                                            {% for doc in orderdoc %}
-                                            <div class="col-6">
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading">
-                                                        <h4 class="panel-title">
-                                                            <a data-toggle="collapse" data-parent="#accordion{{doc.id}}" href="#collapse{{doc.id}}">
-                                                                Order Id: {{doc.id}}
-                                                            </a>
-                                                        </h4>
-                                                    </div>
-                                                    <div id="collapse{{doc.id}}" class="panel-collapse collapse">
-                                                        <div class="panel-body">
-                                                            {% for name in doc.docname %}
-                                                            <h4>{{ name }}</h4>
-                                                            {% endfor %}
-                                                            <br>
-                                                            {% for link in doc.doclink %}
-                                                            <a href="{{ asset("uploads/brochures/")}}{{ link }}"><i class="fa fa-download" style="color:green; font-size:30px;" aria-hidden="true"></i></a>
-                                                            {% endfor %}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </main>
         </div>

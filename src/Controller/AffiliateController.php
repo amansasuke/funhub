@@ -38,6 +38,7 @@ class AffiliateController extends AbstractController
      */
     public function index(AffiliateRepository $affiliateRepository,AffiliateproductRepository $ap, UserRepository $userR): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER', null, 'User tried to access a page without having ROLE_USER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $user->getId();
 
@@ -96,6 +97,7 @@ class AffiliateController extends AbstractController
      */
     public function useraffiliate(AffiliateRepository $affiliateRepository,AffiliateproductRepository $ap, UserRepository $userR): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER', null, 'User tried to access a page without having ROLE_USER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $user->getId();
 
@@ -119,6 +121,7 @@ class AffiliateController extends AbstractController
      */
     public function orderaffiliate(SerializerInterface $serializer, AffiliateRepository $affiliateRepository,AffiliateproductRepository $ap, UserRepository $userR, Request $request): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER', null, 'User tried to access a page without having ROLE_USER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $user->getId();
 
@@ -187,6 +190,7 @@ class AffiliateController extends AbstractController
      */
     public function new(Request $request, AffiliateRepository $affiliateRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER', null, 'User tried to access a page without having ROLE_USER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $user->getUsername();
 
@@ -255,6 +259,7 @@ class AffiliateController extends AbstractController
      */
     public function show(Affiliate $affiliate): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER', null, 'User tried to access a page without having ROLE_USER');
         return $this->render('affiliate/show.html.twig', [
             'affiliate' => $affiliate,
         ]);

@@ -59,7 +59,7 @@
                                 {% for i in 1..total_pages %}
                                 {% if loop.first %}
                                 <li class="page-item {% if current_page == 1 %} disabled  {% endif %}">
-                                    <a class="page-link" href="?page={{ current_page-1 }}" tabindex="-1"><i class="fa fa-angle-left" aria-hidden="true"></i>pre</a>
+                                    <a class="page-link" href="?page={{ current_page-1 }}" tabindex="-1">pre</a>
                                 </li>
                                 {% endif %}
                                 <li class="page-item "><a class="page-link {% if current_page == loop.index %} active  {% endif %}  " href="?page={{ loop.index }}">{{ loop.index }}</a></li>

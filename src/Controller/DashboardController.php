@@ -938,40 +938,52 @@ class DashboardController extends AbstractController
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $useremail = $user->getEmail();
 
-        
+        $srchdocforme =[];
         if (isset($_GET['search'])) {
             if (!empty($_GET['updateat'])) {
-                $docforme = $docForClientRepository->searchmydocdate($_GET['search'], $_GET['updateat']);
+                $srchdocforme = $docForClientRepository->searchmydocdate($_GET['search'], $_GET['updateat']);
             }else{
-                $docforme = $docForClientRepository->searchmydoc($_GET['search']);
-            }
-            
-        }else{
-            $docforme = $docForClientRepository->findAll(); 
+                $srchdocforme = $docForClientRepository->searchmydoc($_GET['search']);
+            }            
         }
+        $docforme = $docForClientRepository->findAll();
         
 
         $docfor= [];
         $j=0;
-
         foreach ($docforme as $key => $value) {
             if ($useremail == $value->getOrdername()->getEmail() ) {
                 
                 $docfor[$j]['docname']=  $value->getName();
                 $docfor[$j]['doclink']=  $value->getDoclink();
+                $docfor[$j]['id']=  $value->getOrdername()->getId();
                 //print_r($value->getOrdername()->getEmail());
             }
-            $j++;
-            # code...
+            $j++;            
+        }
+        $srchdoc = [];
+        $k=0;
+        foreach ($srchdocforme as $key => $value) {
+            if ($useremail == $value->getOrdername()->getEmail() ) {
+                
+                $srchdoc[$k]['docname']=  $value->getName();
+                $srchdoc[$k]['doclink']=  $value->getDoclink();
+                $srchdoc[$k]['id']=  $value->getOrdername()->getId();
+                //print_r($value->getOrdername()->getEmail());
+            }
+            $k++;            
         }
 
         $order = $doctrine->getRepository(Order::class)->findBy(
             ['email' => $user->getEmail()],  array('id' => 'desc')
         );
         $orderuser = [];
+        $l=0;
         foreach ($order as $key => $value) {
-            $orderuser[] = $value->getId();
-            
+            $orderuser[$l]['ordid'] = $value->getId();
+            $orderuser[$l]['proname'] = $value->getProducts()->getName();
+            //print_r($value->getProducts()->getName());
+            $l++;
         }
         
         $Orderdoc = $Orderdoc->findBy([]);
@@ -981,8 +993,9 @@ class DashboardController extends AbstractController
         foreach ($Orderdoc as $Ordoc) {
             foreach ($Ordoc->getOrderid() as $Oroc) {
                 foreach ($orderuser as $id) {
-                    if ($Oroc->getId() == $id) { // Check if the IDs match
+                    if ($Oroc->getId() == $id['ordid']) { // Check if the IDs match
                         $sunmitdoc[$i]['id'] = $Oroc->getId();
+                        $sunmitdoc[$i]['prodname'] = $id['proname'];
                         $sunmitdoc[$i]['docid'] = $Ordoc->getId();
                         $sunmitdoc[$i]['docname'] = $Ordoc->getDocname();
                         $sunmitdoc[$i]['doclink'] = $Ordoc->getDoclink();
@@ -1009,6 +1022,7 @@ class DashboardController extends AbstractController
             } else {
                 $combinedArray[$id] = [
                     'id' => $item['id'],
+                    'prodname' => $item['prodname'],
                     'docid' => $item['docid'],
                     'docname' => [$item['docname']],
                     'doclink' => [$item['doclink']],
@@ -1020,16 +1034,38 @@ class DashboardController extends AbstractController
         }
 
         $resultArray = array_values($combinedArray);
+        
+        $newArray = [];
+        foreach ($resultArray as $element) {
+            $combinedDocs = [];
+            $docnames = $element['docname'];
+            $doclinks = $element['doclink'];
+            
+            foreach ($docnames as $index => $docname) {
+                $combinedDocs[] = [
+                    'docname' => $docname,
+                    'doclink' => $doclinks[$index]
+                ];
+            }
+            
+            $element['docs'] = $combinedDocs;
+            unset($element['docname']);
+            unset($element['doclink']);
+            
+            $newArray[] = $element;
+        }
 
+        //print_r($newArray);
         
         // echo "<pre>";
-        // print_r($resultArray);
+        // print_r($docfor);
         // die;
 
         
         return $this->render('dashboard/mydocs.html.twig', [
             'mydoc' => $docfor,
-            'orderdoc' => $resultArray,
+            'orderdoc' => $newArray,
+            'srchdocforme' => $srchdoc,
             
         ]);
     }
