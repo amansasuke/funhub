@@ -245,7 +245,7 @@ class HomeController extends AbstractController
 
         $totalpro = $Product->findBy(array());
         $total_count =count($totalpro);
-        $count_per_page=1;
+        $count_per_page=9;
 
         $total_pages=ceil($total_count/$count_per_page);
         if(isset($_GET['page'])){
@@ -260,7 +260,7 @@ class HomeController extends AbstractController
                 $page=$total_pages;
             }
     
-            $myLimit=1;
+            $myLimit=9;
             $myOffset=0;
             if($page>1){
                 $myOffset= $count_per_page * ($page-1); 
@@ -268,7 +268,7 @@ class HomeController extends AbstractController
             
             $pginateStartIndex = ($myOffset > 0) ? $myOffset : $myOffset;
         }else{
-            $myLimit=1;
+            $myLimit=9;
 		    $pginateStartIndex=0;
         }
 
