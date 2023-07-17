@@ -186,7 +186,8 @@
                                 <strong>                                                                           
                                         {%  set gsttotal = ( total / 100) * 18 %}
                                         {%  set grandtotal = gsttotal + total %}
-                                       ₹{{ grandtotal| number_format }}.00                                                                
+                                        {# {%  set grandtotal = grandtotal| number_format %} #}
+                                       ₹{{ grandtotal|round(0, 'floor') }}.00                                                                
                                 </strong>
                                 
                             </li>
@@ -410,7 +411,7 @@
                         {{ form_row(form.save,{'attr': {'class': 'btn-block btn btn-common disable'}}) }}                       
                         {{ form_end(form) }}
                         
-
+                   
                     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
                     <script>
                     var razorpayOrderId = "{{ razorpayOrderId }}"; // Get the Razorpay order ID from the PHP variable
@@ -426,7 +427,7 @@
   // Create a Razorpay popup
   var options = {
     key: 'rzp_test_7fBzWp1ySpgsgJ', // Replace with your Razorpay API key
-    amount: {{ grandtotal * 100 }}, // Convert the total to the smallest currency unit (in paise)
+    amount: {{ grandtotal|round(0, 'floor')* 100 }}, // Convert the total to the smallest currency unit (in paise)
     currency: 'INR', // Replace with your currency code
     order_id: razorpayOrderId,
     name: "The Finanzi ",

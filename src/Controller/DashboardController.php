@@ -364,7 +364,7 @@ class DashboardController extends AbstractController
                         $entityManager->persist($user);
                         $entityManager->flush(); 
                     }
-                    flash()->addSuccess('Thank you! profile update successfully');
+                    flash()->addSuccess('Thank you! Profile updated successfully');
                    // $this->addFlash('success', 'Thank you! profile update successfully');
                 }
         // }else{
@@ -555,7 +555,7 @@ class DashboardController extends AbstractController
             //$entityManager->persist($Uservoucher);
             $entityManager->flush();
 
-            flash()->addSuccess('Thank you! Voucher Redeem  successfully');
+            flash()->addSuccess('Thank you! Voucher redeemed successfully ');
             return $this->redirectToRoute("app_voucher");
             //$Voucher = $Voucher->findBy([]);
         }
@@ -846,7 +846,7 @@ class DashboardController extends AbstractController
             $Event->add($eventbooking, true);
 
             //$this->addFlash('success', 'Thank you! Your booking is Submit!');
-            flash()->addSuccess('Thank you! Appointment request submitted successfully');
+            flash()->addSuccess('Thank you! Appointment booked successfully	');
             return $this->redirectToRoute("app_mybooking");
         }
         
