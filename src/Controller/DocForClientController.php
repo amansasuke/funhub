@@ -86,7 +86,7 @@ class DocForClientController extends AbstractController
                 // Move the file to the directory where brochures are stored
                 try {
                     $brochureFile->move(
-                        $this->getParameter('profile_directory'),
+                        $this->getParameter('brochures_directory'),
                         $newFilename
                     );
                 } catch (FileException $e) {
