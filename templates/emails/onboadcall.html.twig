@@ -1,16 +1,92 @@
+<html lang="en-US">
 
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Confirm Order</title>
+    <meta name="description" content="Confirm Order">
+    <style type="text/css">
+        a:hover {text-decoration: underline !important;}
+    </style>
+</head>
 
+<body marginheight="0" topmargin="0" marginwidth="0" style="margin: 0px; background-color: #f2f3f8;" leftmargin="0">
+    <!--100% body table-->
+    <table cellspacing="0" border="0" cellpadding="0" width="100%" bgcolor="#f2f3f8"
+        style="@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700); font-family: 'Open Sans', sans-serif;">
+        <tr>
+            <td>
+                <table style="background-color: #f2f3f8; max-width:670px;  margin:0 auto;" width="100%" border="0"
+                    align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style="height:80px;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;">
+                          <a href="#"  >
+                            <img width="60" src="http://181.215.79.76:8080/assets/img/logo.png"  >
+                          </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="height:20px;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table width="95%" border="0"  cellpadding="0" cellspacing="0"
+                                style="max-width:670px;background:#fff; border-radius:3px; -webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);">
+                                <tr>
+                                    <td style="height:40px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:0 35px;">                                        
+                                        <h3 style="color:#1e1e2d; font-weight:500; margin:0;font-size:22px;font-family:'Rubik',sans-serif;">Hi! {{username}}</h3>
+                                        <span
+                                            style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
+                                        <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
+                                            As a valued client of Finanzi, we are pleased to inform you that your dedicated manager, {{mangername}}, is now available to provide personalized support and assistance.
+                                        </p> 
+                                        <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
+                                            To ensure that you receive the utmost attention and convenience, we have set up an exclusive onboarding call system, allowing you to schedule a one-on-one meeting with your assigned manager. This meeting will be an excellent opportunity for you to discuss your specific needs, goals, and any questions you may have regarding our services.
+                                        </p>
+                                        <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
+                                            Booking an appointment is quick and easy! Here's how to do it:
+                                        </p>
+                                        <ul style="text-align: left;">
+                                            <li>Visit our <a href="https://thefinanzi.in">website</a></li>
+                                            <li>Log in to your account using your registered email address and password</li>
+                                            <li>Navigate to My orders section of your dashboard</li>   
+                                            <li>Expand {{services}} and book an appointment under onboarding call step</li>                                    
+                                            <li>Choose your preferred date and time from the available slots</li>
+                                            <li>Confirm your appointment booking </li>
 
-<h3>OnBoading call  :</h3>
-<p>You have received new order OnBoading call </p>
-<ul>
-{# {% for product in order.products %}
-    <li>{{ product.name }}</li>
-{% endfor %} #}
-<li>Order Id : {{orderId}}  </li>
+                                        </ul>
+                                        <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
+                                            Thank you for choosing Finanzi as your trusted partner. We look forward to assisting you and working together to achieve your goals.
+                                        </p>     
 
-{# <li>start date = {{startdate}}  </li>
-<li>client email = {{starttime}}  </li> #}
-</ul>
+                                        {# <a href="http://thefinanzi.in:8080{{ path('app_dashboard') }}"
+                                            style="background:#5bb7c5;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">
+                                            Check you order
+                                        </a>#}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="height:40px;">&nbsp;</td>
+                                </tr>
+                            </table>
+                        </td>
+                    <tr>
+                        <td style="height:20px;">&nbsp;</td>
+                    </tr>
+                    
+                    <tr>
+                        <td style="height:80px;">&nbsp;</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <!--/100% body table-->
+</body>
 
-{# <p>We will confirm when your order has been dispatched.</p> #}
+</html>

@@ -208,9 +208,9 @@ class AppointmentController extends AbstractController
                 $email = (new TemplatedEmail())
                 ->from('contact@thefinanzi.in') //;
                 ->to(new Address($value->getEmail()))
-                ->subject('Onbording Call')
+                ->subject('Your Exclusive Appointment with Your Assigned Manager')
                 ->htmlTemplate('emails/onboadcall.html.twig')
-                ->context(['orderId' => $value->getId()]);
+                ->context(['username' => $value->getName(), 'mangername' => $user->getName(),'services' => $value->getProducts()]);
                 $mailer->send($email);
             }
 
