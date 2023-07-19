@@ -16,6 +16,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+
 use App\Entity\Order;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\OrderdocRepository;
@@ -172,13 +176,16 @@ class AggentdashbordController extends AbstractController
     /**
      * @Route("/editorderstatus/{id}", name="app_editorderstatus"  )
      */
-    public function editorderstatus($id,ManagerRegistry $doctrine, Request $request, OrderdocRepository $Orderdoc): Response
+    public function editorderstatus($id,ManagerRegistry $doctrine, Request $request, OrderdocRepository $Orderdoc, MailerInterface $mailer): Response
     {
         //$this->denyAccessUnlessGranted('ROLE_AGENT', null, 'User tried to access a page without having ROLE_staff');
         
-        //$order = new Order;        
+        //$order = new Order;  
+        
         $order = $request->request->get('status');
         $userid = $request->request->get('userid');
+
+        
         
         $o =filter_var($order, FILTER_VALIDATE_BOOLEAN);
        
@@ -190,10 +197,19 @@ class AggentdashbordController extends AbstractController
 
         $entityManager =$this->getDoctrine()->getManager();
         $Orderd = $doctrine->getRepository(Order::class)->find($id);
+        
         $Orderd->setDocstatus($o);
         
         $entityManager->persist($Orderd);
         $entityManager->flush();
+
+        $email = (new TemplatedEmail())
+            ->from('contact@thefinanzi.in') //;
+            ->to(new Address($Orderd->getEmail()))
+            ->subject("Service Commencement - Let's Begin!")
+            ->htmlTemplate('emails/orderstatus.html.twig')
+            ->context(['username' => $Orderd->getName()]);
+            $mailer->send($email);
 
         flash()->addSuccess('Thank you! Order Doc status change successfully');
         return $this->redirectToRoute('app_userorder', ['id' => $userid]);

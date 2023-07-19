@@ -45,6 +45,10 @@ use App\Repository\AppointmentRepository;
 use App\Entity\Mangereventbooking;
 use App\Repository\MangereventbookingRepository;
 
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+
 
 class MangerController extends AbstractController
 {
@@ -213,6 +217,8 @@ class MangerController extends AbstractController
         $entityManager->persist($Orderd);
         $entityManager->flush();
 
+        
+
         flash()->addSuccess('Thank you! Start Date Update successfully');
         return $this->redirectToRoute("app_manger");
         //return new JsonResponse(array('statsu' => true, 'messages' => array('done')));
@@ -221,8 +227,10 @@ class MangerController extends AbstractController
     /**
      * @Route("/{id}/setendorderdate", name="app_setendorderdate", methods={"GET", "POST"})
      */
-    public function edit($id ,Request $request,ManagerRegistry $doctrine): Response
+    public function edit($id ,Request $request,ManagerRegistry $doctrine, MailerInterface $mailer): Response
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
         $enddate = $request->request->get('enddate');
         
         $enddate= \DateTime::createFromFormat('d/m/Y',date("d/m/Y", strtotime($enddate)));
@@ -236,6 +244,15 @@ class MangerController extends AbstractController
         
         $entityManager->persist($Orderd);
         $entityManager->flush();
+
+        $email = (new TemplatedEmail())
+            ->from('contact@thefinanzi.in') //;
+            ->to(new Address($Orderd->getEmail()))
+            ->subject("Service Commencement - Let's Begin!")
+            ->htmlTemplate('emails/orderstart.html.twig')
+            ->context(['username' => $Orderd->getName(),'manger' => $user->getName()]);
+            $mailer->send($email);
+
         flash()->addSuccess('Thank you! End Date Update successfully');
         return $this->redirectToRoute("app_manger");
         //return new JsonResponse(array('statsu' => true, 'messages' => array('done')));
