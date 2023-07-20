@@ -216,6 +216,28 @@ class AggentdashbordController extends AbstractController
     
     }
 
+    /**
+     * @Route("/norify/{id}", name="app_norify"  )
+     */
+    public function norify($id,ManagerRegistry $doctrine, Request $request, OrderdocRepository $Orderdoc, MailerInterface $mailer): Response
+    {
+        $userid = $request->request->get('userid');
+        $entityManager =$this->getDoctrine()->getManager();
+        $Orderd = $doctrine->getRepository(Order::class)->find($id);        
+
+        $email = (new TemplatedEmail())
+            ->from('contact@thefinanzi.in') //;
+            ->to(new Address($Orderd->getEmail()))
+            ->subject("Service Commencement - Let's Begin!")
+            ->htmlTemplate('emails/inform.html.twig')
+            ->context(['username' => $Orderd->getName(),'pro'=> $Orderd->getProducts()->getName()]);
+            $mailer->send($email);
+
+        flash()->addSuccess('Thank you! Notification sent to user ');
+        return $this->redirectToRoute('app_userorder', ['id' => $userid]);
+    
+    }
+
     
     /**
      * @Route("/{id}/agentstatus", name="app_agentstatus", methods={"GET", "POST"})

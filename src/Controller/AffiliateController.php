@@ -28,6 +28,10 @@ use App\Repository\UserRepository;
 use App\Repository\AffiliateproductRepository;
 use App\Entity\Affiliateproduct;
 
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+
 /**
  * @Route("/affiliate")
  */
@@ -188,7 +192,7 @@ class AffiliateController extends AbstractController
     /**
      * @Route("/new", name="app_affiliate_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, AffiliateRepository $affiliateRepository): Response
+    public function new(Request $request, AffiliateRepository $affiliateRepository, MailerInterface $mailer): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER', null, 'User tried to access a page without having ROLE_USER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -244,6 +248,14 @@ class AffiliateController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $affiliateRepository->add($affiliate, true);
+
+            $email = (new TemplatedEmail())
+                ->from('contact@thefinanzi.in') //;
+                ->to(new Address($user->getEmail()))
+                ->subject("Congratulations! You are Now an Affiliate Partner with Us!")
+                ->htmlTemplate('emails/newaff.html.twig')
+                ->context(['username' => $user->getName()]);
+                $mailer->send($email);
 
             return $this->redirectToRoute('app_affiliate_index', [], Response::HTTP_SEE_OTHER);
         }

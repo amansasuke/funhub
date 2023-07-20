@@ -3,6 +3,7 @@
 {% block title %}Manger{% endblock %}
 {% block body %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
     .example-wrapper {
     margin: 1em auto;
@@ -417,8 +418,39 @@
                                                         <div class="gap"><a href="{{ path('app_doc_for_client_new') }}/?orderid={{order.id}}&userid={{userid}}" class="btn btn-common"  style="font-size: 14px;background-color:#5bb7c5;color:#ffff;"><i class="fa fa-upload"></i>Upload</a></div>
                                                     </td>
                                                     <td>
-                                                        <div class="btns-actions">
-                                                            <a class="btn btn-warning" href="{{path('app_doc_for_client_index')}}?orderid={{ order.id }}"><i class="lni-eye"></i></a>
+                                                        <div class="btns-actions gap">
+                                                            <a class="btn btn-primary" href="{{path('app_doc_for_client_index')}}?orderid={{ order.id }}" style="color:#fff; width:80px;"><i class="lni-eye"></i></a>
+                                                        </div>
+                                                        
+                                                        <div class="btns-actions gap">
+                                                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#notified{{order.id}}" style="color:#fff; width:80px;" >
+                                                               <i class="fa fa-bell"></i>
+                                                            </button>
+                                                            <div class="modal fade" id="notified{{order.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle{{order.id}}" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLongTitle">Notify</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <form action="{{ path('app_norify',  {'id': order.id}) }}" method="post">
+                                                                            <div class="modal-body">
+                                                                                <div class="form-group">
+                                                                                <input type="hidden" name="userid" value="{{userid}}">
+                                                                                    <label for="exampleInputEmail1">notify your all documents submitted</label>                                                                                                                                                                    
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
                                                     </td>
                                                 </tr>                                                

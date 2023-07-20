@@ -417,5 +417,30 @@ class MangerController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/norifyuser/{id}", name="app_norifyuser"  )
+     */
+    public function norifyuser($id,ManagerRegistry $doctrine, Request $request, OrderdocRepository $Orderdoc, MailerInterface $mailer): Response
+    {
+        $manger = $this->get('security.token_storage')->getToken()->getUser();
+        $mangerid  = $manger->getId();
+
+        $entityManager =$this->getDoctrine()->getManager();
+        $Orderd = $doctrine->getRepository(USER::class)->find($id); 
+        $fromAddress = new Address('contact@thefinanzi.in', 'Thefinanzi');       
+
+        $email = (new TemplatedEmail())
+            ->from($fromAddress) //;
+            ->to(new Address($Orderd->getEmail()))
+            ->subject("Service Commencement - Let's Begin!")
+            ->htmlTemplate('emails/informuser.html.twig')
+            ->context(['username' => $Orderd->getName(),'manger' => $manger->getName()]);
+            $mailer->send($email);
+
+        flash()->addSuccess('Thank you! Notification sent to user ');
+        return $this->redirectToRoute('app_manger');
+    
+    }
+
 }
 
