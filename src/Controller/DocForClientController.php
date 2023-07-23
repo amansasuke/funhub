@@ -24,6 +24,8 @@ use App\Entity\Order;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\Persistence\ManagerRegistry;
 
+use Aws\S3\S3Client;
+
 /**
  * @Route("/doc/for/client")
  */
@@ -70,7 +72,16 @@ class DocForClientController extends AbstractController
         //$form = $this->createForm(DocForClientType::class, $docForClient);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted() && $form->isValid()) {
+
+            $s3Client = new S3Client([
+                'version' => 'latest',
+                'region'  => 'ap-south-1',
+                'credentials' => [
+                    'key'    => 'AKIA6FS6JGND2EMRQZOH',
+                    'secret' => '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'
+                ]
+            ]);
             //die;
             $docname = $form->get('Name')->getData();
             //$Ordername = $form->get('Ordername')->getData();
@@ -84,13 +95,30 @@ class DocForClientController extends AbstractController
                 $newFilename = $safeFilename.'-'.uniqid().'.'.$brochureFile->guessExtension();
 
                 // Move the file to the directory where brochures are stored
+                // try {
+                //     $brochureFile->move(
+                //         $this->getParameter('brochures_directory'),
+                //         $newFilename
+                //     );
+                // } catch (FileException $e) {
+                //     // ... handle exception if something happens during file upload
+                // }
+
+                $bucket = 'newdocsfinanzi';
+                $file_Path = $brochureFile->getPathname();
+                $key = 'orderdocs/' . $_GET['userid'] . '/' . $newFilename;
+
                 try {
-                    $brochureFile->move(
-                        $this->getParameter('brochures_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
+                    $result = $s3Client->putObject([
+                        'Bucket' => $bucket,
+                        'Key'    => $key,
+                        'Body'   => fopen($file_Path, 'r'),                                
+                    ]);
+
+                    //echo "Image uploaded successfully. Image path is: " . $result->get('ObjectURL');
+                } catch (Aws\S3\Exception\S3Exception $e) {
+                    // echo "There was an error uploading the file.\n";
+                    // echo $e->getMessage();
                 }
             }
                 //$or = $this->getDoctrine()->getManager($order)->find($id);
@@ -101,7 +129,7 @@ class DocForClientController extends AbstractController
                 // docname
                 $entityManager = $this->getDoctrine()->getManager();
                 $docForClient->setName($docname);
-                $docForClient->setDoclink($newFilename);
+                $docForClient->setDoclink($result->get('ObjectURL'));
                 $docForClient->setOrdername($Orderd);
                 $docForClient->setStatus($Status);
                 $entityManager->persist($docForClient);
@@ -165,6 +193,15 @@ class DocForClientController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $s3Client = new S3Client([
+                'version' => 'latest',
+                'region'  => 'ap-south-1',
+                'credentials' => [
+                    'key'    => 'AKIA6FS6JGND2EMRQZOH',
+                    'secret' => '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'
+                ]
+            ]);
             $brochureFile = $form->get('Doclink')->getData();
             $brochureFile = $form->get('Doclink')->getData();
              
@@ -175,21 +212,39 @@ class DocForClientController extends AbstractController
                 $newFilename = $safeFilename.'-'.uniqid().'.'.$brochureFile->guessExtension();
 
                 // Move the file to the directory where brochures are stored
+                // try {
+                //     $brochureFile->move(
+                //         $this->getParameter('brochures_directory'),
+                //         $newFilename
+                //     );
+                // } catch (FileException $e) {
+                //     // ... handle exception if something happens during file upload
+                // }
+
+                $bucket = 'newdocsfinanzi';
+                $file_Path = $brochureFile->getPathname();
+                $key = 'orderdocs/' . $_GET['userid'] . '/' . $newFilename;
+
                 try {
-                    $brochureFile->move(
-                        $this->getParameter('brochures_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
+                    $result = $s3Client->putObject([
+                        'Bucket' => $bucket,
+                        'Key'    => $key,
+                        'Body'   => fopen($file_Path, 'r'),                                
+                    ]);
+
+                    //echo "Image uploaded successfully. Image path is: " . $result->get('ObjectURL');
+                } catch (Aws\S3\Exception\S3Exception $e) {
+                    // echo "There was an error uploading the file.\n";
+                    // echo $e->getMessage();
                 }
+
             }
             
             $docForClientRepository->add($docForClient, true);
 
             $entityManager = $this->getDoctrine()->getManager();
                 
-                $docForClient->setDoclink($newFilename);
+                $docForClient->setDoclink($result->get('ObjectURL'));
             
                 $entityManager->persist($docForClient);
                 $entityManager->flush();

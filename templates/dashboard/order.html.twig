@@ -262,7 +262,7 @@
                                     <div class="row" style="padding-top:2px;">
                                         <div class="col-6">
                                             {% if final.doclink|length > 0 %}                                        
-                                                <a href="{{ asset("assets/uploads/brochures/")}}{{final.doclink}}" target="_blank" >                                                                                                     
+                                                <a href="{{final.doclink}}" target="_blank" >                                                                                                     
                                                     <button class="btn btn-info" style="width:100%;"><i class="fa fa-eye"></i></button>                                                
                                                 </a>
                                             {% else %}                                                                                                                                                  
@@ -375,7 +375,7 @@
                         {% for docclients in doc_for_clients %}
                         {% if docclients.Ordername.id == ord.id %}
                         <label class="tg-fileuploadlabel" for="tg-photogallery" style="padding:20px 10px 10px 0px">
-                            <a href="{{ asset("assets/uploads/brochures/")}}{{docclients.doclink}}" target="_blank" class="btn btn-success" style="color:#fff">{{ docclients.name }}
+                            <a href="{{docclients.doclink}}" target="_blank" class="btn btn-success" style="color:#fff">{{ docclients.name }}
                                 <i class="fa fa-download" style="padding-left: 10px;"> </i>
                             </a>
                         </label>

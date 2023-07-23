@@ -262,9 +262,9 @@
                                                     <td>
                                                         {{ include('doc_for_client/_delete_form.html.twig') }}
                                                         {# <a href="{{ path('app_doc_for_client_delete', {'id': doc_for_client.id}) }}/?orderid={{app.request.get('orderid')}}">show </a> #}
-                                                        <a href="{{ path('app_doc_for_client_edit', {'id': doc_for_client.id}) }}/?orderid={{app.request.get('orderid')}}">edit</a>
+                                                        <a href="{{ path('app_doc_for_client_edit', {'id': doc_for_client.id}) }}/?orderid={{app.request.get('orderid')}}&userid={{app.request.get('userid')}}">edit</a>
                                                     </td>
-                                                    <td><a href="{{ asset("assets/uploads/brochures/")}}{{ doc_for_client.Doclink }}" class="btn btn-warning"><i class="lni-eye"></i></a></td>
+                                                    <td><a href="{{ doc_for_client.Doclink }}" class="btn btn-warning"><i class="lni-eye"></i></a></td>
                                                 </tr>
                                                 {% else %}
                                                 <tr>

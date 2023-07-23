@@ -375,7 +375,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
                                       {% for mydocs in srchdocforme %}
                                         <div class="col-6">
                                           <div class="wrimagecard wrimagecard-topimage">
-                                            <a href="{{ asset("assets/uploads/brochures/")}}{{ mydocs.doclink }}">
+                                            <a href="{{ mydocs.doclink }}">
                                                 <div class="wrimagecard-topimage_header" style="background-color: rgba(22, 160, 133, 0.1) ">
                                                     <center><i class="fa fa-file" style="color:#16A085"></i></center>
                                                 </div>
@@ -410,7 +410,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
                                                               <td>{{ docinfo.docname }}</td>
                                                               <td>
                                                                 {% if docinfo.doclink %}                                                                    
-                                                                  <a href="{{ asset("assets/uploads/brochures/")}}{{ docinfo.doclink }}"><i class="fa fa-download" style="color:green; font-size:30px;" aria-hidden="true"></i>
+                                                                  <a href="{{ docinfo.doclink }}"><i class="fa fa-download" style="color:green; font-size:30px;" aria-hidden="true"></i>
                                                                   </a>
                                                                 {% endif %}
                                                               </td>
@@ -422,7 +422,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
                                                                 <td>{{ mydocs.docname }}</td>
                                                                 <td>
                                                                   {% if mydocs.doclink %}                                                                    
-                                                                    <a href="{{ asset("assets/uploads/brochures/")}}{{ mydocs.doclink }}"><i class="fa fa-download" style="color:green; font-size:30px;" aria-hidden="true"></i>
+                                                                    <a href="{{ mydocs.doclink }}"><i class="fa fa-download" style="color:green; font-size:30px;" aria-hidden="true"></i>
                                                                     </a>
                                                                   {% endif %}
                                                                 </td>

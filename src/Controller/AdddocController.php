@@ -29,6 +29,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use App\Controller\EntityType;
 use App\Entity\Order;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Aws\S3\S3Client;
 
 
 class AdddocController extends AbstractController
@@ -38,6 +39,8 @@ class AdddocController extends AbstractController
      */
     public function index($id,Request $request, OrderdocRepository $OrderdocRepository, ManagerRegistry $doctrine, DocumentsforproductRepository $doc,SluggerInterface $slugger): Response
     {   
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $userid = $user->getId();
 
         $orderid=  $_GET['ordid'];
         $Orderdoc = new Orderdoc;
@@ -69,11 +72,22 @@ class AdddocController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+             // Instantiate an Amazon S3 client.
+             $s3Client = new S3Client([
+                'version' => 'latest',
+                'region'  => 'ap-south-1',
+                'credentials' => [
+                    'key'    => 'AKIA6FS6JGND2EMRQZOH',
+                    'secret' => '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'
+                ]
+            ]);
             
             $docname = $form->get('docname')->getData();
             $docremark = $form->get('docremark')->getData();
             $newFilename='';                    
              $brochureFile = $form->get('doclink')->getData();
+        
 
              if ($brochureFile) {
                 $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
@@ -81,15 +95,24 @@ class AdddocController extends AbstractController
                 $safeFilename = $slugger->slug($originalFilename);
                 $newFilename = $safeFilename.'-'.uniqid().'.'.$brochureFile->guessExtension();
 
-                // Move the file to the directory where brochures are stored
+                
+
+                $bucket = 'newdocsfinanzi';
+                $file_Path = $brochureFile->getPathname();
+                $key = 'orderdocs/' . $userid . '/' . $newFilename;
+
                 try {
-                    $brochureFile->move(
-                        $this->getParameter('brochures_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
+                    $result = $s3Client->putObject([
+                        'Bucket' => $bucket,
+                        'Key'    => $key,
+                        'Body'   => fopen($file_Path, 'r'),                                
+                    ]);
+
+                    //echo "Image uploaded successfully. Image path is: " . $result->get('ObjectURL');
+                } catch (Aws\S3\Exception\S3Exception $e) {
+                    // echo "There was an error uploading the file.\n";
+                    // echo $e->getMessage();
+                }                
             }
                 //$or = $this->getDoctrine()->getManager($order)->find($id);
                 $or = $doctrine->getRepository(Order::class)->find($id);
@@ -97,7 +120,7 @@ class AdddocController extends AbstractController
                 $status='0';
                 $entityManager = $this->getDoctrine()->getManager();
                 $Orderdoc->setDocname($docname);
-                $Orderdoc->setDoclink($newFilename);
+                $Orderdoc->setDoclink($result->get('ObjectURL'));
                 $Orderdoc->setDocremark($docremark);
                 $Orderdoc->setStatus($status);
 

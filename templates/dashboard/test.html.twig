@@ -8,7 +8,14 @@
 </head>
 
 <body>
-    <center>
+    <form action="" method="post" enctype="multipart/form-data">
+        <h2>PHP Upload File</h2>
+        <label for="file_name">Filename:</label>
+        <input type="file" name="anyfile" id="anyfile">
+        <input type="submit" name="submit" value="Upload">
+        <p><strong>Note:</strong> Only .jpg, .jpeg, .gif, .png formats allowed to a max size of 5 MB.</p>
+    </form>
+    {# <center>
         <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
             <tr>
                 <td align="center" valign="top" id="bodyCell">
@@ -285,7 +292,7 @@
                 </td>
             </tr>
         </table>
-    </center>
+    </center> #}
 </body>
 
 </html>
