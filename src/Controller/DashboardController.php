@@ -1111,6 +1111,20 @@ class DashboardController extends AbstractController
             $newArray[] = $element;
         }
 
+        // Sort the array using the custom sorting function
+        usort($newArray, function($a, $b) {
+            if ($a['id'] == $b['id']) {
+                return 0;
+            }
+            return ($a['id'] > $b['id']) ? -1 : 1;
+        });
+        
+        //print_r($array);
+        
+        // echo "<pre>";
+        // print_r($docfor);
+        // die;
+
         //print_r($newArray);
         
         // echo "<pre>";

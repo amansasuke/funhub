@@ -1,0 +1,331 @@
+{# {% extends 'getrout.html.twig' %} #}
+{% extends 'dashstyle.html.twig' %}
+{% block title %}Your profile!{% endblock %}
+{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style type="text/css">
+    
+.tg-fileuploadlabel {
+    width: 100%;
+    padding: 30px;
+    color: #363b4d;
+    font-size: 14px;
+    line-height: 17px;
+    margin: 0 0 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 3px dashed #eaedef;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center
+}
+
+.tg-fileuploadlabel span {
+    display: block;
+    margin-bottom: 15px
+}
+
+.tg-fileuploadlabel span:first-child {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px
+}
+
+.tg-fileuploadlabel span:first-child(2) {
+    padding: 15px 0
+}
+
+.tg-fileuploadlabel span:first-child(4) {
+    color: #363b4d;
+    font-size: 13px;
+    line-height: 16px;
+    margin: 30px 0 0
+}
+
+.tg-fileuploadlabel input[type=file].fileinput {
+    display: none
+}
+
+.tg-fileuploadlabel .btn {
+    color: #fff;
+    padding: 10px 50px;
+    position: relative;
+    text-align: center;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 23px;
+    display: inline-block;
+    vertical-align: middle;
+    text-transform: capitalize
+}
+
+.textwidget {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 27px
+}
+
+.textwidget p {
+    color: #bfbfbf;
+    font-size: 14px
+}
+
+
+.login-area .login-form {
+    padding: 30px 15px
+}
+
+.login-area .login-form .input-icon {
+    position: relative
+}
+
+.login-area .login-form .input-icon i {
+    font-size: 15px;
+    left: 16px;
+    color: #999;
+    line-height: 22px;
+    margin-top: -11px;
+    position: absolute;
+    top: 50%
+}
+
+.login-area .login-form .input-icon input {
+    padding-left: 40px
+}
+
+.login-area .checkbox {
+    display: inline-block
+}
+
+.login-area .checkbox label {
+    font-size: 13px;
+    margin-left: 5px
+}
+
+.login-area .forgetpassword {
+    float: right;
+    font-size: 14px;
+    line-height: 20px;
+    color: #999
+}
+
+.login-area .forgetpassword:hover {
+    color: #5bb7c5
+}
+
+.login-area .form-links a {
+    color: #999
+}
+
+.login-area .form-links a:hover {
+    color: #5bb7c5
+} 
+#form_save {
+    width:100%;
+    background-color:#5bb7c5;
+    border:none;
+}  
+.resetp{
+padding-top:10px;
+}
+#resetp{
+    width:100%;
+    
+}
+</style>
+
+<body>
+      
+    <div class="wrapper">
+        {% include '/manger/mangernev.html.twig' %}
+        <div class="main">
+            <nav class="navbar navbar-expand navbar-theme">
+                <a class="sidebar-toggle d-flex mr-2">
+                    <i class="hamburger align-self-center"></i>
+                </a>
+                {# <form class="form-inline d-none d-sm-inline-block">
+                    <input class="form-control form-control-lite" type="text" placeholder="Search projects...">
+                </form> #}
+                {# {{ render(controller(
+                    'App\\Controller\\DashboardController::recentArticles'
+                )) }} #}
+            </nav>
+            <main class="content">
+                <div class="container-fluid">
+                    <div class="header">
+                        <h1 class="header-title">
+                            Profile
+                        </h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
+                                {# <li class="breadcrumb-item"><a href="#">Profile</a></li> #}
+                                <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Profile</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row page-content">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="inner-box1">
+                                                <div class="dashboard-wrapper">
+                                                {{ form_start(form) }}
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                        {# <label class="control-label">Full Name</label> #}
+                                                        {{ form_row(form.name,{'attr': {'class': 'form-control input-md'}}) }}
+                                                        {# <input class="form-control input-md" name="Title" value="{{ user.name }}" placeholder="Title" type="text"> #}
+                                                        </div>
+                                                    
+                                                        <div class="form-group col-md-6">
+                                                            <label class="control-label">Email</label>
+                                                            {# {{ form_row(form.email,{'attr': {'class': 'form-control input-md'}}) }} #}
+                                                            <input class="form-control input-md" name="Title" value="{{ user.email }}" placeholder="Title" type="text" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-12">
+                                                            {# <label class="control-label">Address</label> #}
+                                                            {{ form_row(form.address,{'attr': {'class': 'form-control input-md'}}) }}
+                                                            {# <input class="form-control input-md" name="Title" value="{{ user.address }}" placeholder="Title" type="text"> #}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                        {# <label class="control-label">Full Name</label> #}
+                                                        {# {{ form_row(form.user_category,{'attr': {'class': 'form-control input-md'}}) }} #}
+                                                        {# <input class="form-control input-md" name="Title" value="{{ user.name }}" placeholder="Title" type="text"> #}
+                                                        </div>
+                                                    
+                                                        <div class="form-group col-md-6">
+                                                            {# <label class="control-label">Email</label> #}
+                                                            {{ form_row(form.GSTno,{'attr': {'class': 'form-control input-md'}}) }}
+                                                            {# <input class="form-control input-md" name="Title" value="{{ user.email }}" placeholder="Title" type="text"> #}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-4">
+                                                            {# <label class="control-label">Gander</label> #}
+                                                            {{ form_row(form.gender,{'attr': {'class': 'form-control input-md'}}) }}
+                                                            {# <input class="form-control input-md" name="Title" value="{{ user.gender }}" placeholder="Title" type="text"> #}
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            {# <label class="control-label">PAN no</label> #}
+                                                            {{ form_row(form.pan_no,{'attr': {'class': 'form-control input-md'}}) }}
+                                                            {# <input class="form-control input-md" name="Title" value="{{ user.panno }}" placeholder="Title" type="text"> #}
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            {# <label class="control-label">phone no</label> #}
+                                                            {{ form_row(form.phone_no,{'attr': {'class': 'form-control input-md'}}) }}
+                                                            {# <input class="form-control input-md" name="Title" value="{{ user.phoneno }}" placeholder="Title" type="text"> #}
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    
+                                                    <label class="tg-fileuploadlabel" for="tg-photogallery">
+                                                        <span>Update Profile Picture</span>
+                                                        {# <span>Or</span>
+                                                        <span class="btn btn-common">Select Files</span>
+                                                        <span>Maximum upload file size: 500 KB</span> #}
+                                                        {{ form_row(form.imgicon,{'attr': {'id': 'tg-fileinput','class': 'tg-fileinput'}}) }}
+                                                        {# <input id="tg-photogallery" class="tg-fileinput" type="file" name="file"> #}
+                                                    </label>
+                                                    {{ form_row(form.save,{'attr': {'class': 'btn btn-primary log-btn'}}) }}
+                                                    {{ form_end(form) }}
+                                                </div>
+                                                <div class="resetp ">
+                                                    <a href="{{ path('app_forgot_password_request') }}" class="btn btn-primary " id="resetp"> Reset Password</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+             
+        </div>
+    </div>
+    <svg width="0" height="0" style="position:absolute">
+        <defs>
+            <symbol viewBox="0 0 512 512" id="ion-ios-pulse-strong">
+                <path d="M448 273.001c-21.27 0-39.296 13.999-45.596 32.999h-38.857l-28.361-85.417a15.999 15.999 0 0 0-15.183-10.956c-.112 0-.224 0-.335.004a15.997 15.997 0 0 0-15.049 11.588l-44.484 155.262-52.353-314.108C206.535 54.893 200.333 48 192 48s-13.693 5.776-15.525 13.135L115.496 306H16v31.999h112c7.348 0 13.75-5.003 15.525-12.134l45.368-182.177 51.324 307.94c1.229 7.377 7.397 11.92 14.864 12.344.308.018.614.028.919.028 7.097 0 13.406-3.701 15.381-10.594l49.744-173.617 15.689 47.252A16.001 16.001 0 0 0 352 337.999h51.108C409.973 355.999 427.477 369 448 369c26.511 0 48-22.492 48-49 0-26.509-21.489-46.999-48-46.999z">
+                </path>
+            </symbol>
+        </defs>
+    </svg>
+
+</body>
+{% endblock %}
+{% block javascripts %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#notes").hide();
+    $("#shownots").click(function() {
+        $("#notes").toggle();
+    });
+});
+<script type="text/javascript">
+        // Toastr
+        $(function() {
+            var currentMessageIndex = -1;
+
+            function getMessage() {
+                var messages = [
+                    "My name is Inigo Montoya. You killed my father. Prepare to die!",
+                    "Are you the six fingered man?",
+                    "Inconceivable!",
+                    "I do not think that means what you think it means.",
+                    "Have fun storming the castle!",
+                ];
+                currentMessageIndex++;
+                if (currentMessageIndex === messages.length) {
+                    currentMessageIndex = 0;
+                }
+                return messages[currentMessageIndex];
+            };
+            $("#toastr-show").click(function() {
+                var message = $("#toastr-message").val() || getMessage();
+                var title = $("#toastr-title").val() || "";
+                var type = $("#toastr-type").val();
+                toastr[type](message, title, {
+                    positionClass: $("input[name=\"toastr-position\"]:checked").val(),
+                    closeButton: $("#toastr-close").prop("checked"),
+                    progressBar: $("#toastr-progress-bar").prop("checked"),
+                    newestOnTop: $("#toastr-newest-on-top").prop("checked"),
+                    rtl: $("body").attr("dir") === "rtl" || $("html").attr("dir") === "rtl",
+                    timeOut: $("#toastr-duration").val()
+                });
+            });
+            $("#toastr-clear").on("click", function() {
+                toastr.clear();
+            });
+        });
+</script>
+</script>
+{% endblock %}

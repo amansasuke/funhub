@@ -89,7 +89,7 @@ class AdddocController extends AbstractController
              $brochureFile = $form->get('doclink')->getData();
         
 
-             if ($brochureFile) {
+            if ($brochureFile) {
                 $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
                 // this is needed to safely include the file name as part of the URL
                 $safeFilename = $slugger->slug($originalFilename);
@@ -101,6 +101,11 @@ class AdddocController extends AbstractController
                 $file_Path = $brochureFile->getPathname();
                 $key = 'orderdocs/' . $userid . '/' . $newFilename;
 
+                $maxFileSize = 2 * 1024 * 1024; // 2MB in bytes
+                if (filesize($file_Path) > $maxFileSize) {                    
+                    flash()->addError ('Sorry ! File size  is more then 2MB');
+                    return $this->redirectToRoute("app_adddoc",array('id' => $id,'docname' => $docname,'ordid' => $orderid));
+                } 
                 try {
                     $result = $s3Client->putObject([
                         'Bucket' => $bucket,
@@ -113,7 +118,7 @@ class AdddocController extends AbstractController
                     // echo "There was an error uploading the file.\n";
                     // echo $e->getMessage();
                 }                
-            }
+            
                 //$or = $this->getDoctrine()->getManager($order)->find($id);
                 $or = $doctrine->getRepository(Order::class)->find($id);
                 $Orderdoc->getOrderid()->add($or);
@@ -123,7 +128,16 @@ class AdddocController extends AbstractController
                 $Orderdoc->setDoclink($result->get('ObjectURL'));
                 $Orderdoc->setDocremark($docremark);
                 $Orderdoc->setStatus($status);
-
+            }else{
+                $or = $doctrine->getRepository(Order::class)->find($id);
+                $Orderdoc->getOrderid()->add($or);
+                $status='0';
+                $entityManager = $this->getDoctrine()->getManager();
+                $Orderdoc->setDocname($docname);
+                $Orderdoc->setDoclink('');
+                $Orderdoc->setDocremark($docremark);
+                $Orderdoc->setStatus($status);
+            }
                 // foreach ($order as $key => $value) {
                 //     print_r($value->getid());
                 //     $Orderdoc->getOrderid()->add($value->getId());
