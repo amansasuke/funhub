@@ -70,8 +70,13 @@ class CheckoutController extends AbstractController
             }
 
         $percentage =5;
+        if (isset($_GET['usewalet'])){
+            $new_width = ($percentage / 100) * ($total - $_GET['usewalet']);
+            $waltebalance =  round($new_width);
+        }else{
         $new_width = ($percentage / 100) * $total;
         $waltebalance =  round($new_width);
+        }
         if (isset($_GET['usewalet']) &&  $_GET['usewalet'] <= $waltebalanceold && $_GET['usewalet'] < $total ) {            
             $waltebalanceNEW= ($waltebalanceold - $_GET['usewalet']) + $waltebalance;
         }else{

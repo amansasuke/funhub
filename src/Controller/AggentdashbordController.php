@@ -11,6 +11,12 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 use Symfony\Component\HttpFoundation\Request;
 
@@ -19,6 +25,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+
+
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File;
 
 use App\Entity\Order;
 use Doctrine\Persistence\ManagerRegistry;
@@ -228,7 +240,7 @@ class AggentdashbordController extends AbstractController
         $email = (new TemplatedEmail())
             ->from('contact@thefinanzi.in') //;
             ->to(new Address($Orderd->getEmail()))
-            ->subject("Service Commencement - Let's Begin!")
+            ->subject("Your documents are ready!")
             ->htmlTemplate('emails/inform.html.twig')
             ->context(['username' => $Orderd->getName(),'pro'=> $Orderd->getProducts()->getName()]);
             $mailer->send($email);
@@ -255,6 +267,125 @@ class AggentdashbordController extends AbstractController
         flash()->addSuccess('Thank you! Status Update successfully');
         return $this->redirectToRoute("app_staffdashbord");
         //return new JsonResponse(array('statsu' => true, 'messages' => array('done')));
+    }
+
+    /**
+     * @Route("/staffprofile", name="app_staffprofile")
+     */
+    public function userprofile(Request $request,SluggerInterface $slugger): Response
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $icon  = $user->getImgicon();       
+        //if(empty($user->getImgicon())){
+            $form = $this->createFormBuilder($user)
+            ->add('email', HiddenType::class, [
+                'data' => $user->getEmail(),
+            ])
+            ->add('name', TextType ::class,array(
+                'label' => ' Full Name',
+            ))
+            ->add('address')
+            ->add('pan_no', TextType ::class,array(
+                'label' => ' PAN Number',
+            ))
+            // ->add('GSTno', TextType::class,array(
+            //           'label' => ' GST No (Optional)',
+            //           'required' => false,
+            //       ))
+            ->add('phone_no',TextType::class, [
+                'label' => 'Phone No',
+            'constraints' => [
+                new Length([
+                    'min' => 10,
+                    'minMessage' => 'Your Phone Number should be at least {{ limit }} Number',
+                    // max length allowed by Symfony for security reasons
+                    'max' => 15,
+                ]),
+            ]]
+            )
+            ->add('gender', ChoiceType::class, [
+                'choices'  => [
+                    'Male' => 'male',
+                    'Female' => 'female',                  
+                ],
+            ])
+            // ->add('user_category', ChoiceType::class, [
+            //     'choices'  => [
+            //         'choose your category' => NULL,
+            //         'Individual' => 'Individual',
+            //         'Proprietor (Business)' => 'Proprietor (Business)',
+            //         'Partnership Firm' => 'Partnership Firm',
+            //         'Private Limited Company' => 'Private Limited Company ',                  
+            //         'Limited Liability Partnership (LLP)' => 'Limited Liability Partnership (LLP)',
+            //         'Non-Profit Organisation' => 'Non-profit Organisation',
+            //         'One Person Company' => 'One Person Company',
+            //         'Start-Up' => 'Start-Up',                  
+            //     ],
+            //     'label' => 'User Category',
+            // ])
+            ->add('imgicon', FileType::class, array(
+                'data_class' => null,
+                'required' => false,
+                'label' => false,
+                ))
+            
+            ->add('save', SubmitType::class, ['label' => 'Update Profile'])
+            ->getForm();
+                $form->handleRequest($request);
+                if ($form->isSubmitted() && $form->isValid()) {
+                    $brochureFile = $form->get('imgicon')->getData();            
+                    if ($brochureFile) {
+                        $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                        // this is needed to safely include the file name as part of the URL
+                        $safeFilename = $slugger->slug($originalFilename);
+                        $newFilename = $safeFilename.'-'.uniqid().'.'.$brochureFile->guessExtension();
+
+                        // Move the file to the directory where brochures are stored
+                        try {
+                            $brochureFile->move(
+                                $this->getParameter('profile_directory'),
+                                $newFilename
+                            );
+                        } catch (FileException $e) {
+            
+                        }
+
+                        $entityManager = $this->getDoctrine()->getManager();
+                        $user->setImgicon($newFilename);
+                        $entityManager->persist($user);
+                        $entityManager->flush();
+                    }else{
+                       $entityManager = $this->getDoctrine()->getManager();                       
+                       $user->setImgicon($icon);
+                        $entityManager->persist($user);
+                        $entityManager->flush(); 
+                    }
+                    flash()->addSuccess('Thank you! Profile updated successfully');
+                   // $this->addFlash('success', 'Thank you! profile update successfully');
+                }
+        // }else{
+        //     $form = $this->createFormBuilder($user)
+        //     ->add('imgicon', TextType::class,array(
+        //               'label' => ' ',
+        //           ))
+            
+        //     ->add('save', SubmitType::class, ['label' => 'Upload'])
+        //     ->getForm();
+        //     $form->handleRequest($request);
+        // }
+
+        $UserCategory =  $user->getUserCategory();
+        $phoneno =  $user->getPhoneNo();
+        $panno =  $user->getPanNo();
+        
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        return $this->render('mangerdashbord/staffprofile.html.twig', [
+            'user' => $user,
+            'Category'=>$UserCategory,
+            'PanNo'=>$panno,
+            'phoneno'=>$phoneno,
+            'form' => $form->createView(),
+        ]);
     }
 
 }

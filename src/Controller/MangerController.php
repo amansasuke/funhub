@@ -470,10 +470,10 @@ class MangerController extends AbstractController
             ->add('pan_no', TextType ::class,array(
                 'label' => ' PAN Number',
             ))
-            ->add('GSTno', TextType::class,array(
-                      'label' => ' GST No (Optional)',
-                      'required' => false,
-                  ))
+            // ->add('GSTno', TextType::class,array(
+            //           'label' => ' GST No (Optional)',
+            //           'required' => false,
+            //       ))
             ->add('phone_no',TextType::class, [
                 'label' => 'Phone No',
             'constraints' => [
