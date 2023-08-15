@@ -158,6 +158,9 @@ class CheckoutController extends AbstractController
             ->add('docstatus', HiddenType::class, [
                     'data' => '0',
                 ])
+            ->add('discount', HiddenType::class, [
+                'data' => '0',
+            ])
             // ->add('createat', DateType::class, [
             //     "data" => new \DateTime(),   
             //     ])
@@ -180,6 +183,8 @@ class CheckoutController extends AbstractController
             $grossvalue= $form->get('grossvalue')->getData();
             $gstamount= $form->get('gstamount')->getData();
             $totalvalue= $form->get('totalvalue')->getData();
+            $disc= $form->get('discount')->getData();
+
             
             
             if (gettype($state) !='string'){
@@ -204,6 +209,8 @@ class CheckoutController extends AbstractController
                 $order->setGrossvalue($grossvalue);
                 $order->setGstamount($gstamount);
                 $order->setTotalvalue($totalvalue);
+                $order->setDiscount($disc);
+                
                 $order->setProducts($repo->find($product->getId()));                
                 $entityManager->persist($order);
                 $entityManager->flush();                  

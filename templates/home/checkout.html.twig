@@ -92,6 +92,7 @@
                                     <span>₹{{ gsttotal| number_format }}.00</span>                                                                 
                                 </strong>                                 
                             </li> #}
+                            {%  set totaldis = 0 %}
                             {%  set realtotal = total %}
                             <li class="list-group-item d-flex justify-content-between">
                                 {% if app.request.get('usewalet') and app.request.get('usewalet')<= waltebalanceold and app.request.get('usewalet') < total %}
@@ -399,7 +400,8 @@
                         <div class="mb-3">                        
                             {{ form_row(form.grossvalue,{'attr': {'class': 'form-control','value':total}}) }}
                             {{ form_row(form.gstamount,{'attr': {'class': 'form-control','value':gsttotal| number_format}}) }}
-                            {{ form_row(form.totalvalue,{'attr': {'class': 'form-control','value':grandtotal| number_format}}) }}                            
+                            {{ form_row(form.totalvalue,{'attr': {'class': 'form-control','value':grandtotal| number_format}}) }}
+                            {{ form_row(form.discount,{'attr': {'class': 'form-control','value':app.request.get('usewalet') ? app.request.get('usewalet') : totaldis| number_format}}) }}                            
                         </div>
                         <div class="mb-3">
                             {{ form_row(form.address,{'attr': {'class': 'form-control input-md'}}) }}

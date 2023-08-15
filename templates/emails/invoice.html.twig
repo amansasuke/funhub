@@ -153,14 +153,16 @@
 											{{ order.products.price }}   
 										</td>
 									</tr>
-									{# <tr>
+                                    {% if order.discount > 0 and order.discount != NULL  %}
+									<tr>
 										<td align="right" style="padding: 5px;">
-											CGST @9%:    
+											Discount balance    
 										</td>
 										<td align="right" width="5%" style="padding: 5px;">
-											{{ order.gstamount }}    
+											{{ order.discount }}    
 										</td>
-									</tr> #}
+									</tr>
+                                    {% endif %}
 									<tr>
 										<td align="right" style="padding: 5px;">
 											GST @18%:    

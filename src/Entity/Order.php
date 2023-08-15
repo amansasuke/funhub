@@ -114,6 +114,11 @@ class Order
      */
     private $affiliateproducts;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $discount;
+
     
 
     public function __construct()
@@ -361,6 +366,7 @@ class Order
             'Invoice No.' => $this->id,
             'Gross Value' => $this->grossvalue,
             'GST Amount' => $this->gstamount,
+            'Discount' => $this->discount,            
             'Total Value' => $this->totalvalue,
         ]);
     }
@@ -451,6 +457,18 @@ class Order
                 $affiliateproduct->setOrderinfo(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDiscount(): ?string
+    {
+        return $this->discount;
+    }
+
+    public function setDiscount(?string $discount): self
+    {
+        $this->discount = $discount;
 
         return $this;
     }
