@@ -140,7 +140,7 @@ class DocForClientController extends AbstractController
                 //     'order' => $order
                 // ]);
                 flash()->addSuccess('Thank you! Documents Submitted  successfully');
-                return $this->redirectToRoute("app_doc_for_client_new",array('orderid' => $_GET['orderid']));
+                return $this->redirectToRoute("app_doc_for_client_new",array('orderid' => $_GET['orderid'], 'userid' => $_GET['userid']));
             // $docForClientRepository->add($docForClient, true);
             // return $this->redirectToRoute('app_doc_for_client_index', [], Response::HTTP_SEE_OTHER);
         }
