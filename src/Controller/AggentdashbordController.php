@@ -240,7 +240,7 @@ class AggentdashbordController extends AbstractController
         $email = (new TemplatedEmail())
             ->from('contact@thefinanzi.in') //;
             ->to(new Address($Orderd->getEmail()))
-            ->subject("Your documents are ready!")
+            ->subject("Sealed with Success: Your Final Documents Have Arrived")
             ->htmlTemplate('emails/inform.html.twig')
             ->context(['username' => $Orderd->getName(),'pro'=> $Orderd->getProducts()->getName()]);
             $mailer->send($email);

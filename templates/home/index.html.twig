@@ -1000,7 +1000,27 @@ padding-left: 30px; padding-top: 25px;
 .modal-dialog {max-width: 700px;margin: 130px auto;}
 .modal-body {position:relative;padding:0px;}
 .close {position:absolute;right:-30px;top:0;z-index:999;font-size:32px;font-weight: normal;color:#32be8f;opacity:1;background:white;}
+/* Style for the navigation dots */
+.owl-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Adjust as needed */
+}
 
+/* Style for each individual dot */
+.owl-dot {
+  display: inline-block;
+  margin: 0 5px; /* Adjust as needed */
+}
+
+/* Style for the active dot */
+.owl-dot.active span {
+  background-color: #007bff ; /* Change to your preferred color */
+}
+
+.owl-carousel .owl-dot{
+     background-color: #007bff !important;
+}
     </style>
 {% endblock %}
 {% block body %}
@@ -1034,6 +1054,59 @@ padding-left: 30px; padding-top: 25px;
                 </div>
                 <div class="col-md-6" >
                     <img src="assets/img/background/Imagehead.png" style="width:100%;"  alt="the finanzi" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta section-padding">        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 ">
+                    <img src="assets/img/background/seocon.png" alt="Our Locations" style="width: 70%;" >                    
+                </div>
+                <div class="col-md-7">
+                    <div class="titlehead">
+                        <h1>Best Online <span>Legal Service Provider</span> in India</h1>
+                    </div>
+                    <div id="seocon" class="owl-carousel">
+                        <div class="item">                                    
+                            <p>
+                                Are you in search of the best online legal service provider in India to ensure impeccable financial compliance for your business?                                
+                                Look no further! Our expert team offers a comprehensive suite of financial services tailored to meet your unique needs.
+                                <br>
+                            </p>
+                        </div>
+                        
+                        <div class="item">                                    
+                            <p>
+                                Save time and effort with our all-encompassing services that cover every aspect of financial compliance be it Goods and Service Tax, Income Tax, Certifications and Licenses such as Trademark, FSSAI, MSME registration, Startup India registration, book-keeping. 
+                            </p>
+                        </div>
+                        <div class="item">                                    
+                            <p>
+                                We understand that each business is unique. Our solutions are customized to your specific requirements with integration of real time status tracking and document management system.
+                                
+                            </p>
+                        </div>
+                        
+                        <div class="item">                                    
+                            <p>
+                            Expect honest advice, fair pricing, and timely services that you can rely on by joining our roster of satisfied clients who have achieved their financial and legal goals with our assistance.
+                                Streamline your business's legal and financial aspects with the best financial services in India. 
+                            </p>
+                        </div>
+                        <div class="item">                                    
+                            <p>
+                                Gain insights into your financial health and make informed decisions to grow your business while we handle all the legalities for you. Are you in search of the best online legal service provider in India to ensure impeccable financial compliance for your business?
+                                Contact us today to experience a new level of seamless financial compliance.
+                            </p>
+                        </div>
+                        
+                    </div> 
+                    <div style="padding-top:20px;">                      
+                    <a href="/services"class="btn btn-common loginfirst" style="width:300px;" >Explore Services </a> 
+                    </div>
                 </div>
             </div>
         </div>

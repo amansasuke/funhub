@@ -257,7 +257,7 @@ class MangerController extends AbstractController
         $email = (new TemplatedEmail())
             ->from('contact@thefinanzi.in') //;
             ->to(new Address($Orderd->getEmail()))
-            ->subject("Service Commencement - Let's Begin!")
+            ->subject("Mission Accomplished: Your Project Has Reached the Finish Line!")
             ->htmlTemplate('emails/orderstart.html.twig')
             ->context(['username' => $Orderd->getName(),'manger' => $user->getName(),'pro'=> $Orderd->getProducts()->getName()]);
             $mailer->send($email);
@@ -441,7 +441,7 @@ class MangerController extends AbstractController
         $email = (new TemplatedEmail())
             ->from($fromAddress) //;
             ->to(new Address($Orderd->getEmail()))
-            ->subject("Service Commencement - Let's Begin!")
+            ->subject("Unlocking Excellence: Introducing Your Dedicated Professional Expert")
             ->htmlTemplate('emails/informuser.html.twig')
             ->context(['username' => $Orderd->getName(),'manger' => $manger->getName()]);
             $mailer->send($email);

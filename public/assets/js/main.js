@@ -19,6 +19,8 @@
     testiOwl.owlCarousel({ autoplay: true, margin: 30, dots: false, autoplayHoverPause: true, nav: true, loop: true, navText: ['<i class="lni-chevron-left"></i>', '<i class="lni-chevron-right"></i>'], responsiveClass: true, responsive: { 0: { items: 1, }, 991: { items: 3 } } });
     var Potential = $("#potential");
     Potential.owlCarousel({ autoplay: true, margin: 30, dots: false, autoplayHoverPause: true, nav: true, loop: true, navText: ['<i class="lni-chevron-left"></i>', '<i class="lni-chevron-right"></i>'], responsiveClass: true, responsive: { 0: { items: 1, }, 991: { items: 3 } } });
+    var seocon = $("#seocon");
+    seocon.owlCarousel({ autoplay: true, margin: 30, dots: true, autoplayHoverPause: true, nav: false, loop: true, navText: ['<i class="lni-chevron-left"></i>', '<i class="lni-chevron-right"></i>'], responsiveClass: true, responsive: { 0: { items: 1, }, 991: { items: 1 } } });
     var newproducts = $("#new-products");
     newproducts.owlCarousel({ autoplay: true, nav: true, autoplayHoverPause: true, smartSpeed: 350, dots: false, margin: 30, loop: true, navText: ['<i class="lni-chevron-left"></i>', '<i class="lni-chevron-right"></i>'], responsiveClass: true, responsive: { 0: { items: 1, }, 575: { items: 2, }, 991: { items: 3, } } });
     var categoriesslider = $("#categories-icon-slider");
