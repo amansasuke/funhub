@@ -48,11 +48,14 @@ class BlogsController extends AbstractController
         $post = $re->findBy(array(),array('id' => 'desc'),
         $myLimit,
         $pginateStartIndex);
+        $myLimit=5;
+		$pginateStartIndex=0;
         
         $Category = $rep->findBy([]);
         $basket = $session->get('basket', []);
         $Recent = $re->postlimt();
-        $service = $Product->findBy(array(), array('id' => 'desc'));
+        //$service = $Product->findBy(array(), array('id' => 'desc'));
+        $service = $Product->findBy(array(),array('bgcolor' => 'ASC'),$myLimit,$pginateStartIndex);
         return $this->render('blogs/index.html.twig', [
             'controller_name' => 'HomeController',
             'post' => $post,

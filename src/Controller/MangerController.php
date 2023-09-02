@@ -255,7 +255,7 @@ class MangerController extends AbstractController
         $entityManager->flush();
 
         $email = (new TemplatedEmail())
-            ->from('contact@thefinanzi.in') //;
+            ->from(new Address('contact@thefinanzi.in', 'Finanzi'))
             ->to(new Address($Orderd->getEmail()))
             ->subject("Mission Accomplished: Your Project Has Reached the Finish Line!")
             ->htmlTemplate('emails/orderstart.html.twig')

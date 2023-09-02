@@ -216,7 +216,7 @@ class AggentdashbordController extends AbstractController
         $entityManager->flush();
 
         $email = (new TemplatedEmail())
-            ->from('contact@thefinanzi.in') //;
+            ->from(new Address('contact@thefinanzi.in', 'Finanzi'))
             ->to(new Address($Orderd->getEmail()))
             ->subject("Service Commencement - Let's Begin!")
             ->htmlTemplate('emails/orderstatus.html.twig')
@@ -238,7 +238,7 @@ class AggentdashbordController extends AbstractController
         $Orderd = $doctrine->getRepository(Order::class)->find($id);        
 
         $email = (new TemplatedEmail())
-            ->from('contact@thefinanzi.in') //;
+            ->from(new Address('contact@thefinanzi.in', 'Finanzi'))
             ->to(new Address($Orderd->getEmail()))
             ->subject("Sealed with Success: Your Final Documents Have Arrived")
             ->htmlTemplate('emails/inform.html.twig')

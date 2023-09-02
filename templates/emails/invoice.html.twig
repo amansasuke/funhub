@@ -38,48 +38,46 @@
                 </tr>
             </tbody>
         </table>
-        
         <div style="padding-top: 1cm; padding-bottom: 1cm;">
-            <table style="table-layout: fixed; width: 100%;">
-                <tbody>
-                    <tr>
-                        <td>
-                            <tr>
-                                <td style="padding:5px;">
-                                    <strong >Billed To: {{order.name}}</strong>                            
-                                </td>                            
-                            </tr>
-							<tr>
-								<td style="padding:5px;">
-                                    Billing Address:{{order.address}}
-                                </td>
-							</tr>
-                            <tr>
-                                <td style="padding:5px;">
-                                    Phone Number: {{order.phoneno}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding:5px;">
-                                    GSTIN: {{order.gstno}}
-                                </td>
-                            </tr>
-                            {# <tr>
-                                <td style="padding:5px;">
-                                    Place of Supply: {{order.gstno}}
-                                </td>
-                            </tr> #}
-                        </td>
-                        <td width="15%">
-                            
-                        </td>
-                        <td>
-                            
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <table style="table-layout: fixed; width: 100%;">
+            <tbody>
+                <tr>
+                    <td>
+                        <div style="padding:5px;">
+                            <strong>Billed To: {{order.name}}</strong>
+                        </div>
+                        <div style="padding:5px;">
+                            Billing Address:{{order.address}}
+                        </div>
+                        <div style="padding:5px;">
+                            Phone Number: {{order.phoneno}}
+                        </div>
+                        <div style="padding:5px;">
+                            GSTIN: {{order.gstno}}
+                        </div>
+                        <div style="padding:5px;">
+                            Place of Supply: {{order.gstno}} 
+                        </div>                           
+                    </td>
+                    <td width="15%">
+                        
+                    </td>
+                    <td>                           
+                        <div style="padding:5px;">
+                            Billed From: Learn Earn & Fun Private Limited 
+                        </div>
+                        <div style="padding:5px;">
+                            Address: 74, Deeplok Colony, Dehradun 248001, Uttarakhand
+                        </div>
+                        <div style="padding:5px;">
+                            GSTIN: 05AAECL6094L1Z4
+                        </div>
+                                                                          
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
        
         <div>
             <table style="table-layout: fixed; width: 100%;">
@@ -163,6 +161,14 @@
 										</td>
 									</tr>
                                     {% endif %}
+                                    <tr>
+										<td align="right" style="padding: 5px;">
+											Gross Value:
+										</td>
+										<td align="right" width="5%" style="padding: 5px;">
+											{{ order.grossvalue }}   
+										</td>
+									</tr>
 									<tr>
 										<td align="right" style="padding: 5px;">
 											GST @18%:    

@@ -643,6 +643,7 @@ h6 {
                                     </div>
                                     {% else %}
                                     <div class="dashboard-wrapper">
+                                        
                                         <table class="rwd-table">
                                             <tbody>
                                                 <tr>
@@ -650,16 +651,16 @@ h6 {
                                                     <th>product name </th>
                                                     <th>service name</th>
                                                     <th>price </th>
-                                                    <th>your erning</th>
+                                                    <th>your earning</th>
                                                 </tr>
                                                 {% if affiliateuser|length ==0 %}
                                                     <tr>
-                                                        <td colspan="5" style="text-align:center"> <h4>No order has been placed by any of your affiliate yet</h4> </td>
+                                                        <td colspan="5" style="text-align:center"> <h4>You don't have any affiliate user yet</h4> </td>
                                                     </tr>
                                                 {% else %}
                                                     {% if Affiliateproduct|length ==0 %}
                                                         <tr>
-                                                            <td colspan="5" style="text-align:center"> <h4>No order found affiliate </h4> </td>
+                                                            <td colspan="5" style="text-align:center"> <h4>No order has been placed by any of your affiliate yet </h4> </td>
                                                         </tr>
                                                     {% else %}
                                                         {% for ap in Affiliateproduct %}

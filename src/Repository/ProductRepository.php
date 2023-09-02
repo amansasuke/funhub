@@ -42,7 +42,7 @@ class ProductRepository extends ServiceEntityRepository
     public function searchtags($term,$cat)
     {
         $queryBuilder = $this->createQueryBuilder('p')
-            ->orderBy('p.id', 'DESC');
+            ->orderBy('p.bgcolor', 'ASC');
 
             if (!empty($term)) {
                 $queryBuilder->andWhere('p.tags LIKE :searchTerm')

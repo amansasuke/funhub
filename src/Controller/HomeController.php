@@ -166,9 +166,7 @@ class HomeController extends AbstractController
                 ])
             ->add('duration', ChoiceType::class,[
                       'choices'  => [
-                        '1h' => '1',
-                        '2h' => '2',
-                        '3h' => '3',                  
+                        '30mins' => '30',                                          
                     ],
                   ])
             ->add('userid', HiddenType::class, [
@@ -580,7 +578,7 @@ class HomeController extends AbstractController
         $entityManager->flush();
 
         //$this->addFlash('success', 'Thank you! appointment book successfully');
-        flash()->addSuccess('Thank you! appointment book successfully');
+        flash()->addSuccess('Thank you! Appointment booked successfully');
         return $this->redirectToRoute("app_mybooking");
     }
 

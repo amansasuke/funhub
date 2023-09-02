@@ -13980,7 +13980,7 @@ a.card {
     cursor: pointer;
     height: 2px;
     width: 20px;
-    background: #fff;
+    background: #060606;
     display: block;
     content: "";
     transition: background .1s ease-in-out, color .1s ease-in-out

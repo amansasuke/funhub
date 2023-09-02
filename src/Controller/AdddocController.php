@@ -103,7 +103,7 @@ class AdddocController extends AbstractController
 
                 $maxFileSize = 2 * 1024 * 1024; // 2MB in bytes
                 if (filesize($file_Path) > $maxFileSize) {                    
-                    flash()->addError ('Sorry ! File size  is more then 2MB');
+                    flash()->addError ('Sorry ! File size  is more than 2MB');
                     return $this->redirectToRoute("app_adddoc",array('id' => $id,'docname' => $docname,'ordid' => $orderid));
                 } 
                 try {

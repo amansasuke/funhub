@@ -250,7 +250,7 @@ class AffiliateController extends AbstractController
             $affiliateRepository->add($affiliate, true);
 
             $email = (new TemplatedEmail())
-                ->from('contact@thefinanzi.in') //;
+                ->from(new Address('contact@thefinanzi.in', 'Finanzi'))
                 ->to(new Address($user->getEmail()))
                 ->subject("Congratulations! You are Now an Affiliate Partner with Us!")
                 ->htmlTemplate('emails/newaff.html.twig')
