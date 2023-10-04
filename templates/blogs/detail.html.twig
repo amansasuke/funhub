@@ -173,10 +173,10 @@
                         {% for Recentpost in Recent %}
                             <li>
                                 <div class="widget-thumb">
-                                    <a href="{{ path('app_blogs') }}/{{Recentpost.id}}"><img src="{{ asset("images/thumbnails/")}}{{Recentpost.thumbnail}}" alt="" /></a>
+                                    <a href="{{ path('app_blogs') }}/{{Recentpost.title|replace({' ': '-'})}}"><img src="{{ asset("images/thumbnails/")}}{{Recentpost.thumbnail}}" alt="" /></a>
                                 </div>
                                 <div class="widget-content">
-                                    <a href="{{ path('app_blogs') }}/{{Recentpost.id}}">{{Recentpost.title}}</a>
+                                    <a href="{{ path('app_blogs') }}/{{Recentpost.title|replace({' ': '-'})}}">{{Recentpost.title}}</a>
                                     <span><i class="icon-calendar"></i>{{Recentpost.category}}</span>
                                 </div>
                                 <div class="clearfix"></div>

@@ -68,13 +68,16 @@ class BlogsController extends AbstractController
     }
 
     /**
-     * @Route("blogs/{id}" )
+     * @Route("blogs/{name}" )
      */
-    public function details($id,  PostRepository $repo, CategoryRepository $reps, SessionInterface $session): Response
+    public function details($name ,  PostRepository $repo, CategoryRepository $reps, SessionInterface $session): Response
     {
-        // print_r($id);
+        //print_r($name);
+        $replaced = str_replace('-', ' ', $name);
+        // print_r($replaced );
         // die;
-        $post = $repo->find($id);
+        $post = $repo->findOneByName($replaced);
+        
         $Category = $reps->findBy([]);
          $Recent = $repo->findBy(array(), array('id' => 'desc'));
          $basket = $session->get('basket', []);

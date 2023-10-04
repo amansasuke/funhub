@@ -63,6 +63,16 @@ class PostRepository extends ServiceEntityRepository
        ;
    }
 
+   // Custom query to find a post by name
+   public function findOneByName($name)
+   {
+       return $this->createQueryBuilder('p')
+           ->where('p.title = :name')
+           ->setParameter('name', $name)
+           ->getQuery()
+           ->getOneOrNullResult();
+   }
+
 //    public function findOneBySomeField($value): ?Post
 //    {
 //        return $this->createQueryBuilder('p')

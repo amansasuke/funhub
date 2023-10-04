@@ -60,6 +60,16 @@ class ProductRepository extends ServiceEntityRepository
             return $results;
     }
 
+    // Custom query to find a post by name
+   public function findOneByName($name)
+   {
+       return $this->createQueryBuilder('p')
+           ->where('p.name = :name')
+           ->setParameter('name', $name)
+           ->getQuery()
+           ->getOneOrNullResult();
+   }
+
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */

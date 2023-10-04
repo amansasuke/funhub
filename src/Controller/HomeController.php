@@ -352,8 +352,9 @@ class HomeController extends AbstractController
      * @Route("/prodetail/{id}", name="app_prodetail" )
      */
     public function productdetail($id,Request $request, ServicesRepository $repo,DocumentsforproductRepository $Doc, DocforproRepository $docforpro, ProductRepository $Product, SessionInterface $session): Response
-    {
-        $prodetail = $Product->find($id);
+    {   
+        $replaced = str_replace('-', ' ', $id);
+        $prodetail = $Product->findOneByName($replaced);
         $prodoc = $docforpro->findBy( array('proinfo' => $id), array('id' => 'DESC') );
 
         // foreach($prodoc as $pro){

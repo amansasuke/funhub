@@ -33,12 +33,12 @@
                 {% for posts in post %}
                     <div class="blog-post">
                         <div class="post-thumb">
-                            <a href="{{ path('app_blogs') }}/{{posts.id}}"><img class="img-fluid" src="images/thumbnails/{{posts.thumbnail}}" alt="" style="width: 100%;"></a>
+                            <a href="{{ path('app_blogs') }}/{{posts.title|replace({' ': '-'})}}"><img class="img-fluid" src="images/thumbnails/{{posts.thumbnail}}" alt="" style="width: 100%;"></a>
                             <div class="hover-wrap"></div>
                         </div>
                         <div class="post-content">
                             <div class="meta">
-                                <span class="meta-part"><a href="{{ path('app_blogs') }}/{{posts.id}}"><i class="lni-user"></i> {{ posts.category }}</a></span>
+                                <span class="meta-part"><a href="{{ path('app_blogs') }}/{{posts.title|replace({' ': '-'})}}"><i class="lni-user"></i> {{ posts.category }}</a></span>
                                {#  <span class="meta-part"><a href="#"><i class="lni-alarm-clock"></i> June 21, 2018</a></span>
                                 <span class="meta-part"><a href="#"><i class="lni-folder"></i> Sticky</a></span>
                                 <span class="meta-part"><a href="#"><i class="lni-comments-alt"></i> 1 Comments</a></span> #}
@@ -47,7 +47,7 @@
                             <div class="entry-summary">
                                 <p> {{ posts.content|striptags|slice(0, 350) ~ '...'}}</p>
                             </div>
-                            <a href="{{ path('app_blogs') }}/{{posts.id}}" class="btn btn-common">Read More</a>
+                            <a href="{{ path('app_blogs') }}/{{posts.title|replace({' ': '-'})}}" class="btn btn-common">Read More</a>
                         </div>
                     </div>
                 {% endfor %}
@@ -100,10 +100,10 @@
                         {% for Recentpost in Recent %}
                             <li>
                                 <div class="widget-thumb">
-                                    <a href="{{ path('app_blogs') }}/{{Recentpost.id}}"><img src="{{ asset("images/thumbnails/")}}{{Recentpost.thumbnail}}" alt="" /></a>
+                                    <a href="{{ path('app_blogs') }}/{{Recentpost.title|replace({' ': '-'})}}"><img src="{{ asset("images/thumbnails/")}}{{Recentpost.thumbnail}}" alt="" /></a>
                                 </div>
                                 <div class="widget-content">
-                                    <a href="{{ path('app_blogs') }}/{{Recentpost.id}}">{{Recentpost.title}}</a>
+                                    <a href="{{ path('app_blogs') }}/{{Recentpost.title|replace({' ': '-'})}}">{{Recentpost.title}}</a>
                                 
                                 </div>
                                 <div class="clearfix"></div>
@@ -121,7 +121,7 @@
                                         {# <a href="prodetail/{{Productr.id}}"><img src="{{ asset("images/thumbnails/")}}{{Productr.service.thumbnail}}" alt="" /></a> #}
                                     </div>
                                     <div class="widget-content">
-                                        <h4 style="font-size: 16px;"><a href="prodetail/{{Productr.id}}">{{Productr.name}}</a></h4>
+                                        <h4 style="font-size: 16px;"><a href="prodetail/{{Productr.name|replace({' ': '-'})}}">{{Productr.name}}</a></h4>
                                         <div class="meta-tag">
                                             <h6 class="price">₹{{Productr.price}}</h6>
                                             
@@ -137,12 +137,12 @@
                                                         {% endif %}
                                                     {% endfor %}
                                                     {% if not found %}
-                                                        <input type="hidden" name="proid" value="{{Productr.id}}">
+                                                        <input type="hidden" name="proid" value="{{Productr.name|replace({' ': '-'})}}">
                                                         <input type="hidden" name="addoncart" value="{{Productr.id}}">
                                                         <button class="btn btn-success"><i class="fa fa-shopping-cart "></i> </button>
                                                     {% endif %}
                                                 {% else %}
-                                                    <input type="hidden" name="proid" value="{{Productr.id}}">
+                                                    <input type="hidden" name="proid" value="{{Productr.name|replace({' ': '-'})}}">
                                                     <input type="hidden" name="addoncart" value="{{Productr.id}}">
                                                     <button class="btn btn-success"><i class="fa fa-shopping-cart "></i> </button>
                                                 {% endif %}
