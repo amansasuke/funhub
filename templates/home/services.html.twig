@@ -523,7 +523,7 @@ a {
                                 <div class="inner color-white">
                                     {# <h3 class="flip-box-header">{{ Products.name }}</h3>
                                     <p>A short sentence describing this callout is.</p> #}
-                                    <a href="prodetail/{{Products.name|replace({' ': '-'})}}" class="card-button"> View Details</a>                                 
+                                    <a href="prodetail/{{Products.name|lower|replace({' ': '-'})}}" class="card-button"> View Details</a>                                 
                                 </div>
                             </div>
                         </div>

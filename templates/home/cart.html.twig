@@ -151,7 +151,7 @@
 	                                            </td>
 	                                            <td align="center" data-title="Action">
 	                                                <div class="btns-actionsside">
-	                                                    <a class="btn-action btn-view" href="prodetail/{{product.name|replace({' ': '-'})}}"><i class="lni-eye"></i></a>  
+	                                                    <a class="btn-action btn-view" href="prodetail/{{product.name|lower|replace({' ': '-'})}}"><i class="lni-eye"></i></a>  
 	                                                    <form method="post">  
 	                                                    <input type="hidden" name="id" value="{{ product.id }}">      
 	                                                    <button class="btn-action btn-delete" style="border: none;" ><i class="lni-trash"></i></button>

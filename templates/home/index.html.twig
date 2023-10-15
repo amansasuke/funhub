@@ -1978,7 +1978,7 @@ padding-left: 30px; padding-top: 25px;
                         <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
                             <div class="blog-item-wrapper">
                                 <div class="blog-item-img">
-                                    <a href="blogs/{{posts.title|replace({' ': '-'})}}">
+                                    <a href="blogs/{{posts.title|lower|replace({' ': '-'})}}">
                                         <img src="images/thumbnails/{{posts.thumbnail}}" alt="">
                                     </a>
                                 </div>
@@ -1988,12 +1988,12 @@ padding-left: 30px; padding-top: 25px;
                                         <span class="date float-right"><i class="lni-calendar"></i> </span>
                                     </div>
                                     <h3>
-                                        <a href="blogs/{{posts.title|replace({' ': '-'})}}"> {{ posts.title}}</a>
+                                        <a href="blogs/{{posts.title|lower|replace({' ': '-'})}}"> {{ posts.title}}</a>
                                     </h3>
                                     <p>
                                         {{ posts.content|striptags|slice(0, 150) ~ '...'}}
                                     </p>
-                                    <a href="blogs/{{posts.title|replace({' ': '-'})}}" class="btn btn-common">Read More</a>
+                                    <a href="blogs/{{posts.title|lower|replace({' ': '-'})}}" class="btn btn-common">Read More</a>
                                 </div>
                             </div>
                         </div>

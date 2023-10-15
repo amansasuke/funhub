@@ -13,7 +13,7 @@
         <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet"/>
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet"/>
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet"/>
-        <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
+        <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/logo.png') }}">
         
         <link rel="canonical" href="https://thefinanzi.in/">
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-S8DW01T4KP"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-S8DW01T4KP'); </script>
@@ -5508,13 +5508,13 @@ footer .menu li a:hover {
 
         </style>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
+        {# {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+        {% endblock %} #}
     </head>
     <body>
     {% for message in app.flashes('success') %}
